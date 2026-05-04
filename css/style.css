@@ -1,0 +1,212 @@
+/* ============================================
+   HERBARI DIGITAL BALEAR — Estils Compartits y Layout SPA
+   ============================================ */
+
+/* === RESET BÁSICO === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* === SEASONAL THEME: CSS Custom Properties === */
+
+/* ── Primavera (Verd) [Default] ── */
+:root, [data-season="primavera"] {
+    --primary: #2d7a2d;
+    --primary-light: #3da63d;
+    --primary-rgb: 45, 122, 45;
+    --surface: #162116;
+    --bg-dark: #0a120a;
+}
+
+/* ── Estiu (Daurat) ── */
+[data-season="estiu"] {
+    --primary: #b8930a;
+    --primary-light: #d4a90e;
+    --primary-rgb: 184, 147, 10;
+    --surface: #1e1c10;
+    --bg-dark: #0f0e06;
+}
+
+/* ── Tardor (Taronja) ── */
+[data-season="tardor"] {
+    --primary: #c0632a;
+    --primary-light: #e07830;
+    --primary-rgb: 192, 99, 42;
+    --surface: #1e1510;
+    --bg-dark: #120d08;
+}
+
+/* ── Hivern (Blau cel) ── */
+[data-season="hivern"] {
+    --primary: #2d7aaa;
+    --primary-light: #3da6d4;
+    --primary-rgb: 45, 122, 170;
+    --surface: #101a22;
+    --bg-dark: #080e14;
+}
+
+/* === BASE Y LAYOUT SPA === */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: #e2e8f0; /* Color de texto base claro */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupa al menos el 100% de la pantalla */
+    overflow: hidden; /* Evita doble scroll, el scroll irá en el contenedor principal */
+}
+
+/* === HEADER Y NAVEGACIÓN === */
+header {
+    background-color: var(--surface);
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+header .logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary-light);
+    font-weight: 700;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #94a3b8;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary-light);
+}
+
+/* === CONTENEDOR CENTRAL DINÁMICO === */
+.layout-container {
+    flex: 1; /* Rellena todo el espacio disponible entre header y footer */
+    display: flex;
+    overflow: hidden;
+}
+
+#app-content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto; /* El scroll ocurre aquí dentro */
+}
+
+/* === FOOTER === */
+footer {
+    background-color: var(--surface);
+    border-top: 1px solid rgba(var(--primary-rgb), 0.1);
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+/* === MATERIAL SYMBOLS === */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-size: 24px;
+}
+
+/* === SCROLLBAR PERSONALITZAT === */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-light);
+}
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-rgb), 0.2);
+    border-radius: 10px;
+}
+
+/* === DETAILS / SUMMARY RESET === */
+details summary::-webkit-details-marker {
+    display: none;
+}
+details summary {
+    list-style: none;
+}
+
+/* === MAPA ESPECÍFIC === */
+.topo-grid {
+    background-image: radial-gradient(var(--primary) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+.mallorca-contour {
+    filter: drop-shadow(0 0 15px rgba(var(--primary-rgb), 0.3));
+}
+
+/* === SEASON SELECTOR === */
+.season-dropdown {
+    position: relative;
+}
+.season-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 180px;
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+}
+.season-dropdown-menu.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+.season-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.season-option:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+.season-option.active {
+    color: var(--primary-light);
+    background: rgba(var(--primary-rgb), 0.1);
+}

@@ -1,0 +1,210 @@
+/* ============================================
+   HERBARI DIGITAL BALEAR — Estils Compartits
+   ============================================ */
+
+/* === SEASONAL THEME: CSS Custom Properties === */
+
+/* ── Primavera (Verd) ── */
+:root,
+[data-season="primavera"] {
+    --primary: #2d7a2d;
+    --primary-light: #3da63d;
+    --primary-rgb: 45, 122, 45;
+    --surface: #162116;
+    --bg-dark: #0a120a;
+    /* Season-neutral scale (green tones) - Base: #2d7a2d */
+    --sn-50:  #f3f8f3;
+    --sn-100: #e7f1e7;
+    --sn-200: #cfdfcf;
+    --sn-300: #b7ceb7;
+    --sn-400: #87ad87;
+    --sn-500: #2d7a2d; /* Primary */
+    --sn-600: #276a27;
+    --sn-700: #1e521e;
+    --sn-800: #163d16;
+    --sn-900: #112e11;
+    --sn-950: #081708;
+}
+
+/* ── Estiu (Daurat) ── */
+[data-season="estiu"] {
+    --primary: #b8930a;
+    --primary-light: #d4a90e;
+    --primary-rgb: 184, 147, 10;
+    --surface: #1e1c10;
+    --bg-dark: #0f0e06;
+    /* Season-neutral scale (warm golden tones) - Base: #b8930a */
+    --sn-50:  #faf9f2;
+    --sn-100: #f5f2e6;
+    --sn-200: #ebe4cd;
+    --sn-300: #e0d6b3;
+    --sn-400: #d6c89a;
+    --sn-500: #b8930a; /* Primary */
+    --sn-600: #a18109;
+    --sn-700: #7a6207;
+    --sn-800: #5c4a05;
+    --sn-900: #443704;
+    --sn-950: #231c02;
+}
+
+/* ── Tardor (Taronja) ── */
+[data-season="tardor"] {
+    --primary: #c0632a;
+    --primary-light: #e07830;
+    --primary-rgb: 192, 99, 42;
+    --surface: #1e1510;
+    --bg-dark: #120d08;
+    /* Season-neutral scale (warm amber tones) - Base: #c0632a */
+    --sn-50:  #fcf7f4;
+    --sn-100: #f9efe9;
+    --sn-200: #f3dfd4;
+    --sn-300: #eccebf;
+    --sn-400: #e6beaa;
+    --sn-500: #c0632a; /* Primary */
+    --sn-600: #a85725;
+    --sn-700: #80421c;
+    --sn-800: #603215;
+    --sn-900: #472510;
+    --sn-950: #241308;
+}
+
+/* ── Hivern (Blau cel) ── */
+[data-season="hivern"] {
+    --primary: #2d7aaa;
+    --primary-light: #3da6d4;
+    --primary-rgb: 45, 122, 170;
+    --surface: #101a22;
+    --bg-dark: #080e14;
+    /* Season-neutral scale (cool icy tones) - Base: #2d7aaa */
+    --sn-50:  #f3f8fb;
+    --sn-100: #e7f1f7;
+    --sn-200: #cfdfeb;
+    --sn-300: #b7cede;
+    --sn-400: #87adcc;
+    --sn-500: #2d7aaa; /* Primary */
+    --sn-600: #276a94;
+    --sn-700: #1e5272;
+    --sn-800: #163d55;
+    --sn-900: #112e40;
+    --sn-950: #081720;
+}
+
+/* === BASE === */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* === MATERIAL SYMBOLS === */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-size: 24px;
+}
+
+/* === SCROLLBAR PERSONALITZAT === */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-light);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-rgb), 0.2);
+    border-radius: 10px;
+}
+
+/* === DETAILS / SUMMARY RESET === */
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details summary {
+    list-style: none;
+}
+
+/* === MAPA ESPECÍFIC === */
+.topo-grid {
+    background-image: radial-gradient(var(--primary) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.mallorca-contour {
+    filter: drop-shadow(0 0 15px rgba(var(--primary-rgb), 0.3));
+}
+
+/* === FOOTER === */
+#app-footer {
+    border-top: 1px solid rgba(var(--primary-rgb), 0.1);
+}
+
+/* === SEASON SELECTOR === */
+.season-dropdown {
+    position: relative;
+}
+
+.season-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 180px;
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.season-dropdown-menu.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.season-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.season-option:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+
+.season-option.active {
+    color: var(--primary-light);
+    background: rgba(var(--primary-rgb), 0.1);
+}

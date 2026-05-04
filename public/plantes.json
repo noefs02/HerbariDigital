@@ -1,0 +1,1138 @@
+{
+  "plantes": [
+    {
+      "id": "cyclamen-balearicum",
+      "nomComu": "Pa porcí",
+      "nomCientific": "Cyclamen balearicum",
+      "familia": "Primulàcies",
+      "etiquetes": [
+        {
+          "text": "Protegida",
+          "color": "orange"
+        },
+        {
+          "text": "Endèmica",
+          "color": "blue"
+        },
+        {
+          "text": "Mallorca",
+          "color": "primary"
+        }
+      ],
+      "ubicacio": "Serra de Tramuntana",
+      "ubicacioIcona": "location_on",
+      "imatge": "https://lh3.googleusercontent.com/aida-public/AB6AXuADvP4qIjg9lQs18NqtEdnqhoIT6eu0Zjs4RVbUgLXG-gMZxbEaizqKcJP7BReApm6XAas6T8e9dyjE1brA6qciZr04uPGmje-rd_UGvf3z_PUuaq5UHlA3BoUOiPXxa8ThJxI8qIT46U6AaSIc25FPxw9U4j6bVxsO57RpZNZaqAgOqkSNcDDRxyJO5fFJgc9BUZihZgGojj1ZH7cqrcJrhlLE2shUNfCdgg1N6olcRe6qGVp_4a_kVmn7khvhbTgK_h1DIq-Vz_A",
+      "imatgeAlt": "Cyclamen balearicum white flower in the forest",
+      "vist": true,
+      "presencia": {
+        "mallorca": true,
+        "menorca": false,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Cyclamen balearicum Willk.",
+        "sol": "Calcari, zones ombrívoles, alzinars",
+        "floracio": "Febrer — Abril (Final d'hivern — Primavera)",
+        "descripcio": [
+          "El <strong>Pa porcí</strong> és una planta perenne herbàcia amb un tubercle subterrani arrodonit. Les fulles són basals, cordiformes, amb la superfície superior de color verd fosc amb dibuixos platejats i la inferior purpúria.",
+          "Les flors són petites, de color blanc o rosa pàl·lid, amb pètals revoluts i una fragància subtil. Floreix entre febrer i abril. És un endemisme gimnèsic exclusiu de les Illes Balears."
+        ],
+        "estatConservacio": {
+          "nivell": "Protegida",
+          "percentatgeRisc": 50,
+          "etiquetaRisc": "Quasi Amenaçada (NT)",
+          "colorRisc": "orange",
+          "descripcioRisc": "L'espècie pateix la destrucció del seu hàbitat natural, els alzinars, i la recol·lecció il·legal."
+        },
+        "distribucioGeografica": "Exclusiva de Mallorca i Menorca, principalment a zones boscoses de muntanya.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "20 d'Abril, 2024",
+        "coordenades": "39.7812° N, 2.8654° E",
+        "notes": "Diversos exemplars localitzats sota un alzinar dens. Les flors blanques amb petites vetes rosades eren molt delicades.",
+        "condicions": [
+          {
+            "icona": "forest",
+            "text": "Alzinar"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "18°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuADvP4qIjg9lQs18NqtEdnqhoIT6eu0Zjs4RVbUgLXG-gMZxbEaizqKcJP7BReApm6XAas6T8e9dyjE1brA6qciZr04uPGmje-rd_UGvf3z_PUuaq5UHlA3BoUOiPXxa8ThJxI8qIT46U6AaSIc25FPxw9U4j6bVxsO57RpZNZaqAgOqkSNcDDRxyJO5fFJgc9BUZihZgGojj1ZH7cqrcJrhlLE2shUNfCdgg1N6olcRe6qGVp_4a_kVmn7khvhbTgK_h1DIq-Vz_A"
+      }
+    },
+    {
+      "id": "paeonia-cambessedesii",
+      "nomComu": "Estepa joana",
+      "nomCientific": "Paeonia cambessedesii",
+      "familia": "Peoniàcies",
+      "etiquetes": [
+        {
+          "text": "En Perill",
+          "color": "red"
+        },
+        {
+          "text": "Molt Rara",
+          "color": "purple"
+        },
+        {
+          "text": "Mallorca",
+          "color": "primary"
+        }
+      ],
+      "ubicacio": "Mallorca, Cabrera",
+      "ubicacioIcona": "location_on",
+      "imatge": "https://lh3.googleusercontent.com/aida-public/AB6AXuBCCKu9E3mLxBsoXtS3UA8x3vpAELo74NhmUWxPXuQAZECvTp5-lHzn_YY-J0vAq6LsxJMtLt2obGabS5HI1wNJLJmRiKFKxgf-nlmSPItzJ5slKC9rgASTdqNrFY-mFt3nKct4jjPa5-sH4Zfe6swjd1g9Kx6w1wM5o0Aeb7-abrPCj-9BuUC3Kth0qNu4Dy-yeLvhy6q4Boz7iN4kJBJUvlo7tKVEQLV80lnvEVpPV433jn0Y4wl5CzIpagDM00VRiLc3brhFxvQ",
+      "imatgeAlt": "Paeonia cambessedesii bright pink peony flower",
+      "vist": false,
+      "presencia": {
+        "mallorca": true,
+        "menorca": false,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": true
+      },
+      "fitxa": {
+        "nomCientificComplet": "Paeonia cambessedesii (Willk.) Willk.",
+        "sol": "Calcari, escletxes de roques, zones d'ombra",
+        "floracio": "Març — Maig (Primavera)",
+        "descripcio": [
+          "L'<strong>Estepa joana</strong> és una planta perenne, glabra, amb una soca llençosa i gruixuda. Les fulles són alternes, biternades, amb els segments ovals i peciolats, d'un color verd fosc brillant per l'anvers i purpuris pel revers.",
+          "Les flors són grans i vistoses, de 5 a 10 cm de diàmetre, amb 5 a 8 pètals de color rosa intens. Els estams són nombrosos amb els filaments purpuris i les anteres grogues. El fruit està format per 2-3 fol·licles glabres que contenen llavors negres i brillants quan són madures. És una de les joies botàniques més emblemàtiques de les Balears."
+        ],
+        "estatConservacio": {
+          "nivell": "En Perill",
+          "percentatgeRisc": 85,
+          "etiquetaRisc": "Risc Extrem (CR/EN)",
+          "colorRisc": "red",
+          "descripcioRisc": "L'espècie es veu amenaçada pel sobrepastureig de les cabres salvatges i la recol·lecció furtiva de les seves flors."
+        },
+        "distribucioGeografica": "Distribució restringida a zones de muntanya de Mallorca i l'arxipèlag de Cabrera.",
+        "imatgeMapa": "https://lh3.googleusercontent.com/aida-public/AB6AXuCp_lZXKN1tFnbfOO1bJ3qxr0JKQjithFi8nsfe3t7PDVl95YGtwKhFSF8VDUomldcH5thgy3f22x5tgxANhL8om8oKnL-7QEFhlSLz776GYc1OhVhmzSJrx3tbwqCJZbp3N7pFo2ppIC_oZvO8kXdUy9YeU5tv3WUpM-CPceT9m7tOs8NUQAYxV4la7NVUqNgbBfxtnCNOO4ruWJo8FeCS5xQ67xOPfwSDDSX_xeDeQQA_WR7CL43AhtLghH4_QJ6kiC4aQ8iqaH4",
+        "imatgeCarrusel": "https://lh3.googleusercontent.com/aida-public/AB6AXuA19Ezd4y_wnhSbEDksNACcq51NCGNulo9QEBM_4V_ncWgTox2bc-nEYb-5IJcKnBc-d-xJ6judWLRZQDQY5DtIXpdCMUEje-9LDGkxehd7BFnm36SKPNAt0-vUyr2zc5IQQb-IXvu4NUG9Czdbnr7ahQ8ZoWmA4ddgQrh5FCI6bOnM4pwzwQqkqJGTyw2FYPjH1PZCuBrwVmOZVjmahaqRzl2eaidepUjK1EaJv86v7suXA027GPu-vQw2rLuS-CDijTwz7R2Ymvw"
+      },
+      "diari": {
+        "data": "25 d'Abril, 2024",
+        "coordenades": "39.7901° N, 2.8734° E",
+        "notes": "Un exemplar solitari en floració plena a una escletxa de roca. Color rosa intens impressionant.",
+        "condicions": [
+          {
+            "icona": "wb_sunny",
+            "text": "Ombra parcial"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "20°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuBCCKu9E3mLxBsoXtS3UA8x3vpAELo74NhmUWxPXuQAZECvTp5-lHzn_YY-J0vAq6LsxJMtLt2obGabS5HI1wNJLJmRiKFKxgf-nlmSPItzJ5slKC9rgASTdqNrFY-mFt3nKct4jjPa5-sH4Zfe6swjd1g9Kx6w1wM5o0Aeb7-abrPCj-9BuUC3Kth0qNu4Dy-yeLvhy6q4Boz7iN4kJBJUvlo7tKVEQLV80lnvEVpPV433jn0Y4wl5CzIpagDM00VRiLc3brhFxvQ"
+      }
+    },
+    {
+      "id": "posidonia-oceanica",
+      "nomComu": "Alga vidre",
+      "nomCientific": "Posidonia oceanica",
+      "familia": "Posidoniàcies",
+      "etiquetes": [
+        {
+          "text": "Molt Comú",
+          "color": "emerald"
+        },
+        {
+          "text": "Vulnerable",
+          "color": "amber"
+        },
+        {
+          "text": "Marí",
+          "color": "cyan"
+        }
+      ],
+      "ubicacio": "Tot l'arxipèlag",
+      "ubicacioIcona": "waves",
+      "imatge": "https://lh3.googleusercontent.com/aida-public/AB6AXuD1k1GJrIIGoW1Tzz9gU-H9QEmn1jKXDZ0Iez9b3JhEVkGewIcwO73V0tpRXAEspOMfsEwLaGxDKYnfsvGt-4uOK9coBKhAfFErUH1pvNj1X_OaVl_eI62Kl_5sjifKOb6pQBLf-F3ian3RsLOOVTmusIpGmgD1jpsYoSdVOmHb-72YkyU5Fjy1eH8j1Th2RjnH0LuFsCr0T15WeVpzzCj5bov-UQebEJaeg0Kapjtb4mSvpCFMxiScD6JEEpdMfrN2G1fVywvGtWU",
+      "imatgeAlt": "Posidonia oceanica underwater meadows",
+      "vist": true,
+      "presencia": {
+        "mallorca": true,
+        "menorca": true,
+        "eivissa": true,
+        "formentera": true,
+        "cabrera": true
+      },
+      "fitxa": {
+        "nomCientificComplet": "Posidonia oceanica (L.) Delile",
+        "sol": "Fons marí sorrenc, entre 1 i 40 metres de profunditat",
+        "floracio": "Setembre — Novembre (Tardor)",
+        "descripcio": [
+          "La <strong>Posidònia</strong> és una planta marina (no una alga) que forma extenses praderies submarines al Mediterrani. Les fulles són acintades, de color verd intens, i poden arribar a 1 metre de llargària.",
+          "Les praderies de posidònia són ecosistemes fonamentals per a la biodiversitat marina mediterrània, proporcionant refugi i aliment a centenars d'espècies. Produeixen una gran quantitat d'oxigen i estabilitzen els fons marins."
+        ],
+        "estatConservacio": {
+          "nivell": "Vulnerable",
+          "percentatgeRisc": 65,
+          "etiquetaRisc": "Vulnerable (VU)",
+          "colorRisc": "amber",
+          "descripcioRisc": "Les praderies pateixen la contaminació, l'ancoratge de vaixells i el canvi climàtic que escalfa les aigües."
+        },
+        "distribucioGeografica": "Present a totes les costes de les Illes Balears, formant extenses praderies submarines.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "15 de Juliol, 2024",
+        "coordenades": "39.5432° N, 2.3876° E",
+        "notes": "Praderia extensa observada fent snorkel a la badia. Aigües cristal·lines amb abundant vida marina entre les fulles.",
+        "condicions": [
+          {
+            "icona": "pool",
+            "text": "Submarí"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "25°C (aigua)"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuD1k1GJrIIGoW1Tzz9gU-H9QEmn1jKXDZ0Iez9b3JhEVkGewIcwO73V0tpRXAEspOMfsEwLaGxDKYnfsvGt-4uOK9coBKhAfFErUH1pvNj1X_OaVl_eI62Kl_5sjifKOb6pQBLf-F3ian3RsLOOVTmusIpGmgD1jpsYoSdVOmHb-72YkyU5Fjy1eH8j1Th2RjnH0LuFsCr0T15WeVpzzCj5bov-UQebEJaeg0Kapjtb4mSvpCFMxiScD6JEEpdMfrN2G1fVywvGtWU"
+      }
+    },
+    {
+      "id": "hypericum-balearicum",
+      "nomComu": "Estepa joana petita",
+      "nomCientific": "Hypericum balearicum",
+      "familia": "Hipericàcies",
+      "etiquetes": [
+        {
+          "text": "Endèmica",
+          "color": "blue"
+        },
+        {
+          "text": "Menorca",
+          "color": "indigo"
+        }
+      ],
+      "ubicacio": "Menorca, Mallorca",
+      "ubicacioIcona": "location_on",
+      "imatge": "https://lh3.googleusercontent.com/aida-public/AB6AXuBr0krzPyNkPVeEx0qVerM5SyyQR7VYTvHtXM9g914N--6DIlZodrhm-LwwGIDoXOb4cD4TpLVwLSJRvJg9BOXM61LNmA4jHdY2LTHLWy9Ls-MF00wS-wOkKYcnVS6zkeILsS2K0HD6JHbrT469S4mKrMWdqDy4VCOaEgUq48TChKw-qV3wRWwadk3gi3twefAgQfOMUdQTE7eHzyFebqtt0nNDhjMHDbm8Af7snLIziXW1kDHx6U7g7EA_smgur89swMsduZKllg0",
+      "imatgeAlt": "Hypericum balearicum yellow flowers",
+      "vist": true,
+      "presencia": {
+        "mallorca": true,
+        "menorca": true,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Hypericum balearicum L.",
+        "sol": "Calcari, garrigues i matollars mediterranis",
+        "floracio": "Abril — Juliol (Primavera — Estiu)",
+        "descripcio": [
+          "L'<strong>Estepa joana petita</strong> és un arbust perenne endèmic de les Balears, de fins a 1,5 m d'alçada. Es caracteritza per les fulles petites, coriàcies i berrugoses, amb glàndules translúcides.",
+          "Les flors són d'un groc intens, amb cinc pètals i nombrosos estams. És una espècie molt característica de la garriga balear i dels matollars mediterranis."
+        ],
+        "estatConservacio": {
+          "nivell": "Endèmica",
+          "percentatgeRisc": 35,
+          "etiquetaRisc": "Preocupació Menor (LC)",
+          "colorRisc": "emerald",
+          "descripcioRisc": "Població estable però dependent de la conservació dels hàbitats de garriga mediterrània."
+        },
+        "distribucioGeografica": "Distribuïda per Mallorca, Menorca i Cabrera, principalment en zones de garriga.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "14 de Maig, 2024",
+        "coordenades": "39.8143° N, 2.9156° E",
+        "notes": "Endemisme balear molt característic per les seves fulles petites i berrugoses. Trobada prop de la base del Puig Major.",
+        "condicions": [
+          {
+            "icona": "wb_sunny",
+            "text": "Sòl Directe"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "22°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuAxHwo58Cu_0wlKAf9uOzLLQA28dasaLFXVosZagAlfJKFWJfdG0hsANMFvW1lWNFItPAwFVrgoCQ2qOeHlOh7kMDHNPL3QKQppHRBl5XeaDOA1D7t1JJ5bDJb5IhvjkZ-BidgoIJGw2Q9elTHrqyWS2PFGXVBUBEfL6DTyKcWjSVPWk-btrqLWoubvbTW9rMxvYDYMqhM_alXWWzHH7wwVVoJHDmrXWPttiatCWKcvJCQqu6BAsJSQHK1NCKSO-ClRhswa00gKx_c"
+      }
+    },
+    {
+      "id": "salvia-rosmarinus",
+      "nomComu": "Romer",
+      "nomCientific": "Salvia rosmarinus",
+      "familia": "Lamiàcies",
+      "etiquetes": [
+        {
+          "text": "Comú",
+          "color": "emerald"
+        },
+        {
+          "text": "Formentera",
+          "color": "pink"
+        }
+      ],
+      "ubicacio": "Illes Pitiüses",
+      "ubicacioIcona": "location_on",
+      "imatge": "https://lh3.googleusercontent.com/aida-public/AB6AXuCcW16dbYVwqswaEzIby6Dyzg5rpIqL5bofitXyzYIij_rpcD95SaoY_w0wix3HVRyMH3qJKuDmRcBT8f8iXznpXLnPFOnVMIUGaHTlR4kwz36ap4rJEEIpGhO9Kx9URcfdNbCDWsa1ejkNshU1Pp2tix5qHbuEOcVuEQJuuUaPHzJIfN6MHCxPffOCBpAnL99-bxUYgagu9m6sYsB3op3HeBlwo660_4RiPe77saO-ejd_s9DO4YSO-mj2ZsB2wZNQOvLOueD9xrc",
+      "imatgeAlt": "Rosmarinus officinalis wild rosemary in Formentera",
+      "vist": true,
+      "presencia": {
+        "mallorca": true,
+        "menorca": true,
+        "eivissa": true,
+        "formentera": true,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Salvia rosmarinus L. (syn. Rosmarinus officinalis)",
+        "sol": "Calcari o silici, zones seques i assolellades",
+        "floracio": "Gener — Maig (Hivern — Primavera)",
+        "descripcio": [
+          "El <strong>Romer</strong> és un arbust aromàtic perenne que pot arribar als 2 m d'alçada. Les fulles són lineals, coriàcies, de color verd fosc per sobre i blanquinoses per sota.",
+          "Les flors, de color blau pàl·lid a lila, s'agrupen en raïms axil·lars. És una planta medicinal i culinària molt apreciada, present a tota la regió mediterrània."
+        ],
+        "estatConservacio": {
+          "nivell": "Comú",
+          "percentatgeRisc": 15,
+          "etiquetaRisc": "Preocupació Menor (LC)",
+          "colorRisc": "emerald",
+          "descripcioRisc": "Espècie abundant i àmpliament distribuïda sense amenaces significatives."
+        },
+        "distribucioGeografica": "Present a totes les Illes Balears, especialment abundant a les Pitiüses.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "08 de Març, 2024",
+        "coordenades": "38.7321° N, 1.4567° E",
+        "notes": "Exemplars abundants en un camí rural de Formentera. Aroma intens i molts insectes pol·linitzadors.",
+        "condicions": [
+          {
+            "icona": "wb_sunny",
+            "text": "Sòl Directe"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "19°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuCcW16dbYVwqswaEzIby6Dyzg5rpIqL5bofitXyzYIij_rpcD95SaoY_w0wix3HVRyMH3qJKuDmRcBT8f8iXznpXLnPFOnVMIUGaHTlR4kwz36ap4rJEEIpGhO9Kx9URcfdNbCDWsa1ejkNshU1Pp2tix5qHbuEOcVuEQJuuUaPHzJIfN6MHCxPffOCBpAnL99-bxUYgagu9m6sYsB3op3HeBlwo660_4RiPe77saO-ejd_s9DO4YSO-mj2ZsB2wZNQOvLOueD9xrc"
+      }
+    },
+    {
+      "id": "crithmum-maritimum",
+      "nomComu": "Fonoll marí",
+      "nomCientific": "Crithmum maritimum",
+      "familia": "Apiàcies",
+      "etiquetes": [
+        {
+          "text": "Abundant",
+          "color": "slate"
+        },
+        {
+          "text": "Litoral",
+          "color": "sky"
+        }
+      ],
+      "ubicacio": "Costes rocoses",
+      "ubicacioIcona": "waves",
+      "imatge": "https://lh3.googleusercontent.com/aida-public/AB6AXuCcFKIAEIdMr6wPCIbx1GR_ZbAdX4saRNy49GUi40ovrL7Xgx6qQYuLFuRPJ6Gc4lRSwKH-zU5teVhn4YHhSgOpUxd0LCsof6UgD00UiCjFqrs88Gdt-beoZmDAaUuhAU_cX2z2Zt-DYGDvzrFDA9o1cIa62Zbr-2pPLDGNcYn7Ie28bFbklnUvsTrpH6dNdk6iQPazn0kVTT1Jetq3uWCqLAbL-3yc48Qqa2uBiKdFSJbobI3blfIGfePA-FBEliRdz9M1UdBzKzg",
+      "imatgeAlt": "Crithmum maritimum sea fennel near the coast",
+      "vist": false,
+      "presencia": {
+        "mallorca": true,
+        "menorca": true,
+        "eivissa": true,
+        "formentera": true,
+        "cabrera": true
+      },
+      "fitxa": {
+        "nomCientificComplet": "Crithmum maritimum L.",
+        "sol": "Roques litorals, penya-segats i zones salines",
+        "floracio": "Juliol — Octubre (Estiu — Tardor)",
+        "descripcio": [
+          "El <strong>Fonoll marí</strong> és una planta perenne carnosa que creix a les roques costaneres. Les fulles són triangulars, dividides en segments carnosos de color verd glauc.",
+          "Les flors són petites, groguenques, agrupades en umbel·les compostes. És una planta comestible molt apreciada a la gastronomia mediterrània, tradicionalment consumida en amanides."
+        ],
+        "estatConservacio": {
+          "nivell": "Abundant",
+          "percentatgeRisc": 10,
+          "etiquetaRisc": "Preocupació Menor (LC)",
+          "colorRisc": "emerald",
+          "descripcioRisc": "Espècie abundant a totes les costes rocoses de les Balears sense amenaces significatives."
+        },
+        "distribucioGeografica": "Ubiqua a totes les costes rocoses de les Illes Balears.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "22 d'Agost, 2024",
+        "coordenades": "39.8765° N, 3.1234° E",
+        "notes": "Població densa als penya-segats de la costa nord. Algunes plantes amb fruits ja formats.",
+        "condicions": [
+          {
+            "icona": "air",
+            "text": "Vent moderat"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "30°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuCcFKIAEIdMr6wPCIbx1GR_ZbAdX4saRNy49GUi40ovrL7Xgx6qQYuLFuRPJ6Gc4lRSwKH-zU5teVhn4YHhSgOpUxd0LCsof6UgD00UiCjFqrs88Gdt-beoZmDAaUuhAU_cX2z2Zt-DYGDvzrFDA9o1cIa62Zbr-2pPLDGNcYn7Ie28bFbklnUvsTrpH6dNdk6iQPazn0kVTT1Jetq3uWCqLAbL-3yc48Qqa2uBiKdFSJbobI3blfIGfePA-FBEliRdz9M1UdBzKzg"
+      }
+    },
+    {
+      "id": "narcissus-miniatus",
+      "nomComu": "Narcís de tardor",
+      "nomCientific": "Narcissus miniatus",
+      "familia": "Amaril·lidàcies",
+      "etiquetes": [
+        {
+          "text": "Eivissa",
+          "color": "violet"
+        },
+        {
+          "text": "Tardor",
+          "color": "orange"
+        }
+      ],
+      "ubicacio": "Eivissa, Formentera",
+      "ubicacioIcona": "location_on",
+      "imatge": "img/plantes/narcissus-miniatus.png",
+      "imatgeAlt": "Narcissus miniatus small autumn daffodil",
+      "vist": true,
+      "presencia": {
+        "mallorca": false,
+        "menorca": false,
+        "eivissa": true,
+        "formentera": true,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Narcissus miniatus Donn. ex Haw.",
+        "sol": "Sòls sorrencs o argilosos, zones obertes",
+        "floracio": "Setembre — Novembre (Tardor)",
+        "descripcio": [
+          "El <strong>Narcís de tardor</strong> és un bulb perenne de petita talla que floreix a la tardor, a diferència de la majoria de narcissos. Les fulles són lineals i apareixen després de la floració.",
+          "Les flors són solitàries, de color groc intens, amb una corona central ben desenvolupada. És una espècie característica de les zones obertes i pastures de les Pitiüses."
+        ],
+        "estatConservacio": {
+          "nivell": "Endèmica regional",
+          "percentatgeRisc": 45,
+          "etiquetaRisc": "Quasi Amenaçada (NT)",
+          "colorRisc": "orange",
+          "descripcioRisc": "La urbanització costanera i el canvi d'usos del sòl amenacen les seves poblacions."
+        },
+        "distribucioGeografica": "Distribuïda principalment a Eivissa i Formentera, en zones de pastura i camps oberts.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "12 d'Octubre, 2024",
+        "coordenades": "38.9087° N, 1.4312° E",
+        "notes": "Primers exemplars en floració de la temporada. Trobats en un camp obert prop de Santa Eulària.",
+        "condicions": [
+          {
+            "icona": "cloud",
+            "text": "Ennuvolat"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "22°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuBbe9UW6q32BtvWvx-ySfwO6USDrJtC6blCFjw9ILhyIFkp7iIT-L5xukCLwMs1pKsLR_mHSIyK4w3KEIAPXHkdQoLjKcrFaB1J2ZiKXSK_uEI2BkY3M6Y7WO8kY_mNjanSI6I03K7-6ym-JA4i_JgGJdU5fy2uqShJTOp5DimNp-UbLY6SHyb1kpvPLclbomE-wmnYcQqZ3YElsXQ2hjHr49TipIb_2srbKbwNwgybHZOkn1ZiTle-aQijF4UMmD4wDeQZ1sieQMQ"
+      }
+    },
+    {
+      "id": "chamaerops-humilis",
+      "nomComu": "Garballó",
+      "nomCientific": "Chamaerops humilis",
+      "familia": "Arecàcies",
+      "etiquetes": [
+        {
+          "text": "Protegida",
+          "color": "orange"
+        },
+        {
+          "text": "Autoctona",
+          "color": "teal"
+        }
+      ],
+      "ubicacio": "Zones litorals",
+      "ubicacioIcona": "location_on",
+      "imatge": "https://lh3.googleusercontent.com/aida-public/AB6AXuATSHeGaeUV9AwmtpE7Q5mWv8qUB8HbyujH-twNGE80aAwG1DwqhodpTLkf2NvftF9oBeZ_z0HPVedhEY3ClYI1ne4UZh_WYgkoyCbmQqlMuaI8fifX8zct1e0FOUUojbTZOHMV9qxWBgV-trzJ6nMyeA-DfQT5PzDJlvv_ACma9KhhL_yk9hhNa4S22aUw9wxZTr7zG7V0BCbdLcPAxAVEbyVWAybEs6hG9af-cyBO1VbbioflrGwn5W0o5KIa_3Vlx3w0aqM6UWU",
+      "imatgeAlt": "Chamaerops humilis mediterranean fan palm",
+      "vist": false,
+      "presencia": {
+        "mallorca": true,
+        "menorca": true,
+        "eivissa": true,
+        "formentera": true,
+        "cabrera": true
+      },
+      "fitxa": {
+        "nomCientificComplet": "Chamaerops humilis L.",
+        "sol": "Calcari, zones seques i litorals",
+        "floracio": "Març — Juny (Primavera)",
+        "descripcio": [
+          "El <strong>Garballó</strong> és l'única palmera autòctona d'Europa. És un arbust o petit arbre que pot arribar als 5 m d'alçada, amb fulles palmades en forma de ventall.",
+          "Les flors són petites i groguenques, agrupades en inflorescències compactes. Els fruits són dàtils petits de color marró. Les fulles joves (palmes) es recullen tradicionalment per a treballs d'artesania."
+        ],
+        "estatConservacio": {
+          "nivell": "Protegida",
+          "percentatgeRisc": 40,
+          "etiquetaRisc": "Quasi Amenaçada (NT)",
+          "colorRisc": "orange",
+          "descripcioRisc": "Espècie protegida per llei. Les principals amenaces són la destrucció d'hàbitat i la recol·lecció il·legal de palmes."
+        },
+        "distribucioGeografica": "Present a totes les Illes Balears, principalment en zones litorals i garrigues.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "30 de Maig, 2024",
+        "coordenades": "39.4521° N, 3.0987° E",
+        "notes": "Grup de garballons adults a una zona litoral. Alguns amb fruits en maduració.",
+        "condicions": [
+          {
+            "icona": "wb_sunny",
+            "text": "Sòl Directe"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "26°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuATSHeGaeUV9AwmtpE7Q5mWv8qUB8HbyujH-twNGE80aAwG1DwqhodpTLkf2NvftF9oBeZ_z0HPVedhEY3ClYI1ne4UZh_WYgkoyCbmQqlMuaI8fifX8zct1e0FOUUojbTZOHMV9qxWBgV-trzJ6nMyeA-DfQT5PzDJlvv_ACma9KhhL_yk9hhNa4S22aUw9wxZTr7zG7V0BCbdLcPAxAVEbyVWAybEs6hG9af-cyBO1VbbioflrGwn5W0o5KIa_3Vlx3w0aqM6UWU"
+      }
+    },
+    {
+      "id": "arbutus-unedo",
+      "nomComu": "Arboç",
+      "nomCientific": "Arbutus unedo",
+      "familia": "Ericàcies",
+      "etiquetes": [
+        {
+          "text": "Bosc",
+          "color": "lime"
+        },
+        {
+          "text": "Arbre",
+          "color": "amber"
+        },
+        {
+          "text": "Silicícola",
+          "color": "rose"
+        }
+      ],
+      "ubicacio": "Muntanyes silíciques",
+      "ubicacioIcona": "location_on",
+      "imatge": "https://lh3.googleusercontent.com/aida-public/AB6AXuDbx14svxaC5pPWvfP-ZiRtiNWsoWJJkPD3Z4ph5eKeLlLNgLuXom8qCnOf19ouf6dcFjyQRqixf_wIjJa09_ZhYsgN6h68qEdHeAXtQ9Z2ZhelHyVQAooafxWflGEAkjL6OymiHkI6Bq4ztPQjeUjKiYTUX90WkT1nMIH7Pqir8EkIVL7-Mn566VkyNTf9d4xbxS95o6JjDADpsSYiWiJEZhdPcDm_7uVJeIuC8YEtAKPnWdldPbZ3wrh7VTYNqnitTuoj4203dyQ",
+      "imatgeAlt": "Arbutus unedo strawberry tree fruits",
+      "vist": true,
+      "presencia": {
+        "mallorca": true,
+        "menorca": true,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Arbutus unedo L.",
+        "sol": "Silici o calcari, alzinars i boscos mixtos",
+        "floracio": "Octubre — Desembre (Tardor — Hivern)",
+        "descripcio": [
+          "L'<strong>Arboç</strong> és un arbre o arbust perenne que pot arribar als 10 m d'alçada. Les fulles són el·líptiques, coriàcies, de color verd fosc brillant i vora serrada.",
+          "Les flors són petites, blanques o rosades, en forma d'urna, i els fruits són baies esfèriques de color vermell intens quan maduren. Els fruits són comestibles i s'empren per fer licors tradicionals."
+        ],
+        "estatConservacio": {
+          "nivell": "Comú",
+          "percentatgeRisc": 20,
+          "etiquetaRisc": "Preocupació Menor (LC)",
+          "colorRisc": "emerald",
+          "descripcioRisc": "Població estable a les àrees forestals de les Balears."
+        },
+        "distribucioGeografica": "Present a Mallorca i Menorca, principalment en zones de muntanya amb sòls àcids o silicis.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "18 de Novembre, 2024",
+        "coordenades": "39.7654° N, 2.9321° E",
+        "notes": "Arbre carregat de fruits vermells madurs i flors simultàniament. Espectacle visual impressionant.",
+        "condicions": [
+          {
+            "icona": "forest",
+            "text": "Bosc mixt"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "14°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuDbx14svxaC5pPWvfP-ZiRtiNWsoWJJkPD3Z4ph5eKeLlLNgLuXom8qCnOf19ouf6dcFjyQRqixf_wIjJa09_ZhYsgN6h68qEdHeAXtQ9Z2ZhelHyVQAooafxWflGEAkjL6OymiHkI6Bq4ztPQjeUjKiYTUX90WkT1nMIH7Pqir8EkIVL7-Mn566VkyNTf9d4xbxS95o6JjDADpsSYiWiJEZhdPcDm_7uVJeIuC8YEtAKPnWdldPbZ3wrh7VTYNqnitTuoj4203dyQ"
+      }
+    },
+    {
+      "id": "viola-jaubertiana",
+      "nomComu": "Viola de roca",
+      "nomCientific": "Viola jaubertiana",
+      "familia": "Violàcies",
+      "etiquetes": [
+        {
+          "text": "Roca",
+          "color": "primary"
+        }
+      ],
+      "ubicacio": "Serra de Tramuntana",
+      "ubicacioIcona": "location_on",
+      "imatge": "https://lh3.googleusercontent.com/aida-public/AB6AXuCQgS9TcdzcSuoeHq1F5qXwB0PIHMqwvmtEOoKM1h6ufUHkHxBHfEZgtQWguNrfX1nWB9PAOtJ7kmOADIUsjYNb1C4A_nskOKxJoobBX-332MwY8nINvqWLfuuE_f4lU0HgEXIvB6Y14iXYvXXFuqbxbLZZ-NMjv4Zml2ephjup4BdlYyu28WJsJ4Do4P_rTGN0DiubFxkhsvaKnyMolJe0icA58xH6qIwEzKhX8S2JYojVLDFP4Amb9cuhEBLeU1GPtC8Q_Nf0z9Y",
+      "imatgeAlt": "Violet flower in Tramuntana",
+      "vist": false,
+      "presencia": {
+        "mallorca": true,
+        "menorca": false,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Viola jaubertiana Marès & Vigin.",
+        "sol": "Roques calcàries, escletxes i cingles",
+        "floracio": "Març — Maig (Primavera)",
+        "descripcio": [
+          "La <strong>Viola de roca</strong> és un endemisme exclusiu de la Serra de Tramuntana de Mallorca. És una petita planta perenne que creix a les escletxes de les roques calcàries en zones ombrívoles.",
+          "Les flors són violetes o liloses, amb cinc pètals desiguals i un esperó curt. És una de les espècies vegetals més rares de les Balears i un emblema de la flora endèmica mallorquina."
+        ],
+        "estatConservacio": {
+          "nivell": "En Perill",
+          "percentatgeRisc": 80,
+          "etiquetaRisc": "En Perill (EN)",
+          "colorRisc": "red",
+          "descripcioRisc": "Poblacions molt reduïdes i fragmentades, amenaçades per la degradació del seu hàbitat rupícola."
+        },
+        "distribucioGeografica": "Exclusiva de la Serra de Tramuntana, en cingles i escarpaments calcaris.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "10 d'Abril, 2024",
+        "coordenades": "39.8123° N, 2.7987° E",
+        "notes": "Petita colònia a una escletxa ombrívola del Puig de Massanella. Flors violetes molt delicades.",
+        "condicions": [
+          {
+            "icona": "cloud",
+            "text": "Ombra"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "12°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuCQgS9TcdzcSuoeHq1F5qXwB0PIHMqwvmtEOoKM1h6ufUHkHxBHfEZgtQWguNrfX1nWB9PAOtJ7kmOADIUsjYNb1C4A_nskOKxJoobBX-332MwY8nINvqWLfuuE_f4lU0HgEXIvB6Y14iXYvXXFuqbxbLZZ-NMjv4Zml2ephjup4BdlYyu28WJsJ4Do4P_rTGN0DiubFxkhsvaKnyMolJe0icA58xH6qIwEzKhX8S2JYojVLDFP4Amb9cuhEBLeU1GPtC8Q_Nf0z9Y"
+      }
+    },
+    {
+      "id": "helleborus-lividus",
+      "nomComu": "Baladre de muntanya",
+      "nomCientific": "Helleborus lividus",
+      "familia": "Ranunculàcies",
+      "etiquetes": [
+        {
+          "text": "Protegida",
+          "color": "orange"
+        }
+      ],
+      "ubicacio": "Cingles de Mallorca",
+      "ubicacioIcona": "location_on",
+      "imatge": "img/plantes/helleborus-lividus.png",
+      "imatgeAlt": "Helleborus lividus green flowers",
+      "vist": false,
+      "presencia": {
+        "mallorca": true,
+        "menorca": false,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Helleborus lividus Aiton",
+        "sol": "Calcari, zones ombrívoles de muntanya",
+        "floracio": "Gener — Març (Hivern)",
+        "descripcio": [
+          "El <strong>Baladre de muntanya</strong> és una planta perenne endèmica de Mallorca i Cabrera. Les fulles són trifoliades, coriàcies, de color verd fosc amb nervadures marcades.",
+          "Les flors són grans, penjants, de color verd pàl·lid amb tonalitats porpra. Floreix en ple hivern, cosa que la fa especialment notable. És una espècie protegida per la legislació balear."
+        ],
+        "estatConservacio": {
+          "nivell": "Protegida",
+          "percentatgeRisc": 55,
+          "etiquetaRisc": "Vulnerable (VU)",
+          "colorRisc": "amber",
+          "descripcioRisc": "Amenaçada per la destrucció d'hàbitat forestal i la recol·lecció per a jardineria."
+        },
+        "distribucioGeografica": "Exclusiva de Mallorca, als cingles i zones ombrívoles de la Serra de Tramuntana.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "15 de Febrer, 2024",
+        "coordenades": "39.7543° N, 2.8123° E",
+        "notes": "Exemplars en plena floració hivernal als cingles. Flors verdoses amb tonalitats porpra molt elegants.",
+        "condicions": [
+          {
+            "icona": "ac_unit",
+            "text": "Fred"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "8°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuCA0qwvUcWBb1G5ZeSewqtBnv_hqZ3ymxXEOGqiRx36iVL24tM1I1SL3b0ttw8QT0Bv-LUdfcdTst9W7NlwSu_0KHmWvAPyqMjmgAupKBliVVbbUrn6GQr6uN8_VDI9TsUDePnR7PJ6dX-1LYK0x9nLd_UzUwW84mdh23UWg7HLGRSaxdk-NL92Wtu-O-qAgJ-nEzQKcZct8A1TTbuGQhe6p9OCJlZegAaGqPZ_P0J10CwArs2w3PTr6_klc8Q3yXmDFFq-Ewm6Ng0"
+      }
+    },
+    {
+      "id": "cistus-albidus",
+      "nomComu": "Estepa blanca",
+      "nomCientific": "Cistus albidus",
+      "familia": "Cistàcies",
+      "etiquetes": [
+        {
+          "text": "Comú",
+          "color": "emerald"
+        }
+      ],
+      "ubicacio": "Ubiqua a les illes",
+      "ubicacioIcona": "location_on",
+      "imatge": "img/plantes/cistus-albidus.png",
+      "imatgeAlt": "Green plant specimen",
+      "vist": false,
+      "presencia": {
+        "mallorca": true,
+        "menorca": true,
+        "eivissa": true,
+        "formentera": true,
+        "cabrera": true
+      },
+      "fitxa": {
+        "nomCientificComplet": "Cistus albidus L.",
+        "sol": "Calcari o silici, zones obertes i assolellades",
+        "floracio": "Març — Juny (Primavera)",
+        "descripcio": [
+          "L'<strong>Estepa blanca</strong> és un arbust de fins a 1,5 m d'alçada, molt ramificat. Les fulles són oposades, el·líptiques, densament piloses de color gris-verd, cosa que li dóna un aspecte blanquinós.",
+          "Les flors són grans i vistoses, de color rosa intens a malva, amb cinc pètals arrugats. És una de les estepes més comunes de la garriga mediterrània balear."
+        ],
+        "estatConservacio": {
+          "nivell": "Comú",
+          "percentatgeRisc": 10,
+          "etiquetaRisc": "Preocupació Menor (LC)",
+          "colorRisc": "emerald",
+          "descripcioRisc": "Espècie molt comuna i àmpliament distribuïda a totes les illes sense cap amenaça."
+        },
+        "distribucioGeografica": "Ubiqua a totes les Illes Balears, en garrigues, matollars i zones obertes.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "05 d'Abril, 2024",
+        "coordenades": "39.6543° N, 2.9876° E",
+        "notes": "Garriga plena d'estepes en floració. El color rosa de les flors dominava el paisatge.",
+        "condicions": [
+          {
+            "icona": "wb_sunny",
+            "text": "Sòl Directe"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "21°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuBmeuV3FOY1UJ2ht7VniCTF9ma9k1v6b6oWnVZEED6We7zBjleejSfXoqgvBFUKDr19anaBxhYbIR5eTFigCxMzLQPyH8U5G1V4Y48Va3RYoFLF7ZYswaeP4X_uSLyn-tGtLTf7LOXLG-fouCX70cxiHvboAdMjBuvymPHttnMiwrOXHV84wSOhOg-BAr1ebvCuE8C7DW3EwT07yZoHpd1KW1ES0KV7a2eR3RMcgOoydoD_Z-dXVqW9vd7aQGRoYViVAsA8TXBBTUk"
+      }
+    },
+    {
+      "id": "launaea-cervicornis",
+      "nomComu": "Socarrell",
+      "nomCientific": "Launaea cervicornis",
+      "familia": "Asteràcies",
+      "etiquetes": [
+        {
+          "text": "Endèmica",
+          "color": "blue"
+        },
+        {
+          "text": "Costanera",
+          "color": "sky"
+        }
+      ],
+      "ubicacio": "Zones costaneres, Mallorca i Menorca",
+      "ubicacioIcona": "location_on",
+      "imatge": "img/plantes/launaea-cervicornis.png",
+      "imatgeAlt": "Launaea cervicornis spiny plant",
+      "vist": true,
+      "presencia": {
+        "mallorca": true,
+        "menorca": true,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Launaea cervicornis (Boiss.) Font Quer & Rothm.",
+        "sol": "Calcari, zones costaneres ventoses",
+        "floracio": "Abril — Juny (Primavera)",
+        "descripcio": [
+          "El <strong>Socarrell</strong> és un arbust espinós endèmic de les Gimnèsies que forma coixinets compactes i espinosos. Les espines són les restes lignificades de tiges florals anteriors.",
+          "Les flors són petites, grogues, típiques de les compostes. Creix en zones costaneres molt exposades al vent i a la salinitat, on forma comunitats vegetals pròpies (socarrells)."
+        ],
+        "estatConservacio": {
+          "nivell": "Endèmica",
+          "percentatgeRisc": 45,
+          "etiquetaRisc": "Quasi Amenaçada (NT)",
+          "colorRisc": "orange",
+          "descripcioRisc": "La urbanització costanera constitueix la principal amenaça per a les comunitats de socarrell."
+        },
+        "distribucioGeografica": "Exclusiva de Mallorca i Menorca, en zones costaneres exposades al vent.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "10 de Maig, 2024",
+        "coordenades": "39.7541° N, 2.7212° E",
+        "notes": "Planta amb forma de coixinet espinós, típica de les zones costaneres exposades al vent. Molt resistent.",
+        "condicions": [
+          {
+            "icona": "air",
+            "text": "Vent fort"
+          },
+          {
+            "icona": "humidity_low",
+            "text": "55% Humitat"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuC7LqSUzMKrCOBdbuKw58rZhnZVMUb2r36XTCWvBanW4nkSJph0uyoCoBJfFTJ8of6sS8LgdBkmdYLGveBp0CyMfuUEq_GKskUbCTHKWhkS5ThMv_XvnH0eqm2xOBwvgO3DCWrxMx1mBeBsWFxi_OshEjz-u_hQnf8YFedEYcWhMsffs6A2lK4PsF2SgCsna4SgqH6O1mJUzeJ1_c5bbgOH-r7LGLttAaDZpRT6YwPqFY8wS-6D1vFsqpHe2X81iYsRCe6NHKavbZ8"
+      }
+    },
+    {
+      "id": "hippocrepis-balearica",
+      "nomComu": "Violer de Penya",
+      "nomCientific": "Hippocrepis balearica",
+      "familia": "Fabàcies",
+      "etiquetes": [
+        {
+          "text": "Endèmica",
+          "color": "blue"
+        },
+        {
+          "text": "Roca",
+          "color": "primary"
+        }
+      ],
+      "ubicacio": "Serra de Tramuntana, dins esquerdes de roques",
+      "ubicacioIcona": "location_on",
+      "imatge": "img/plantes/hippocrepis-balearica.png",
+      "imatgeAlt": "Hippocrepis balearica yellow flowers on rocks",
+      "vist": true,
+      "presencia": {
+        "mallorca": true,
+        "menorca": false,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Hippocrepis balearica Jacq.",
+        "sol": "Calcari, escletxes de roques i penya-segats",
+        "floracio": "Març — Juny (Primavera)",
+        "descripcio": [
+          "El <strong>Violer de Penya</strong> és un arbust endèmic de les Balears que creix a les escletxes de les roques calcàries. Pot arribar als 50 cm d'alçada, amb tiges llenyoses a la base.",
+          "Les flors són d'un groc intens, agrupades en umbel·les, molt vistoses durant la primavera. Les llegums tenen forma de ferradura, característica que dóna nom al gènere (Hippocrepis = ferradura de cavall)."
+        ],
+        "estatConservacio": {
+          "nivell": "Endèmica",
+          "percentatgeRisc": 30,
+          "etiquetaRisc": "Preocupació Menor (LC)",
+          "colorRisc": "emerald",
+          "descripcioRisc": "Poblacions estables en hàbitats rupícoles de difícil accés."
+        },
+        "distribucioGeografica": "Present a Mallorca, Menorca i Cabrera, en cingles i penya-segats calcaris.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "05 de Maig, 2024",
+        "coordenades": "39.4215° N, 2.4812° E",
+        "notes": "Creix a les esquerdes de les roques calcàries. Flors grogues molt vistoses durant la primavera.",
+        "condicions": [
+          {
+            "icona": "sunny",
+            "text": "Clar"
+          },
+          {
+            "icona": "mountain_flag",
+            "text": "Zona Rocosa"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuAIBK_2V_my2_xyrqhz0hNrmmMUKgwVRigsL-Dlk3Q5dAvHjdSXCNOGr35zS3HYeZbbt-Mlsn2Rkz8MBGPUvPYECpRWF9ezaziZ0uTGXbwlSXUmO40N6U9V2TUAKd6kSr1T3urdEJdg-7kOrDdAPhBef9uR_Hb45FowwmFZ07j5rgw7sFqsJiDExxFZG5C-32RPAZjWTJ2Y_dQha8sbhlIbfDW9dXNuj0IkMQRCw6666hUaVAPnWWqCQzdRtq2fXrG_B95EQ8KcV0A"
+      }
+    },
+    {
+      "id": "senecio-rodriguezii",
+      "nomComu": "Col de la Mar",
+      "nomCientific": "Senecio rodriguezii",
+      "familia": "Asteràcies",
+      "etiquetes": [
+        {
+          "text": "Endèmica",
+          "color": "blue"
+        },
+        {
+          "text": "Litoral",
+          "color": "sky"
+        }
+      ],
+      "ubicacio": "Costes de Mallorca i Menorca",
+      "ubicacioIcona": "waves",
+      "imatge": "img/plantes/senecio-rodriguezii.png",
+      "imatgeAlt": "Senecio rodriguezii coastal plant",
+      "vist": true,
+      "presencia": {
+        "mallorca": true,
+        "menorca": true,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Senecio rodriguezii Willk. ex J.J.Rodr.",
+        "sol": "Sorrenc o rocós, primera línia de mar",
+        "floracio": "Abril — Juny (Primavera)",
+        "descripcio": [
+          "La <strong>Col de la Mar</strong> és una planta perenne endèmica de les Gimnèsies que creix a primera línia de costa. Les fulles són carnoses, espatulades, de color verd glauc.",
+          "Les flors són grogues, en forma de capítol, típiques de les compostes. S'adapta perfectament a les condicions extremes del litoral: salinitat, vent i substrat pobre."
+        ],
+        "estatConservacio": {
+          "nivell": "Endèmica",
+          "percentatgeRisc": 50,
+          "etiquetaRisc": "Vulnerable (VU)",
+          "colorRisc": "amber",
+          "descripcioRisc": "Amenaçada per la urbanització del litoral i l'erosió costanera."
+        },
+        "distribucioGeografica": "Exclusiva de Mallorca i Menorca, en zones costaneres sorrenques o rocoses.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "01 de Maig, 2024",
+        "coordenades": "39.9122° N, 3.8214° E",
+        "notes": "Endemisme exclusiu de Menorca i Mallorca, creix a primera línia de mar en zones sorrenques o rocoses.",
+        "condicions": [
+          {
+            "icona": "water",
+            "text": "Costaner"
+          },
+          {
+            "icona": "water_drop",
+            "text": "70% Humitat"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuAafVWDdwgLWbdeEVkrisppbO1NhTe4nM6raXUH6srPuSLI-RV5ShMSU56_aFZQ43UJBSbl5enBPrs9PlXG84mGA6X1VeNqyscFYo94b0bDSWxJuwbcQVjdc97aiQrVzwODKX7lY6reXyiBIGtsIpTkkKtg5OlUn9BKI2jzmtP4oB2ezyjnu66_gtbHbKAH_pY4dTWeTniMW8T21RktuP84hAUuljvAlbaB_VinvvRyQtrjeyNMGPHTRqxyaxN6-OjfthiCIp4xG2s"
+      }
+    },
+    {
+      "id": "cistus-clusii",
+      "nomComu": "Estepa de la Marjal",
+      "nomCientific": "Cistus clusii",
+      "familia": "Cistàcies",
+      "etiquetes": [
+        {
+          "text": "Comú",
+          "color": "emerald"
+        }
+      ],
+      "ubicacio": "Zones humides i marjals",
+      "ubicacioIcona": "location_on",
+      "imatge": "img/plantes/cistus-clusii.png",
+      "imatgeAlt": "Cistus clusii white flowers",
+      "vist": false,
+      "presencia": {
+        "mallorca": true,
+        "menorca": true,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Cistus clusii Dunal",
+        "sol": "Calcari, zones seques i arenoses",
+        "floracio": "Març — Juny (Primavera)",
+        "descripcio": [
+          "L'<strong>Estepa de la Marjal</strong> és un arbust de fins a 1 m d'alçada amb fulles lineals, estretes i viscoses. Les tiges joves són piloses.",
+          "Les flors són blanques, amb cinc pètals, agrupades en cimes unilaterals. Creix en zones seques i obertes, sovint sobre substrats arenosos o margosos."
+        ],
+        "estatConservacio": {
+          "nivell": "Comú",
+          "percentatgeRisc": 15,
+          "etiquetaRisc": "Preocupació Menor (LC)",
+          "colorRisc": "emerald",
+          "descripcioRisc": "Espècie àmpliament distribuïda sense amenaces significatives."
+        },
+        "distribucioGeografica": "Present a Mallorca i Menorca, en garrigues i zones obertes.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "12 d'Abril, 2024",
+        "coordenades": "39.5876° N, 3.0123° E",
+        "notes": "Exemplars aïllats en un matollar obert. Flors blanques contrastant amb la vegetació seca.",
+        "condicions": [
+          {
+            "icona": "wb_sunny",
+            "text": "Sòl Directe"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "23°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuBPfyPaMaKChuo4cEeTlSMP2iSWdAfC5jRZ9_ll26zFQBakJGOXEDeu6F5J_IadWYSjTQxCOM4sFrci-yp-SxA6LVJcTSYsgM7ppGiYGcqN22EOhdYB86B3J5c78jkadAOhsMIafLs8HzAB32fnWz5Sp0qYs8QDiJJroMduiojE9uHdcLpF8rqxEg90XW42H6UxzrTiFCRo5lDvy-PA499SQmZ4MLKRNxYgU-pIzTJOKnQsysfJOX7ROsbCmyb0oTVXpsVaA-0edhI"
+      }
+    },
+    {
+      "id": "genista-lucida",
+      "nomComu": "Gatova",
+      "nomCientific": "Genista lucida",
+      "familia": "Fabàcies",
+      "etiquetes": [
+        {
+          "text": "Endèmica",
+          "color": "blue"
+        },
+        {
+          "text": "Muntanya",
+          "color": "emerald"
+        }
+      ],
+      "ubicacio": "Serra de Tramuntana",
+      "ubicacioIcona": "location_on",
+      "imatge": "img/plantes/genista-lucida.png",
+      "imatgeAlt": "Genista lucida yellow shrub",
+      "vist": false,
+      "presencia": {
+        "mallorca": true,
+        "menorca": false,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Genista lucida Cambess.",
+        "sol": "Calcari, zones de garriga i muntanya baixa",
+        "floracio": "Abril — Juny (Primavera)",
+        "descripcio": [
+          "La <strong>Gatova</strong> és un arbust endèmic de les Balears de fins a 1,5 m d'alçada. Les tiges són verdes, estriades i gairebé àfiles (sense fulles visibles).",
+          "Les flors són grogues, papilionàcies, agrupades en raïms terminals. Forma part de la garriga i els matollars de muntanya, especialment a la Serra de Tramuntana."
+        ],
+        "estatConservacio": {
+          "nivell": "Endèmica",
+          "percentatgeRisc": 30,
+          "etiquetaRisc": "Preocupació Menor (LC)",
+          "colorRisc": "emerald",
+          "descripcioRisc": "Poblacions estables en hàbitats de garriga ben conservats."
+        },
+        "distribucioGeografica": "Exclusiva de Mallorca, principalment a la Serra de Tramuntana i serres de Llevant.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "20 de Maig, 2024",
+        "coordenades": "39.7234° N, 2.8567° E",
+        "notes": "Arbustos en floració abundant a la garriga de muntanya. Flors grogues molt vistoses.",
+        "condicions": [
+          {
+            "icona": "wb_sunny",
+            "text": "Assolellat"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "24°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuDwflGm-J4brjxk-D3b02tJmozQ7m-u3d_iRHRGcqRKuQSYDjvtO441n_C5MLckWNYHdcogtppmlX9tfAR_q0pAPDItoTslcXHQqqDhUDC95Wde_h4U70skYfv3obVZR0C6maXvtniYnGyXB_aedatOZN66oSynklenRGnGqNv1Fi-USXjZdF7jpBiWrLPL8j-K_EF4F-cVmwT0mqUoaSY5qsljdwt4DywrAIAXYMJ2GwtbzeF5n_ylfjMaOUYrATCc3iUd851wT-A"
+      }
+    },
+    {
+      "id": "astragalus-balearicus",
+      "nomComu": "Coixinet de Monja",
+      "nomCientific": "Astragalus balearicus",
+      "familia": "Fabàcies",
+      "etiquetes": [
+        {
+          "text": "Endèmica",
+          "color": "blue"
+        },
+        {
+          "text": "Costanera",
+          "color": "sky"
+        }
+      ],
+      "ubicacio": "Zones costaneres de Mallorca i Menorca",
+      "ubicacioIcona": "location_on",
+      "imatge": "img/plantes/astragalus-balearicus.png",
+      "imatgeAlt": "Astragalus balearicus cushion plant",
+      "vist": false,
+      "presencia": {
+        "mallorca": true,
+        "menorca": true,
+        "eivissa": false,
+        "formentera": false,
+        "cabrera": false
+      },
+      "fitxa": {
+        "nomCientificComplet": "Astragalus balearicus Chater",
+        "sol": "Calcari, zones costaneres exposades al vent",
+        "floracio": "Abril — Juny (Primavera)",
+        "descripcio": [
+          "El <strong>Coixinet de Monja</strong> és un arbust endèmic que forma coixinets espinosos compactes, de forma hemiesfèrica. Les espines són les restes de les fulles compostes.",
+          "Les flors són blanques o rosades, petites, típicament papilionàcies. Creix en zones costaneres molt exposades, on el vent modela la seva forma aerodinàmica característica."
+        ],
+        "estatConservacio": {
+          "nivell": "Endèmica",
+          "percentatgeRisc": 40,
+          "etiquetaRisc": "Quasi Amenaçada (NT)",
+          "colorRisc": "orange",
+          "descripcioRisc": "Amenaçada per la pressió urbanística a les zones costaneres i el trepig de visitants."
+        },
+        "distribucioGeografica": "Present a Mallorca i Menorca, en zones costaneres exposades.",
+        "imatgeMapa": "",
+        "imatgeCarrusel": ""
+      },
+      "diari": {
+        "data": "28 d'Abril, 2024",
+        "coordenades": "39.8901° N, 3.2345° E",
+        "notes": "Coixinets espinosos a la costa ventosa de Formentor. Forma hemisfèrica perfecta.",
+        "condicions": [
+          {
+            "icona": "air",
+            "text": "Vent fort"
+          },
+          {
+            "icona": "device_thermostat",
+            "text": "19°C"
+          }
+        ],
+        "imatgeDiari": "https://lh3.googleusercontent.com/aida-public/AB6AXuCQM4YW4mVJSwJ87t_RYLQizAKQCsh1auV2UOC_sfuCydJ1V8txWnL_3N7WbS991NXbWZhjPXKZZGYXQBeJH9irCCvlyXqltCKzVvhRDOmGR-bHeMllQgy3IqkQR4CVHB8I6WJB0hhYDYUI8ev1kqFPwI04GfxYhi63mc-kOiY3_83wDPjKFhQVYQv8w8eag-g1tOOX6iVsJKTtLDOH_Bqi-adKl0U_99gK9DOCC23dXRTmi4TPCwdstjiAZOzkZb-VjUl7EAqmKWc"
+      }
+    }
+  ]
+}

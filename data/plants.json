@@ -1,0 +1,53 @@
+{
+    "plants": [
+        {
+            "id": 1,
+            "nombre_comun": "Peonía de las Baleares",
+            "nombre_cientifico": "Paeonia cambessedesii",
+            "descripcion": "Especie endémica de las Islas Baleares (Mallorca y Menorca). Es una planta perenne que crece en grietas y roquedos sombreados.",
+            "habitat": "Zonas rocosas, montañas",
+            "isla": "Mallorca, Menorca",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Paeonia_cambessedesii_1.jpg/800px-Paeonia_cambessedesii_1.jpg",
+            "multimedia": [
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Paeonia_cambessedesii_1.jpg/800px-Paeonia_cambessedesii_1.jpg"
+            ],
+            "ubicaciones": [
+                { "lat": 39.816, "lng": 2.871, "nombre": "Serra de Tramuntana" }
+            ],
+            "etiquetas": ["Perenne", "En peligro", "Medicinal"]
+        },
+        {
+            "id": 2,
+            "nombre_comun": "Ciclamen balear",
+            "nombre_cientifico": "Cyclamen balearicum",
+            "descripcion": "Pequeña planta endémica de las Islas Baleares, muy apreciada por sus flores blancas fragantes en primavera.",
+            "habitat": "Bosques y encinares, zonas umbrías",
+            "isla": "Mallorca, Menorca, Ibiza, Formentera",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Cyclamen_balearicum.jpg/800px-Cyclamen_balearicum.jpg",
+            "multimedia": [
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Cyclamen_balearicum.jpg/800px-Cyclamen_balearicum.jpg"
+            ],
+            "ubicaciones": [
+                { "lat": 39.75, "lng": 2.85, "nombre": "Bosques de Lluc" },
+                { "lat": 39.0, "lng": 1.45, "nombre": "Ibiza interior" }
+            ],
+            "etiquetas": ["Bulbosa", "Ornamental"]
+        },
+        {
+            "id": 3,
+            "nombre_comun": "Estepa Joana",
+            "nombre_cientifico": "Hypericum balearicum",
+            "descripcion": "Arbusto endémico de las zonas montañosas de las Islas Baleares, fácilmente reconocible por sus hojas pequeñas onduladas y sus grandes flores amarillas.",
+            "habitat": "Garrigas, roquedos de montaña",
+            "isla": "Mallorca, Menorca, Ibiza",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Hypericum_balearicum_1.jpg/800px-Hypericum_balearicum_1.jpg",
+            "multimedia": [
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Hypericum_balearicum_1.jpg/800px-Hypericum_balearicum_1.jpg"
+            ],
+            "ubicaciones": [
+                { "lat": 39.8, "lng": 2.9, "nombre": "Gorg Blau" }
+            ],
+            "etiquetas": ["Arbusto", "Amarilla"]
+        }
+    ]
+}

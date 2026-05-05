@@ -4,12 +4,19 @@
   "description": "Herbari digital flora balear",
   "main": "index.js",
   "scripts": {
-    "start": "live-server",
+    "start": "concurrently \"npm run css:watch\" \"live-server\"",
+    "css": "tailwindcss -i ./css/style.css -o ./css/output.css",
+    "css:watch": "tailwindcss -i ./css/style.css -o ./css/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Noé, Mateu, Sion",
   "license": "ISC",
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "@tailwindcss/cli": "^4.2.4",
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "concurrently": "^9.2.1",
+    "live-server": "^1.2.2",
+    "tailwindcss": "^4.2.4"
   }
 }

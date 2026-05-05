@@ -1,76 +1,168 @@
+import { renderHome } from './views/home.js';
+import { renderHerbarium } from './views/herbarium.js';
+import { renderMap } from './views/map.js';
+import { renderDiary } from './views/diary.js';
+
+
+
 // Estado global de la aplicación
-const AppState = {
+export const AppState = {
     plants: [],
     currentRoute: 'home',
     diaries: []
 };
 
-// ─── 1. LÓGICA DE ESTACIONES (De tu prototipo) ───
-const SEASONS = [
+// --- DATA PARA EL HEADER ---
+const PROFILE_IMG = 'https://ui-avatars.com/api/?name=Usuario&background=2d7a2d&color=fff';
+const NAV_ITEMS = [
+    { route: 'home', label: 'Inici' },
+    { route: 'herbarium', label: 'Herbari' },
+    { route: 'map', label: 'Mapa' },
+    { route: 'diary', label: 'Diari' }
+];
+
+export const SEASONS = [
     { id: 'primavera', label: 'Primavera', icon: 'local_florist', months: [3, 4, 5] },
     { id: 'estiu', label: 'Estiu', icon: 'wb_sunny', months: [6, 7, 8] },
     { id: 'tardor', label: 'Tardor', icon: 'eco', months: [9, 10, 11] },
     { id: 'hivern', label: 'Hivern', icon: 'ac_unit', months: [12, 1, 2] }
 ];
 
+// --- SEASONS LOGIC ---
 function detectSeason() {
     const month = new Date().getMonth() + 1; // 1-12
     return SEASONS.find(s => s.months.includes(month))?.id || 'primavera';
 }
 
-function setSeason(seasonId) {
+function getCurrentSeason() {
+    return localStorage.getItem('herbari-season') || detectSeason();
+}
+
+export function setSeason(seasonId) {
     document.documentElement.setAttribute('data-season', seasonId);
     localStorage.setItem('herbari-season', seasonId);
     
+    // Update the selector button if it exists
     const season = SEASONS.find(s => s.id === seasonId);
     if (!season) return;
     
-    // Actualizar botón del header
     const btnIcon = document.getElementById('season-btn-icon');
     const btnLabel = document.getElementById('season-btn-label');
-    if(btnIcon) btnIcon.textContent = season.icon;
-    if(btnLabel) btnLabel.textContent = season.label;
     
-    // Actualizar clases activas en el menú desplegable
+    if (btnIcon) btnIcon.textContent = season.icon;
+    if (btnLabel) btnLabel.textContent = season.label;
+    
+    // Update active states in dropdown
     document.querySelectorAll('.season-option').forEach(el => {
-        if(el.dataset.season === seasonId) el.classList.add('active');
-        else el.classList.remove('active');
+        el.classList.toggle('active', el.dataset.season === seasonId);
     });
 }
 
-function initSeasonSelector() {
-    const currentSeason = localStorage.getItem('herbari-season') || detectSeason();
-    const menu = document.getElementById('season-menu');
-    
-    if(!menu) return; // Si no existe el menú todavía
-    
-    // Inyectar opciones
-    menu.innerHTML = SEASONS.map(s => `
-        <button class="season-option" data-season="${s.id}">
-            <span class="material-symbols-outlined">${s.icon}</span>
-            ${s.label}
-        </button>
-    `).join('');
+function initSeason() {
+    setSeason(getCurrentSeason());
+}
 
-    // Eventos para abrir/cerrar y seleccionar
-    document.getElementById('season-toggle-btn')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        menu.classList.toggle('open');
-    });
+// --- RENDER DEL HEADER ---
+function renderHeader() {
+    const container = document.getElementById('app-header');
+    if (!container) return;
 
-    menu.addEventListener('click', (e) => {
-        const btn = e.target.closest('.season-option');
-        if (btn) {
-            setSeason(btn.dataset.season);
-            menu.classList.remove('open');
-        }
-    });
+    // Generar enlaces comprobando si es la ruta activa actual
+    const navLinks = NAV_ITEMS.map(item => {
+        const active = (item.route === AppState.currentRoute);
+        const classes = active
+            ? 'nav-link text-primary-light font-semibold text-sm border-b-2 border-primary-light pb-1'
+            : 'nav-link text-slate-400 hover:text-primary-light transition-colors text-sm font-medium';
+        
+        // Fíjate en el uso de data-route en lugar de href real
+        return `<a class="${classes}" href="#" data-route="${item.route}">${item.label}</a>`;
+    }).join('\n');
 
-    document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target)) menu.classList.remove('open');
-    });
+    container.className = "sticky top-0 z-50 w-full";
 
-    setSeason(currentSeason); // Aplicar temporada actual al cargar
+    container.innerHTML = `
+    <header class="w-full border-b border-white/10 bg-background-dark/90 backdrop-blur-md px-4 lg:px-20 py-3">
+        <div class="flex items-center justify-between gap-4">
+            
+            <div class="flex items-center gap-8 min-w-max">
+                <a href="#" data-route="home" class="flex items-center gap-3 no-underline">
+                    <div class="p-2 bg-primary rounded-lg text-white shadow-lg shadow-surface">
+                        <span class="material-symbols-outlined block">eco</span>
+                    </div>
+                    <h1 class="text-white text-xl font-bold tracking-tight">Herbari Digital</h1>
+                </a>
+                <nav class="hidden md:flex items-center gap-8">
+                    ${navLinks}
+                </nav>
+            </div>
+
+            <div class="hidden sm:flex flex-1 justify-center max-w-xl mx-4">
+                <div class="relative w-full max-w-md">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500">
+                        <span class="material-symbols-outlined text-lg">search</span>
+                    </div>
+                    <input class="block w-full rounded-full border-0 py-2 pl-10 bg-surface focus:ring-2 focus:ring-primary-light placeholder:text-slate-600 text-sm text-white" placeholder="Cerca per nom popular o científic..." type="text"/>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-3 min-w-max">
+                <button class="sm:hidden p-2 rounded-full hover:bg-surface text-slate-400 hover:text-white transition-all">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+
+                <!-- Menú de Estaciones (sin los onclick inline) -->
+                <div class="season-dropdown">
+                    <button id="season-toggle-btn" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-white/10 hover:border-white/10 transition-all cursor-pointer">
+                        <span id="season-btn-icon" class="material-symbols-outlined text-primary-light text-lg">local_florist</span>
+                        <span id="season-btn-label" class="text-xs font-semibold text-slate-300 hidden sm:inline">Primavera</span>
+                        <span class="material-symbols-outlined text-slate-500 text-sm">expand_more</span>
+                    </button>
+                    <div id="season-menu" class="season-dropdown-menu">
+                        ${SEASONS.map(s => `
+                            <button class="season-option" data-season="${s.id}">
+                                <span class="material-symbols-outlined text-lg">${s.icon}</span>
+                                ${s.label}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="h-8 w-8 rounded-full bg-surface flex items-center justify-center overflow-hidden border border-white/20 cursor-pointer">
+                    <img alt="Perfil" class="h-full w-full object-cover" src="${PROFILE_IMG}"/>
+                </div>
+            </div>
+        </div>
+    </header>`;
+}
+
+// --- RENDER DEL FOOTER ---
+function renderFooter() {
+    const container = document.getElementById('app-footer');
+    if (!container) return;
+
+    container.className = "sticky bottom-0 z-50 w-full";
+
+    container.innerHTML = `
+    <footer class="w-full border-t border-white/10 bg-background-dark/95 backdrop-blur-sm px-4 lg:px-8 py-3 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-2">
+                <div class="p-1 bg-surface rounded-md">
+                    <span class="material-symbols-outlined text-primary-light text-base">eco</span>
+                </div>
+                <span class="text-slate-500 text-[11px] font-medium tracking-wide">© 2024 Herbari Digital Balear</span>
+            </div>
+            <div class="flex items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest font-bold">
+                <span>Conservació</span>
+                <span class="hidden sm:inline">·</span>
+                <span class="hidden sm:inline">Illes Balears</span>
+            </div>
+            <div class="flex items-center gap-5 text-xs font-semibold">
+                <a href="#" data-route="herbarium" class="text-slate-500 hover:text-primary-light transition-colors">Herbari</a>
+                <a href="#" data-route="map" class="text-slate-500 hover:text-primary-light transition-colors">Mapa</a>
+                <a href="#" data-route="diary" class="text-slate-500 hover:text-primary-light transition-colors">Diari</a>
+            </div>
+        </div>
+    </footer>`;
 }
 
 // Cargar los datos desde el archivo JSON
@@ -79,52 +171,87 @@ async function loadData() {
         const response = await fetch('data/plants.json');
         const data = await response.json();
         AppState.plants = data.plants;
-        console.log('Datos de plantas cargados:', AppState.plants);
-        
-        // Simular carga de diario (desde localStorage si estuviera implementado)
-        AppState.diaries = JSON.parse(localStorage.getItem('herbario-diaries')) || [];
     } catch (error) {
         console.error('Error cargando los datos persistentes:', error);
     }
 }
 
-// Inicialización de la aplicación
+// Inicialización del DOM
 document.addEventListener('DOMContentLoaded', async () => {
-    initSeasonSelector();
+    // 1. Renderizamos la cabecera y el footer primero para que existan los enlaces
+    renderHeader();
+    renderFooter();
+    
+    // Iniciar temporizador (actualiza la UI inmediatamente)
+    initSeason();
+    
+    // 2. Carga inicial de datos y configuraciones globales
     await loadData();
     setupNavigation();
+    setupHeaderEvents(); // Configurará el buscador y estaciones
     
-    // Cargar la vista inicial
+    // 3. Cargar la vista inicial
     renderView('home');
 });
 
-// Configurar los manejadores de eventos de la barra de navegación
-function setupNavigation() {
-    const navLinks = document.querySelectorAll('nav a');
+// Configurar los enlaces del menú del Header
+export function setupNavigation() {
+    // Al hacer click, usamos la delegación de eventos o actualizamos el header entero
+    const navLinks = document.querySelectorAll('a[data-route]');
+    
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            
-            // Actualizar estilo activo
-            navLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-            
             const route = link.dataset.route;
+            
+            // Renderizamos la nueva ruta
             renderView(route);
+            
+            // Volvemos a renderizar el header para que la clase "activa" cambie correctamente con Tailwind
+            renderHeader();
+            setupNavigation();
+            setupHeaderEvents();
+            // Restaurar estado visual del season selector en el nuevo DOM del header
+            initSeason();
         });
     });
 }
 
-// Router principal para renderizar la vista correspondiente
-import { renderHome } from './views/home.js';
-import { renderHerbarium } from './views/herbarium.js';
-import { renderMap } from './views/map.js';
-import { renderDiary } from './views/diary.js';
+export function setupHeaderEvents() {
+    const toggleBtn = document.getElementById('season-toggle-btn');
+    const menu = document.getElementById('season-menu');
+    
+    // Abrir/cerrar dropdown
+    if(toggleBtn && menu) {
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('open');
+        });
 
+        // Click fuera para cerrar el menú
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !toggleBtn.contains(e.target)) {
+                menu.classList.remove('open');
+            }
+        });
+    }
+
+    // Funcionalidad 'setSeason' al pulsar una opción
+    const seasonOptions = document.querySelectorAll('.season-option');
+    seasonOptions.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const seasonId = btn.dataset.season;
+            setSeason(seasonId);
+            if (menu) menu.classList.remove('open');
+        });
+    });
+}
+
+// Router principal paramanejador de vistas
 export function renderView(route, params = {}) {
     AppState.currentRoute = route;
     const contentDiv = document.getElementById('app-content');
-    contentDiv.innerHTML = ''; // Limpiar el contenido actual
+    contentDiv.innerHTML = '';
     
     switch (route) {
         case 'home':
@@ -132,75 +259,22 @@ export function renderView(route, params = {}) {
             break;
         case 'herbarium':
             contentDiv.innerHTML = renderHerbarium(AppState.plants);
-            setupHerbariumEvents(AppState.plants);
             break;
         case 'map':
             contentDiv.innerHTML = renderMap();
-            setupMap(AppState.plants);
             break;
         case 'diary':
             contentDiv.innerHTML = renderDiary(AppState.diaries);
-            setupDiaryEvents();
             break;
         case 'plant-detail':
             const plant = AppState.plants.find(p => p.id === params.id);
             if (plant) {
                 import('./views/plantDetail.js').then(module => {
                     contentDiv.innerHTML = module.renderPlantDetail(plant);
-                    module.setupPlantDetailEvents();
                 });
             }
             break;
         default:
             contentDiv.innerHTML = '<h2>Página no encontrada</h2>';
     }
-}
-
-// Exportar estado para que módulos de vistas puedan acceder si es necesario
-export { AppState };
-
-// ---- TAREAS PENDIENTES DEL ROUTER (Inicialización Eventos) ---- //
-
-function setupHerbariumEvents(plants) {
-    // Filtrado de etiquetas
-    const checkboxes = document.querySelectorAll('.sidebar input[type="checkbox"]');
-    checkboxes.forEach(cb => {
-        cb.addEventListener('change', () => {
-            const activeTags = Array.from(document.querySelectorAll('.sidebar input[type="checkbox"]:checked')).map(c => c.value);
-            const filteredPlants = plants.filter(p => {
-                if(activeTags.length === 0) return true;
-                return activeTags.some(tag => p.etiquetas.includes(tag));
-            });
-            
-            // Re-renderizamos los items de la grid
-            import('./views/herbarium.js').then(module => {
-                document.querySelector('.plant-grid').innerHTML = module.renderPlantGrid(filteredPlants);
-                attachPlantClickEvents();
-            });
-        });
-    });
-    
-    attachPlantClickEvents();
-}
-
-function attachPlantClickEvents() {
-    const cards = document.querySelectorAll('.plant-card');
-    cards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            const id = parseInt(card.dataset.id);
-            renderView('plant-detail', { id });
-        });
-    });
-}
-
-function setupMap(plants) {
-    import('./views/map.js').then(module => {
-        module.initMap(plants);
-    });
-}
-
-function setupDiaryEvents() {
-    import('./views/diary.js').then(module => {
-        module.initDiaryEvents();
-    });
 }

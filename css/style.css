@@ -1,23 +1,36 @@
-/* ============================================
-   HERBARI DIGITAL BALEAR — Estils Compartits y Layout SPA
-   ============================================ */
 
-/* === RESET BÁSICO === */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-surface: var(--surface);
+  --color-background-dark: var(--bg-dark);
+  --font-display: 'Inter', sans-serif;
 }
 
 /* === SEASONAL THEME: CSS Custom Properties === */
 
-/* ── Primavera (Verd) [Default] ── */
-:root, [data-season="primavera"] {
+/* ── Primavera (Verd) ── */
+:root,
+[data-season="primavera"] {
     --primary: #2d7a2d;
     --primary-light: #3da63d;
     --primary-rgb: 45, 122, 45;
     --surface: #162116;
     --bg-dark: #0a120a;
+    /* Season-neutral scale (green tones) - Base: #2d7a2d */
+    --sn-50:  #f3f8f3;
+    --sn-100: #e7f1e7;
+    --sn-200: #cfdfcf;
+    --sn-300: #b7ceb7;
+    --sn-400: #87ad87;
+    --sn-500: #2d7a2d; /* Primary */
+    --sn-600: #276a27;
+    --sn-700: #1e521e;
+    --sn-800: #163d16;
+    --sn-900: #112e11;
+    --sn-950: #081708;
 }
 
 /* ── Estiu (Daurat) ── */
@@ -27,6 +40,18 @@
     --primary-rgb: 184, 147, 10;
     --surface: #1e1c10;
     --bg-dark: #0f0e06;
+    /* Season-neutral scale (warm golden tones) - Base: #b8930a */
+    --sn-50:  #faf9f2;
+    --sn-100: #f5f2e6;
+    --sn-200: #ebe4cd;
+    --sn-300: #e0d6b3;
+    --sn-400: #d6c89a;
+    --sn-500: #b8930a; /* Primary */
+    --sn-600: #a18109;
+    --sn-700: #7a6207;
+    --sn-800: #5c4a05;
+    --sn-900: #443704;
+    --sn-950: #231c02;
 }
 
 /* ── Tardor (Taronja) ── */
@@ -36,6 +61,18 @@
     --primary-rgb: 192, 99, 42;
     --surface: #1e1510;
     --bg-dark: #120d08;
+    /* Season-neutral scale (warm amber tones) - Base: #c0632a */
+    --sn-50:  #fcf7f4;
+    --sn-100: #f9efe9;
+    --sn-200: #f3dfd4;
+    --sn-300: #eccebf;
+    --sn-400: #e6beaa;
+    --sn-500: #c0632a; /* Primary */
+    --sn-600: #a85725;
+    --sn-700: #80421c;
+    --sn-800: #603215;
+    --sn-900: #472510;
+    --sn-950: #241308;
 }
 
 /* ── Hivern (Blau cel) ── */
@@ -45,73 +82,23 @@
     --primary-rgb: 45, 122, 170;
     --surface: #101a22;
     --bg-dark: #080e14;
+    /* Season-neutral scale (cool icy tones) - Base: #2d7aaa */
+    --sn-50:  #f3f8fb;
+    --sn-100: #e7f1f7;
+    --sn-200: #cfdfeb;
+    --sn-300: #b7cede;
+    --sn-400: #87adcc;
+    --sn-500: #2d7aaa; /* Primary */
+    --sn-600: #276a94;
+    --sn-700: #1e5272;
+    --sn-800: #163d55;
+    --sn-900: #112e40;
+    --sn-950: #081720;
 }
 
-/* === BASE Y LAYOUT SPA === */
+/* === BASE === */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-dark);
-    color: #e2e8f0; /* Color de texto base claro */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Ocupa al menos el 100% de la pantalla */
-    overflow: hidden; /* Evita doble scroll, el scroll irá en el contenedor principal */
-}
-
-/* === HEADER Y NAVEGACIÓN === */
-header {
-    background-color: var(--surface);
-    border-bottom: 1px solid rgba(var(--primary-rgb), 0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-}
-
-header .logo h1 {
-    font-size: 1.5rem;
-    color: var(--primary-light);
-    font-weight: 700;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-}
-
-nav a {
-    text-decoration: none;
-    color: #94a3b8;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-nav a:hover, nav a.active {
-    color: var(--primary-light);
-}
-
-/* === CONTENEDOR CENTRAL DINÁMICO === */
-.layout-container {
-    flex: 1; /* Rellena todo el espacio disponible entre header y footer */
-    display: flex;
-    overflow: hidden;
-}
-
-#app-content {
-    flex: 1;
-    padding: 2rem;
-    overflow-y: auto; /* El scroll ocurre aquí dentro */
-}
-
-/* === FOOTER === */
-footer {
-    background-color: var(--surface);
-    border-top: 1px solid rgba(var(--primary-rgb), 0.1);
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.85rem;
-    color: #94a3b8;
 }
 
 /* === MATERIAL SYMBOLS === */
@@ -124,22 +111,28 @@ footer {
 ::-webkit-scrollbar {
     width: 6px;
 }
+
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
     background: var(--primary);
     border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-light);
 }
+
 .custom-scrollbar::-webkit-scrollbar {
     width: 4px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
     background: rgba(var(--primary-rgb), 0.2);
     border-radius: 10px;
@@ -149,6 +142,7 @@ footer {
 details summary::-webkit-details-marker {
     display: none;
 }
+
 details summary {
     list-style: none;
 }
@@ -158,14 +152,21 @@ details summary {
     background-image: radial-gradient(var(--primary) 1px, transparent 1px);
     background-size: 40px 40px;
 }
+
 .mallorca-contour {
     filter: drop-shadow(0 0 15px rgba(var(--primary-rgb), 0.3));
+}
+
+/* === FOOTER === */
+#app-footer {
+    border-top: 1px solid rgba(var(--primary-rgb), 0.1);
 }
 
 /* === SEASON SELECTOR === */
 .season-dropdown {
     position: relative;
 }
+
 .season-dropdown-menu {
     position: absolute;
     top: calc(100% + 8px);
@@ -182,11 +183,13 @@ details summary {
     pointer-events: none;
     transition: opacity 0.2s, transform 0.2s;
 }
+
 .season-dropdown-menu.open {
     opacity: 1;
     transform: translateY(0) scale(1);
     pointer-events: auto;
 }
+
 .season-option {
     display: flex;
     align-items: center;
@@ -202,10 +205,12 @@ details summary {
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
 }
+
 .season-option:hover {
     background: rgba(255, 255, 255, 0.06);
     color: #fff;
 }
+
 .season-option.active {
     color: var(--primary-light);
     background: rgba(var(--primary-rgb), 0.1);

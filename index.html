@@ -1,47 +1,42 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="dark" lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Herbario Balear</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="js/app.js"></script>
+    <link rel="stylesheet" href="css/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+
     <!-- Leaflet para el Mapa (Opcional, muy útil para la sección de mapa) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <!-- Fuente de iconos Material Symbols -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
-<body>
-    <header>
-        <div class="logo">
-            <a href="#" data-route="home" style="text-decoration: none;">
-                <h1>🌿 Herbario Balear</h1>
-            </a>
+
+
+<body class="bg-background-dark font-display text-slate-300 transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <!-- Header injectado -->
+        <div id="app-header"></div>
+
+        <div class="layout-container flex-1">
+           <!-- Panel central donde se inyectará el contenido dinámicamente -->
+            <main id="app-content">
+                <!-- El contenido de las diferentes secciones se cargará aquí -->
+            </main>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#" data-route="home" class="active">Inicio</a></li>
-                <li><a href="#" data-route="herbarium">Herbario</a></li>
-                <li><a href="#" data-route="map">Mapa</a></li>
-                <li><a href="#" data-route="diary">Diario Personal</a></li>
-            </ul>
-        </nav>
+        
 
-    
-    </header>
+        <!-- Footer injectado -->
+        <div id="app-footer"></div>
 
-    <div class="layout-container">
-        <!-- Panel central donde se inyectará el contenido dinámicamente -->
-        <main id="app-content">
-            <!-- El contenido de las diferentes secciones se cargará aquí -->
-        </main>
     </div>
-
-    <footer>
-        <p>&copy; 2026 Herbario de Flora Endémica de las Islas Baleares. Proyecto Universitario.</p>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script type="module" src="js/app.js"></script>
 </body>
 </html>

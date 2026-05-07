@@ -1,53 +1,114 @@
 {
-    "plants": [
-        {
-            "id": 1,
-            "nombre_comun": "Peonía de las Baleares",
-            "nombre_cientifico": "Paeonia cambessedesii",
-            "descripcion": "Especie endémica de las Islas Baleares (Mallorca y Menorca). Es una planta perenne que crece en grietas y roquedos sombreados.",
-            "habitat": "Zonas rocosas, montañas",
-            "isla": "Mallorca, Menorca",
-            "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Paeonia_cambessedesii_1.jpg/800px-Paeonia_cambessedesii_1.jpg",
-            "multimedia": [
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Paeonia_cambessedesii_1.jpg/800px-Paeonia_cambessedesii_1.jpg"
-            ],
-            "ubicaciones": [
-                { "lat": 39.816, "lng": 2.871, "nombre": "Serra de Tramuntana" }
-            ],
-            "etiquetas": ["Perenne", "En peligro", "Medicinal"]
-        },
-        {
-            "id": 2,
-            "nombre_comun": "Ciclamen balear",
-            "nombre_cientifico": "Cyclamen balearicum",
-            "descripcion": "Pequeña planta endémica de las Islas Baleares, muy apreciada por sus flores blancas fragantes en primavera.",
-            "habitat": "Bosques y encinares, zonas umbrías",
-            "isla": "Mallorca, Menorca, Ibiza, Formentera",
-            "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Cyclamen_balearicum.jpg/800px-Cyclamen_balearicum.jpg",
-            "multimedia": [
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Cyclamen_balearicum.jpg/800px-Cyclamen_balearicum.jpg"
-            ],
-            "ubicaciones": [
-                { "lat": 39.75, "lng": 2.85, "nombre": "Bosques de Lluc" },
-                { "lat": 39.0, "lng": 1.45, "nombre": "Ibiza interior" }
-            ],
-            "etiquetas": ["Bulbosa", "Ornamental"]
-        },
-        {
-            "id": 3,
-            "nombre_comun": "Estepa Joana",
-            "nombre_cientifico": "Hypericum balearicum",
-            "descripcion": "Arbusto endémico de las zonas montañosas de las Islas Baleares, fácilmente reconocible por sus hojas pequeñas onduladas y sus grandes flores amarillas.",
-            "habitat": "Garrigas, roquedos de montaña",
-            "isla": "Mallorca, Menorca, Ibiza",
-            "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Hypericum_balearicum_1.jpg/800px-Hypericum_balearicum_1.jpg",
-            "multimedia": [
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Hypericum_balearicum_1.jpg/800px-Hypericum_balearicum_1.jpg"
-            ],
-            "ubicaciones": [
-                { "lat": 39.8, "lng": 2.9, "nombre": "Gorg Blau" }
-            ],
-            "etiquetas": ["Arbusto", "Amarilla"]
-        }
-    ]
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Herbari Digital de les Illes Balears",
+  "description": "Catàleg científic i visual de la flora autòctona de l'arxipèlag balear.",
+  "numberOfItems": 3,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Taxon",
+        "@id": "apium-bermejoi",
+        "name": "Apium bermejoi",
+        "alternateName": "Api d'en Bermejo",
+        "description": "Petita umbel·lífera rastrera, un dels endemismes més rars i amenaçats de Menorca.",
+        "image": "img/apiumbermejoi.jpg",
+        "taxonRank": "Species",
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Apiàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "En Perill Crític"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Menorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Sols humits, torrents"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Taxon",
+        "@id": "paeonia-cambessedesii",
+        "name": "Paeonia cambessedesii",
+        "alternateName": "Estepa joana",
+        "description": "L'única peònia autòctona de les Balears. Destaca per les seves grans flors rosades.",
+        "image": "img/estepajoana.jpg",
+        "taxonRank": "Species",
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Peoniàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "En Perill"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Cabrera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Març - Maig"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Taxon",
+        "@id": "posidonia-oceanica",
+        "name": "Posidonia oceanica",
+        "alternateName": "Alga vidre",
+        "description": "Planta marina fonamental per a l'ecosistema mediterrani que forma extenses praderies.",
+        "image": "img/posidoniaoceanica.jpg",
+        "taxonRank": "Species",
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Posidoniàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Protegida"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Totes les illes"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Tardor"
+          }
+        ]
+      }
+    }
+  ]
 }

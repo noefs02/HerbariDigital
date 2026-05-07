@@ -9,7 +9,9 @@ import { renderDiary } from './views/diary.js';
 export const AppState = {
     plants: [],
     currentRoute: 'home',
-    diaries: []
+    diaries: [],
+    currentPage: 1,
+    itemsPerPage: 6
 };
 
 // --- DATA PARA EL HEADER ---
@@ -165,12 +167,17 @@ function renderFooter() {
     </footer>`;
 }
 
-// Cargar los datos desde el archivo JSON
+// Nuevo loaddata adaptado a Schema.org
 async function loadData() {
     try {
         const response = await fetch('data/plants.json');
         const data = await response.json();
-        AppState.plants = data.plants;
+        
+        // Transformamos la estructura de Schema.org a una lista plana para AppState
+        // itemListElement es el array, y cada objeto tiene un .item que es la planta
+        AppState.plants = data.itemListElement.map(el => el.item);
+        
+        console.log("Dades cargades correctamente (Schema.org):", AppState.plants);
     } catch (error) {
         console.error('Error cargando los datos persistentes:', error);
     }
@@ -278,3 +285,21 @@ export function renderView(route, params = {}) {
             contentDiv.innerHTML = '<h2>Página no encontrada</h2>';
     }
 }
+
+window.changePage = (pageNumber) => {
+    // Calculamos el total de páginas según las plantas que tengamos
+    const totalPages = Math.ceil(AppState.plants.length / AppState.itemsPerPage);
+    
+    // Evitamos ir a páginas que no existen
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+
+    // Actualizamos el estado y volvemos a renderizar
+    AppState.currentPage = pageNumber;
+    renderView('herbarium');
+    
+    // Scroll suave hacia arriba para ver las nuevas tarjetas
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// Hacemos que AppState sea accesible globalmente para la vista
+window.AppState = AppState;

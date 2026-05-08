@@ -3,13 +3,12 @@ export const FILTRES = [
         id: 'illa', icon: 'location_on', title: 'Illa',
         type: 'pills',
         options: ['Mallorca', 'Menorca', 'Eivissa', 'Formentera', 'Cabrera'],
-        defaultChecked: ['Mallorca'],
         open: true
     },
     {
         id: 'conservacio', icon: 'security', title: 'Estat de conservació',
         type: 'pills',
-        options: ['Endèmica', 'Protegida', 'En Perill']
+        options: ['En Perill', 'Protegida', 'Vulnerable']
     },
     {
         id: 'floracio', icon: 'calendar_month', title: 'Època de floració',
@@ -37,7 +36,7 @@ export const FILTRES = [
         options: ['Ple sol', 'Semiombra', 'Ombra']
     },
     {
-        id: 'altitud', icon: 'height', title: 'Altitud',
+        id: 'altitud', icon: 'height', title: 'Altitud màxima',
         type: 'range',
         min: 0, max: 1500, unit: 'm'
     },
@@ -48,22 +47,23 @@ export const FILTRES = [
     }
 ];
 
-function renderFilterPill(option, checked = false) {
-    const checkedAttr = checked ? 'checked=""' : '';
+function renderFilterPill(option, filterId) {
     return `
     <label class="cursor-pointer">
-        <input class="sr-only peer" type="checkbox" ${checkedAttr} value="${option}"/>
-        <span class="px-2.5 py-1 text-[10px] font-medium rounded-full border border-slate-800 bg-surface text-slate-400 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all inline-block">${option}</span>
+        <input class="sr-only peer filter-checkbox" type="checkbox" value="${option}" data-filter="${filterId}"/>
+        <span class="px-2.5 py-1 text-[10px] font-medium rounded-full border border-slate-800 bg-surface text-slate-400 peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all inline-block cursor-pointer">${option}</span>
     </label>`;
 }
 
 function renderFilterRange(filter) {
     return `
     <div class="p-3 mt-1">
-        <input class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-primary-light" max="${filter.max}" min="${filter.min}" type="range"/>
+        <input id="filter-${filter.id}-range"
+            class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-primary-light"
+            max="${filter.max}" min="${filter.min}" value="${filter.max}" type="range"/>
         <div class="flex justify-between mt-2 text-[10px] text-slate-500 font-medium">
             <span>${filter.min}${filter.unit}</span>
-            <span>${filter.max}${filter.unit}</span>
+            <span id="filter-${filter.id}-value">${filter.max}${filter.unit}</span>
         </div>
     </div>`;
 }
@@ -73,11 +73,9 @@ function renderFilter(filter) {
     let content = '';
 
     if (filter.type === 'pills') {
-        const pills = filter.options.map(opt => {
-            const checked = filter.defaultChecked && filter.defaultChecked.includes(opt);
-            return renderFilterPill(opt, checked);
-        }).join('\n');
-        content = `<div class="flex flex-wrap gap-2 p-2 mt-1">${pills}</div>`;
+        const pills = filter.options.map(opt => renderFilterPill(opt, filter.id)).join('\n');
+        // Cada grup de pills té un id per llegir-lo des de la lògica de filtrat
+        content = `<div id="filter-group-${filter.id}" class="flex flex-wrap gap-2 p-2 mt-1">${pills}</div>`;
     } else if (filter.type === 'range') {
         content = renderFilterRange(filter);
     }

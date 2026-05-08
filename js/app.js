@@ -2,6 +2,7 @@ import { renderHome } from './views/home.js';
 import { renderHerbarium } from './views/herbarium.js';
 import { renderMap } from './views/map.js';
 import { renderDiary } from './views/diary.js';
+import { renderPlantDetail } from './views/plantDetail.js';
 
 
 
@@ -274,13 +275,17 @@ export function renderView(route, params = {}) {
             contentDiv.innerHTML = renderDiary(AppState.diaries);
             break;
         case 'plant-detail':
-            const plant = AppState.plants.find(p => p.id === params.id);
-            if (plant) {
-                import('./views/plantDetail.js').then(module => {
-                    contentDiv.innerHTML = module.renderPlantDetail(plant);
-                });
-            }
-            break;
+            // Busquem la planta comparant l'ID de Schema.org
+            const plantEntry = AppState.plants.find(p => {
+                const idToCheck = p.item ? p.item["@id"] : p["@id"];
+                return idToCheck === params.id;
+            });
+
+            if (plantEntry) {
+                const plantData = plantEntry.item ? plantEntry.item : plantEntry;
+                contentDiv.innerHTML = renderPlantDetail(plantData);
+    }
+    break;
         default:
             contentDiv.innerHTML = '<h2>Página no encontrada</h2>';
     }
@@ -299,6 +304,14 @@ window.changePage = (pageNumber) => {
     
     // Scroll suave hacia arriba para ver las nuevas tarjetas
     window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// Función global de navegación para que los onclick la detecten
+window.navigateSPA = (route, id = null) => {
+    // Si tienes una función renderView, la llamamos pasando la ruta y el ID
+    if (typeof renderView === 'function') {
+        renderView(route, { id: id });
+    }
 };
 
 // Hacemos que AppState sea accesible globalmente para la vista

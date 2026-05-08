@@ -25,7 +25,7 @@
           {
             "@type": "PropertyValue",
             "name": "Estat de conservació",
-            "value": "En Perill Crític"
+            "value": "En Perill"
           },
           {
             "@type": "PropertyValue",
@@ -34,8 +34,74 @@
           },
           {
             "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Menorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
             "name": "Hàbitat",
-            "value": "Sols humits, torrents"
+            "value": "Zones Humides"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Sols humits, torrents i rierols de Menorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Abril — Juny"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Semiombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 50
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "UbicacioIcona",
+            "value": "location_on"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              {
+                "text": "En Perill Crític",
+                "color": "red"
+              },
+              {
+                "text": "Endèmica",
+                "color": "blue"
+              }
+            ]
           }
         ]
       }
@@ -69,8 +135,77 @@
           },
           {
             "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Escletxes de roques calcàries i zones d'ombra de muntanya"
+          },
+          {
+            "@type": "PropertyValue",
             "name": "Floració",
-            "value": "Març - Maig"
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Març — Maig"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Semiombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 600
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": [
+              "Ornamental"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "UbicacioIcona",
+            "value": "location_on"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              {
+                "text": "En Perill",
+                "color": "red"
+              },
+              {
+                "text": "Molt Rara",
+                "color": "purple"
+              }
+            ]
           }
         ]
       }
@@ -104,8 +239,78 @@
           },
           {
             "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca",
+              "Eivissa",
+              "Formentera",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Litoral"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Fons marí sorrenc, entre 1 i 40 metres de profunditat"
+          },
+          {
+            "@type": "PropertyValue",
             "name": "Floració",
             "value": "Tardor"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Setembre — Novembre"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Faneròfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 0
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "UbicacioIcona",
+            "value": "waves"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              {
+                "text": "Protegida",
+                "color": "amber"
+              },
+              {
+                "text": "Marí",
+                "color": "cyan"
+              }
+            ]
           }
         ]
       }

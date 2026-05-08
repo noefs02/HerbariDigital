@@ -1,12 +1,34 @@
-
 @import "tailwindcss";
 
 @theme {
-  --color-primary: var(--primary);
-  --color-primary-light: var(--primary-light);
-  --color-surface: var(--surface);
-  --color-background-dark: var(--bg-dark);
-  --font-display: 'Inter', sans-serif;
+    /* ── Colors principals ── */
+    --color-primary: var(--primary);
+    --color-primary-light: var(--primary-light);
+    --color-surface: var(--surface);
+    --color-background-dark: var(--bg-dark);
+    --color-background-light: var(--surface);
+
+    /* ── Forest Neutral scale (mapeja --sn-*) ── */
+    --color-forest-neutral-50: var(--sn-50);
+    --color-forest-neutral-100: var(--sn-100);
+    --color-forest-neutral-200: var(--sn-200);
+    --color-forest-neutral-300: var(--sn-300);
+    --color-forest-neutral-400: var(--sn-400);
+    --color-forest-neutral-500: var(--sn-500);
+    --color-forest-neutral-600: var(--sn-600);
+    --color-forest-neutral-700: var(--sn-700);
+    --color-forest-neutral-800: var(--sn-800);
+    --color-forest-neutral-900: var(--sn-900);
+    --color-forest-neutral-950: var(--sn-950);
+
+    /* ── Tipografia ── */
+    --font-display: 'Inter', sans-serif;
+
+    /* ── Border radius ── */
+    --radius-DEFAULT: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-full: 9999px;
 }
 
 /* === SEASONAL THEME: CSS Custom Properties === */
@@ -20,12 +42,13 @@
     --surface: #162116;
     --bg-dark: #0a120a;
     /* Season-neutral scale (green tones) - Base: #2d7a2d */
-    --sn-50:  #f3f8f3;
+    --sn-50: #f3f8f3;
     --sn-100: #e7f1e7;
     --sn-200: #cfdfcf;
     --sn-300: #b7ceb7;
     --sn-400: #87ad87;
-    --sn-500: #2d7a2d; /* Primary */
+    --sn-500: #2d7a2d;
+    /* Primary */
     --sn-600: #276a27;
     --sn-700: #1e521e;
     --sn-800: #163d16;
@@ -41,12 +64,13 @@
     --surface: #1e1c10;
     --bg-dark: #0f0e06;
     /* Season-neutral scale (warm golden tones) - Base: #b8930a */
-    --sn-50:  #faf9f2;
+    --sn-50: #faf9f2;
     --sn-100: #f5f2e6;
     --sn-200: #ebe4cd;
     --sn-300: #e0d6b3;
     --sn-400: #d6c89a;
-    --sn-500: #b8930a; /* Primary */
+    --sn-500: #b8930a;
+    /* Primary */
     --sn-600: #a18109;
     --sn-700: #7a6207;
     --sn-800: #5c4a05;
@@ -62,12 +86,13 @@
     --surface: #1e1510;
     --bg-dark: #120d08;
     /* Season-neutral scale (warm amber tones) - Base: #c0632a */
-    --sn-50:  #fcf7f4;
+    --sn-50: #fcf7f4;
     --sn-100: #f9efe9;
     --sn-200: #f3dfd4;
     --sn-300: #eccebf;
     --sn-400: #e6beaa;
-    --sn-500: #c0632a; /* Primary */
+    --sn-500: #c0632a;
+    /* Primary */
     --sn-600: #a85725;
     --sn-700: #80421c;
     --sn-800: #603215;
@@ -83,12 +108,13 @@
     --surface: #101a22;
     --bg-dark: #080e14;
     /* Season-neutral scale (cool icy tones) - Base: #2d7aaa */
-    --sn-50:  #f3f8fb;
+    --sn-50: #f3f8fb;
     --sn-100: #e7f1f7;
     --sn-200: #cfdfeb;
     --sn-300: #b7cede;
     --sn-400: #87adcc;
-    --sn-500: #2d7aaa; /* Primary */
+    --sn-500: #2d7aaa;
+    /* Primary */
     --sn-600: #276a94;
     --sn-700: #1e5272;
     --sn-800: #163d55;
@@ -214,4 +240,54 @@ details summary {
 .season-option.active {
     color: var(--primary-light);
     background: rgba(var(--primary-rgb), 0.1);
+}
+
+/* === LAYOUT CONTAINER === */
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* === VIEW CONTAINER (herbarium + sidebar) === */
+.view-container {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - 130px);
+    /* resta header + footer */
+}
+
+/* === PROSE INVERT (descripció de la fitxa) === */
+.prose-invert p {
+    color: var(--sn-300);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+}
+
+.prose-invert strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* === ANIMATE-IN FADE-IN === */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-in.fade-in {
+    animation: fadeIn 0.4s ease both;
+}
+
+/* === NAV LINK ACTIVE STATE === */
+.nav-link {
+    position: relative;
+    transition: color 0.15s;
 }

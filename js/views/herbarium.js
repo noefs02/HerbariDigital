@@ -10,9 +10,9 @@ function renderPlantCard(entry) {
 
     const getProp = (name) => plant.additionalProperty?.find(p => p.name === name)?.value || '';
 
-    const familia  = getProp('Família');
-    const status   = getProp('Estat de conservació');
-    const illa     = getProp('Illa');
+    const familia = getProp('Família');
+    const status = getProp('Estat de conservació');
+    const illa = getProp('Illa');
     const etiquetes = getProp('Etiquetes') || [];
 
     // Tags HTML: preferim les Etiquetes, si no fallback de status+illa
@@ -60,31 +60,31 @@ function renderPlantCard(entry) {
  * LÒGICA DE FILTRAT
  * Llegeix l'estat actiu dels filtres des del DOM i filtra les plantes
  */
-function applyFilters(allPlants) {
+export function applyFilters(allPlants) {
     // Llegim els checkboxes actius del sidebar
-    const checkedIlles     = getCheckedValues('illa');
+    const checkedIlles = getCheckedValues('illa');
     const checkedConservacio = getCheckedValues('conservacio');
-    const checkedFloracio  = getCheckedValues('floracio');
-    const checkedHabitat   = getCheckedValues('habitat');
-    const checkedForma     = getCheckedValues('forma');
-    const checkedSubstrat  = getCheckedValues('substrat');
+    const checkedFloracio = getCheckedValues('floracio');
+    const checkedHabitat = getCheckedValues('habitat');
+    const checkedForma = getCheckedValues('forma');
+    const checkedSubstrat = getCheckedValues('substrat');
     const checkedExposicio = getCheckedValues('exposicio');
-    const checkedUsos      = getCheckedValues('usos');
-    const altitudMax       = getAltitudValue();
+    const checkedUsos = getCheckedValues('usos');
+    const altitudMax = getAltitudValue();
 
     return allPlants.filter(entry => {
         const plant = entry.item || entry;
         const getProp = (name) => plant.additionalProperty?.find(p => p.name === name)?.value;
 
-        const illesPlanta    = getProp('Illes') || [];
-        const conservacio    = getProp('Estat de conservació') || '';
-        const floracio       = getProp('Floració') || '';
-        const habitat        = getProp('Hàbitat') || '';
-        const forma          = getProp('Forma vital') || '';
-        const substrat       = getProp('Substrat') || '';
-        const exposicio      = getProp('Exposició solar') || '';
-        const altitud        = getProp('Altitud') ?? 9999;
-        const usos           = getProp('Usos') || [];
+        const illesPlanta = getProp('Illes') || [];
+        const conservacio = getProp('Estat de conservació') || '';
+        const floracio = getProp('Floració') || '';
+        const habitat = getProp('Hàbitat') || '';
+        const forma = getProp('Forma vital') || '';
+        const substrat = getProp('Substrat') || '';
+        const exposicio = getProp('Exposició solar') || '';
+        const altitud = getProp('Altitud') ?? 9999;
+        const usos = getProp('Usos') || [];
 
         // Cada grup de filtres: si no n'hi ha cap seleccionat, no filtra
         if (checkedIlles.length > 0 && !checkedIlles.some(i => illesPlanta.includes(i))) return false;
@@ -101,7 +101,7 @@ function applyFilters(allPlants) {
     });
 }
 
-function getCheckedValues(filterId) {
+export function getCheckedValues(filterId) {
     const container = document.getElementById(`filter-group-${filterId}`);
     if (!container) return [];
     return Array.from(container.querySelectorAll('input[type="checkbox"]:checked'))
@@ -118,11 +118,11 @@ function getAltitudValue() {
  * Re-renderitza només el grid de targetes i la paginació (sense re-renderitzar el sidebar)
  */
 function refreshGrid(filteredPlants) {
-    const currentPage  = window.AppState.currentPage || 1;
+    const currentPage = window.AppState.currentPage || 1;
     const itemsPerPage = window.AppState.itemsPerPage || 6;
-    const startIndex   = (currentPage - 1) * itemsPerPage;
+    const startIndex = (currentPage - 1) * itemsPerPage;
     const plantsToShow = filteredPlants.slice(startIndex, startIndex + itemsPerPage);
-    const totalPages   = Math.ceil(filteredPlants.length / itemsPerPage);
+    const totalPages = Math.ceil(filteredPlants.length / itemsPerPage);
 
     // Grid
     const grid = document.getElementById('herbari-grid');
@@ -199,11 +199,11 @@ function initFilterListeners() {
  * RENDER: VISTA HERBARI COMPLETA
  */
 export function renderHerbarium(allPlants) {
-    const currentPage  = window.AppState.currentPage || 1;
+    const currentPage = window.AppState.currentPage || 1;
     const itemsPerPage = window.AppState.itemsPerPage || 6;
-    const startIndex   = (currentPage - 1) * itemsPerPage;
+    const startIndex = (currentPage - 1) * itemsPerPage;
     const plantsToShow = allPlants.slice(startIndex, startIndex + itemsPerPage);
-    const totalPages   = Math.ceil(allPlants.length / itemsPerPage);
+    const totalPages = Math.ceil(allPlants.length / itemsPerPage);
 
     const cardsHTML = plantsToShow.length > 0
         ? plantsToShow.map(p => renderPlantCard(p)).join('')

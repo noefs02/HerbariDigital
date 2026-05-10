@@ -1,6 +1,6 @@
 import { renderHome } from './views/home.js';
 import { renderHerbarium } from './views/herbarium.js';
-import { renderMap } from './views/map.js';
+import { renderMap, initMap, initMapFilterListeners } from './views/map.js';
 import { renderDiary } from './views/diary.js';
 import { renderPlantDetail } from './views/plantDetail.js';
 
@@ -270,6 +270,11 @@ export function renderView(route, params = {}) {
             break;
         case 'map':
             contentDiv.innerHTML = renderMap();
+            // Invoquem la lògica de Leaflet després de renderitzar el DOM
+            setTimeout(() => {
+                initMap(AppState.plants);
+                initMapFilterListeners(); // Activa els filtres a la vista mapa
+            }, 50);
             break;
         case 'diary':
             contentDiv.innerHTML = renderDiary(AppState.diaries);
@@ -308,9 +313,17 @@ window.changePage = (pageNumber) => {
 
 // Función global de navegación para que los onclick la detecten
 window.navigateSPA = (route, id = null) => {
-    // Si tienes una función renderView, la llamamos pasando la ruta y el ID
     if (typeof renderView === 'function') {
         renderView(route, { id: id });
+        
+        // Actualitzar la capçalera perquè marqui correctament la ruta activa
+        renderHeader();
+        setupNavigation();
+        setupHeaderEvents();
+        initSeason();
+        
+        // Fer scroll a dalt de tot suaument
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 };
 

@@ -102,6 +102,13 @@
                 "color": "blue"
               }
             ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              { "lat": 39.9821, "lng": 4.0820, "label": "Barranc de Sa Vall, Menorca" }
+            ]
           }
         ]
       }
@@ -205,6 +212,14 @@
                 "text": "Molt Rara",
                 "color": "purple"
               }
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              { "lat": 39.7901, "lng": 2.8734, "label": "Serra de Tramuntana, Mallorca" },
+              { "lat": 39.1412, "lng": 2.9320, "label": "Arxipèlag de Cabrera" }
             ]
           }
         ]
@@ -310,6 +325,15 @@
                 "text": "Marí",
                 "color": "cyan"
               }
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              { "lat": 39.5432, "lng": 2.3876, "label": "Badia de Palma, Mallorca" },
+              { "lat": 39.9876, "lng": 4.1234, "label": "Costa Nord, Menorca" },
+              { "lat": 38.9200, "lng": 1.4300, "label": "Cala Conta, Eivissa" }
             ]
           }
         ]

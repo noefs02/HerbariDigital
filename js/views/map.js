@@ -18,8 +18,8 @@ export function renderMap() {
         <div id="map-view" class="view-container h-[calc(100vh-65px)] relative flex w-full">
             ${renderSidebar(extraContent)}
             
-            <main class="flex-1 relative bg-forest-neutral-900">
-                <div id="global-map" class="absolute inset-0 w-full h-full z-0"></div>
+            <main class="flex-1 relative bg-forest-neutral-900 overflow-hidden">
+                <div id="global-map" class="absolute inset-0 w-full h-full z-0 bg-[#0b0e0b]"></div>
                 
                 <!-- Overlay de títol per al mapa -->
                 <div class="absolute top-6 left-6 z-10 pointer-events-none">
@@ -83,15 +83,25 @@ export function initMap(plants) {
             attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
             maxZoom: 18
         }).addTo(mapInstance);
-        
+
         markerGroup = L.layerGroup().addTo(mapInstance);
+
+        // Forçar el recàlcul de la mida perquè no es quedi el mapa gris
+        setTimeout(() => {
+            mapInstance.invalidateSize();
+        }, 200);
+    } else {
+        // Si el mapa ja existeix, també invalidem la mida per si s'ha mogut el layout
+        setTimeout(() => {
+            mapInstance.invalidateSize();
+        }, 100);
     }
 
     // Netejar només els marcadors, conservant la posició de zoom
     markerGroup.clearLayers();
 
     let markerCount = 0;
-    
+
     // Obtenim les illes seleccionades actualment al sidebar
     const checkedIlles = getCheckedValues('illa');
 
@@ -103,7 +113,7 @@ export function initMap(plants) {
 
         if (coordsProp && Array.isArray(coordsProp.value)) {
             coordsProp.value.forEach(coord => {
-                
+
                 // Si hi ha illes filtrades, comprovem que aquesta coordenada específica pertanyi a una d'elles
                 if (checkedIlles.length > 0) {
                     const coordEsDaquestaIlla = checkedIlles.some(illa => coord.label.toLowerCase().includes(illa.toLowerCase()));
@@ -111,7 +121,7 @@ export function initMap(plants) {
                 }
 
                 markerCount++;
-                
+
                 // Generem la icona dinàmica amb una sola peça usant matemàtiques CSS (border-radius: 50% 50% 50% 0)
                 const plantIcon = L.divIcon({
                     className: 'custom-leaflet-marker',
@@ -132,9 +142,9 @@ export function initMap(plants) {
                         <div class="relative h-32 overflow-hidden bg-black">
                             <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                             <div class="absolute top-2 left-2 flex gap-1">
-                                ${item.additionalProperty?.find(prop => prop.name === 'Etiquetes')?.value.map(tag => 
-                                    `<span class="px-2 py-0.5 rounded-full bg-surface/80 backdrop-blur text-white text-[8px] font-black uppercase tracking-widest border border-white/20">${tag.text}</span>`
-                                ).join('') || ''}
+                                ${item.additionalProperty?.find(prop => prop.name === 'Etiquetes')?.value.map(tag =>
+                    `<span class="px-2 py-0.5 rounded-full bg-surface/80 backdrop-blur text-white text-[8px] font-black uppercase tracking-widest border border-white/20">${tag.text}</span>`
+                ).join('') || ''}
                             </div>
                         </div>
                         <div class="p-4 bg-background-dark/95">
@@ -192,4 +202,4 @@ export function initMapFilterListeners() {
             initMap(filtered);
         });
     }
-}
+}

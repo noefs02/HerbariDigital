@@ -2,7 +2,8 @@ import { renderHome } from './views/home.js';
 import { renderHerbarium } from './views/herbarium.js';
 import { renderMap, initMap, initMapFilterListeners } from './views/map.js';
 import { renderDiary } from './views/diary.js';
-import { renderPlantDetail } from './views/plantDetail.js';
+// ACTUALIZACIÓN: Importamos initDetailMap junto a renderPlantDetail
+import { renderPlantDetail, initDetailMap } from './views/plantDetail.js';
 
 
 
@@ -44,17 +45,17 @@ function getCurrentSeason() {
 export function setSeason(seasonId) {
     document.documentElement.setAttribute('data-season', seasonId);
     localStorage.setItem('herbari-season', seasonId);
-    
+
     // Update the selector button if it exists
     const season = SEASONS.find(s => s.id === seasonId);
     if (!season) return;
-    
+
     const btnIcon = document.getElementById('season-btn-icon');
     const btnLabel = document.getElementById('season-btn-label');
-    
+
     if (btnIcon) btnIcon.textContent = season.icon;
     if (btnLabel) btnLabel.textContent = season.label;
-    
+
     // Update active states in dropdown
     document.querySelectorAll('.season-option').forEach(el => {
         el.classList.toggle('active', el.dataset.season === seasonId);
@@ -62,6 +63,7 @@ export function setSeason(seasonId) {
 }
 
 function initSeason() {
+    // Mantengo tu estructura original
     setSeason(getCurrentSeason());
 }
 
@@ -76,7 +78,7 @@ function renderHeader() {
         const classes = active
             ? 'nav-link text-primary-light font-semibold text-sm border-b-2 border-primary-light pb-1'
             : 'nav-link text-slate-400 hover:text-primary-light transition-colors text-sm font-medium';
-        
+
         // Fíjate en el uso de data-route en lugar de href real
         return `<a class="${classes}" href="#" data-route="${item.route}">${item.label}</a>`;
     }).join('\n');
@@ -173,11 +175,11 @@ async function loadData() {
     try {
         const response = await fetch('data/plants.json');
         const data = await response.json();
-        
+
         // Transformamos la estructura de Schema.org a una lista plana para AppState
         // itemListElement es el array, y cada objeto tiene un .item que es la planta
         AppState.plants = data.itemListElement.map(el => el.item);
-        
+
         console.log("Dades cargades correctamente (Schema.org):", AppState.plants);
     } catch (error) {
         console.error('Error cargando los datos persistentes:', error);
@@ -189,15 +191,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 1. Renderizamos la cabecera y el footer primero para que existan los enlaces
     renderHeader();
     renderFooter();
-    
+
     // Iniciar temporizador (actualiza la UI inmediatamente)
     initSeason();
-    
+
     // 2. Carga inicial de datos y configuraciones globales
     await loadData();
     setupNavigation();
     setupHeaderEvents(); // Configurará el buscador y estaciones
-    
+
     // 3. Cargar la vista inicial
     renderView('home');
 });
@@ -206,15 +208,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 export function setupNavigation() {
     // Al hacer click, usamos la delegación de eventos o actualizamos el header entero
     const navLinks = document.querySelectorAll('a[data-route]');
-    
+
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const route = link.dataset.route;
-            
+
             // Renderizamos la nueva ruta
             renderView(route);
-            
+
             // Volvemos a renderizar el header para que la clase "activa" cambie correctamente con Tailwind
             renderHeader();
             setupNavigation();
@@ -228,9 +230,9 @@ export function setupNavigation() {
 export function setupHeaderEvents() {
     const toggleBtn = document.getElementById('season-toggle-btn');
     const menu = document.getElementById('season-menu');
-    
+
     // Abrir/cerrar dropdown
-    if(toggleBtn && menu) {
+    if (toggleBtn && menu) {
         toggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             menu.classList.toggle('open');
@@ -260,7 +262,7 @@ export function renderView(route, params = {}) {
     AppState.currentRoute = route;
     const contentDiv = document.getElementById('app-content');
     contentDiv.innerHTML = '';
-    
+
     switch (route) {
         case 'home':
             contentDiv.innerHTML = renderHome();
@@ -289,8 +291,13 @@ export function renderView(route, params = {}) {
             if (plantEntry) {
                 const plantData = plantEntry.item ? plantEntry.item : plantEntry;
                 contentDiv.innerHTML = renderPlantDetail(plantData);
-    }
-    break;
+
+                // ACTUALIZACIÓN: Inicializamos el mapa específico de la planta detallada
+                setTimeout(() => {
+                    initDetailMap(plantData);
+                }, 100);
+            }
+            break;
         default:
             contentDiv.innerHTML = '<h2>Página no encontrada</h2>';
     }
@@ -299,14 +306,14 @@ export function renderView(route, params = {}) {
 window.changePage = (pageNumber) => {
     // Calculamos el total de páginas según las plantas que tengamos
     const totalPages = Math.ceil(AppState.plants.length / AppState.itemsPerPage);
-    
+
     // Evitamos ir a páginas que no existen
     if (pageNumber < 1 || pageNumber > totalPages) return;
 
     // Actualizamos el estado y volvemos a renderizar
     AppState.currentPage = pageNumber;
     renderView('herbarium');
-    
+
     // Scroll suave hacia arriba para ver las nuevas tarjetas
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
@@ -315,13 +322,13 @@ window.changePage = (pageNumber) => {
 window.navigateSPA = (route, id = null) => {
     if (typeof renderView === 'function') {
         renderView(route, { id: id });
-        
+
         // Actualitzar la capçalera perquè marqui correctament la ruta activa
         renderHeader();
         setupNavigation();
         setupHeaderEvents();
         initSeason();
-        
+
         // Fer scroll a dalt de tot suaument
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }

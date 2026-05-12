@@ -1,8 +1,54 @@
 import { AppState } from '../app.js';
+import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, injectMapStyles } from '../components/mapUtils.js';
 
+let detailMapInstance = null;
+
+export function initDetailMap(plant) {
+    const mapContainer = document.getElementById('detail-map');
+    if (!mapContainer || typeof L === 'undefined') return;
+
+    // --- LIMPIEZA ---
+    if (detailMapInstance) { detailMapInstance.remove(); detailMapInstance = null; }
+
+    // --- ESTILOS CENTRALIZADOS ---
+    injectMapStyles();
+
+    const coordsProp = plant.additionalProperty?.find(prop => prop.name === 'Coordenades');
+    const coords = coordsProp ? coordsProp.value : [];
+
+    if (coords.length === 0) {
+        mapContainer.innerHTML = `<div class="absolute inset-0 flex items-center justify-center bg-forest-neutral-900 text-slate-500 text-xs italic">No hi ha dades de localització.</div>`;
+        return;
+    }
+
+    // --- INICIALIZACIÓN ---
+    detailMapInstance = L.map('detail-map', {
+        zoomControl: false, // DESACTIVAMOS el nativo para controlarlo nosotros
+        scrollWheelZoom: false
+    }).setView([coords[0].lat, coords[0].lng], 8);
+
+    // --- CONTROLES ALINEADOS ---
+    // Añadimos Zoom y GPS a la misma posición ('topleft') 
+    // para que el CSS los apile y centre automáticamente.
+    L.control.zoom({ position: 'topleft' }).addTo(detailMapInstance);
+    detailMapInstance.addControl(new LocationControl({ position: 'topleft' }));
+
+    L.tileLayer(TILE_LAYER_CONFIG.url, TILE_LAYER_CONFIG.options).addTo(detailMapInstance);
+
+    // Marcadores
+    coords.forEach(coord => {
+        const icon = createPlantIcon(24);
+        L.marker([coord.lat, coord.lng], { icon: icon })
+            .addTo(detailMapInstance)
+            .bindPopup(`<b>${coord.label}</b>`, { className: 'detail-popup', closeButton: false })
+            .on('mouseover', function () { this.openPopup(); })
+            .on('mouseout', function () { this.closePopup(); });
+    });
+
+    setTimeout(() => detailMapInstance.invalidateSize(), 300);
+}
 /**
  * Lògica de Stitch: Presència a les Illes
- * Mapeja el string d'illes del JSON als botons visuals
  */
 function renderIslandPresence(illaString = "") {
     const illes = [
@@ -61,7 +107,7 @@ function renderConservationCard(status = "") {
 }
 
 /**
- * Renderitza les targetes de plantes relacionades (màxim 4)
+ * Renderitza les targetes de plantes relacionades
  */
 function renderRelatedCards(currentId) {
     const others = AppState.plants
@@ -111,13 +157,9 @@ function renderRelatedCards(currentId) {
     </section>`;
 }
 
-/**
- * RENDERITZADOR PRINCIPAL: FITXA DETALL
- */
 export function renderPlantDetail(plant) {
     if (!plant) return `<div class="p-20 text-center">Planta no trobada</div>`;
 
-    // Helpers per extreure dades del format Schema.org
     const getProp = (name) => plant.additionalProperty?.find(p => p.name === name)?.value || '—';
 
     const familia = getProp('Família');
@@ -127,7 +169,6 @@ export function renderPlantDetail(plant) {
     const sol = getProp('Hàbitat') !== '—' ? getProp('Hàbitat') : getProp('Requeriments de sòl');
     const plantId = plant['@id'];
 
-    // Tags del hero (etiquetes o fallback família + estat)
     const heroTagsHTML = `
         <span class="px-3 py-1 bg-surface border border-primary text-slate-100 text-xs font-bold rounded-full uppercase tracking-wider">${familia}</span>
         <span class="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full uppercase tracking-wider">${status}</span>`;
@@ -154,20 +195,17 @@ export function renderPlantDetail(plant) {
                 <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('${plant.image}')"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 
-                <!-- Carousel arrow left -->
                 <div class="absolute inset-y-0 left-0 flex items-center px-4 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button class="size-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-primary backdrop-blur-sm transition-colors">
                         <span class="material-symbols-outlined">chevron_left</span>
                     </button>
                 </div>
-                <!-- Carousel arrow right -->
                 <div class="absolute inset-y-0 right-0 flex items-center px-4 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button class="size-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-primary backdrop-blur-sm transition-colors">
                         <span class="material-symbols-outlined">chevron_right</span>
                     </button>
                 </div>
 
-                <!-- Hero bottom content -->
                 <div class="absolute bottom-8 left-8 right-8 flex justify-between items-end">
                     <div>
                         <div class="flex items-center gap-3 mb-2">
@@ -175,7 +213,6 @@ export function renderPlantDetail(plant) {
                         </div>
                         <h2 class="text-4xl md:text-6xl font-black text-white mb-2 tracking-tight">${plant.alternateName}</h2>
                     </div>
-                    <!-- Carousel dots -->
                     <div class="flex gap-2 pb-2">
                         <div class="size-2 rounded-full bg-white"></div>
                         <div class="size-2 rounded-full bg-white/30"></div>
@@ -185,15 +222,13 @@ export function renderPlantDetail(plant) {
             </div>
         </section>
 
-        <!-- Main grid -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
                 <!-- Left column (2/3) -->
                 <div class="lg:col-span-2 space-y-8">
 
-                    <!-- Fitxa tècnica + Descripció -->
-                    <div class="bg-surface rounded-2xl border border-white/10 p-8 space-y-10">
+                    <div class="bg-surface rounded-2xl border border-white/10 p-8 space-y-10 shadow-xl">
                         <section>
                             <h3 class="text-xl font-bold mb-6 flex items-center gap-2 text-white">
                                 <span class="material-symbols-outlined text-primary">info</span>
@@ -252,13 +287,12 @@ export function renderPlantDetail(plant) {
                     </div>
 
                     <!-- Recursos addicionals -->
-                    <div class="bg-surface rounded-2xl border border-white/10 p-8">
+                    <div class="bg-surface rounded-2xl border border-white/10 p-8 shadow-xl">
                         <h4 class="text-xl font-bold mb-8 flex items-center gap-2 text-white">
                             <span class="material-symbols-outlined text-primary">library_books</span>
                             Recursos addicionals
                         </h4>
                         <div class="flex flex-col gap-10">
-                            <!-- Video Player -->
                             <div class="space-y-5">
                                 <p class="text-xs font-bold text-forest-neutral-500 uppercase tracking-widest">Documental Botànic</p>
                                 <div class="relative group overflow-hidden rounded-2xl aspect-[21/9] bg-black ring-1 ring-white/10 shadow-2xl">
@@ -275,7 +309,6 @@ export function renderPlantDetail(plant) {
                                 </div>
                                 <p class="text-xl font-bold text-slate-100">Documental botànic de l'espècie</p>
                             </div>
-                            <!-- Documents / Links -->
                             <div class="space-y-4">
                                 <p class="text-xs font-bold text-forest-neutral-500 uppercase tracking-widest">Documentació de referència</p>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -313,7 +346,7 @@ export function renderPlantDetail(plant) {
                     </button>
 
                     <!-- Presència a les Illes -->
-                    <div class="bg-surface rounded-xl border border-white/10 p-6">
+                    <div class="bg-surface rounded-xl border border-white/10 p-6 shadow-xl">
                         <h4 class="font-bold text-lg mb-4 text-white">Presència a les Illes</h4>
                         <div class="grid grid-cols-3 gap-2">
                             ${renderIslandPresence(illa)}
@@ -323,24 +356,28 @@ export function renderPlantDetail(plant) {
                     <!-- Conservació -->
                     ${renderConservationCard(status)}
 
-                    <!-- Distribució Geogràfica -->
-                    <section class="bg-surface rounded-xl border border-white/10 overflow-hidden">
+                    <!-- DISTRIBUCIÓ GEOGRÀFICA (MAPA REAL) -->
+                    <section class="bg-surface rounded-xl border border-white/10 overflow-hidden shadow-xl">
                         <div class="p-6 border-b border-white/10">
                             <h3 class="font-bold flex items-center gap-2 text-white">
                                 <span class="material-symbols-outlined text-primary">location_on</span>
                                 Distribució Geogràfica
                             </h3>
                         </div>
-                        <div class="w-full aspect-square bg-forest-neutral-800 relative">
-                            <div class="absolute inset-0 bg-forest-neutral-900 flex items-center justify-center">
-                                <div class="relative">
-                                    <span class="material-symbols-outlined text-3xl text-red-500 animate-bounce">location_on</span>
-                                    <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-1 bg-black/30 rounded-full blur-sm"></div>
+                        
+                        <div id="detail-map" class="w-full aspect-square bg-forest-neutral-800 relative z-0">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                                    <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Carregant mapa...</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-4 bg-surface">
-                            <p class="text-xs text-forest-neutral-400 text-center">${illa}</p>
+
+                        <div class="p-4 bg-surface/50 border-t border-white/5">
+                            <p class="text-[10px] text-forest-neutral-400 text-center leading-relaxed italic">
+                                Localitzacions documentades a <span class="text-slate-200">${illa}</span>
+                            </p>
                         </div>
                     </section>
                 </div>

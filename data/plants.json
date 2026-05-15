@@ -86,6 +86,11 @@
           },
           {
             "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": "https://www.youtube.com/watch?v=OnlokxlDkJA"
+          },
+          {
+            "@type": "PropertyValue",
             "name": "Etiquetes",
             "value": [
               {
@@ -104,7 +109,7 @@
             "value": [
               {
                 "lat": 39.9821,
-                "lng": 4.0820,
+                "lng": 4.082,
                 "label": "Barranc de Sa Vall, Menorca"
               }
             ]
@@ -193,6 +198,11 @@
             "value": [
               "Ornamental"
             ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": "https://www.youtube.com/watch?v=WaEbwDfH-GA"
           },
           {
             "@type": "PropertyValue",
@@ -309,6 +319,11 @@
             "@type": "PropertyValue",
             "name": "Usos",
             "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": "https://www.youtube.com/watch?v=v2XJfwAq89I"
           },
           {
             "@type": "PropertyValue",

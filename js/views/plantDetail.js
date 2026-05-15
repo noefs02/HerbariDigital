@@ -1,9 +1,11 @@
 import { AppState } from '../app.js';
+import { YouTubeHandler } from '../components/youtube.js'; // IMPORTACIÓN DEL SERVICIO
 import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, injectMapStyles } from '../components/mapUtils.js';
 
 let detailMapInstance = null;
+const ytHandler = new YouTubeHandler(); // INSTANCIA DEL GESTOR GLOBAL
 
-export function initDetailMap(plant) {
+export async function initDetailMap(plant) {
     const mapContainer = document.getElementById('detail-map');
     if (!mapContainer || typeof L === 'undefined') return;
 
@@ -18,55 +20,58 @@ export function initDetailMap(plant) {
 
     if (coords.length === 0) {
         mapContainer.innerHTML = `<div class="absolute inset-0 flex items-center justify-center bg-forest-neutral-900 text-slate-500 text-xs italic">No hi ha dades de localització.</div>`;
-        return;
+    } else {
+        // --- INICIALIZACIÓN ---
+        detailMapInstance = L.map('detail-map', {
+            zoomControl: false, // DESACTIVAMOS el nativo para controlarlo nosotros
+            scrollWheelZoom: false
+        }).setView([coords[0].lat, coords[0].lng], 8);
+
+        // --- CONTROLES ALINEADOS ---
+        L.control.zoom({ position: 'topleft' }).addTo(detailMapInstance);
+        detailMapInstance.addControl(new LocationControl({ position: 'topleft' }));
+
+        L.tileLayer(TILE_LAYER_CONFIG.url, TILE_LAYER_CONFIG.options).addTo(detailMapInstance);
+
+        // Marcadores con texto de coordenadas resaltado
+        coords.forEach(coord => {
+            const icon = createPlantIcon(24);
+            const detailPopupContent = `
+                <div class="flex flex-col gap-1.5 px-1 py-1">
+                    <div class="flex items-center gap-1.5 text-white">
+                        <span class="material-symbols-outlined text-primary text-[16px]">location_on</span>
+                        <span class="font-black text-sm tracking-tight">${coord.label}</span>
+                    </div>
+                    <div class="pl-6 text-[12px] text-slate-100 font-mono font-bold tracking-wide">
+                        Lat: ${coord.lat.toFixed(4)} <span class="text-primary/50">/</span> Lng: ${coord.lng.toFixed(4)}
+                    </div>
+                </div>
+            `;
+
+            L.marker([coord.lat, coord.lng], { icon: icon })
+                .addTo(detailMapInstance)
+                .bindPopup(detailPopupContent, {
+                    className: 'detail-popup',
+                    closeButton: false,
+                    offset: [0, -5]
+                })
+                .on('mouseover', function () { this.openPopup(); })
+                .on('mouseout', function () { this.closePopup(); });
+        });
+
+        setTimeout(() => detailMapInstance.invalidateSize(), 300);
     }
 
-    // --- INICIALIZACIÓN ---
-    detailMapInstance = L.map('detail-map', {
-        zoomControl: false, // DESACTIVAMOS el nativo para controlarlo nosotros
-        scrollWheelZoom: false
-    }).setView([coords[0].lat, coords[0].lng], 8);
+    // --- INICIALIZACIÓN VIDEO 
+    const videoContainer = document.getElementById('youtube-player-api');
+    const videoId = plant.additionalProperty?.find(p => p.name === 'VideoID')?.value;
 
-    // --- CONTROLES ALINEADOS ---
-    // Añadimos Zoom y GPS a la misma posición ('topleft') 
-    // para que el CSS los apile y centre automáticamente.
-    L.control.zoom({ position: 'topleft' }).addTo(detailMapInstance);
-    detailMapInstance.addControl(new LocationControl({ position: 'topleft' }));
-
-    L.tileLayer(TILE_LAYER_CONFIG.url, TILE_LAYER_CONFIG.options).addTo(detailMapInstance);
-
-    // Marcadores con texto de coordenadas resaltado
-    coords.forEach(coord => {
-        const icon = createPlantIcon(24);
-
-        const detailPopupContent = `
-            <div class="flex flex-col gap-1.5 px-1 py-1">
-                <!-- Nombre de la ubicación -->
-                <div class="flex items-center gap-1.5 text-white">
-                    <span class="material-symbols-outlined text-primary text-[16px]">location_on</span>
-                    <span class="font-black text-sm tracking-tight">${coord.label}</span>
-                </div>
-                
-                <!-- Coordenadas resaltadas -->
-                <div class="pl-6 text-[12px] text-slate-100 font-mono font-bold tracking-wide">
-                    Lat: ${coord.lat.toFixed(4)} <span class="text-primary/50">/</span> Lng: ${coord.lng.toFixed(4)}
-                </div>
-            </div>
-        `;
-
-        L.marker([coord.lat, coord.lng], { icon: icon })
-            .addTo(detailMapInstance)
-            .bindPopup(detailPopupContent, {
-                className: 'detail-popup',
-                closeButton: false,
-                offset: [0, -5]
-            })
-            .on('mouseover', function () { this.openPopup(); })
-            .on('mouseout', function () { this.closePopup(); });
-    });
-
-    setTimeout(() => detailMapInstance.invalidateSize(), 300);
+    if (videoContainer && videoId && videoId !== '—') {
+        await ytHandler.loadAPI(); // Carga asíncrona de la biblioteca externa
+        ytHandler.loadVideo(videoId, videoContainer); // Inserción del reproductor funcional
+    }
 }
+
 /**
  * Lògica de Stitch: Presència a les Illes
  */
@@ -152,7 +157,7 @@ function renderRelatedCards(currentId) {
             class="group flex flex-col bg-surface rounded-2xl overflow-hidden border border-white/10 shadow-2xl hover:border-primary transition-all duration-500 cursor-pointer hover:scale-[1.02] aspect-[4/5]">
             <div class="relative flex-1 overflow-hidden">
                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    alt="${p.alternateName || p.name}" src="${p.image}" />
+                    alt="${p.alternateName || p.name}" src="${p.image}" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute top-4 left-4 flex flex-wrap gap-2">
                     <span class="px-2 py-0.5 rounded-full bg-${statusColor}-500/20 text-${statusColor}-400 text-[8px] font-black uppercase tracking-widest backdrop-blur-md border border-${statusColor}-500/30">${status}</span>
@@ -189,6 +194,9 @@ export function renderPlantDetail(plant) {
     const sol = getProp('Hàbitat') !== '—' ? getProp('Hàbitat') : getProp('Requeriments de sòl');
     const plantId = plant['@id'];
 
+    // GESTIÓN DE MEMORIA (Rúbrica 15): Limpieza del reproductor anterior antes de renderizar uno nuevo
+    ytHandler.cleanupPlayer();
+
     const heroTagsHTML = `
         <span class="px-3 py-1 bg-surface border border-primary text-slate-100 text-xs font-bold rounded-full uppercase tracking-wider">${familia}</span>
         <span class="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full uppercase tracking-wider">${status}</span>`;
@@ -196,7 +204,6 @@ export function renderPlantDetail(plant) {
     return `
     <div class="animate-in fade-in duration-500">
 
-        <!-- Breadcrumb + Back button -->
         <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center justify-between">
             <nav class="flex items-center gap-2 text-sm font-medium text-slate-500">
                 <a class="hover:text-primary cursor-pointer" onclick="window.navigateSPA('herbarium')">Herbari Digital</a>
@@ -209,7 +216,6 @@ export function renderPlantDetail(plant) {
             </button>
         </div>
 
-        <!-- Hero Carousel -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
             <div class="relative group aspect-[21/9] rounded-2xl overflow-hidden bg-forest-neutral-900 shadow-2xl">
                 <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('${plant.image}')"></div>
@@ -245,7 +251,6 @@ export function renderPlantDetail(plant) {
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-                <!-- Left column (2/3) -->
                 <div class="lg:col-span-2 space-y-8">
 
                     <div class="bg-surface rounded-2xl border border-white/10 p-8 space-y-10 shadow-xl">
@@ -285,7 +290,6 @@ export function renderPlantDetail(plant) {
                         </section>
                     </div>
 
-                    <!-- Ambient Audio Widget -->
                     <div class="bg-surface border border-white/10 rounded-2xl p-8 flex items-center justify-between shadow-lg">
                         <div class="flex items-center gap-5">
                             <div class="size-14 rounded-full bg-primary flex items-center justify-center animate-pulse shadow-[0_0_20px_rgba(48,137,48,0.4)]">
@@ -306,7 +310,6 @@ export function renderPlantDetail(plant) {
                         </div>
                     </div>
 
-                    <!-- Recursos addicionals -->
                     <div class="bg-surface rounded-2xl border border-white/10 p-8 shadow-xl">
                         <h4 class="text-xl font-bold mb-8 flex items-center gap-2 text-white">
                             <span class="material-symbols-outlined text-primary">library_books</span>
@@ -315,16 +318,11 @@ export function renderPlantDetail(plant) {
                         <div class="flex flex-col gap-10">
                             <div class="space-y-5">
                                 <p class="text-xs font-bold text-forest-neutral-500 uppercase tracking-widest">Documental Botànic</p>
-                                <div class="relative group overflow-hidden rounded-2xl aspect-[21/9] bg-black ring-1 ring-white/10 shadow-2xl">
-                                    <img alt="Video thumbnail" class="w-full h-full object-cover opacity-60"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWd9md3T3rL2MnnLKlR0wBY6-LCDUsBIsMOI9XvU9_LE8UwGvXuYNkfcjk2b6WLoYrnR_cVXYwRvQ3r-9tVwxD7ZnsB4MXSB00MGoThd5-Sk39K1OT-e36xkpW1KvszjYHNV6_QZdsGaupgBWKzghrmDZXRYVD3k8GCWf0a1gs-16VnBADGvytJ4bE1UpR3qZZpUN-xPVINewAsJvH4pfapNxKrzc61kkEYbNZkExrQNN3q_fdhCl4Nzn-ziUhcBu8Cs2s87oJQIk" />
-                                    <div class="absolute inset-0 flex items-center justify-center">
-                                        <button class="size-24 rounded-full bg-primary text-white flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform">
-                                            <span class="material-symbols-outlined text-7xl">play_arrow</span>
-                                        </button>
-                                    </div>
-                                    <div class="absolute bottom-0 left-0 right-0 h-1.5 bg-forest-neutral-700">
-                                        <div class="h-full w-1/4 bg-primary"></div>
+                                <div class="relative overflow-hidden rounded-2xl aspect-video bg-black ring-1 ring-white/10 shadow-2xl">
+                                    <div id="youtube-player-api" class="w-full h-full">
+                                        <div class="flex items-center justify-center h-full text-slate-500 italic text-sm">
+                                            Carregant reproductor multimèdia...
+                                        </div>
                                     </div>
                                 </div>
                                 <p class="text-xl font-bold text-slate-100">Documental botànic de l'espècie</p>
@@ -358,14 +356,12 @@ export function renderPlantDetail(plant) {
                     </div>
                 </div>
 
-                <!-- Right sidebar (1/3) -->
                 <div class="space-y-6">
                     <button class="w-full py-4 px-6 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl shadow-lg shadow-surface flex items-center justify-center gap-3 transition-all group active:scale-[0.98]">
                         <span class="material-symbols-outlined group-hover:fill-1 transition-all">bookmark_add</span>
                         Afegir a la llista de desitjos
                     </button>
 
-                    <!-- Presència a les Illes -->
                     <div class="bg-surface rounded-xl border border-white/10 p-6 shadow-xl">
                         <h4 class="font-bold text-lg mb-4 text-white">Presència a les Illes</h4>
                         <div class="grid grid-cols-3 gap-2">
@@ -373,10 +369,8 @@ export function renderPlantDetail(plant) {
                         </div>
                     </div>
 
-                    <!-- Conservació -->
                     ${renderConservationCard(status)}
 
-                    <!-- DISTRIBUCIÓ GEOGRÀFICA (MAPA REAL) -->
                     <section class="bg-surface rounded-xl border border-white/10 overflow-hidden shadow-xl">
                         <div class="p-6 border-b border-white/10">
                             <h3 class="font-bold flex items-center gap-2 text-white">
@@ -403,7 +397,6 @@ export function renderPlantDetail(plant) {
                 </div>
             </div>
 
-            <!-- Related Plants -->
             ${renderRelatedCards(plantId)}
         </main>
     </div>

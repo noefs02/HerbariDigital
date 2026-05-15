@@ -1,6 +1,6 @@
 import { AppState } from '../app.js';
 import { YouTubeHandler } from '../components/youtube.js'; // IMPORTACIÓN DEL SERVICIO
-import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, injectMapStyles } from '../components/mapUtils.js';
+import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, LayerSwitcherControl, injectMapStyles } from '../components/mapUtils.js';
 
 let detailMapInstance = null;
 const ytHandler = new YouTubeHandler(); // INSTANCIA DEL GESTOR GLOBAL
@@ -27,11 +27,14 @@ export async function initDetailMap(plant) {
             scrollWheelZoom: false
         }).setView([coords[0].lat, coords[0].lng], 8);
 
-        // --- CONTROLES ALINEADOS ---
+        // --- CONTROLES ALINEADOS (de dalt a baix a topleft) ---
+        const layerSwitcher = new LayerSwitcherControl({ position: 'topleft' });
+        detailMapInstance.addControl(layerSwitcher);
         L.control.zoom({ position: 'topleft' }).addTo(detailMapInstance);
         detailMapInstance.addControl(new LocationControl({ position: 'topleft' }));
 
-        L.tileLayer(TILE_LAYER_CONFIG.url, TILE_LAYER_CONFIG.options).addTo(detailMapInstance);
+        const initialTileLayer = L.tileLayer(TILE_LAYER_CONFIG.url, TILE_LAYER_CONFIG.options).addTo(detailMapInstance);
+        layerSwitcher.setInitialLayer(initialTileLayer);
 
         // Marcadores con texto de coordenadas resaltado
         coords.forEach(coord => {

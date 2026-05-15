@@ -4,7 +4,7 @@ import { AppState } from '../app.js';
 import { applyFilters, getCheckedValues } from './herbarium.js';
 
 // Importamos las utilidades centralizadas: diseño consistente en toda la app
-import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, injectMapStyles } from '../components/mapUtils.js';
+import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, LayerSwitcherControl, injectMapStyles } from '../components/mapUtils.js';
 
 let mapInstance = null;
 let markerGroup = null;
@@ -72,14 +72,16 @@ export function initMap(plants) {
 
         mapInstance = L.map('global-map', { zoomControl: false }).setView([39.6105, 2.9463], 8);
 
-        // --- ORDEN DE CONTROLES ---
-        // Al usar flex-direction: column, el primero añadido aparece arriba
+        // --- ORDRE DE CONTROLS (de dalt a baix a bottomright) ---
+        const layerSwitcher = new LayerSwitcherControl({ position: 'bottomright' });
+        mapInstance.addControl(layerSwitcher);
         mapInstance.addControl(new LocationControl({ position: 'bottomright' }));
         L.control.zoom({ position: 'bottomright' }).addTo(mapInstance);
 
-        L.tileLayer(TILE_LAYER_CONFIG.url, TILE_LAYER_CONFIG.options).addTo(mapInstance);
-        markerGroup = L.layerGroup().addTo(mapInstance);
+        const initialTileLayer = L.tileLayer(TILE_LAYER_CONFIG.url, TILE_LAYER_CONFIG.options).addTo(mapInstance);
+        layerSwitcher.setInitialLayer(initialTileLayer);
 
+        markerGroup = L.layerGroup().addTo(mapInstance);
         setTimeout(() => mapInstance.invalidateSize(), 300);
     } else {
         setTimeout(() => mapInstance.invalidateSize(), 100);

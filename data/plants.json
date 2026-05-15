@@ -57,7 +57,7 @@
           {
             "@type": "PropertyValue",
             "name": "FloracióDesc",
-            "value": "Abril — Juny"
+            "value": "Abril - Juny"
           },
           {
             "@type": "PropertyValue",
@@ -86,11 +86,6 @@
           },
           {
             "@type": "PropertyValue",
-            "name": "UbicacioIcona",
-            "value": "location_on"
-          },
-          {
-            "@type": "PropertyValue",
             "name": "Etiquetes",
             "value": [
               {
@@ -107,7 +102,11 @@
             "@type": "PropertyValue",
             "name": "Coordenades",
             "value": [
-              { "lat": 39.9821, "lng": 4.0820, "label": "Barranc de Sa Vall, Menorca" }
+              {
+                "lat": 39.9821,
+                "lng": 4.0820,
+                "label": "Barranc de Sa Vall, Menorca"
+              }
             ]
           }
         ]
@@ -166,7 +165,7 @@
           {
             "@type": "PropertyValue",
             "name": "FloracióDesc",
-            "value": "Març — Maig"
+            "value": "Març - Maig"
           },
           {
             "@type": "PropertyValue",
@@ -197,11 +196,6 @@
           },
           {
             "@type": "PropertyValue",
-            "name": "UbicacioIcona",
-            "value": "location_on"
-          },
-          {
-            "@type": "PropertyValue",
             "name": "Etiquetes",
             "value": [
               {
@@ -218,8 +212,16 @@
             "@type": "PropertyValue",
             "name": "Coordenades",
             "value": [
-              { "lat": 39.7901, "lng": 2.8734, "label": "Serra de Tramuntana, Mallorca" },
-              { "lat": 39.1412, "lng": 2.9320, "label": "Arxipèlag de Cabrera" }
+              {
+                "lat": 39.7901,
+                "lng": 2.8734,
+                "label": "Serra de Tramuntana, Mallorca"
+              },
+              {
+                "lat": 39.1412,
+                "lng": 2.932,
+                "label": "Arxipèlag de Cabrera"
+              }
             ]
           }
         ]
@@ -281,7 +283,7 @@
           {
             "@type": "PropertyValue",
             "name": "FloracióDesc",
-            "value": "Setembre — Novembre"
+            "value": "Setembre - Novembre"
           },
           {
             "@type": "PropertyValue",
@@ -310,11 +312,6 @@
           },
           {
             "@type": "PropertyValue",
-            "name": "UbicacioIcona",
-            "value": "waves"
-          },
-          {
-            "@type": "PropertyValue",
             "name": "Etiquetes",
             "value": [
               {
@@ -331,9 +328,21 @@
             "@type": "PropertyValue",
             "name": "Coordenades",
             "value": [
-              { "lat": 39.5432, "lng": 2.3876, "label": "Badia de Palma, Mallorca" },
-              { "lat": 39.9876, "lng": 4.1234, "label": "Costa Nord, Menorca" },
-              { "lat": 38.9200, "lng": 1.4300, "label": "Cala Conta, Eivissa" }
+              {
+                "lat": 39.5432,
+                "lng": 2.3876,
+                "label": "Badia de Palma, Mallorca"
+              },
+              {
+                "lat": 39.9876,
+                "lng": 4.1234,
+                "label": "Costa Nord, Menorca"
+              },
+              {
+                "lat": 38.92,
+                "lng": 1.43,
+                "label": "Cala Conta, Eivissa"
+              }
             ]
           }
         ]

@@ -5,8 +5,6 @@ import { renderDiary } from './views/diary.js';
 // ACTUALIZACIÓN: Importamos initDetailMap junto a renderPlantDetail
 import { renderPlantDetail, initDetailMap } from './views/plantDetail.js';
 
-
-
 // Estado global de la aplicación
 export const AppState = {
     plants: [],
@@ -106,7 +104,8 @@ function renderHeader() {
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500">
                         <span class="material-symbols-outlined text-lg">search</span>
                     </div>
-                    <input class="block w-full rounded-full border-0 py-2 pl-10 bg-surface focus:ring-2 focus:ring-primary-light placeholder:text-slate-600 text-sm text-white" placeholder="Cerca per nom popular o científic..." type="text"/>
+                    <input id="header-search-input" autocomplete="off" class="block w-full rounded-full border-0 py-2 pl-10 bg-surface focus:ring-2 focus:ring-primary-light placeholder:text-slate-600 text-sm text-white" placeholder="Cerca per nom popular o científic..." type="text"/>
+                    <div id="search-results" class="absolute top-full left-0 right-0 mt-2 bg-surface border border-white/10 rounded-xl shadow-2xl max-h-80 overflow-y-auto hidden z-[100]"></div>
                 </div>
             </div>
 
@@ -115,7 +114,6 @@ function renderHeader() {
                     <span class="material-symbols-outlined">search</span>
                 </button>
 
-                <!-- Menú de Estaciones (sin los onclick inline) -->
                 <div class="season-dropdown">
                     <button id="season-toggle-btn" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-white/10 hover:border-white/10 transition-all cursor-pointer">
                         <span id="season-btn-icon" class="material-symbols-outlined text-primary-light text-lg">local_florist</span>
@@ -140,7 +138,7 @@ function renderHeader() {
     </header>`;
 }
 
-// --- RENDER DEL FOOTER ---
+// --- RENDER DEL FOOTER (SIN MODIFICAR) ---
 function renderFooter() {
     const container = document.getElementById('app-footer');
     if (!container) return;
@@ -186,6 +184,54 @@ async function loadData() {
     }
 }
 
+// --- LÓGICA DEL BUSCADOR ---
+function initSearchLogic() {
+    const input = document.getElementById('header-search-input');
+    const resultsContainer = document.getElementById('search-results');
+
+    if (!input || !resultsContainer) return;
+
+    input.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (query.length < 2) {
+            resultsContainer.classList.add('hidden');
+            return;
+        }
+
+        const matches = AppState.plants.filter(p =>
+            p.name.toLowerCase().includes(query) ||
+            (p.alternateName && p.alternateName.toLowerCase().includes(query))
+        );
+
+        renderSearchMatches(matches, resultsContainer);
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!input.contains(e.target) && !resultsContainer.contains(e.target)) {
+            resultsContainer.classList.add('hidden');
+        }
+    });
+}
+
+function renderSearchMatches(matches, container) {
+    if (matches.length === 0) {
+        container.innerHTML = `<div class="p-4 text-xs text-slate-500 italic">No s'han trobat coincidències</div>`;
+    } else {
+        container.innerHTML = matches.map(p => `
+            <div onclick="window.navigateSPA('plant-detail', '${p['@id']}');" 
+                 class="flex items-center gap-3 p-3 hover:bg-white/5 cursor-pointer border-b border-white/5 last:border-none transition-colors group">
+                <img src="${p.image}" class="size-10 rounded-lg object-cover border border-white/10">
+                <div class="flex-1 overflow-hidden">
+                    <p class="text-sm font-bold text-slate-100 truncate">${p.alternateName || p.name}</p>
+                    <p class="text-[10px] text-slate-500 italic truncate">${p.name}</p>
+                </div>
+                <span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity text-sm">arrow_forward</span>
+            </div>
+        `).join('');
+    }
+    container.classList.remove('hidden');
+}
+
 // Inicialización del DOM
 document.addEventListener('DOMContentLoaded', async () => {
     // 1. Renderizamos la cabecera y el footer primero para que existan los enlaces
@@ -215,14 +261,7 @@ export function setupNavigation() {
             const route = link.dataset.route;
 
             // Renderizamos la nueva ruta
-            renderView(route);
-
-            // Volvemos a renderizar el header para que la clase "activa" cambie correctamente con Tailwind
-            renderHeader();
-            setupNavigation();
-            setupHeaderEvents();
-            // Restaurar estado visual del season selector en el nuevo DOM del header
-            initSeason();
+            window.navigateSPA(route);
         });
     });
 }
@@ -255,6 +294,9 @@ export function setupHeaderEvents() {
             if (menu) menu.classList.remove('open');
         });
     });
+
+    // Iniciar lógica del buscador
+    initSearchLogic();
 }
 
 // Router principal paramanejador de vistas
@@ -299,7 +341,7 @@ export function renderView(route, params = {}) {
             }
             break;
         default:
-            contentDiv.innerHTML = '<h2>Página no encontrada</h2>';
+            contentDiv.innerHTML = '<h2>Pàgina no trobada</h2>';
     }
 }
 
@@ -323,8 +365,9 @@ window.navigateSPA = (route, id = null) => {
     if (typeof renderView === 'function') {
         renderView(route, { id: id });
 
-        // Actualitzar la capçalera perquè marqui correctament la ruta activa
+        // Actualitzar la capçalera i components
         renderHeader();
+        renderFooter();
         setupNavigation();
         setupHeaderEvents();
         initSeason();

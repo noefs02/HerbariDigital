@@ -35,12 +35,32 @@ export function initDetailMap(plant) {
 
     L.tileLayer(TILE_LAYER_CONFIG.url, TILE_LAYER_CONFIG.options).addTo(detailMapInstance);
 
-    // Marcadores
+    // Marcadores con texto de coordenadas resaltado
     coords.forEach(coord => {
         const icon = createPlantIcon(24);
+
+        const detailPopupContent = `
+            <div class="flex flex-col gap-1.5 px-1 py-1">
+                <!-- Nombre de la ubicación -->
+                <div class="flex items-center gap-1.5 text-white">
+                    <span class="material-symbols-outlined text-primary text-[16px]">location_on</span>
+                    <span class="font-black text-sm tracking-tight">${coord.label}</span>
+                </div>
+                
+                <!-- Coordenadas resaltadas -->
+                <div class="pl-6 text-[12px] text-slate-100 font-mono font-bold tracking-wide">
+                    Lat: ${coord.lat.toFixed(4)} <span class="text-primary/50">/</span> Lng: ${coord.lng.toFixed(4)}
+                </div>
+            </div>
+        `;
+
         L.marker([coord.lat, coord.lng], { icon: icon })
             .addTo(detailMapInstance)
-            .bindPopup(`<b>${coord.label}</b>`, { className: 'detail-popup', closeButton: false })
+            .bindPopup(detailPopupContent, {
+                className: 'detail-popup',
+                closeButton: false,
+                offset: [0, -5]
+            })
             .on('mouseover', function () { this.openPopup(); })
             .on('mouseout', function () { this.closePopup(); });
     });
@@ -165,7 +185,7 @@ export function renderPlantDetail(plant) {
     const familia = getProp('Família');
     const status = getProp('Estat de conservació');
     const illa = getProp('Illa');
-    const floracio = getProp('Floració');
+    const floracio = getProp('FloracióDesc');
     const sol = getProp('Hàbitat') !== '—' ? getProp('Hàbitat') : getProp('Requeriments de sòl');
     const plantId = plant['@id'];
 

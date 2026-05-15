@@ -108,30 +108,37 @@ export function initMap(plants) {
                 const plantIcon = createPlantIcon(32);
 
                 const popupContent = `
-                    <div class="rounded-xl overflow-hidden group">
-                        <div class="relative h-32 overflow-hidden bg-black">
-                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                            <div class="absolute top-2 left-2 flex gap-1">
-                                ${item.additionalProperty?.find(prop => prop.name === 'Etiquetes')?.value.map(tag =>
+    <div class="rounded-xl overflow-hidden group">
+        <div class="relative h-32 overflow-hidden bg-black">
+            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+            <div class="absolute top-2 left-2 flex gap-1">
+                ${item.additionalProperty?.find(prop => prop.name === 'Etiquetes')?.value.map(tag =>
                     `<span class="px-2 py-0.5 rounded-full bg-surface/80 backdrop-blur text-white text-[8px] font-black uppercase tracking-widest border border-white/20">${tag.text}</span>`
                 ).join('') || ''}
-                            </div>
-                        </div>
-                        <div class="p-4 bg-background-dark/95">
-                            <h3 class="text-base font-bold text-white leading-tight mb-0.5">${item.alternateName || item.name}</h3>
-                            <p class="text-xs text-slate-400 italic mb-3">${item.name}</p>
-                            <div class="flex items-center gap-1.5 mb-4 text-xs text-slate-300">
-                                <span class="material-symbols-outlined text-primary text-[14px]">location_on</span>
-                                <span class="truncate">${coord.label}</span>
-                            </div>
-                            <button onclick="window.navigateSPA('plant-detail', '${item['@id']}')" class="w-full flex items-center justify-center gap-2 bg-primary text-white text-xs font-bold py-2.5 rounded-lg hover:bg-primary-light transition-all">
-                                <span class="material-symbols-outlined text-[16px]">visibility</span>
-                                Veure Fitxa
-                            </button>
-                        </div>
-                    </div>
-                `;
+            </div>
+        </div>
+        <div class="p-4 bg-background-dark/95">
+            <h3 class="text-base font-bold text-white leading-tight mb-0.5">${item.alternateName || item.name}</h3>
+            <p class="text-xs text-slate-400 italic mb-4">${item.name}</p>
+            
+            <!-- NOMÉS TEXT (IGUAL QUE AL DETALL) -->
+            <div class="flex flex-col gap-1 mb-5">
+                <div class="flex items-center gap-1.5 text-white">
+                    <span class="material-symbols-outlined text-primary text-[16px]">location_on</span>
+                    <span class="font-black text-sm tracking-tight">${coord.label}</span>
+                </div>
+                <div class="pl-6 text-[12px] text-slate-100 font-mono font-bold tracking-wide">
+                    Lat: ${coord.lat.toFixed(4)} <span class="text-primary/50">/</span> Lng: ${coord.lng.toFixed(4)}
+                </div>
+            </div>
 
+            <button onclick="window.navigateSPA('plant-detail', '${item['@id']}')" class="w-full flex items-center justify-center gap-2 bg-primary text-white text-xs font-bold py-2.5 rounded-lg hover:bg-primary-light transition-all shadow-lg">
+                <span class="material-symbols-outlined text-[16px]">visibility</span>
+                Veure Fitxa
+            </button>
+        </div>
+    </div>
+`;
                 const marker = L.marker([coord.lat, coord.lng], { icon: plantIcon })
                     .addTo(markerGroup)
                     .bindPopup(popupContent, { className: 'custom-popup-container', minWidth: 240 });

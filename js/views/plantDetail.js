@@ -1,11 +1,13 @@
 import { AppState } from '../app.js';
 import { YouTubeHandler } from '../components/youtube.js'; // IMPORTACIÓN DEL SERVICIO
 import { CustomVideoHandler } from '../components/customVideo.js'; // IMPORTACIÓN REPRODUCTOR PROPIO
+import { CustomAudioHandler } from '../components/customAudio.js'; // IMPORTACIÓN REPRODUCTOR AUDIO
 import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, LayerSwitcherControl, injectMapStyles } from '../components/mapUtils.js';
 
 let detailMapInstance = null;
 const ytHandler = new YouTubeHandler(); // INSTANCIA DEL GESTOR GLOBAL
 const localVideoHandler = new CustomVideoHandler(); // INSTANCIA DEL REPRODUCTOR LOCAL
+const localAudioHandler = new CustomAudioHandler(); // INSTANCIA DEL REPRODUCTOR AUDIO
 
 export async function initDetailMap(plant) {
     const mapContainer = document.getElementById('detail-map');
@@ -106,6 +108,12 @@ export async function initDetailMap(plant) {
             await ytHandler.loadAPI();
             ytHandler.loadVideo(youtubeUrl, videoContainer);
         }
+    }
+
+    // --- INICIALITZACIÓ ÀUDIO ---
+    const audioContainer = document.getElementById('audio-player-container');
+    if (audioContainer) {
+        localAudioHandler.init('audio-player-container');
     }
 }
 
@@ -234,6 +242,7 @@ export function renderPlantDetail(plant) {
     // GESTIÓN DE MEMORIA 
     ytHandler.cleanupPlayer();
     localVideoHandler.cleanupPlayer();
+    localAudioHandler.cleanupPlayer();
 
     const heroTagsHTML = `
         <span class="px-3 py-1 bg-surface border border-primary text-slate-100 text-xs font-bold rounded-full uppercase tracking-wider">${familia}</span>
@@ -328,25 +337,46 @@ export function renderPlantDetail(plant) {
                         </section>
                     </div>
 
-                    <div class="bg-surface border border-white/10 rounded-2xl p-8 flex items-center justify-between shadow-lg">
-                        <div class="flex items-center gap-5">
-                            <div class="size-14 rounded-full bg-primary flex items-center justify-center animate-pulse shadow-[0_0_20px_rgba(48,137,48,0.4)]">
+                    ${plant.audio ? `
+                    <div id="audio-player-container" class="bg-surface border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between shadow-lg gap-6">
+                        <audio preload="metadata" playsinline loop>
+                            ${plant.audio.encoding?.map(enc => `<source src="${enc.contentUrl}" type="${enc.encodingFormat}">`).join('') || ''}
+                            El teu navegador no suporta l'element d'àudio.
+                        </audio>
+                        <div class="flex items-center gap-5 w-full md:w-auto">
+                            <div class="audio-icon-container size-14 rounded-full bg-primary flex items-center justify-center shadow-[0_0_20px_rgba(48,137,48,0.4)] transition-all duration-300">
                                 <span class="material-symbols-outlined text-white text-3xl">graphic_eq</span>
                             </div>
                             <div>
-                                <h4 class="text-lg font-bold text-slate-100">Ambient de l'hàbitat</h4>
+                                <h4 class="text-lg font-bold text-slate-100">${plant.audio.name || "Ambient de l'hàbitat"}</h4>
                                 <p class="text-sm text-forest-neutral-400">Enregistrat a les Illes Balears</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-6">
-                            <button class="size-12 rounded-full border border-forest-neutral-700 flex items-center justify-center hover:bg-primary transition-colors text-slate-100">
+                        <div class="flex items-center justify-center gap-4 flex-1 w-full md:w-auto mr-0 md:ml-4">
+                            <button class="play-btn size-12 rounded-full border border-forest-neutral-700 flex items-center justify-center hover:bg-primary transition-colors text-slate-100 shrink-0">
                                 <span class="material-symbols-outlined text-3xl">play_arrow</span>
                             </button>
-                            <div class="hidden sm:block w-48 h-1.5 bg-forest-neutral-800 rounded-full overflow-hidden">
-                                <div class="w-1/3 h-full bg-primary"></div>
+                            <div class="audio-progress hidden sm:block w-full max-w-[200px] lg:max-w-xs h-2 bg-forest-neutral-800 rounded-full overflow-hidden cursor-pointer relative mx-2">
+                                <div class="audio-progress-filled absolute top-0 left-0 h-full bg-primary" style="width: 0%"></div>
+                            </div>
+                            <div class="audio-volume hidden sm:flex items-center gap-2 ml-2">
+                                <span class="material-symbols-outlined text-forest-neutral-400 text-sm">volume_up</span>
+                                <input type="range" class="audio-volume-slider volume-slider" min="0" max="1" step="0.05" value="1">
+                            </div>
+                        </div>
+                    </div>` : `
+                    <div class="bg-surface border border-white/10 rounded-2xl p-8 flex items-center justify-between shadow-lg opacity-50">
+                        <div class="flex items-center gap-5">
+                            <div class="size-14 rounded-full bg-forest-neutral-800 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-forest-neutral-500 text-3xl">mic_off</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-100">Sense àudio</h4>
+                                <p class="text-sm text-forest-neutral-400">No hi ha enregistraments per a aquesta espècie</p>
                             </div>
                         </div>
                     </div>
+                    `}
 
                     <div class="bg-surface rounded-2xl border border-white/10 p-8 shadow-xl">
                         <h4 class="text-xl font-bold mb-8 flex items-center gap-2 text-white">

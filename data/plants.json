@@ -114,7 +114,23 @@
               }
             ]
           }
-        ]
+        ],
+        "audio": {
+          "@type": "AudioObject",
+          "name": "Ambient de l'hàbitat",
+          "encoding": [
+            {
+              "@type": "MediaObject",
+              "contentUrl": "audio/candreuluma.mp3",
+              "encodingFormat": "audio/mpeg"
+            },
+            {
+              "@type": "MediaObject",
+              "contentUrl": "audio/apium-bermejoi.ogg",
+              "encodingFormat": "audio/ogg"
+            }
+          ]
+        }
       }
     },
     {
@@ -230,7 +246,23 @@
               }
             ]
           }
-        ]
+        ],
+        "audio": {
+          "@type": "AudioObject",
+          "name": "Ambient de l'hàbitat",
+          "encoding": [
+            {
+              "@type": "MediaObject",
+              "contentUrl": "media/audio/paeonia-cambessedesii.mp3",
+              "encodingFormat": "audio/mpeg"
+            },
+            {
+              "@type": "MediaObject",
+              "contentUrl": "media/audio/paeonia-cambessedesii.ogg",
+              "encodingFormat": "audio/ogg"
+            }
+          ]
+        }
       }
     },
     {
@@ -348,7 +380,23 @@
               }
             ]
           }
-        ]
+        ],
+        "audio": {
+          "@type": "AudioObject",
+          "name": "Ambient de l'hàbitat",
+          "encoding": [
+            {
+              "@type": "MediaObject",
+              "contentUrl": "media/audio/posidonia-oceanica.mp3",
+              "encodingFormat": "audio/mpeg"
+            },
+            {
+              "@type": "MediaObject",
+              "contentUrl": "media/audio/posidonia-oceanica.ogg",
+              "encodingFormat": "audio/ogg"
+            }
+          ]
+        }
       }
     }
   ]

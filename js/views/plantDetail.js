@@ -87,27 +87,24 @@ export async function initDetailMap(plant) {
         setTimeout(() => detailMapInstance.invalidateSize(), 300);
     }
 
-    // --- INICIALITZACIÓ VIDEO ---
-    // Prioritzem subjectOf.embedUrl (Schema.org nou), fallback a VideoID de additionalProperty (llegat)
-    const videoUrl = plant.subjectOf?.embedUrl
-        || plant.additionalProperty?.find(p => p.name === 'VideoID')?.value
+    // --- INICIALITZACIÓ VÍDEO ---
+    // Detectem els dos possibles orígens de vídeo independentment
+    const videoIdProp = plant.additionalProperty?.find(p => p.name === 'VideoID')?.value || null;
+    const localVideoUrl = videoIdProp && !videoIdProp.includes('youtube.com') && !videoIdProp.includes('youtu.be')
+        ? videoIdProp : null;
+    const youtubeUrl = plant.subjectOf?.embedUrl
+        || (videoIdProp && (videoIdProp.includes('youtube.com') || videoIdProp.includes('youtu.be')) ? videoIdProp : null)
         || null;
 
-    if (videoUrl && videoUrl !== '—') {
-        const isYouTube = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
-
-        if (isYouTube) {
-            const videoContainer = document.getElementById('youtube-player-api');
-            if (videoContainer) {
-                await ytHandler.loadAPI();
-                ytHandler.loadVideo(videoUrl, videoContainer);
-            }
-        } else {
-            // Vídeo local: inicialitza els controls del reproductor propi del company
-            const localContainer = document.getElementById('video-wrapper');
-            if (localContainer) {
-                localVideoHandler.init('video-wrapper');
-            }
+    // Prioritat: vídeo local > YouTube
+    if (localVideoUrl) {
+        const localContainer = document.getElementById('video-wrapper');
+        if (localContainer) localVideoHandler.init('video-wrapper');
+    } else if (youtubeUrl) {
+        const videoContainer = document.getElementById('youtube-player-api');
+        if (videoContainer) {
+            await ytHandler.loadAPI();
+            ytHandler.loadVideo(youtubeUrl, videoContainer);
         }
     }
 }
@@ -360,9 +357,17 @@ export function renderPlantDetail(plant) {
                             <div class="space-y-5">
                                 <p class="text-xs font-bold text-forest-neutral-500 uppercase tracking-widest">Documental Botànic</p>
                                 ${(() => {
-            const videoId = plant.additionalProperty?.find(p => p.name === 'VideoID')?.value;
-            const isYouTube = videoId && (videoId.includes('youtube.com') || videoId.includes('youtu.be'));
-            const isLocalVideo = videoId && !isYouTube && videoId !== '—';
+            // Detectem els dos possibles orígens de vídeo independentment
+            const videoIdProp = plant.additionalProperty?.find(p => p.name === 'VideoID')?.value || null;
+            const localVideoUrl = videoIdProp && !videoIdProp.includes('youtube.com') && !videoIdProp.includes('youtu.be')
+                ? videoIdProp : null;
+            const youtubeUrl = plant.subjectOf?.embedUrl
+                || (videoIdProp && (videoIdProp.includes('youtube.com') || videoIdProp.includes('youtu.be')) ? videoIdProp : null)
+                || null;
+
+            // Prioritat: local > YouTube
+            const isLocalVideo = !!localVideoUrl;
+            const isYouTube = !isLocalVideo && !!youtubeUrl;
 
             if (isYouTube) {
                 return `
@@ -377,9 +382,9 @@ export function renderPlantDetail(plant) {
                 return `
                                         <figure id="video-wrapper" class="video-container relative overflow-hidden rounded-2xl aspect-video bg-black ring-1 ring-white/10 shadow-2xl">
                                             <video id="video-player" class="w-full h-full object-cover" preload="metadata" playsinline>
-                                                <source src="${videoId}" type="video/mp4">
-                                                <source src="${videoId.replace('.mp4', '.webm')}" type="video/webm">
-                                                <p>Fallback: Su navegador no soporta HTML5. <a href="${videoId}">Descargue el archivo</a>.</p>
+                                                <source src="${localVideoUrl}" type="video/mp4">
+                                                <source src="${localVideoUrl.replace('.mp4', '.webm')}" type="video/webm">
+                                                <p>El teu navegador no suporta HTML5. <a href="${localVideoUrl}">Descarrega l'arxiu</a>.</p>
                                             </video>
                             
                                             <div id="error-overlay" class="overlay hidden absolute inset-0 flex flex-col items-center justify-center bg-black/60 z-20">

@@ -87,7 +87,8 @@
           {
             "@type": "PropertyValue",
             "name": "VideoID",
-            "value": "https://www.youtube.com/watch?v=OnlokxlDkJA"
+            "value": "videos/toty.mp4"
+            
           },
           {
             "@type": "PropertyValue",

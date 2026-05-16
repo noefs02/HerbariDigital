@@ -1,9 +1,11 @@
 import { AppState } from '../app.js';
 import { YouTubeHandler } from '../components/youtube.js'; // IMPORTACIÓN DEL SERVICIO
+import { CustomVideoHandler } from '../components/customVideo.js'; // IMPORTACIÓN REPRODUCTOR PROPIO
 import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, LayerSwitcherControl, injectMapStyles } from '../components/mapUtils.js';
 
 let detailMapInstance = null;
 const ytHandler = new YouTubeHandler(); // INSTANCIA DEL GESTOR GLOBAL
+const localVideoHandler = new CustomVideoHandler(); // INSTANCIA DEL REPRODUCTOR LOCAL
 
 export async function initDetailMap(plant) {
     const mapContainer = document.getElementById('detail-map');
@@ -66,12 +68,23 @@ export async function initDetailMap(plant) {
     }
 
     // --- INICIALIZACIÓN VIDEO 
-    const videoContainer = document.getElementById('youtube-player-api');
     const videoId = plant.additionalProperty?.find(p => p.name === 'VideoID')?.value;
 
-    if (videoContainer && videoId && videoId !== '—') {
-        await ytHandler.loadAPI(); // Carga asíncrona de la biblioteca externa
-        ytHandler.loadVideo(videoId, videoContainer); // Inserción del reproductor funcional
+    if (videoId && videoId !== '—') {
+        const isYouTube = videoId.includes('youtube.com') || videoId.includes('youtu.be');
+        
+        if (isYouTube) {
+            const videoContainer = document.getElementById('youtube-player-api');
+            if (videoContainer) {
+                await ytHandler.loadAPI(); // Carga asíncrona de la biblioteca externa
+                ytHandler.loadVideo(videoId, videoContainer); // Inserción del reproductor funcional
+            }
+        } else {
+            const localContainer = document.getElementById('video-wrapper');
+            if (localContainer) {
+                localVideoHandler.init('video-wrapper');
+            }
+        }
     }
 }
 
@@ -199,6 +212,7 @@ export function renderPlantDetail(plant) {
 
     // GESTIÓN DE MEMORIA (Rúbrica 15): Limpieza del reproductor anterior antes de renderizar uno nuevo
     ytHandler.cleanupPlayer();
+    localVideoHandler.cleanupPlayer();
 
     const heroTagsHTML = `
         <span class="px-3 py-1 bg-surface border border-primary text-slate-100 text-xs font-bold rounded-full uppercase tracking-wider">${familia}</span>
@@ -321,13 +335,76 @@ export function renderPlantDetail(plant) {
                         <div class="flex flex-col gap-10">
                             <div class="space-y-5">
                                 <p class="text-xs font-bold text-forest-neutral-500 uppercase tracking-widest">Documental Botànic</p>
-                                <div class="relative overflow-hidden rounded-2xl aspect-video bg-black ring-1 ring-white/10 shadow-2xl">
-                                    <div id="youtube-player-api" class="w-full h-full">
-                                        <div class="flex items-center justify-center h-full text-slate-500 italic text-sm">
-                                            Carregant reproductor multimèdia...
-                                        </div>
-                                    </div>
-                                </div>
+                                ${(() => {
+                                    const videoId = plant.additionalProperty?.find(p => p.name === 'VideoID')?.value;
+                                    const isYouTube = videoId && (videoId.includes('youtube.com') || videoId.includes('youtu.be'));
+                                    const isLocalVideo = videoId && !isYouTube && videoId !== '—';
+
+                                    if (isYouTube) {
+                                        return `
+                                        <div class="relative overflow-hidden rounded-2xl aspect-video bg-black ring-1 ring-white/10 shadow-2xl">
+                                            <div id="youtube-player-api" class="w-full h-full">
+                                                <div class="flex items-center justify-center h-full text-slate-500 italic text-sm">
+                                                    Carregant reproductor multimèdia...
+                                                </div>
+                                            </div>
+                                        </div>`;
+                                    } else if (isLocalVideo) {
+                                        return `
+                                        <figure id="video-wrapper" class="video-container relative overflow-hidden rounded-2xl aspect-video bg-black ring-1 ring-white/10 shadow-2xl">
+                                            <video id="video-player" class="w-full h-full object-cover" preload="metadata" playsinline>
+                                                <source src="${videoId}" type="video/mp4">
+                                                <source src="${videoId.replace('.mp4', '.webm')}" type="video/webm">
+                                                <p>Fallback: Su navegador no soporta HTML5. <a href="${videoId}">Descargue el archivo</a>.</p>
+                                            </video>
+                            
+                                            <div id="error-overlay" class="overlay hidden absolute inset-0 flex flex-col items-center justify-center bg-black/60 z-20">
+                                                <span class="material-symbols-rounded text-red-500 text-4xl mb-2">error</span>
+                                                <p id="error-message" class="text-white">Ha ocurrido un error reproduciendo el vídeo.</p>
+                                            </div>
+                            
+                                            <div id="loading-overlay" class="overlay hidden absolute inset-0 flex items-center justify-center bg-black/40 z-20">
+                                                <div class="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                                            </div>
+                            
+                                            <div id="video-controls" class="controls-container" data-state="hidden" style="display: none;">
+                                                <div class="progress-wrapper" id="progress-wrapper">
+                                                    <input type="range" id="progress-bar" class="progress-bar" min="0" max="100" value="0" step="0.1">
+                                                    <div class="progress-filled" id="progress-filled"></div>
+                                                </div>
+                            
+                                                <div class="controls-main">
+                                                    <div class="controls-left">
+                                                        <button id="play-pause-btn" class="control-btn" title="Reproducir/Pausar">
+                                                            <span class="material-symbols-rounded">play_arrow</span>
+                                                        </button>
+                            
+                                                        <div class="volume-container hidden sm:flex">
+                                                            <button id="mute-btn" class="control-btn" title="Silenciar">
+                                                                <span class="material-symbols-rounded">volume_up</span>
+                                                            </button>
+                                                            <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.05" value="0.5">
+                                                        </div>
+                            
+                                                        <div class="time-display text-white">
+                                                            <span id="current-time">00:00</span> / <span id="duration">00:00</span>
+                                                        </div>
+                                                    </div>
+                            
+                                                    <div class="controls-right">
+                                                        <button id="fullscreen-btn" class="control-btn" title="Pantalla completa">
+                                                            <span class="material-symbols-rounded">fullscreen</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </figure>`;
+                                    } else {
+                                        return `<div class="relative overflow-hidden rounded-2xl aspect-video bg-forest-neutral-900 ring-1 ring-white/10 shadow-2xl flex justify-center items-center">
+                                            <span class="text-forest-neutral-500 italic text-sm">No s'ha especificat cap recurs audiovisual.</span>
+                                        </div>`;
+                                    }
+                                })()}
                                 <p class="text-xl font-bold text-slate-100">Documental botànic de l'espècie</p>
                             </div>
                             <div class="space-y-4">

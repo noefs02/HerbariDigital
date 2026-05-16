@@ -86,6 +86,16 @@
           },
           {
             "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": "videos/toty.mp4"
+          },
+          {
+            "@type": "PropertyValue",
             "name": "Etiquetes",
             "value": [
               "En Perill Crític",

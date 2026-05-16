@@ -138,7 +138,7 @@ function renderHeader() {
     </header>`;
 }
 
-// --- RENDER DEL FOOTER (SIN MODIFICAR) ---
+// --- RENDER DEL FOOTER ---
 function renderFooter() {
     const container = document.getElementById('app-footer');
     if (!container) return;

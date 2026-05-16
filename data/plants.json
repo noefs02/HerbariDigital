@@ -16,6 +16,11 @@
         "description": "Petita umbel·lífera rastrera, un dels endemismes més rars i amenaçats de Menorca.",
         "image": "img/apiumbermejoi.jpg",
         "taxonRank": "Species",
+        "subjectOf": {
+          "@type": "VideoObject",
+          "name": "Documental botànic d'Apium bermejoi",
+          "embedUrl": "https://www.youtube.com/embed/OnlokxlDkJA"
+        },
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -81,26 +86,10 @@
           },
           {
             "@type": "PropertyValue",
-            "name": "Usos",
-            "value": []
-          },
-          {
-            "@type": "PropertyValue",
-            "name": "VideoID",
-            "value": "https://www.youtube.com/watch?v=OnlokxlDkJA"
-          },
-          {
-            "@type": "PropertyValue",
             "name": "Etiquetes",
             "value": [
-              {
-                "text": "En Perill Crític",
-                "color": "red"
-              },
-              {
-                "text": "Endèmica",
-                "color": "blue"
-              }
+              "En Perill Crític",
+              "Endèmica"
             ]
           },
           {
@@ -108,9 +97,10 @@
             "name": "Coordenades",
             "value": [
               {
-                "lat": 39.9821,
-                "lng": 4.082,
-                "label": "Barranc de Sa Vall, Menorca"
+                "@type": "GeoCoordinates",
+                "latitude": 39.9821,
+                "longitude": 4.082,
+                "name": "Barranc de Sa Vall, Menorca"
               }
             ]
           }
@@ -128,6 +118,11 @@
         "description": "L'única peònia autòctona de les Balears. Destaca per les seves grans flors rosades.",
         "image": "img/estepajoana.jpg",
         "taxonRank": "Species",
+        "subjectOf": {
+          "@type": "VideoObject",
+          "name": "Documental botànic de Paeonia cambessedesii",
+          "embedUrl": "https://www.youtube.com/embed/WaEbwDfH-GA"
+        },
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -201,21 +196,10 @@
           },
           {
             "@type": "PropertyValue",
-            "name": "VideoID",
-            "value": "https://www.youtube.com/watch?v=WaEbwDfH-GA"
-          },
-          {
-            "@type": "PropertyValue",
             "name": "Etiquetes",
             "value": [
-              {
-                "text": "En Perill",
-                "color": "red"
-              },
-              {
-                "text": "Molt Rara",
-                "color": "purple"
-              }
+              "En Perill",
+              "Molt Rara"
             ]
           },
           {
@@ -223,14 +207,16 @@
             "name": "Coordenades",
             "value": [
               {
-                "lat": 39.7901,
-                "lng": 2.8734,
-                "label": "Serra de Tramuntana, Mallorca"
+                "@type": "GeoCoordinates",
+                "latitude": 39.7901,
+                "longitude": 2.8734,
+                "name": "Serra de Tramuntana, Mallorca"
               },
               {
-                "lat": 39.1412,
-                "lng": 2.932,
-                "label": "Arxipèlag de Cabrera"
+                "@type": "GeoCoordinates",
+                "latitude": 39.1412,
+                "longitude": 2.932,
+                "name": "Arxipèlag de Cabrera"
               }
             ]
           }
@@ -248,6 +234,11 @@
         "description": "Planta marina fonamental per a l'ecosistema mediterrani que forma extenses praderies.",
         "image": "img/posidoniaoceanica.jpg",
         "taxonRank": "Species",
+        "subjectOf": {
+          "@type": "VideoObject",
+          "name": "Documental botànic de Posidonia oceanica",
+          "embedUrl": "https://www.youtube.com/embed/v2XJfwAq89I"
+        },
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -317,26 +308,10 @@
           },
           {
             "@type": "PropertyValue",
-            "name": "Usos",
-            "value": []
-          },
-          {
-            "@type": "PropertyValue",
-            "name": "VideoID",
-            "value": "https://www.youtube.com/watch?v=v2XJfwAq89I"
-          },
-          {
-            "@type": "PropertyValue",
             "name": "Etiquetes",
             "value": [
-              {
-                "text": "Protegida",
-                "color": "amber"
-              },
-              {
-                "text": "Marí",
-                "color": "cyan"
-              }
+              "Protegida",
+              "Marí"
             ]
           },
           {
@@ -344,19 +319,22 @@
             "name": "Coordenades",
             "value": [
               {
-                "lat": 39.5432,
-                "lng": 2.3876,
-                "label": "Badia de Palma, Mallorca"
+                "@type": "GeoCoordinates",
+                "latitude": 39.5432,
+                "longitude": 2.3876,
+                "name": "Badia de Palma, Mallorca"
               },
               {
-                "lat": 39.9876,
-                "lng": 4.1234,
-                "label": "Costa Nord, Menorca"
+                "@type": "GeoCoordinates",
+                "latitude": 39.9876,
+                "longitude": 4.1234,
+                "name": "Costa Nord, Menorca"
               },
               {
-                "lat": 38.92,
-                "lng": 1.43,
-                "label": "Cala Conta, Eivissa"
+                "@type": "GeoCoordinates",
+                "latitude": 38.92,
+                "longitude": 1.43,
+                "name": "Cala Conta, Eivissa"
               }
             ]
           }

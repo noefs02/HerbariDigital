@@ -11,6 +11,10 @@ export async function initDetailMap(plant) {
 
     // --- LIMPIEZA ---
     if (detailMapInstance) { detailMapInstance.remove(); detailMapInstance = null; }
+    if (window._detailMapOutsideClick) {
+        document.removeEventListener('click', window._detailMapOutsideClick);
+        window._detailMapOutsideClick = null;
+    }
 
     // --- ESTILOS CENTRALIZADOS ---
     injectMapStyles();
@@ -25,7 +29,23 @@ export async function initDetailMap(plant) {
         detailMapInstance = L.map('detail-map', {
             zoomControl: false, // DESACTIVAMOS el nativo para controlarlo nosotros
             scrollWheelZoom: false
-        }).setView([coords[0].lat, coords[0].lng], 8);
+        }).setView([coords[0].latitude, coords[0].longitude], 8);
+
+        // --- GESTIÓN DE ENFOQUE Y SCROLL DE RUEDA ---
+        // Al hacer clic dentro del mapa, se activa el zoom de la rueda del ratón (sin línea verde)
+        detailMapInstance.on('click', () => {
+            detailMapInstance.scrollWheelZoom.enable();
+        });
+
+        // Al hacer clic fuera del contenedor del mapa, se desactiva el zoom de la rueda
+        window._detailMapOutsideClick = (e) => {
+            if (mapContainer && !mapContainer.contains(e.target)) {
+                if (detailMapInstance) {
+                    detailMapInstance.scrollWheelZoom.disable();
+                }
+            }
+        };
+        document.addEventListener('click', window._detailMapOutsideClick);
 
         // --- CONTROLES ALINEADOS (de dalt a baix a topleft) ---
         const layerSwitcher = new LayerSwitcherControl({ position: 'topleft' });
@@ -43,15 +63,15 @@ export async function initDetailMap(plant) {
                 <div class="flex flex-col gap-1.5 px-1 py-1">
                     <div class="flex items-center gap-1.5 text-white">
                         <span class="material-symbols-outlined text-primary text-[16px]">location_on</span>
-                        <span class="font-black text-sm tracking-tight">${coord.label}</span>
+                        <span class="font-black text-sm tracking-tight">${coord.name}</span>
                     </div>
                     <div class="pl-6 text-[12px] text-slate-100 font-mono font-bold tracking-wide">
-                        Lat: ${coord.lat.toFixed(4)} <span class="text-primary/50">/</span> Lng: ${coord.lng.toFixed(4)}
+                        Lat: ${coord.latitude.toFixed(4)} <span class="text-primary/50">/</span> Lng: ${coord.longitude.toFixed(4)}
                     </div>
                 </div>
             `;
 
-            L.marker([coord.lat, coord.lng], { icon: icon })
+            L.marker([coord.latitude, coord.longitude], { icon: icon })
                 .addTo(detailMapInstance)
                 .bindPopup(detailPopupContent, {
                     className: 'detail-popup',
@@ -67,11 +87,11 @@ export async function initDetailMap(plant) {
 
     // --- INICIALIZACIÓN VIDEO 
     const videoContainer = document.getElementById('youtube-player-api');
-    const videoId = plant.additionalProperty?.find(p => p.name === 'VideoID')?.value;
+    const videoUrl = plant.subjectOf?.embedUrl; // Extraemos la URL
 
-    if (videoContainer && videoId && videoId !== '—') {
+    if (videoContainer && videoUrl) {
         await ytHandler.loadAPI(); // Carga asíncrona de la biblioteca externa
-        ytHandler.loadVideo(videoId, videoContainer); // Inserción del reproductor funcional
+        ytHandler.loadVideo(videoUrl, videoContainer); // Inserción del reproductor funcional
     }
 }
 
@@ -197,7 +217,7 @@ export function renderPlantDetail(plant) {
     const sol = getProp('Hàbitat') !== '—' ? getProp('Hàbitat') : getProp('Requeriments de sòl');
     const plantId = plant['@id'];
 
-    // GESTIÓN DE MEMORIA (Rúbrica 15): Limpieza del reproductor anterior antes de renderizar uno nuevo
+    // GESTIÓN DE MEMORIA 
     ytHandler.cleanupPlayer();
 
     const heroTagsHTML = `

@@ -98,10 +98,10 @@ export function initMap(plants) {
 
         if (coordsProp && Array.isArray(coordsProp.value)) {
             coordsProp.value.forEach(coord => {
-                // Filtro de Islas
+                // Filtro de Islas: usem 'name' en lloc de 'label'
                 if (checkedIlles.length > 0) {
                     const coordEsDaquestaIlla = checkedIlles.some(illa =>
-                        coord.label.toLowerCase().includes(illa.toLowerCase())
+                        coord.name.toLowerCase().includes(illa.toLowerCase())
                     );
                     if (!coordEsDaquestaIlla) return;
                 }
@@ -114,9 +114,9 @@ export function initMap(plants) {
         <div class="relative h-32 overflow-hidden bg-black">
             <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
             <div class="absolute top-2 left-2 flex gap-1">
-                ${item.additionalProperty?.find(prop => prop.name === 'Etiquetes')?.value.map(tag =>
-                    `<span class="px-2 py-0.5 rounded-full bg-surface/80 backdrop-blur text-white text-[8px] font-black uppercase tracking-widest border border-white/20">${tag.text}</span>`
-                ).join('') || ''}
+                ${(item.additionalProperty?.find(prop => prop.name === 'Etiquetes')?.value || []).map(tag =>
+                    `<span class="px-2 py-0.5 rounded-full bg-surface/80 backdrop-blur text-white text-[8px] font-black uppercase tracking-widest border border-white/20">${tag}</span>`
+                ).join('')}
             </div>
         </div>
         <div class="p-4 bg-background-dark/95">
@@ -127,10 +127,10 @@ export function initMap(plants) {
             <div class="flex flex-col gap-1 mb-5">
                 <div class="flex items-center gap-1.5 text-white">
                     <span class="material-symbols-outlined text-primary text-[16px]">location_on</span>
-                    <span class="font-black text-sm tracking-tight">${coord.label}</span>
+                    <span class="font-black text-sm tracking-tight">${coord.name}</span>
                 </div>
                 <div class="pl-6 text-[12px] text-slate-100 font-mono font-bold tracking-wide">
-                    Lat: ${coord.lat.toFixed(4)} <span class="text-primary/50">/</span> Lng: ${coord.lng.toFixed(4)}
+                    Lat: ${coord.latitude.toFixed(4)} <span class="text-primary/50">/</span> Lng: ${coord.longitude.toFixed(4)}
                 </div>
             </div>
 
@@ -141,7 +141,7 @@ export function initMap(plants) {
         </div>
     </div>
 `;
-                const marker = L.marker([coord.lat, coord.lng], { icon: plantIcon })
+                const marker = L.marker([coord.latitude, coord.longitude], { icon: plantIcon })
                     .addTo(markerGroup)
                     .bindPopup(popupContent, { className: 'custom-popup-container', minWidth: 240 });
 

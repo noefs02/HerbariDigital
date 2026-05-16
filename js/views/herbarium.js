@@ -15,12 +15,18 @@ function renderPlantCard(entry) {
     const illa = getProp('Illa');
     const etiquetes = getProp('Etiquetes') || [];
 
-    // Tags HTML: preferim les Etiquetes, si no fallback de status+illa
+    // Tags HTML: les etiquetes ara són strings simples (Schema.org compatible)
     let tagsHTML = '';
     if (Array.isArray(etiquetes) && etiquetes.length > 0) {
-        tagsHTML = etiquetes.map(t => `
-            <span class="px-2 py-0.5 rounded-full bg-${t.color}-500/20 text-${t.color}-400 text-[8px] font-black uppercase tracking-widest backdrop-blur-md border border-${t.color}-500/30">${t.text}</span>
-        `).join('');
+        tagsHTML = etiquetes.map(t => {
+            // Derivem el color a partir del text de l'etiqueta
+            const color = t.toLowerCase().includes('perill') || t.toLowerCase().includes('crític') ? 'red'
+                        : t.toLowerCase().includes('proteg') ? 'orange'
+                        : t.toLowerCase().includes('vulnerable') ? 'amber'
+                        : t.toLowerCase().includes('endèm') ? 'blue'
+                        : 'slate';
+            return `<span class="px-2 py-0.5 rounded-full bg-${color}-500/20 text-${color}-400 text-[8px] font-black uppercase tracking-widest backdrop-blur-md border border-${color}-500/30">${t}</span>`;
+        }).join('');
     } else {
         const statusColor = status.includes('Perill') ? 'red' : 'amber';
         tagsHTML = `

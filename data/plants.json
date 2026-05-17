@@ -3,7 +3,7 @@
   "@type": "ItemList",
   "name": "Herbari Digital de les Illes Balears",
   "description": "Catàleg científic i visual de la flora autòctona de l'arxipèlag balear.",
-  "numberOfItems": 3,
+  "numberOfItems": 30,
   "itemListElement": [
     {
       "@type": "ListItem",
@@ -18,26 +18,22 @@
         "taxonRank": "Species",
         "subjectOf": [
           {
-          "@type": "VideoObject",
-          "name": "Documental botànic d'Apium bermejoi",
-          "embedUrl": "https://www.youtube.com/embed/OnlokxlDkJA"
-          }, 
+            "@type": "VideoObject",
+            "name": "Documental d'Apium bermejoi",
+            "embedUrl": "https://www.youtube.com/embed/OnlokxlDkJA"
+          },
           {
-          "@type": "AudioObject",
-          "name": "Ambient de l'hàbitat",
-          "encoding": [
-            {
-              "@type": "MediaObject",
-              "contentUrl": "audio/candreuluma.mp3",
-              "encodingFormat": "audio/mpeg"
-            },
-            {
-              "@type": "MediaObject",
-              "contentUrl": "audio/apium-bermejoi.ogg",
-              "encodingFormat": "audio/ogg"
-            }
-          ]
-        }],
+            "@type": "AudioObject",
+            "name": "Ambient de l'hàbitat",
+            "encoding": [
+              {
+                "@type": "MediaObject",
+                "contentUrl": "audio/candreuluma.mp3",
+                "encodingFormat": "audio/mpeg"
+              }
+            ]
+          }
+        ],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -126,7 +122,7 @@
               {
                 "@type": "GeoCoordinates",
                 "latitude": 39.9821,
-                "longitude": 4.082,
+                "longitude": 4.0820,
                 "name": "Barranc de Sa Vall, Menorca"
               }
             ]
@@ -146,26 +142,28 @@
         "image": "img/estepajoana.jpg",
         "taxonRank": "Species",
         "subjectOf": [
-        {
-          "@type": "VideoObject",
-          "name": "Documental botànic de Paeonia cambessedesii",
-          "embedUrl": "https://www.youtube.com/embed/WaEbwDfH-GA"
-        },{
-          "@type": "AudioObject",
-          "name": "Ambient de l'hàbitat",
-          "encoding": [
-            {
-              "@type": "MediaObject",
-              "contentUrl": "media/audio/paeonia-cambessedesii.mp3",
-              "encodingFormat": "audio/mpeg"
-            },
-            {
-              "@type": "MediaObject",
-              "contentUrl": "media/audio/paeonia-cambessedesii.ogg",
-              "encodingFormat": "audio/ogg"
-            }
-          ]
-        }],
+          {
+            "@type": "VideoObject",
+            "name": "Documental botànic de Paeonia cambessedesii",
+            "embedUrl": "https://www.youtube.com/embed/WaEbwDfH-GA"
+          },
+          {
+            "@type": "AudioObject",
+            "name": "Ambient de l'hàbitat",
+            "encoding": [
+              {
+                "@type": "MediaObject",
+                "contentUrl": "media/audio/paeonia-cambessedesii.mp3",
+                "encodingFormat": "audio/mpeg"
+              },
+              {
+                "@type": "MediaObject",
+                "contentUrl": "media/audio/paeonia-cambessedesii.ogg",
+                "encodingFormat": "audio/ogg"
+              }
+            ]
+          }
+        ],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -273,16 +271,17 @@
         "@type": "Taxon",
         "@id": "posidonia-oceanica",
         "name": "Posidonia oceanica",
-        "alternateName": "Alga vidre",
-        "description": "Planta marina fonamental per a l'ecosistema mediterrani que forma extenses praderies.",
+        "alternateName": "Alga de vidriers",
+        "description": "Planta marina fonamental per a l'ecosistema mediterrani que forma extenses praderies marítimes.",
         "image": "img/posidoniaoceanica.jpg",
         "taxonRank": "Species",
         "subjectOf": [
           {
-          "@type": "VideoObject",
-          "name": "Documental botànic de Posidonia oceanica",
-          "embedUrl": "https://www.youtube.com/embed/v2XJfwAq89I"
-        }],
+            "@type": "VideoObject",
+            "name": "Documental de Posidonia",
+            "embedUrl": "https://www.youtube.com/embed/v2XJfwAq89I"
+          }
+        ],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -352,6 +351,16 @@
           },
           {
             "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
             "name": "Etiquetes",
             "value": [
               "Protegida",
@@ -367,18 +376,2977 @@
                 "latitude": 39.5432,
                 "longitude": 2.3876,
                 "name": "Badia de Palma, Mallorca"
-              },
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Taxon",
+        "@id": "daphne-rodriguezii",
+        "name": "Daphne rodriguezii",
+        "alternateName": "Dafne menorquí",
+        "description": "Petit arbust endèmic ramificat de fulles coriàcies, característic de les brolles litorals exposades de Menorca.",
+        "image": "img/daphnerodriguezii.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Timeleàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "En Perill Crític"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Menorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Menorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Litoral"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Maquies i brolles litorals exposades a la forta tramuntana"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Febrer - Abril"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Nanofaneròfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Silícic"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 25
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "En Perill Crític",
+              "Litoral"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 39.9876,
-                "longitude": 4.1234,
-                "name": "Costa Nord, Menorca"
-              },
+                "latitude": 39.9920,
+                "longitude": 4.2250,
+                "name": "Cap de Cavalleria, Menorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Taxon",
+        "@id": "cyclamen-balearicum",
+        "name": "Cyclamen balearicum",
+        "alternateName": "Pa de porc",
+        "description": "Planta herbàcia vivaç amb flors blanques de pètals girats cap enrere i fulles fortament tacades de blanc.",
+        "image": "img/cyclamenbalearicum.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Primulàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Totes les illes"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca",
+              "Eivissa",
+              "Formentera",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Bosc"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Alzinars, pinars ombrívols, peus de penyals i codolars de muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Hivern"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Gener - Març"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Geòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 450
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": [
+              "Medicinal"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Endèmica",
+              "Ombrívol"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 38.92,
-                "longitude": 1.43,
-                "name": "Cala Conta, Eivissa"
+                "latitude": 39.8112,
+                "longitude": 2.7230,
+                "name": "Santuari de Lluc, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "Taxon",
+        "@id": "paeonia-cambessedesii",
+        "name": "Paeonia cambessedesii",
+        "alternateName": "Peònia",
+        "description": "L'única peònia autòctona de les Balears. Destaca per les seves grans flors rosades.",
+        "image": "img/peoniacambessedesii.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [
+          {
+            "@type": "VideoObject",
+            "name": "Documental de Paeonia cambessedesii",
+            "embedUrl": "https://www.youtube.com/embed/WaEbwDfH-GA"
+          },
+          {
+            "@type": "AudioObject",
+            "name": "Ambient de l'hàbitat",
+            "encoding": [
+              {
+                "@type": "MediaObject",
+                "contentUrl": "media/audio/paeonia.mp3",
+                "encodingFormat": "audio/mpeg"
+              }
+            ]
+          }
+        ],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Peoniàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "En Perill"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Cabrera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Escletxes de roques calcàries i zones d'ombra de muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Març - Maig"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Semiombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 600
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": [
+              "Ornamental"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "En Perill",
+              "Molt Rara"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.7901,
+                "longitude": 2.8734,
+                "name": "Serra de Tramuntana, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "Taxon",
+        "@id": "astragalus-balearicus",
+        "name": "Astragalus balearicus",
+        "alternateName": "Coixinet de monja",
+        "description": "Mata espinosa matorralitzada i compacta en forma de coixí semiesfèric per protegir-se dels animals i del vent fort.",
+        "image": "img/astragalusbalearicus.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Fabàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Menorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Serralades calcàries exposades al vent fort i brolles de muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Abril - Juny"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Camèfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 1200
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Espinosa",
+              "Endèmica"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.8014,
+                "longitude": 2.7845,
+                "name": "Puig Major, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "Taxon",
+        "@id": "digitalis-minor",
+        "name": "Digitalis minor",
+        "alternateName": "Didalera",
+        "description": "Espectacular didalera endèmica que adorna les parets i roques fresques amb les seves elegants flors rosades.",
+        "image": "img/digitalisminor.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Escrofulariàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Menorca, Cabrera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Escletxes de roques, penya-segats i peus de parets frescals tant a l'ombra com al sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Maig - Juny"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Semiombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 500
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": [
+              "Medicinal"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Rupícola",
+              "Protegida"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.8510,
+                "longitude": 2.9120,
+                "name": "Castell del Rei, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "Taxon",
+        "@id": "helichrysum-cambessedesii",
+        "name": "Helichrysum cambessedesii",
+        "alternateName": "Mançanilla de la serra",
+        "description": "Mata perenne de color gris-argentat amb capítols florals grocs que creix de forma molt localitzada a la costa nord mallorquina.",
+        "image": "img/helichrysum.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Asteràcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Vulnerable"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Litoral"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Penya-segats marítims de la costa nord i tarteres pedregoses costaneres"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Estiu"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Juny - Juliol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Camèfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 150
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Rara",
+              "Vulnerable"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.8220,
+                "longitude": 2.8210,
+                "name": "Puig de Massanella, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "Taxon",
+        "@id": "silene-hifacensis",
+        "name": "Silene hifacensis",
+        "alternateName": "Silene d'Eivissa",
+        "description": "Planta rupícola extremadament amenaçada que habita de manera relicta en esquerdes inaccessibles d'Eivissa.",
+        "image": "img/silenehifacensis.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Cariofil·làcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "En Perill Crític"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Eivissa"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Eivissa"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Litoral"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Penya-segats litorals verticals calcaris a mercè dels vents marins salins"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Abril - Maig"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Camèfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 40
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "En Perill Crític",
+              "Rupícola"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 38.9510,
+                "longitude": 1.2240,
+                "name": "Illot de s'Espartar, Eivissa"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "item": {
+        "@type": "Taxon",
+        "@id": "femeniasia-balearica",
+        "name": "Femeniasia balearica",
+        "alternateName": "Socarrell bord",
+        "description": "L'únic gènere de planta completament endèmic i exclusiu de les Balears, sotmès a plans de recuperació.",
+        "image": "img/femeniasia.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Asteràcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "En Perill"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Menorca, Mallorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Litoral"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Brolles i comunitats litorals hiperxeròfiles molt seques a prop de la costa"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Maig - Juny"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Camèfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 15
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Protegida",
+              "Endèmica"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 40.0512,
+                "longitude": 3.9210,
+                "name": "Cap de Cavalleria, Menorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "item": {
+        "@type": "Taxon",
+        "@id": "brassica-balearica",
+        "name": "Brassica balearica",
+        "alternateName": "Col borda",
+        "description": "Col silvestre de fulles grans, glabres i fortament lluents, amant de penya-segats frescals.",
+        "image": "img/brassicabalearica.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Brassicàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Protegida"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Cabrera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Penyals i penya-segats ombrívols verticals encarats al nord"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Hivern"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Febrer - Abril"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Camèfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Semiombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 500
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Protegida",
+              "Rupícola"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.1523,
+                "longitude": 2.9410,
+                "name": "Penya-segats del Nord, Cabrera"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "item": {
+        "@type": "Taxon",
+        "@id": "limonium-bifurcum",
+        "name": "Limonium bifurcum",
+        "alternateName": "Saladina",
+        "description": "Planta herbàcia de comunitats halòfiles costaneres, molt característica dels roquissars esquitxats per la mar de les Pitiüses.",
+        "image": "img/limonium.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Plumbaginàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Eivissa, Formentera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Eivissa",
+              "Formentera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Litoral"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Roques litorals batudes per les onades i codolars salins"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Estiu"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Juny - Setembre"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Salí"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 5
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Salina",
+              "Resistent"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 38.8410,
+                "longitude": 1.4420,
+                "name": "Punta de sa Pedrera, Formentera"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "item": {
+        "@type": "Taxon",
+        "@id": "naufraga-balearica",
+        "name": "Naufraga balearica",
+        "alternateName": "Naufraga",
+        "description": "Diminuta i mítica umbel·lífera endèmica que viu exclusivament sota la influència dels esquitxos marins a Mallorca.",
+        "image": "img/naufraga.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Apiàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "En Perill Crític"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Litoral"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Sols prims de penya-segats costaners gairebé a línia de mar"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Abril - Maig"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Semiombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 10
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Crític",
+              "Molt Rara"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.9230,
+                "longitude": 2.7610,
+                "name": "Cala Sant Vicenç, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "item": {
+        "@type": "Taxon",
+        "@id": "teucrium-subspinosum",
+        "name": "Teucrium subspinosum",
+        "alternateName": "Socarrell gros",
+        "description": "Arbust en forma de coixinet intricat de punxes dures i flors rosades, molt comú a les garrigues balears.",
+        "image": "img/teucrium_sub.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Lamiàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Menorca, Cabrera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Bosc"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Brolles i garrigues seques altament exposades dels vents dominants"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Maig - Juliol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Camèfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 180
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Espinosa",
+              "Endèmica"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.7120,
+                "longitude": 2.9150,
+                "name": "Garrigues d'Inca, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 16,
+      "item": {
+        "@type": "Taxon",
+        "@id": "rhamnus-ludovici-salvatoris",
+        "name": "Rhamnus ludovici-salvatoris",
+        "alternateName": "Aladern de Maó",
+        "description": "Arbust coriaci de fulles espinoses perennes que conforma una peça elemental del sotabosc de l'alzinar balear.",
+        "image": "img/rhamnus.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Rhamnàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Menorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Bosc"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Alzinars balears i maquies fresques o llocs rocosos arrecerats"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Abril - Maig"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Faneròfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Semiombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 350
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Endèmica",
+              "Bosc"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.9212,
+                "longitude": 3.9845,
+                "name": "Monte Toro, Menorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 17,
+      "item": {
+        "@type": "Taxon",
+        "@id": "ranunculus-weyleri",
+        "name": "Ranunculus weyleri",
+        "alternateName": "Botó d'or",
+        "description": "Petit botó d'or endèmic exclusiu que creix protegit a les escletxes verticales dels cims més alts.",
+        "image": "img/ranunculus.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Ranunculàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "En Perill"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Fissures verticales de roques calcàries d'alta muntanya exposada"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Maig - Juny"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Semiombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 1100
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Rupícola",
+              "En Perill"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.8145,
+                "longitude": 2.8012,
+                "name": "Cims del Puig Major, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 18,
+      "item": {
+        "@type": "Taxon",
+        "@id": "viola-jaubertiana",
+        "name": "Viola jaubertiana",
+        "alternateName": "Viola de Tramuntana",
+        "description": "Delicada violeta de flors morades i fulles lluents cordiformes que només viu en llocs gairebé permanentment humits.",
+        "image": "img/violajaubertiana.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Violàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Vulnerable"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Zones Humides"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Fonts de muntanya, replans verolats i parets rocoses amb degotalls continus"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Març - Maig"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 850
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Vulnerable",
+              "Humid"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.7780,
+                "longitude": 2.6510,
+                "name": "Fonts del Teix, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 19,
+      "item": {
+        "@type": "Taxon",
+        "@id": "hippocrepis-balearica",
+        "name": "Hippocrepis balearica",
+        "alternateName": "Violeta de penyal",
+        "description": "Planta rupícola inconfusible per les seves vistoses flors grogues i llegums corbats molt característics.",
+        "image": "img/hippocrepis.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Fabàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Menorca, Cabrera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Fissures de roques exposades, penya-segats i parets rocoses"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Març - Juny"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Camèfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 400
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Rupícola",
+              "Endèmica"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.8812,
+                "longitude": 3.0110,
+                "name": "Cap de Formentor, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 20,
+      "item": {
+        "@type": "Taxon",
+        "@id": "crepis-triasii",
+        "name": "Crepis triasii",
+        "alternateName": "Agafapes",
+        "description": "Planta herbàcia de la família de les xicoires, amb fulles aspres disposades en roseta que s'aferra a les escletxes.",
+        "image": "img/crepistriasii.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Asteràcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Menorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Escletxes de roques, talussos i parets de pedra ombrívoles de muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Abril - Juny"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Semiombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 600
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Rupícola",
+              "Endèmica"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.9145,
+                "longitude": 4.1120,
+                "name": "Barranc d'Algendar, Menorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 21,
+      "item": {
+        "@type": "Taxon",
+        "@id": "scrophularia-canina-balearica",
+        "name": "Scrophularia canina subsp. balearica",
+        "alternateName": "Soca",
+        "description": "Subespècie endèmica d'herba canina de fulles molt dividides i flors fosques purpúries adaptada a zones baixes.",
+        "image": "img/scrophularia.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Escrofulariàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Menorca, Cabrera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Litoral"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Sorrals litorals, sistemes dunars i clarianes de brolles de zones baixes"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Març - Maig"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Arenós"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 10
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Dunes",
+              "Litoral"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.3456,
+                "longitude": 2.9912,
+                "name": "Arenals d'Es Trenc, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 22,
+      "item": {
+        "@type": "Taxon",
+        "@id": "genista-lucida",
+        "name": "Genista lucida",
+        "alternateName": "Gatosa",
+        "description": "Arbust fabaci extremadament espinós que forma masses denses i arrodonides de flors grogues radiants.",
+        "image": "img/genistalucida.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Fabàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Bosc"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Garrigues seques, clarianes calcàries i espinars assolellats mediterranis"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Abril - Juny"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Nanofaneròfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 150
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Espinosa",
+              "Garriga"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.6512,
+                "longitude": 3.1245,
+                "name": "Garrigues de Petra, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 23,
+      "item": {
+        "@type": "Taxon",
+        "@id": "crocus-cambessedesii",
+        "name": "Crocus cambessedesii",
+        "alternateName": "Safrà bord",
+        "description": "Diminuta i preciosa planta bulbosa endèmica de flors liles amb línies fosques que s'obre a la tardor.",
+        "image": "img/crocus.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Iridàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Menorca, Cabrera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Bosc"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Garrigues, clarianes de bosc i llocs pedregosos secs de les illes"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Tardor"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Setembre - Desembre"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Geòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 120
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Bulbosa",
+              "Tardor"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.4312,
+                "longitude": 2.8210,
+                "name": "Puig de Randa, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 24,
+      "item": {
+        "@type": "Taxon",
+        "@id": "bellium-bellidioides",
+        "name": "Bellium bellidioides",
+        "alternateName": "Margalideta de penyal",
+        "description": "Petita margarida endèmica de fulles en roseta que entapissa zones rocoses humides i parets fresques.",
+        "image": "img/bellium.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Asteràcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca, Menorca, Cabrera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Escletxes de roques humides, codolars i peus de parets ombrívoles"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Març - Juliol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Semiombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 400
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Rupícola",
+              "Endèmica"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.8622,
+                "longitude": 2.9412,
+                "name": "Ternelles, Pollença, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 25,
+      "item": {
+        "@type": "Taxon",
+        "@id": "ophrys-balearica",
+        "name": "Ophrys balearica",
+        "alternateName": "Abellera de les Balears",
+        "description": "Preciosa orquídia endèmica amb un label fosc que imita perfectament la forma i color d'una abella per atraure els pol·linitzadors.",
+        "image": "img/ophrys.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Orquidàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Protegida"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Totes les illes"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca",
+              "Eivissa",
+              "Formentera",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Bosc"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Clarianes de bosc, pinars assolellats i garrigues baixes seques"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Març - Maig"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Geòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Semiombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 150
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Orquídia",
+              "Protegida"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.6120,
+                "longitude": 2.5430,
+                "name": "Puig de de Galatzó, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 26,
+      "item": {
+        "@type": "Taxon",
+        "@id": "allium-balearicum",
+        "name": "Allium balearicum",
+        "alternateName": "All de platja",
+        "description": "All silvestre propi d'arenals que destaca per les seves inflorescències globulars blanques de gran bellesa.",
+        "image": "img/alliumbalearicum.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Amaril·lidàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Vulnerable"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Eivissa, Formentera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Eivissa",
+              "Formentera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Litoral"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Sistemes dunars, platges sorrenques i zones de rereguarda litoral"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Estiu"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Juny - Juliol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Geòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Arenós"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 5
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Dunes",
+              "Vulnerable"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 38.7214,
+                "longitude": 1.4110,
+                "name": "Dunes de ses Illetes, Formentera"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 27,
+      "item": {
+        "@type": "Taxon",
+        "@id": "sibthorpia-africana",
+        "name": "Sibthorpia africana",
+        "alternateName": "Herba de s'enveja",
+        "description": "Petita planta de fulles arrodonides i vellutades que entapissa de verde les zones de degotall permanent.",
+        "image": "img/sibthorpia.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Plantaginàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Totes les illes"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca",
+              "Menorca",
+              "Eivissa",
+              "Formentera",
+              "Cabrera"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Zones Humides"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Surgències d'aigua, fonts de muntanya i parets regalimants ombrívoles"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Març - Juny"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Humid"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 500
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Humid",
+              "Endèmica"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.7612,
+                "longitude": 2.6245,
+                "name": "Font de sa Menta, Bunyola, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 28,
+      "item": {
+        "@type": "Taxon",
+        "@id": "senecio-rodriguezii",
+        "name": "Senecio rodriguezii",
+        "alternateName": "Camamil·la de la mar",
+        "description": "Bellíssima i vistosa herba anual de flors liles d'origen exclusivament litoral menorquí.",
+        "image": "img/seneciorodriguezii.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Asteràcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Menorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Menorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Litoral"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Sols pedregosos del litoral, replans de penya-segats batuts pel vent"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Hivern"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Febrer - Abril"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Teròfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Rocallós"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 10
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Litoral",
+              "Anual"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 40.0014,
+                "longitude": 3.8340,
+                "name": "Penyals de Punta Nati, Menorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 29,
+      "item": {
+        "@type": "Taxon",
+        "@id": "arenaria-balearica",
+        "name": "Arenaria balearica",
+        "alternateName": "Arenària baleàrica",
+        "description": "Diminuta herba que entapissa parets rocoses molt fresques amb delicades flors blanques de cinc pètals.",
+        "image": "img/arenariabalearica.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Cariofil·làcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Segura"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Zones Humides"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Tarteres ombrívoles, parets regalimants calcaris orientades a tramuntana"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Primavera"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Maig - Juny"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Humid"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ombra"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 1100
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Molsosa",
+              "Endèmica"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.8114,
+                "longitude": 2.7540,
+                "name": "Comala de sa Tartera, Mallorca"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 30,
+      "item": {
+        "@type": "Taxon",
+        "@id": "pimpinella-balearica",
+        "name": "Pimpinella balearica",
+        "alternateName": "Mançanilla de muntanya",
+        "description": "Umbel·lífera endèmica de caràcter esvelt adaptada perfectament a la duresa climatològica dels cims de Tramuntana.",
+        "image": "img/pimpinella.jpg",
+        "taxonRank": "Species",
+        "subjectOf": [],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Família",
+            "value": "Apiàcies"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Estat de conservació",
+            "value": "Vulnerable"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illa",
+            "value": "Mallorca"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Illes",
+            "value": [
+              "Mallorca"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hàbitat",
+            "value": "Muntanya"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "HàbitatDesc",
+            "value": "Roques calcaris culminals del pis alt de la Serra de Tramuntana"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Floració",
+            "value": "Estiu"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "FloracióDesc",
+            "value": "Juliol - Agost"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Forma vital",
+            "value": "Hemicriptòfit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Substrat",
+            "value": "Calcari"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Exposició solar",
+            "value": "Ple sol"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Altitud",
+            "value": 1250
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Usos",
+            "value": []
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "VideoID",
+            "value": ""
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Etiquetes",
+            "value": [
+              "Endèmica",
+              "Vulnerable"
+            ]
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Coordenades",
+            "value": [
+              {
+                "@type": "GeoCoordinates",
+                "latitude": 39.8080,
+                "longitude": 2.7950,
+                "name": "Penya-segats del Massanella, Mallorca"
               }
             ]
           }

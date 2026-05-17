@@ -98,7 +98,7 @@ export async function initDetailMap(plant) {
     // Acomodem el nou esquema JSON: subjectOf pot ser un array o un objecte
     const subjectOfArray = Array.isArray(plant.subjectOf) ? plant.subjectOf : (plant.subjectOf ? [plant.subjectOf] : []);
     const videoObj = subjectOfArray.find(s => s['@type'] === 'VideoObject');
-    
+
     const youtubeUrl = videoObj?.embedUrl
         || (videoIdProp && (videoIdProp.includes('youtube.com') || videoIdProp.includes('youtu.be')) ? videoIdProp : null)
         || null;
@@ -343,10 +343,10 @@ export function renderPlantDetail(plant) {
                     </div>
 
                     ${(() => {
-                        const subjectOfArray = Array.isArray(plant.subjectOf) ? plant.subjectOf : (plant.subjectOf ? [plant.subjectOf] : []);
-                        const audioObj = subjectOfArray.find(s => s['@type'] === 'AudioObject');
-                        if (audioObj) {
-                            return `
+            const subjectOfArray = Array.isArray(plant.subjectOf) ? plant.subjectOf : (plant.subjectOf ? [plant.subjectOf] : []);
+            const audioObj = subjectOfArray.find(s => s['@type'] === 'AudioObject');
+            if (audioObj) {
+                return `
                     <div id="audio-player-container" class="bg-surface border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between shadow-lg gap-6">
                         <audio preload="metadata" playsinline loop>
                             ${audioObj.encoding?.map(enc => `<source src="${enc.contentUrl}" type="${enc.encodingFormat}">`).join('') || ''}
@@ -374,8 +374,8 @@ export function renderPlantDetail(plant) {
                             </div>
                         </div>
                     </div>`;
-                        } else {
-                            return `
+            } else {
+                return `
                     <div class="bg-surface border border-white/10 rounded-2xl p-8 flex items-center justify-between shadow-lg opacity-50">
                         <div class="flex items-center gap-5">
                             <div class="size-14 rounded-full bg-forest-neutral-800 flex items-center justify-center">
@@ -388,8 +388,8 @@ export function renderPlantDetail(plant) {
                         </div>
                     </div>
                     `;
-                        }
-                    })()}
+            }
+        })()}
 
                     <div class="bg-surface rounded-2xl border border-white/10 p-8 shadow-xl">
                         <h4 class="text-xl font-bold mb-8 flex items-center gap-2 text-white">
@@ -404,7 +404,10 @@ export function renderPlantDetail(plant) {
             const videoIdProp = plant.additionalProperty?.find(p => p.name === 'VideoID')?.value || null;
             const localVideoUrl = videoIdProp && !videoIdProp.includes('youtube.com') && !videoIdProp.includes('youtu.be')
                 ? videoIdProp : null;
-            const youtubeUrl = plant.subjectOf?.embedUrl
+            // subjectOf pot ser un array (VideoObject + AudioObject) o un objecte simple
+            const subjectOfArr = Array.isArray(plant.subjectOf) ? plant.subjectOf : (plant.subjectOf ? [plant.subjectOf] : []);
+            const videoObj = subjectOfArr.find(s => s['@type'] === 'VideoObject');
+            const youtubeUrl = videoObj?.embedUrl
                 || (videoIdProp && (videoIdProp.includes('youtube.com') || videoIdProp.includes('youtu.be')) ? videoIdProp : null)
                 || null;
 

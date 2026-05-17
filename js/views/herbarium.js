@@ -123,7 +123,7 @@ function getAltitudValue() {
 /**
  * Re-renderitza només el grid de targetes i la paginació (sense re-renderitzar el sidebar)
  */
-function refreshGrid(filteredPlants) {
+export function refreshGrid(filteredPlants) {
     const currentPage = window.AppState.currentPage || 1;
     const itemsPerPage = window.AppState.itemsPerPage || 6;
     const startIndex = (currentPage - 1) * itemsPerPage;

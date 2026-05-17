@@ -1,5 +1,5 @@
 import { renderHome } from './views/home.js';
-import { renderHerbarium } from './views/herbarium.js';
+import { renderHerbarium, applyFilters, refreshGrid } from './views/herbarium.js';
 import { renderMap, initMap, initMapFilterListeners } from './views/map.js';
 import { renderDiary } from './views/diary.js';
 // ACTUALIZACIÓN: Importamos initDetailMap junto a renderPlantDetail
@@ -350,17 +350,22 @@ export function renderView(route, params = {}) {
 }
 
 window.changePage = (pageNumber) => {
-    // Calculamos el total de páginas según las plantas que tengamos
-    const totalPages = Math.ceil(AppState.plants.length / AppState.itemsPerPage);
+    if (AppState.currentRoute === 'herbarium') {
+        const filtered = applyFilters(AppState.plants);
+        const totalPages = Math.ceil(filtered.length / AppState.itemsPerPage);
 
-    // Evitamos ir a páginas que no existen
-    if (pageNumber < 1 || pageNumber > totalPages) return;
+        if (pageNumber < 1 || pageNumber > totalPages) return;
 
-    // Actualizamos el estado y volvemos a renderizar
-    AppState.currentPage = pageNumber;
-    renderView('herbarium');
+        AppState.currentPage = pageNumber;
+        refreshGrid(filtered);
+    } else {
+        const totalPages = Math.ceil(AppState.plants.length / AppState.itemsPerPage);
+        if (pageNumber < 1 || pageNumber > totalPages) return;
+        AppState.currentPage = pageNumber;
+        renderView('herbarium');
+    }
 
-    // Scroll suave hacia arriba para ver las nuevas tarjetas
+    // Scroll suave cap a dalt per veure les noves targetes
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 

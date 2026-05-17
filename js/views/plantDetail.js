@@ -94,7 +94,12 @@ export async function initDetailMap(plant) {
     const videoIdProp = plant.additionalProperty?.find(p => p.name === 'VideoID')?.value || null;
     const localVideoUrl = videoIdProp && !videoIdProp.includes('youtube.com') && !videoIdProp.includes('youtu.be')
         ? videoIdProp : null;
-    const youtubeUrl = plant.subjectOf?.embedUrl
+
+    // Acomodem el nou esquema JSON: subjectOf pot ser un array o un objecte
+    const subjectOfArray = Array.isArray(plant.subjectOf) ? plant.subjectOf : (plant.subjectOf ? [plant.subjectOf] : []);
+    const videoObj = subjectOfArray.find(s => s['@type'] === 'VideoObject');
+    
+    const youtubeUrl = videoObj?.embedUrl
         || (videoIdProp && (videoIdProp.includes('youtube.com') || videoIdProp.includes('youtu.be')) ? videoIdProp : null)
         || null;
 
@@ -337,10 +342,14 @@ export function renderPlantDetail(plant) {
                         </section>
                     </div>
 
-                    ${plant.audio ? `
+                    ${(() => {
+                        const subjectOfArray = Array.isArray(plant.subjectOf) ? plant.subjectOf : (plant.subjectOf ? [plant.subjectOf] : []);
+                        const audioObj = subjectOfArray.find(s => s['@type'] === 'AudioObject');
+                        if (audioObj) {
+                            return `
                     <div id="audio-player-container" class="bg-surface border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between shadow-lg gap-6">
                         <audio preload="metadata" playsinline loop>
-                            ${plant.audio.encoding?.map(enc => `<source src="${enc.contentUrl}" type="${enc.encodingFormat}">`).join('') || ''}
+                            ${audioObj.encoding?.map(enc => `<source src="${enc.contentUrl}" type="${enc.encodingFormat}">`).join('') || ''}
                             El teu navegador no suporta l'element d'àudio.
                         </audio>
                         <div class="flex items-center gap-5 w-full md:w-auto">
@@ -348,7 +357,7 @@ export function renderPlantDetail(plant) {
                                 <span class="material-symbols-outlined text-white text-3xl">graphic_eq</span>
                             </div>
                             <div>
-                                <h4 class="text-lg font-bold text-slate-100">${plant.audio.name || "Ambient de l'hàbitat"}</h4>
+                                <h4 class="text-lg font-bold text-slate-100">${audioObj.name || "Ambient de l'hàbitat"}</h4>
                                 <p class="text-sm text-forest-neutral-400">Enregistrat a les Illes Balears</p>
                             </div>
                         </div>
@@ -364,7 +373,9 @@ export function renderPlantDetail(plant) {
                                 <input type="range" class="audio-volume-slider volume-slider" min="0" max="1" step="0.05" value="1">
                             </div>
                         </div>
-                    </div>` : `
+                    </div>`;
+                        } else {
+                            return `
                     <div class="bg-surface border border-white/10 rounded-2xl p-8 flex items-center justify-between shadow-lg opacity-50">
                         <div class="flex items-center gap-5">
                             <div class="size-14 rounded-full bg-forest-neutral-800 flex items-center justify-center">
@@ -376,7 +387,9 @@ export function renderPlantDetail(plant) {
                             </div>
                         </div>
                     </div>
-                    `}
+                    `;
+                        }
+                    })()}
 
                     <div class="bg-surface rounded-2xl border border-white/10 p-8 shadow-xl">
                         <h4 class="text-xl font-bold mb-8 flex items-center gap-2 text-white">

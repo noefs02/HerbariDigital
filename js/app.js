@@ -321,7 +321,11 @@ export function renderView(route, params = {}) {
             }, 50);
             break;
         case 'diary':
-            contentDiv.innerHTML = renderDiary(AppState.diaries);
+            contentDiv.innerHTML = renderDiary(AppState.diaries);            
+            setTimeout(async () => {
+                const { initDiaryEvents } = await import('./views/diary.js');
+                await initDiaryEvents();            
+            }, 50);
             break;
         case 'plant-detail':
             // Busquem la planta comparant l'ID de Schema.org

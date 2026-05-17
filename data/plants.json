@@ -16,11 +16,28 @@
         "description": "Petita umbel·lífera rastrera, un dels endemismes més rars i amenaçats de Menorca.",
         "image": "img/apiumbermejoi.jpg",
         "taxonRank": "Species",
-        "subjectOf": {
+        "subjectOf": [
+          {
           "@type": "VideoObject",
           "name": "Documental botànic d'Apium bermejoi",
           "embedUrl": "https://www.youtube.com/embed/OnlokxlDkJA"
-        },
+          }, 
+          {
+          "@type": "AudioObject",
+          "name": "Ambient de l'hàbitat",
+          "encoding": [
+            {
+              "@type": "MediaObject",
+              "contentUrl": "audio/candreuluma.mp3",
+              "encodingFormat": "audio/mpeg"
+            },
+            {
+              "@type": "MediaObject",
+              "contentUrl": "audio/apium-bermejoi.ogg",
+              "encodingFormat": "audio/ogg"
+            }
+          ]
+        }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -114,23 +131,7 @@
               }
             ]
           }
-        ],
-        "audio": {
-          "@type": "AudioObject",
-          "name": "Ambient de l'hàbitat",
-          "encoding": [
-            {
-              "@type": "MediaObject",
-              "contentUrl": "audio/candreuluma.mp3",
-              "encodingFormat": "audio/mpeg"
-            },
-            {
-              "@type": "MediaObject",
-              "contentUrl": "audio/apium-bermejoi.ogg",
-              "encodingFormat": "audio/ogg"
-            }
-          ]
-        }
+        ]
       }
     },
     {
@@ -144,11 +145,27 @@
         "description": "L'única peònia autòctona de les Balears. Destaca per les seves grans flors rosades.",
         "image": "img/estepajoana.jpg",
         "taxonRank": "Species",
-        "subjectOf": {
+        "subjectOf": [
+        {
           "@type": "VideoObject",
           "name": "Documental botànic de Paeonia cambessedesii",
           "embedUrl": "https://www.youtube.com/embed/WaEbwDfH-GA"
-        },
+        },{
+          "@type": "AudioObject",
+          "name": "Ambient de l'hàbitat",
+          "encoding": [
+            {
+              "@type": "MediaObject",
+              "contentUrl": "media/audio/paeonia-cambessedesii.mp3",
+              "encodingFormat": "audio/mpeg"
+            },
+            {
+              "@type": "MediaObject",
+              "contentUrl": "media/audio/paeonia-cambessedesii.ogg",
+              "encodingFormat": "audio/ogg"
+            }
+          ]
+        }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -246,23 +263,7 @@
               }
             ]
           }
-        ],
-        "audio": {
-          "@type": "AudioObject",
-          "name": "Ambient de l'hàbitat",
-          "encoding": [
-            {
-              "@type": "MediaObject",
-              "contentUrl": "media/audio/paeonia-cambessedesii.mp3",
-              "encodingFormat": "audio/mpeg"
-            },
-            {
-              "@type": "MediaObject",
-              "contentUrl": "media/audio/paeonia-cambessedesii.ogg",
-              "encodingFormat": "audio/ogg"
-            }
-          ]
-        }
+        ]
       }
     },
     {
@@ -276,11 +277,12 @@
         "description": "Planta marina fonamental per a l'ecosistema mediterrani que forma extenses praderies.",
         "image": "img/posidoniaoceanica.jpg",
         "taxonRank": "Species",
-        "subjectOf": {
+        "subjectOf": [
+          {
           "@type": "VideoObject",
           "name": "Documental botànic de Posidonia oceanica",
           "embedUrl": "https://www.youtube.com/embed/v2XJfwAq89I"
-        },
+        }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -380,23 +382,7 @@
               }
             ]
           }
-        ],
-        "audio": {
-          "@type": "AudioObject",
-          "name": "Ambient de l'hàbitat",
-          "encoding": [
-            {
-              "@type": "MediaObject",
-              "contentUrl": "media/audio/posidonia-oceanica.mp3",
-              "encodingFormat": "audio/mpeg"
-            },
-            {
-              "@type": "MediaObject",
-              "contentUrl": "media/audio/posidonia-oceanica.ogg",
-              "encodingFormat": "audio/ogg"
-            }
-          ]
-        }
+        ]
       }
     }
   ]

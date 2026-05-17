@@ -1,0 +1,237 @@
+{
+  "users": [
+    {
+      "id": "usr_001",
+      "nombre": "Lluïsa Llangostí",
+      "avatar": "img/avatars/default.png",
+      "favoritos": [
+        {
+          "plantaId": "apium-bermejoi",
+          "estado": "encontrado"
+        },
+        {
+          "plantaId": "paeonia-cambessedesii",
+          "estado": "encontrado"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        },
+        {
+          "plantaId": "posidonia-oceanica",
+          "estado": "sin-encontrar"
+        }
+      ],
+      "logros": [
+        {
+          "id": "progreso_general",
+          "titulo": "Botánico Maestro",
+          "descripcion": "Encuentra todas las plantas del catálogo general",
+          "obtenido": 13,
+          "total": 32,
+          "porcentaje": 40
+        },
+        {
+          "id": "endemicas_baleares",
+          "titulo": "Descubridor Balear",
+          "descripcion": "Encuentra flora endémica de las Islas Baleares",
+          "obtenido": 5,
+          "total": 20,
+          "porcentaje": 25
+        },
+        {
+          "id": "plantas_montana",
+          "titulo": "Alpinista Botánico",
+          "descripcion": "Encuentra plantas en zonas montañosas",
+          "obtenido": 0,
+          "total": 8,
+          "porcentaje": 0
+        },
+        {
+          "id": "plantas_costeras",
+          "titulo": "Explorador de Costa",
+          "descripcion": "Identifica flora cerca de la playa",
+          "obtenido": 9,
+          "total": 15,
+          "porcentaje": 60
+        },
+        {
+          "id": "plantas_medicinales",
+          "titulo": "El Boticario",
+          "descripcion": "Descubre plantas con propiedades medicinales",
+          "obtenido": 2,
+          "total": 10,
+          "porcentaje": 20
+        },
+        {
+          "id": "plantas_venenosas",
+          "titulo": "Peligro Silvestre",
+          "descripcion": "Encuentra plantas tóxicas o venenosas",
+          "obtenido": 1,
+          "total": 5,
+          "porcentaje": 20
+        },
+        {
+          "id": "plantas_acuaticas",
+          "titulo": "Buzo de la Flora",
+          "descripcion": "Identifica especies acuáticas y marinas",
+          "obtenido": 3,
+          "total": 6,
+          "porcentaje": 50
+        },
+        {
+          "id": "orquideas_silvestres",
+          "titulo": "Cazador de Orquídeas",
+          "descripcion": "Encuentra distintas variedades de orquídeas silvestres",
+          "obtenido": 4,
+          "total": 8,
+          "porcentaje": 50
+        },
+        {
+          "id": "arboles_arbustos",
+          "titulo": "Sombras del Bosque",
+          "descripcion": "Identifica árboles y grandes arbustos",
+          "obtenido": 10,
+          "total": 12,
+          "porcentaje": 83
+        },
+        {
+          "id": "plantas_comestibles",
+          "titulo": "Gastronomía Salvaje",
+          "descripcion": "Encuentra plantas silvestres comestibles tradicionales",
+          "obtenido": 7,
+          "total": 10,
+          "porcentaje": 70
+        },
+        {
+          "id": "flora_aromatica",
+          "titulo": "Sentido del Olfato",
+          "descripcion": "Descubre plantas aromáticas y de olor intenso",
+          "obtenido": 5,
+          "total": 5,
+          "porcentaje": 100
+        }
+      ],
+      "diario": [
+        {
+          "id": "diario_001",
+          "fecha": "2026-05-15T10:30:00Z",
+          "plantaId": "apium-bermejoi",
+          "ubicacion": {
+            "latitude": 39.7103,
+            "longitude": 2.9122,
+            "name": "Serra de Tramuntana"
+          },
+          "observaciones": "He trobat un Apium bermejoi a la zona de Lluc. Estava florit i amb moltes abelles al voltant. És increïble veure aquesta planta tan rara en el seu hàbitat natural.",
+          "imagen": "img/pepper.webp"
+        },
+        {
+          "id": "diario_002",
+          "fecha": "2026-05-17T09:15:00Z",
+          "plantaId": "paeonia-cambessedesii",
+          "ubicacion": {
+            "@type": "GeoCoordinates",
+            "latitude": 39.5716,
+            "longitude": 2.6505,
+            "name": "Bosque de Bellver"
+          }
+        },
+        {
+          "id": "diario_002",
+          "fecha": "2026-05-13T09:15:00Z",
+          "plantaId": "paeonia-cambessedesii",
+          "ubicacion": {
+            "@type": "GeoCoordinates",
+            "latitude": 39.5716,
+            "longitude": 2.6505,
+            "name": "Bosque de Bellver"
+          }
+        },
+        {
+          "id": "diario_002",
+          "fecha": "2026-05-13T09:15:00Z",
+          "plantaId": "paeonia-cambessedesii",
+          "ubicacion": {
+            "@type": "GeoCoordinates",
+            "latitude": 39.5716,
+            "longitude": 2.6505,
+            "name": "Bosque de Bellver"
+          }
+        },
+        {
+          "id": "diario_002",
+          "fecha": "2026-05-13T09:15:00Z",
+          "plantaId": "paeonia-cambessedesii",
+          "ubicacion": {
+            "@type": "GeoCoordinates",
+            "latitude": 39.5716,
+            "longitude": 2.6505,
+            "name": "Bosque de Bellver"
+          }
+        },
+        {
+          "id": "diario_002",
+          "fecha": "2026-05-13T09:15:00Z",
+          "plantaId": "paeonia-cambessedesii",
+          "ubicacion": {
+            "@type": "GeoCoordinates",
+            "latitude": 39.5716,
+            "longitude": 2.6505,
+            "name": "Bosque de Bellver"
+          }
+        },
+        {
+          "id": "diario_002",
+          "fecha": "2026-05-13T09:15:00Z",
+          "plantaId": "paeonia-cambessedesii",
+          "ubicacion": {
+            "@type": "GeoCoordinates",
+            "latitude": 39.5716,
+            "longitude": 2.6505,
+            "name": "Bosque de Bellver"
+          }
+        }
+      ]
+    }
+  ]
+}

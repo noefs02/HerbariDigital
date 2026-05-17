@@ -135,16 +135,16 @@
       "position": 2,
       "item": {
         "@type": "Taxon",
-        "@id": "paeonia-cambessedesii",
-        "name": "Paeonia cambessedesii",
+        "@id": "hypericum-balearicum",
+        "name": "Hypericum balearicum",
         "alternateName": "Estepa joana",
-        "description": "L'única peònia autòctona de les Balears. Destaca per les seves grans flors rosades.",
+        "description": " L'estepa joana és una de les plantes emblemàtiques de les illes Balears, és un bell arbust endèmic relativament freqüent a la Serra de Tramuntana, menys freqüent a les altres illes.",
         "image": "img/estepajoana.jpg",
         "taxonRank": "Species",
         "subjectOf": [
           {
             "@type": "VideoObject",
-            "name": "Documental botànic de Paeonia cambessedesii",
+            "name": "Documental botànic de Hypericum balearicum",
             "embedUrl": "https://www.youtube.com/embed/WaEbwDfH-GA"
           },
           {
@@ -153,12 +153,12 @@
             "encoding": [
               {
                 "@type": "MediaObject",
-                "contentUrl": "media/audio/paeonia-cambessedesii.mp3",
+                "contentUrl": "media/audio/hypericum-balearicum.mp3",
                 "encodingFormat": "audio/mpeg"
               },
               {
                 "@type": "MediaObject",
-                "contentUrl": "media/audio/paeonia-cambessedesii.ogg",
+                "contentUrl": "media/audio/hypericum-balearicum.ogg",
                 "encodingFormat": "audio/ogg"
               }
             ]
@@ -168,35 +168,37 @@
           {
             "@type": "PropertyValue",
             "name": "Família",
-            "value": "Peoniàcies"
+            "value": "Hypericaceae"
           },
           {
             "@type": "PropertyValue",
             "name": "Estat de conservació",
-            "value": "En Perill"
+            "value": "Segura"
           },
           {
             "@type": "PropertyValue",
             "name": "Illa",
-            "value": "Mallorca, Cabrera"
+            "value": "Mallorca, Menorca, Eivissa, Cabrera"
           },
           {
             "@type": "PropertyValue",
             "name": "Illes",
             "value": [
               "Mallorca",
+              "Menorca",
+              "Eivissa",
               "Cabrera"
             ]
           },
           {
             "@type": "PropertyValue",
             "name": "Hàbitat",
-            "value": "Muntanya"
+            "value": "Bosc"
           },
           {
             "@type": "PropertyValue",
             "name": "HàbitatDesc",
-            "value": "Escletxes de roques calcàries i zones d'ombra de muntanya"
+            "value": "Alzinars, carrascars i suredes. Brolles xero-acàntiques de muntanya i carritxeres. Ullastrars i altres garrigues escleròfiles, sabinars."
           },
           {
             "@type": "PropertyValue",
@@ -206,12 +208,12 @@
           {
             "@type": "PropertyValue",
             "name": "FloracióDesc",
-            "value": "Març - Maig"
+            "value": "Març - Juliol"
           },
           {
             "@type": "PropertyValue",
             "name": "Forma vital",
-            "value": "Hemicriptòfit"
+            "value": "Nanofaneròfit"
           },
           {
             "@type": "PropertyValue",
@@ -231,7 +233,7 @@
           {
             "@type": "PropertyValue",
             "name": "Usos",
-            "value": [
+            "value": ["Medicinal",
               "Ornamental"
             ]
           },
@@ -2813,11 +2815,11 @@
       "position": 26,
       "item": {
         "@type": "Taxon",
-        "@id": "allium-balearicum",
-        "name": "Allium balearicum",
+        "@id": "allium-commutatum",
+        "name": "Allium commutatum",
         "alternateName": "All de platja",
         "description": "All silvestre propi d'arenals que destaca per les seves inflorescències globulars blanques de gran bellesa.",
-        "image": "img/alliumbalearicum.jpg",
+        "image": "img/alliumcommutatum.jpg",
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [

@@ -35,12 +35,24 @@ function renderPlantCard(entry) {
         `;
     }
 
+    // Extraiem una imatge vàlida, reemplaçant _2000 per _400_thumb
+    let imageUrl = '';
+    if (Array.isArray(plant.image) && plant.image.length > 0) {
+        imageUrl = plant.image[0].contentUrl || '';
+    } else if (typeof plant.image === 'string') {
+        imageUrl = plant.image;
+    }
+
+    //const thumbUrl = imageUrl ? imageUrl.replace('_2000.webp', '_400_thumb.webp') : '';
+    const thumbUrl = imageUrl ? imageUrl.replace('_2000.webp', '_400.webp') : '';
+    
+
     return `
     <div onclick="window.navigateSPA('plant-detail', '${id}')"
         class="group bg-surface rounded-2xl overflow-hidden border border-white/10 shadow-2xl hover:border-primary transition-all duration-500 cursor-pointer hover:scale-[1.02] block">
         <div class="relative aspect-[4/3] overflow-hidden">
             <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                alt="${plant.alternateName || plant.name}" src="${plant.image}" />
+                alt="${plant.alternateName || plant.name}" src="${thumbUrl}" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="absolute top-4 left-4 flex flex-wrap gap-2">${tagsHTML}</div>
             <button onclick="event.stopPropagation(); this.classList.toggle('!bg-white'); this.classList.toggle('!text-primary');"

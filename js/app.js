@@ -152,7 +152,7 @@ function renderFooter() {
                 <div class="p-1 bg-surface rounded-md">
                     <span class="material-symbols-outlined text-primary-light text-base">eco</span>
                 </div>
-                <span class="text-slate-500 text-[11px] font-medium tracking-wide">© 2024 Herbari Digital Balear</span>
+                <span class="text-slate-500 text-[11px] font-medium tracking-wide">© 2026 Herbari Digital Balear</span>
             </div>
             <div class="flex items-center gap-4 text-[10px] text-slate-600 uppercase tracking-widest font-bold">
                 <span>Conservació</span>

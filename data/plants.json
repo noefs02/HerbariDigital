@@ -14,7 +14,20 @@
         "name": "Apium bermejoi",
         "alternateName": "Api d'en Bermejo",
         "description": "Petita umbel·lífera rastrera, un dels endemismes més rars i amenaçats de Menorca.",
-        "image": "img/apiumbermejoi.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Apium bermejoi",
+            "caption": "Api d'en Bermejo",
+            "contentUrl": "img/apium-bermejoi/apium-bermejoi_1_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Apium bermejoi",
+            "caption": "Api d'en Bermejo",
+            "contentUrl": "img/apium-bermejoi/apium-bermejoi_2_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [
           {
@@ -122,7 +135,7 @@
               {
                 "@type": "GeoCoordinates",
                 "latitude": 39.9821,
-                "longitude": 4.0820,
+                "longitude": 4.082,
                 "name": "Barranc de Sa Vall, Menorca"
               }
             ]
@@ -139,7 +152,14 @@
         "name": "Hypericum balearicum",
         "alternateName": "Estepa joana",
         "description": " L'estepa joana és una de les plantes emblemàtiques de les illes Balears, és un bell arbust endèmic relativament freqüent a la Serra de Tramuntana, menys freqüent a les altres illes.",
-        "image": "img/estepajoana.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Hypericum balearicum",
+            "caption": "Estepa joana",
+            "contentUrl": "img/hypericum-balearicus/hypericum-balearicum_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [
           {
@@ -276,7 +296,14 @@
         "name": "Posidonia oceanica",
         "alternateName": "Alga de vidriers",
         "description": "Planta marina fonamental per a l'ecosistema mediterrani que forma extenses praderies marítimes.",
-        "image": "img/posidoniaoceanica.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Posidonia oceanica",
+            "caption": "Alga de vidriers",
+            "contentUrl": "img/posidonia-oceanica/posidonia-oceanica_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [
           {
@@ -394,7 +421,14 @@
         "name": "Daphne rodriguezii",
         "alternateName": "Dafne menorquí",
         "description": "Petit arbust endèmic ramificat de fulles coriàcies, característic de les brolles litorals exposades de Menorca.",
-        "image": "img/daphnerodriguezii.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Daphne rodriguezii",
+            "caption": "Dafne menorquí",
+            "contentUrl": "img/daphne-rodriguezii/daphne-rodriguezii_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -484,8 +518,8 @@
             "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 39.9920,
-                "longitude": 4.2250,
+                "latitude": 39.992,
+                "longitude": 4.225,
                 "name": "Cap de Cavalleria, Menorca"
               }
             ]
@@ -502,7 +536,14 @@
         "name": "Cyclamen balearicum",
         "alternateName": "Pa de porc",
         "description": "Planta herbàcia vivaç amb flors blanques de pètals girats cap enrere i fulles fortament tacades de blanc.",
-        "image": "img/cyclamenbalearicum.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Cyclamen balearicum",
+            "caption": "Pa de porc",
+            "contentUrl": "img/cyclamen-balearicum/cyclamen-balearicum_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -599,7 +640,7 @@
               {
                 "@type": "GeoCoordinates",
                 "latitude": 39.8112,
-                "longitude": 2.7230,
+                "longitude": 2.723,
                 "name": "Santuari de Lluc, Mallorca"
               }
             ]
@@ -616,7 +657,14 @@
         "name": "Paeonia cambessedesii",
         "alternateName": "Peònia",
         "description": "L'única peònia autòctona de les Balears. Destaca per les seves grans flors rosades.",
-        "image": "img/peoniacambessedesii.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Paeonia cambessedesii",
+            "caption": "Peònia",
+            "contentUrl": "img/paeonia-cambessedesii/paeonia-cambessedesii_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [
           {
@@ -744,7 +792,14 @@
         "name": "Astragalus balearicus",
         "alternateName": "Coixinet de monja",
         "description": "Mata espinosa matorralitzada i compacta en forma de coixí semiesfèric per protegir-se dels animals i del vent fort.",
-        "image": "img/astragalusbalearicus.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Astragalus balearicus",
+            "caption": "Coixinet de monja",
+            "contentUrl": "img/astragalus-balearicus/astragalus-balearicus_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -853,7 +908,14 @@
         "name": "Digitalis minor",
         "alternateName": "Didalera",
         "description": "Espectacular didalera endèmica que adorna les parets i roques fresques amb les seves elegants flors rosades.",
-        "image": "img/digitalisminor.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Digitalis minor",
+            "caption": "Didalera",
+            "contentUrl": "img/digitalis-minor/digitalis-minor_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -947,8 +1009,8 @@
             "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 39.8510,
-                "longitude": 2.9120,
+                "latitude": 39.851,
+                "longitude": 2.912,
                 "name": "Castell del Rei, Mallorca"
               }
             ]
@@ -965,7 +1027,14 @@
         "name": "Helichrysum crassifolium",
         "alternateName": " Maçanella",
         "description": "Mata perenne de color gris-argentat amb capítols florals grocs que creix de forma molt localitzada a la costa nord mallorquina.",
-        "image": "img/helichrysum.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Helichrysum crassifolium",
+            "caption": " Maçanella",
+            "contentUrl": "img/helichrysum-cambessedesii/helichrysum-crassifolium_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -1055,8 +1124,8 @@
             "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 39.8220,
-                "longitude": 2.8210,
+                "latitude": 39.822,
+                "longitude": 2.821,
                 "name": "Puig de Massanella, Mallorca"
               }
             ]
@@ -1073,7 +1142,14 @@
         "name": "Silene hifacensis",
         "alternateName": "Silene d'Eivissa",
         "description": "Planta rupícola extremadament amenaçada que habita de manera relicta en esquerdes inaccessibles d'Eivissa.",
-        "image": "img/silenehifacensis.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Silene hifacensis",
+            "caption": "Silene d'Eivissa",
+            "contentUrl": "img/silene-hifacensis/silene-hifacensis_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -1163,8 +1239,8 @@
             "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 38.9510,
-                "longitude": 1.2240,
+                "latitude": 38.951,
+                "longitude": 1.224,
                 "name": "Illot de s'Espartar, Eivissa"
               }
             ]
@@ -1181,7 +1257,14 @@
         "name": "Femeniasia balearica",
         "alternateName": "Socarrell bord",
         "description": "L'únic gènere de planta completament endèmic i exclusiu de les Balears, sotmès a plans de recuperació.",
-        "image": "img/femeniasia.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Femeniasia balearica",
+            "caption": "Socarrell bord",
+            "contentUrl": "img/femeniasia-balearica/femeniasia-balearica_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -1273,7 +1356,7 @@
               {
                 "@type": "GeoCoordinates",
                 "latitude": 40.0512,
-                "longitude": 3.9210,
+                "longitude": 3.921,
                 "name": "Cap de Cavalleria, Menorca"
               }
             ]
@@ -1290,7 +1373,14 @@
         "name": "Brassica balearica",
         "alternateName": "Col borda",
         "description": "Col silvestre de fulles grans, glabres i fortament lluents, amant de penya-segats frescals.",
-        "image": "img/brassicabalearica.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Brassica balearica",
+            "caption": "Col borda",
+            "contentUrl": "img/brassica-balearica/brassica-balearica_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -1382,7 +1472,7 @@
               {
                 "@type": "GeoCoordinates",
                 "latitude": 39.1523,
-                "longitude": 2.9410,
+                "longitude": 2.941,
                 "name": "Penya-segats del Nord, Cabrera"
               }
             ]
@@ -1399,7 +1489,14 @@
         "name": "Limonium biflorum",
         "alternateName": "Saladina",
         "description": "Planta herbàcia de comunitats halòfiles costaneres, molt característica dels roquissars esquitxats per la mar de les Pitiüses.",
-        "image": "img/limoniumbiflorum.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Limonium biflorum",
+            "caption": "Saladina",
+            "contentUrl": "img/limonium-bifurcum/limonium-biflorum_1jpg_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -1490,8 +1587,8 @@
             "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 38.8410,
-                "longitude": 1.4420,
+                "latitude": 38.841,
+                "longitude": 1.442,
                 "name": "Punta de sa Pedrera, Formentera"
               }
             ]
@@ -1508,7 +1605,14 @@
         "name": "Naufraga balearica",
         "alternateName": "Naufraga",
         "description": "Diminuta i mítica umbel·lífera endèmica que viu exclusivament sota la influència dels esquitxos marins a Mallorca.",
-        "image": "img/naufraga.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Naufraga balearica",
+            "caption": "Naufraga",
+            "contentUrl": "img/naufraga-balearica/naufraga-balearica_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -1598,8 +1702,8 @@
             "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 39.9230,
-                "longitude": 2.7610,
+                "latitude": 39.923,
+                "longitude": 2.761,
                 "name": "Cala Sant Vicenç, Mallorca"
               }
             ]
@@ -1616,7 +1720,14 @@
         "name": "Teucrium subspinosum",
         "alternateName": "Socarrell gros",
         "description": "Arbust en forma de coixinet intricat de punxes dures i flors rosades, molt comú a les garrigues balears.",
-        "image": "img/teucrium_sub.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Teucrium subspinosum",
+            "caption": "Socarrell gros",
+            "contentUrl": "img/teucrium-subspinosum/teucrium-subspinosum_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -1708,8 +1819,8 @@
             "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 39.7120,
-                "longitude": 2.9150,
+                "latitude": 39.712,
+                "longitude": 2.915,
                 "name": "Garrigues d'Inca, Mallorca"
               }
             ]
@@ -1726,7 +1837,14 @@
         "name": "Rhamnus ludovici-salvatoris",
         "alternateName": "Aladern de Maó",
         "description": "Arbust coriaci de fulles espinoses perennes que conforma una peça elemental del sotabosc de l'alzinar balear.",
-        "image": "img/rhamnus.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Rhamnus ludovici-salvatoris",
+            "caption": "Aladern de Maó",
+            "contentUrl": "img/rhamnus-ludovici-salvatoris/rhamnus-ludovici-salvatoris_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -1835,7 +1953,14 @@
         "name": "Ranunculus weyleri",
         "alternateName": "Botó d'or",
         "description": "Petit botó d'or endèmic exclusiu que creix protegit a les escletxes verticales dels cims més alts.",
-        "image": "img/ranunculus.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Ranunculus weyleri",
+            "caption": "Botó d'or",
+            "contentUrl": "img/ranunculus-weyleri/ranunculus-weyleri_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -1943,7 +2068,14 @@
         "name": "Viola jaubertiana",
         "alternateName": "Viola de Tramuntana",
         "description": "Delicada violeta de flors morades i fulles lluents cordiformes que només viu en llocs gairebé permanentment humits.",
-        "image": "img/violajaubertiana.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Viola jaubertiana",
+            "caption": "Viola de Tramuntana",
+            "contentUrl": "img/viola-jaubertiana/viola-jaubertiana_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -2033,8 +2165,8 @@
             "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 39.7780,
-                "longitude": 2.6510,
+                "latitude": 39.778,
+                "longitude": 2.651,
                 "name": "Fonts del Teix, Mallorca"
               }
             ]
@@ -2051,7 +2183,14 @@
         "name": "Hippocrepis balearica",
         "alternateName": "Violeta de penyal",
         "description": "Planta rupícola inconfusible per les seves vistoses flors grogues i llegums corbats molt característics.",
-        "image": "img/hippocrepis.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Hippocrepis balearica",
+            "caption": "Violeta de penyal",
+            "contentUrl": "img/hippocrepis-balearica/hippocrepis-balearica_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -2144,7 +2283,7 @@
               {
                 "@type": "GeoCoordinates",
                 "latitude": 39.8812,
-                "longitude": 3.0110,
+                "longitude": 3.011,
                 "name": "Cap de Formentor, Mallorca"
               }
             ]
@@ -2161,7 +2300,14 @@
         "name": "Crepis triasii",
         "alternateName": "Agafapes",
         "description": "Planta herbàcia de la família de les xicoires, amb fulles aspres disposades en roseta que s'aferra a les escletxes.",
-        "image": "img/crepistriasii.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Crepis triasii",
+            "caption": "Agafapes",
+            "contentUrl": "img/crepis-triasii/crepis-triasii_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -2253,7 +2399,7 @@
               {
                 "@type": "GeoCoordinates",
                 "latitude": 39.9145,
-                "longitude": 4.1120,
+                "longitude": 4.112,
                 "name": "Barranc d'Algendar, Menorca"
               }
             ]
@@ -2270,7 +2416,14 @@
         "name": "Scrophularia canina subsp. balearica",
         "alternateName": "Soca",
         "description": "Subespècie endèmica d'herba canina de fulles molt dividides i flors fosques purpúries adaptada a zones baixes.",
-        "image": "img/scrophularia.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Scrophularia canina subsp. balearica",
+            "caption": "Soca",
+            "contentUrl": "img/scrophularia-canina-balearica/scrophularia-canina-balearica_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -2380,7 +2533,14 @@
         "name": "Genista lucida",
         "alternateName": "Gatosa",
         "description": "Arbust fabaci extremadament espinós que forma masses denses i arrodonides de flors grogues radiants.",
-        "image": "img/genistalucida.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Genista lucida",
+            "caption": "Gatosa",
+            "contentUrl": "img/genista-lucida/genista-lucida_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -2488,7 +2648,14 @@
         "name": "Crocus cambessedesii",
         "alternateName": "Safrà bord",
         "description": "Diminuta i preciosa planta bulbosa endèmica de flors liles amb línies fosques que s'obre a la tardor.",
-        "image": "img/crocus.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Crocus cambessedesii",
+            "caption": "Safrà bord",
+            "contentUrl": "img/crocus-cambessedesii/crocus-cambessedesii_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -2581,7 +2748,7 @@
               {
                 "@type": "GeoCoordinates",
                 "latitude": 39.4312,
-                "longitude": 2.8210,
+                "longitude": 2.821,
                 "name": "Puig de Randa, Mallorca"
               }
             ]
@@ -2598,7 +2765,14 @@
         "name": "Bellium bellidioides",
         "alternateName": "Margalideta de penyal",
         "description": "Petita margarida endèmica de fulles en roseta que entapissa zones rocoses humides i parets fresques.",
-        "image": "img/bellium.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Bellium bellidioides",
+            "caption": "Margalideta de penyal",
+            "contentUrl": "img/bellium-bellidioides/bellium-bellidioides_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -2708,7 +2882,14 @@
         "name": "Ophrys balearica",
         "alternateName": "Abellera de les Balears",
         "description": "Preciosa orquídia endèmica amb un label fosc que imita perfectament la forma i color d'una abella per atraure els pol·linitzadors.",
-        "image": "img/ophrys.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Ophrys balearica",
+            "caption": "Abellera de les Balears",
+            "contentUrl": "img/ophrys-balearica/ophrys-balearica_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -2802,8 +2983,8 @@
             "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 39.6120,
-                "longitude": 2.5430,
+                "latitude": 39.612,
+                "longitude": 2.543,
                 "name": "Puig de de Galatzó, Mallorca"
               }
             ]
@@ -2820,7 +3001,14 @@
         "name": "Allium commutatum",
         "alternateName": "All de platja",
         "description": "All silvestre propi d'arenals que destaca per les seves inflorescències globulars blanques de gran bellesa.",
-        "image": "img/alliumcommutatum.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Allium commutatum",
+            "caption": "All de platja",
+            "contentUrl": "img/allium-balearicum/allium-commutatum_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -2912,7 +3100,7 @@
               {
                 "@type": "GeoCoordinates",
                 "latitude": 38.7214,
-                "longitude": 1.4110,
+                "longitude": 1.411,
                 "name": "Dunes de ses Illetes, Formentera"
               }
             ]
@@ -2929,7 +3117,14 @@
         "name": "Sibthorpia africana",
         "alternateName": "Herba de s'enveja",
         "description": "Petita planta de fulles arrodonides i vellutades que entapissa de verde les zones de degotall permanent.",
-        "image": "img/sibthorpia.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Sibthorpia africana",
+            "caption": "Herba de s'enveja",
+            "contentUrl": "img/sibthorpia-africana/sibthorpia-africana_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -3041,7 +3236,14 @@
         "name": "Senecio rodriguezii",
         "alternateName": "Camamil·la de la mar",
         "description": "Bellíssima i vistosa herba anual de flors liles d'origen exclusivament litoral menorquí.",
-        "image": "img/seneciorodriguezii.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Senecio rodriguezii",
+            "caption": "Camamil·la de la mar",
+            "contentUrl": "img/senecio-rodriguezii/senecio-rodriguezii_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -3132,7 +3334,7 @@
               {
                 "@type": "GeoCoordinates",
                 "latitude": 40.0014,
-                "longitude": 3.8340,
+                "longitude": 3.834,
                 "name": "Penyals de Punta Nati, Menorca"
               }
             ]
@@ -3149,7 +3351,14 @@
         "name": "Arenaria balearica",
         "alternateName": "Arenària baleàrica",
         "description": "Diminuta herba que entapissa parets rocoses molt fresques amb delicades flors blanques de cinc pètals.",
-        "image": "img/arenariabalearica.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Arenaria balearica",
+            "caption": "Arenària baleàrica",
+            "contentUrl": "img/arenaria-balearica/arenaria-balearica_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -3240,7 +3449,7 @@
               {
                 "@type": "GeoCoordinates",
                 "latitude": 39.8114,
-                "longitude": 2.7540,
+                "longitude": 2.754,
                 "name": "Comala de sa Tartera, Mallorca"
               }
             ]
@@ -3257,7 +3466,14 @@
         "name": "Pimpinella balearica",
         "alternateName": "Mançanilla de muntanya",
         "description": "Umbel·lífera endèmica de caràcter esvelt adaptada perfectament a la duresa climatològica dels cims de Tramuntana.",
-        "image": "img/pimpinella.jpg",
+        "image": [
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Pimpinella balearica",
+            "caption": "Mançanilla de muntanya",
+            "contentUrl": "img/pimpinella-balearica/pimpinella-balearica_1_2000.webp"
+          }
+        ],
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [
@@ -3347,8 +3563,8 @@
             "value": [
               {
                 "@type": "GeoCoordinates",
-                "latitude": 39.8080,
-                "longitude": 2.7950,
+                "latitude": 39.808,
+                "longitude": 2.795,
                 "name": "Penya-segats del Massanella, Mallorca"
               }
             ]

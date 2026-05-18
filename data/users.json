@@ -10,7 +10,7 @@
           "estado": "encontrado"
         },
         {
-          "plantaId": "paeonia-cambessedesii",
+          "plantaId": "hypericum-balearicum",
           "estado": "encontrado"
         },
         {
@@ -18,47 +18,47 @@
           "estado": "sin-encontrar"
         },
         {
-          "plantaId": "posidonia-oceanica",
+          "plantaId": "daphne-rodriguezii",
+          "estado": "encontrado"
+        },
+        {
+          "plantaId": "cyclamen-balearicum",
           "estado": "sin-encontrar"
         },
         {
-          "plantaId": "posidonia-oceanica",
+          "plantaId": "paeonia-cambessedesii",
           "estado": "sin-encontrar"
         },
         {
-          "plantaId": "posidonia-oceanica",
+          "plantaId": "astragalus-balearicus",
+          "estado": "encontrado"
+        },
+        {
+          "plantaId": "digitalis-minor",
+          "estado": "encontrado"
+        },
+        {
+          "plantaId": "helichrysum-crassifolium",
           "estado": "sin-encontrar"
         },
         {
-          "plantaId": "posidonia-oceanica",
+          "plantaId": "silene-hifacensis",
+          "estado": "encontrado"
+        },
+        {
+          "plantaId": "femeniasia-balearica",
           "estado": "sin-encontrar"
         },
         {
-          "plantaId": "posidonia-oceanica",
+          "plantaId": "brassica-balearica",
+          "estado": "encontrado"
+        },
+        {
+          "plantaId": "limonium-biflorum",
           "estado": "sin-encontrar"
         },
         {
-          "plantaId": "posidonia-oceanica",
-          "estado": "sin-encontrar"
-        },
-        {
-          "plantaId": "posidonia-oceanica",
-          "estado": "sin-encontrar"
-        },
-        {
-          "plantaId": "posidonia-oceanica",
-          "estado": "sin-encontrar"
-        },
-        {
-          "plantaId": "posidonia-oceanica",
-          "estado": "sin-encontrar"
-        },
-        {
-          "plantaId": "posidonia-oceanica",
-          "estado": "sin-encontrar"
-        },
-        {
-          "plantaId": "posidonia-oceanica",
+          "plantaId": "naufraga-balearica",
           "estado": "sin-encontrar"
         }
       ],
@@ -168,7 +168,7 @@
         {
           "id": "diario_002",
           "fecha": "2026-05-17T09:15:00Z",
-          "plantaId": "paeonia-cambessedesii",
+          "plantaId": "helichrysum-crassifolium",
           "ubicacion": {
             "@type": "GeoCoordinates",
             "latitude": 39.5716,
@@ -177,7 +177,7 @@
           }
         },
         {
-          "id": "diario_002",
+          "id": "diario_003",
           "fecha": "2026-05-13T09:15:00Z",
           "plantaId": "paeonia-cambessedesii",
           "ubicacion": {
@@ -188,9 +188,9 @@
           }
         },
         {
-          "id": "diario_002",
+          "id": "diario_004",
           "fecha": "2026-05-13T09:15:00Z",
-          "plantaId": "paeonia-cambessedesii",
+          "plantaId": "senecio-rodriguezii",
           "ubicacion": {
             "@type": "GeoCoordinates",
             "latitude": 39.5716,
@@ -199,9 +199,9 @@
           }
         },
         {
-          "id": "diario_002",
+          "id": "diario_005",
           "fecha": "2026-05-13T09:15:00Z",
-          "plantaId": "paeonia-cambessedesii",
+          "plantaId": "allium-commutatum",
           "ubicacion": {
             "@type": "GeoCoordinates",
             "latitude": 39.5716,
@@ -210,9 +210,9 @@
           }
         },
         {
-          "id": "diario_002",
+          "id": "diario_006",
           "fecha": "2026-05-13T09:15:00Z",
-          "plantaId": "paeonia-cambessedesii",
+          "plantaId": "sibthorpia-africana",
           "ubicacion": {
             "@type": "GeoCoordinates",
             "latitude": 39.5716,
@@ -221,9 +221,9 @@
           }
         },
         {
-          "id": "diario_002",
+          "id": "diario_007",
           "fecha": "2026-05-13T09:15:00Z",
-          "plantaId": "paeonia-cambessedesii",
+          "plantaId": "arenaria-balearica",
           "ubicacion": {
             "@type": "GeoCoordinates",
             "latitude": 39.5716,

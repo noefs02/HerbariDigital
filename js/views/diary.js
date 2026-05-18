@@ -199,6 +199,15 @@ function renderChecklistItem(favItem) {
     const isVist = favItem.estado === 'encontrado';
     const planta = favItem.plantaDetails;
     
+    // Extraiem una imatge vàlida, reemplaçant _2000 per _100_icon
+    let imageUrl = '';
+    if (Array.isArray(planta.image) && planta.image.length > 0) {
+        imageUrl = planta.image[0].contentUrl || '';
+    } else if (typeof planta.image === 'string') {
+        imageUrl = planta.image;
+    }
+    const thumbUrl = imageUrl ? imageUrl.replace('_2000.webp', '_100_icon.webp') : '';
+
     const wrapperCls = isVist
         ? 'bg-surface border-white/10' : 'bg-slate-900/40 border-slate-800';
     const imgCls = isVist
@@ -219,7 +228,7 @@ function renderChecklistItem(favItem) {
     return `
     <div class="${wrapperCls} border rounded-xl p-3 flex items-center gap-4 group hover:border-primary transition-all">
         <div class="size-14 rounded-lg overflow-hidden shrink-0 border ${imgCls} cursor-pointer" onclick="window.navigateSPA('plant-detail', '${planta['@id']}');">
-            <img alt="${planta.name}" class="w-full h-full object-cover ${imgExtraCls}" src="${planta.image}" />
+            <img alt="${planta.name}" class="w-full h-full object-cover ${imgExtraCls}" src="${thumbUrl}" />
         </div>
         <div class="flex-1 min-w-0 cursor-pointer" onclick="window.navigateSPA('plant-detail', '${planta['@id']}');">
             <h4 class="font-bold text-sm truncate ${nameCls}">${planta.alternateName || planta.name}</h4>
@@ -528,7 +537,20 @@ function updateDiaryUI() {
 
 function renderDiaryEntryItem(entry) {
     const p = entry.plantaDetails;
-    const imgSrc = entry.imagen || p?.image || 'img/placeholder.jpg';
+    
+    // Extraiem la imatge original de la planta si no n'hi ha cap de l'usuari
+    let fallbackImgUrl = 'img/placeholder.jpg';
+    if (p) {
+        if (Array.isArray(p.image) && p.image.length > 0) {
+            fallbackImgUrl = p.image[0].contentUrl || fallbackImgUrl;
+        } else if (typeof p.image === 'string') {
+            fallbackImgUrl = p.image;
+        }
+    }
+    
+    // Apliquem la miniatura _400_thumb_webp al fallback de l'api si n'hi ha, si no el que doni la bbdd per a l'entrada
+    let thumbUrl = fallbackImgUrl.replace('_2000.webp', '_400_thumb.webp');
+    const imgSrc = entry.imagen || thumbUrl;
     
     // Noms
     const nomComu = p ? (p.alternateName || p.name) : "Planta Desconeguda";

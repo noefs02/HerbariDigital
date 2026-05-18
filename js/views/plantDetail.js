@@ -202,12 +202,21 @@ function renderRelatedCards(currentId) {
         const status = getProp('Estat de conservació');
         const statusColor = status.includes('Perill') ? 'red' : status.includes('Protegida') ? 'orange' : 'amber';
 
+        // Extraiem una imatge vàlida, reemplaçant _2000 per _400_thumb
+        let imageUrl = '';
+        if (Array.isArray(p.image) && p.image.length > 0) {
+            imageUrl = p.image[0].contentUrl || '';
+        } else if (typeof p.image === 'string') {
+            imageUrl = p.image;
+        }
+        const thumbUrl = imageUrl ? imageUrl.replace('_2000.webp', '_400_thumb.webp') : '';
+
         return `
         <div onclick="window.navigateSPA('plant-detail', '${pid}')"
             class="group flex flex-col bg-surface rounded-2xl overflow-hidden border border-white/10 shadow-2xl hover:border-primary transition-all duration-500 cursor-pointer hover:scale-[1.02] aspect-[4/5]">
             <div class="relative flex-1 overflow-hidden">
                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    alt="${p.alternateName || p.name}" src="${p.image}" loading="lazy" />
+                    alt="${p.alternateName || p.name}" src="${thumbUrl}" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute top-4 left-4 flex flex-wrap gap-2">
                     <span class="px-2 py-0.5 rounded-full bg-${statusColor}-500/20 text-${statusColor}-400 text-[8px] font-black uppercase tracking-widest backdrop-blur-md border border-${statusColor}-500/30">${status}</span>
@@ -232,6 +241,73 @@ function renderRelatedCards(currentId) {
     </section>`;
 }
 
+// GESTIÓN DEL CARRUSEL GLOBAL
+window.currentSlide = 0;
+window.nextSlide = function(total) {
+    window.setSlide((window.currentSlide + 1) % total, total);
+};
+window.prevSlide = function(total) {
+    window.setSlide((window.currentSlide - 1 + total) % total, total);
+};
+window.setSlide = function(index, total) {
+    if (typeof total === 'undefined') {
+        const dots = document.querySelectorAll('[id^="carousel-dot-"]');
+        total = dots.length;
+    }
+    for (let i = 0; i < total; i++) {
+        const slide = document.getElementById(`carousel-slide-${i}`);
+        const fsSlide = document.getElementById(`fullscreen-slide-${i}`);
+        const dot = document.getElementById(`carousel-dot-${i}`);
+        if(slide) {
+            slide.classList.remove('opacity-100', 'z-10');
+            slide.classList.add('opacity-0', 'z-0');
+        }
+        if(fsSlide) {
+            fsSlide.classList.remove('opacity-100', 'z-10');
+            fsSlide.classList.add('opacity-0', 'z-0', 'pointer-events-none');
+        }
+        if(dot) {
+            dot.classList.remove('bg-white');
+            dot.classList.add('bg-white/30');
+        }
+    }
+    window.currentSlide = index;
+    const activeSlide = document.getElementById(`carousel-slide-${index}`);
+    const activeFsSlide = document.getElementById(`fullscreen-slide-${index}`);
+    const activeDot = document.getElementById(`carousel-dot-${index}`);
+    if(activeSlide) {
+        activeSlide.classList.remove('opacity-0', 'z-0');
+        activeSlide.classList.add('opacity-100', 'z-10');
+    }
+    if(activeFsSlide) {
+        activeFsSlide.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+        activeFsSlide.classList.add('opacity-100', 'z-10');
+    }
+    if(activeDot) {
+        activeDot.classList.remove('bg-white/30');
+        activeDot.classList.add('bg-white');
+    }
+};
+
+window.openFullscreenGallery = function(index) {
+    window.setSlide(index);
+    const gallery = document.getElementById('fullscreen-gallery');
+    if (gallery) {
+        gallery.classList.remove('opacity-0', 'pointer-events-none');
+        gallery.classList.add('opacity-100');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+window.closeFullscreenGallery = function() {
+    const gallery = document.getElementById('fullscreen-gallery');
+    if (gallery) {
+        gallery.classList.remove('opacity-100');
+        gallery.classList.add('opacity-0', 'pointer-events-none');
+        document.body.style.overflow = '';
+    }
+};
+
 export function renderPlantDetail(plant) {
     if (!plant) return `<div class="p-20 text-center">Planta no trobada</div>`;
 
@@ -248,6 +324,120 @@ export function renderPlantDetail(plant) {
     ytHandler.cleanupPlayer();
     localVideoHandler.cleanupPlayer();
     localAudioHandler.cleanupPlayer();
+
+    // PROCESSAMENT IMATGES (CARRUSEL RESPONSIVE)
+    let images = [];
+    if (Array.isArray(plant.image)) {
+        images = plant.image;
+    } else if (typeof plant.image === 'string') {
+        images = [{ contentUrl: plant.image, caption: plant.alternateName || plant.name, description: '' }];
+    }
+    
+    // Assegurar inicialització
+    window.currentSlide = 0;
+
+    const carouselSlidesHTML = images.map((imgObj, index) => {
+        let originalUrl = imgObj.contentUrl || '';
+        let altText = imgObj.caption || imgObj.description || plant.alternateName || plant.name;
+        
+        let srcset = '';
+        let src = originalUrl;
+        
+        // Auto generació del srcset si es tracta de l'estructura *_2000.webp
+        if (originalUrl.endsWith('_2000.webp')) {
+            const base = originalUrl.replace('_2000.webp', '');
+            srcset = `
+                ${base}_400.webp 400w,
+                ${base}_800.webp 800w,
+                ${base}_1280.webp 1280w,
+                ${base}_2000.webp 2000w
+            `;
+        }
+        
+        return `
+        <div id="carousel-slide-${index}" class="absolute inset-0 transition-opacity duration-700 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'} cursor-pointer" onclick="window.openFullscreenGallery(${index})">
+            <img 
+                src="${src}" 
+                ${srcset ? `srcset="${srcset.trim().replace(/\s+/g, ' ')}"` : ''} 
+                ${srcset ? `sizes="(max-width: 600px) 400px, (max-width: 1024px) 800px, (max-width: 1440px) 1280px, 2000px"` : ''}
+                alt="${altText}"
+                loading="lazy"
+                class="w-full h-full object-cover"
+            />
+        </div>
+        `;
+    }).join('');
+
+    const fullscreenSlidesHTML = images.map((imgObj, index) => {
+        let originalUrl = imgObj.contentUrl || '';
+        let altText = imgObj.caption || imgObj.description || plant.alternateName || plant.name;
+        
+        let srcset = '';
+        let src = originalUrl;
+        
+        if (originalUrl.endsWith('_2000.webp')) {
+            const base = originalUrl.replace('_2000.webp', '');
+            srcset = `
+                ${base}_400.webp 400w,
+                ${base}_800.webp 800w,
+                ${base}_1280.webp 1280w,
+                ${base}_2000.webp 2000w
+            `;
+        }
+        
+        return `
+        <div id="fullscreen-slide-${index}" class="absolute inset-4 md:inset-10 flex items-center justify-center transition-opacity duration-500 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}" onclick="event.stopPropagation()">
+            <img 
+                src="${src}" 
+                ${srcset ? `srcset="${srcset.trim().replace(/\s+/g, ' ')}"` : ''} 
+                ${srcset ? `sizes="100vw"` : ''}
+                alt="${altText}"
+                class="max-w-full max-h-full object-contain drop-shadow-2xl"
+            />
+        </div>
+        `;
+    }).join('');
+
+    const fullscreenGalleryHTML = `
+    <div id="fullscreen-gallery" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300" onclick="window.closeFullscreenGallery()">
+        
+        ${fullscreenSlidesHTML}
+
+        ${images.length > 1 ? `
+        <div class="absolute inset-y-0 left-0 flex items-center px-4 md:px-8 z-20 pointer-events-none">
+            <button onclick="window.prevSlide(${images.length}); event.stopPropagation();" class="size-14 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black backdrop-blur-md transition-all cursor-pointer pointer-events-auto">
+                <span class="material-symbols-outlined text-2xl">chevron_left</span>
+            </button>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center px-4 md:px-8 z-20 pointer-events-none">
+            <button onclick="window.nextSlide(${images.length}); event.stopPropagation();" class="size-14 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black backdrop-blur-md transition-all cursor-pointer pointer-events-auto">
+                <span class="material-symbols-outlined text-2xl">chevron_right</span>
+            </button>
+        </div>
+        ` : ''}
+        
+        <button onclick="window.closeFullscreenGallery(); event.stopPropagation();" class="absolute top-6 right-6 size-12 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-black backdrop-blur-md transition-all cursor-pointer z-30">
+            <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+    </div>
+    `;
+
+    const carouselDotsHTML = images.length > 1 ? images.map((_, index) => `
+        <button onclick="window.setSlide(${index})" id="carousel-dot-${index}" class="size-2 rounded-full cursor-pointer transition-colors z-20 ${index === 0 ? 'bg-white' : 'bg-white/30'} hover:bg-primary"></button>
+    `).join('') : '';
+
+    const carouselNavHTML = images.length > 1 ? `
+        <div class="absolute inset-y-0 left-0 flex items-center px-4 opacity-0 group-hover:opacity-100 transition-opacity z-20">
+            <button onclick="window.prevSlide(${images.length})" class="size-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-primary backdrop-blur-sm transition-colors cursor-pointer">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center px-4 opacity-0 group-hover:opacity-100 transition-opacity z-20">
+            <button onclick="window.nextSlide(${images.length})" class="size-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-primary backdrop-blur-sm transition-colors cursor-pointer">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    ` : '';
 
     const heroTagsHTML = `
         <span class="px-3 py-1 bg-surface border border-primary text-slate-100 text-xs font-bold rounded-full uppercase tracking-wider">${familia}</span>
@@ -269,32 +459,23 @@ export function renderPlantDetail(plant) {
         </div>
 
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-            <div class="relative group aspect-[21/9] rounded-2xl overflow-hidden bg-forest-neutral-900 shadow-2xl">
-                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('${plant.image}')"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="relative group aspect-[4/3] md:aspect-video rounded-2xl overflow-hidden bg-forest-neutral-900 shadow-2xl">
+                
+                ${carouselSlidesHTML}
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 pointer-events-none"></div>
 
-                <div class="absolute inset-y-0 left-0 flex items-center px-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button class="size-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-primary backdrop-blur-sm transition-colors">
-                        <span class="material-symbols-outlined">chevron_left</span>
-                    </button>
-                </div>
-                <div class="absolute inset-y-0 right-0 flex items-center px-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button class="size-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-primary backdrop-blur-sm transition-colors">
-                        <span class="material-symbols-outlined">chevron_right</span>
-                    </button>
-                </div>
+                ${carouselNavHTML}
 
-                <div class="absolute bottom-8 left-8 right-8 flex justify-between items-end">
-                    <div>
+                <div class="absolute bottom-8 left-8 right-8 flex flex-col md:flex-row md:justify-between items-start md:items-end z-20 pointer-events-none">
+                    <div class="mb-4 md:mb-0">
                         <div class="flex items-center gap-3 mb-2">
                             ${heroTagsHTML}
                         </div>
-                        <h2 class="text-4xl md:text-6xl font-black text-white mb-2 tracking-tight">${plant.alternateName}</h2>
+                        <h2 class="text-4xl md:text-6xl font-black text-white mb-2 tracking-tight drop-shadow-lg">${plant.alternateName}</h2>
                     </div>
-                    <div class="flex gap-2 pb-2">
-                        <div class="size-2 rounded-full bg-white"></div>
-                        <div class="size-2 rounded-full bg-white/30"></div>
-                        <div class="size-2 rounded-full bg-white/30"></div>
+                    <div class="flex gap-2 pb-2 pointer-events-auto">
+                        ${carouselDotsHTML}
                     </div>
                 </div>
             </div>
@@ -555,5 +736,7 @@ export function renderPlantDetail(plant) {
             ${renderRelatedCards(plantId)}
         </main>
     </div>
+
+    ${fullscreenGalleryHTML.replace('z-50', 'z-[100] w-screen h-screen')}
     `;
 }

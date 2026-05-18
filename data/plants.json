@@ -233,7 +233,8 @@
           {
             "@type": "PropertyValue",
             "name": "Usos",
-            "value": ["Medicinal",
+            "value": [
+              "Medicinal",
               "Ornamental"
             ]
           },
@@ -960,9 +961,9 @@
       "position": 9,
       "item": {
         "@type": "Taxon",
-        "@id": "helichrysum-cambessedesii",
-        "name": "Helichrysum cambessedesii",
-        "alternateName": "Mançanilla de la serra",
+        "@id": "helichrysum-crassifolium",
+        "name": "Helichrysum crassifolium",
+        "alternateName": " Maçanella",
         "description": "Mata perenne de color gris-argentat amb capítols florals grocs que creix de forma molt localitzada a la costa nord mallorquina.",
         "image": "img/helichrysum.jpg",
         "taxonRank": "Species",
@@ -1394,11 +1395,11 @@
       "position": 13,
       "item": {
         "@type": "Taxon",
-        "@id": "limonium-bifurcum",
-        "name": "Limonium bifurcum",
+        "@id": "limonium-biflorum",
+        "name": "Limonium biflorum",
         "alternateName": "Saladina",
         "description": "Planta herbàcia de comunitats halòfiles costaneres, molt característica dels roquissars esquitxats per la mar de les Pitiüses.",
-        "image": "img/limonium.jpg",
+        "image": "img/limoniumbiflorum.jpg",
         "taxonRank": "Species",
         "subjectOf": [],
         "additionalProperty": [

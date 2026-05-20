@@ -89,7 +89,7 @@ function renderHeader() {
             
             <div class="flex items-center gap-8 min-w-max">
                 <a href="#" data-route="home" class="flex items-center gap-3 no-underline">
-                    <div class="p-2 bg-primary rounded-lg text-white shadow-lg shadow-surface">
+                    <div class="p-2 bg-primary rounded-lg text-white shadow-lg shadow-surface flex-shrink-0">
                         <span class="material-symbols-outlined block">eco</span>
                     </div>
                     <h1 class="text-white text-xl font-bold tracking-tight">Herbari Digital</h1>
@@ -175,10 +175,17 @@ async function loadData() {
         const data = await response.json();
 
         // Transformamos la estructura de Schema.org a una lista plana para AppState
-        // itemListElement es el array, y cada objeto tiene un .item que es la planta
         AppState.plants = data.itemListElement.map(el => el.item);
 
         console.log("Dades cargades correctamente (Schema.org):", AppState.plants);
+
+        // RENDIMIENTO: Si el usuario ya está esperando en el herbario o mapa, refrescamos la vista de inmediato con los datos listos
+        if (AppState.currentRoute === 'herbarium') {
+            refreshGrid(applyFilters(AppState.plants));
+        } else if (AppState.currentRoute === 'map') {
+            initMap(AppState.plants);
+            initMapFilterListeners();
+        }
     } catch (error) {
         console.error('Error cargando los datos persistentes:', error);
     }
@@ -217,50 +224,56 @@ function renderSearchMatches(matches, container) {
     if (matches.length === 0) {
         container.innerHTML = `<div class="p-4 text-xs text-slate-500 italic">No s'han trobat coincidències</div>`;
     } else {
-        container.innerHTML = matches.map(p => `
-            <div onclick="window.navigateSPA('plant-detail', '${p['@id']}');" 
-                 class="flex items-center gap-3 p-3 hover:bg-white/5 cursor-pointer border-b border-white/5 last:border-none transition-colors group">
-                <img src="${p.image}" class="size-10 rounded-lg object-cover border border-white/10">
-                <div class="flex-1 overflow-hidden">
-                    <p class="text-sm font-bold text-slate-100 truncate">${p.alternateName || p.name}</p>
-                    <p class="text-[10px] text-slate-500 italic truncate">${p.name}</p>
+        container.innerHTML = matches.map(p => {
+            // Anem directes a buscar l'enllaç de la imatge de 100px que està a la primera posició de l'array
+            const imageUrl = p.image[0].contentUrl;
+
+            return `
+                <div onclick="window.navigateSPA('plant-detail', '${p['@id']}');" 
+                     class="flex items-center gap-3 p-3 hover:bg-white/5 cursor-pointer border-b border-white/5 last:border-none transition-colors group">
+                    <img src="${imageUrl}" class="size-10 rounded-lg object-cover border border-white/10" loading="lazy">
+                    <div class="flex-1 overflow-hidden">
+                        <p class="text-sm font-bold text-slate-100 truncate">${p.alternateName || p.name}</p>
+                        <p class="text-[10px] text-slate-500 italic truncate">${p.name}</p>
+                    </div>
+                    <span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity text-sm">arrow_forward</span>
                 </div>
-                <span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity text-sm">arrow_forward</span>
-            </div>
-        `).join('');
+            `;
+        }).join('');
     }
     container.classList.remove('hidden');
 }
 
 // Inicialización del DOM
-document.addEventListener('DOMContentLoaded', async () => {
-    // 1. Renderizamos la cabecera y el footer primero para que existan los enlaces
+document.addEventListener('DOMContentLoaded', () => {
+    // RENDIMIENTO: Renderizamos los contenedores fijos primero
     renderHeader();
     renderFooter();
-
-    // Iniciar temporizador (actualiza la UI inmediatamente)
     initSeason();
 
-    // 2. Carga inicial de datos y configuraciones globales
-    await loadData();
+    // Vinculamos los listeners iniciales
     setupNavigation();
-    setupHeaderEvents(); // Configurará el buscador y estaciones
+    setupHeaderEvents();
 
-    // 3. Cargar la vista inicial
+    // RENDIMIENTO: Cargamos la vista de inmediato en lugar de hacer 'await' de los datos, liberando el hilo principal
     renderView('home');
+
+    // Los datos se descargan de fondo de manera asíncrona no bloqueante
+    loadData();
 });
 
 // Configurar los enlaces del menú del Header
 export function setupNavigation() {
-    // Al hacer click, usamos la delegación de eventos o actualizamos el header entero
     const navLinks = document.querySelectorAll('a[data-route]');
 
     navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const route = link.dataset.route;
+        // Clonamos el nodo o quitamos listeners viejos para evitar duplicados en la SPA
+        const newLink = link.cloneNode(true);
+        link.parentNode.replaceChild(newLink, link);
 
-            // Renderizamos la nueva ruta
+        newLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const route = newLink.dataset.route;
             window.navigateSPA(route);
         });
     });
@@ -272,17 +285,23 @@ export function setupHeaderEvents() {
 
     // Abrir/cerrar dropdown
     if (toggleBtn && menu) {
-        toggleBtn.addEventListener('click', (e) => {
+        // Limpieza de eventos previos clonando el botón
+        const newToggleBtn = toggleBtn.cloneNode(true);
+        toggleBtn.parentNode.replaceChild(newToggleBtn, toggleBtn);
+
+        newToggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             menu.classList.toggle('open');
         });
 
-        // Click fuera para cerrar el menú
-        document.addEventListener('click', (e) => {
-            if (!menu.contains(e.target) && !toggleBtn.contains(e.target)) {
+        document.removeEventListener('click', handleOutsideClick);
+        document.addEventListener('click', handleOutsideClick);
+
+        function handleOutsideClick(e) {
+            if (!menu.contains(e.target) && !newToggleBtn.contains(e.target)) {
                 menu.classList.remove('open');
             }
-        });
+        }
     }
 
     // Funcionalidad 'setSeason' al pulsar una opción
@@ -299,10 +318,11 @@ export function setupHeaderEvents() {
     initSearchLogic();
 }
 
-// Router principal paramanejador de vistas
+// Router principal para manejador de vistas
 export function renderView(route, params = {}) {
     AppState.currentRoute = route;
     const contentDiv = document.getElementById('app-content');
+    if (!contentDiv) return;
     contentDiv.innerHTML = '';
 
     switch (route) {
@@ -321,10 +341,10 @@ export function renderView(route, params = {}) {
             }, 50);
             break;
         case 'diary':
-            contentDiv.innerHTML = renderDiary(AppState.diaries);            
+            contentDiv.innerHTML = renderDiary(AppState.diaries);
             setTimeout(async () => {
                 const { initDiaryEvents } = await import('./views/diary.js');
-                await initDiaryEvents();            
+                await initDiaryEvents();
             }, 50);
             break;
         case 'plant-detail':

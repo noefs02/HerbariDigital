@@ -109,10 +109,13 @@ export function initMap(plants) {
                 markerCount++;
                 const plantIcon = createPlantIcon(32);
 
+                // Extraemos directamente la URL de la imagen de 100px (primera posición del array)
+                const popupImageUrl = item.image && item.image[0] ? item.image[0].contentUrl : 'img/fallback.webp';
+
                 const popupContent = `
     <div class="rounded-xl overflow-hidden group">
         <div class="relative h-32 overflow-hidden bg-black">
-            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+            <img src="${popupImageUrl}" alt="${item.name}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy">
             <div class="absolute top-2 left-2 flex gap-1">
                 ${(item.additionalProperty?.find(prop => prop.name === 'Etiquetes')?.value || []).map(tag =>
                     `<span class="px-2 py-0.5 rounded-full bg-surface/80 backdrop-blur text-white text-[8px] font-black uppercase tracking-widest border border-white/20">${tag}</span>`
@@ -123,7 +126,6 @@ export function initMap(plants) {
             <h3 class="text-base font-bold text-white leading-tight mb-0.5">${item.alternateName || item.name}</h3>
             <p class="text-xs text-slate-400 italic mb-4">${item.name}</p>
             
-            <!-- NOMÉS TEXT (IGUAL QUE AL DETALL) -->
             <div class="flex flex-col gap-1 mb-5">
                 <div class="flex items-center gap-1.5 text-white">
                     <span class="material-symbols-outlined text-primary text-[16px]">location_on</span>
@@ -152,7 +154,7 @@ export function initMap(plants) {
 
     const countEl = document.getElementById('map-marker-count');
     if (countEl) countEl.textContent = markerCount;
-}
+} // <--- AQUÍ ESTÁ LA LLAVE DE CIERRE QUE FALTABA PARA EL initMap
 
 // 5. Listeners de los filtros (Sidebar)
 export function initMapFilterListeners() {

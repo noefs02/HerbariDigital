@@ -127,10 +127,33 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-/* === MATERIAL SYMBOLS === */
-.material-symbols-outlined {
+/* STRUCTURAL CONTAINERS (Reserva de espacio para evitar Reflow inicial) */
+#app-header {
+    display: block;
+    min-height: 65px;
+}
+
+#app-footer {
+    display: block;
+    min-height: 56px;
+    border-top: 1px solid rgba(var(--primary-rgb), 0.1);
+}
+
+/* === MATERIAL SYMBOLS & ICONS RESET === */
+/* ACTUALIZACIÓN: Forzamos la clase .material-icons para renderizar correctamente los nombres en modo vector */
+.material-symbols-outlined,
+.material-icons {
+    font-family: 'Material Icons';
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* === SCROLLBAR PERSONALITZAT === */
@@ -181,11 +204,6 @@ details summary {
 
 .mallorca-contour {
     filter: drop-shadow(0 0 15px rgba(var(--primary-rgb), 0.3));
-}
-
-/* === FOOTER === */
-#app-footer {
-    border-top: 1px solid rgba(var(--primary-rgb), 0.1);
 }
 
 /* === SEASON SELECTOR === */
@@ -247,14 +265,15 @@ details summary {
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-height: calc(100vh - 65px);
 }
 
 /* === VIEW CONTAINER (herbarium + sidebar) === */
 .view-container {
     display: flex;
     width: 100%;
-    min-height: calc(100vh - 130px);
-    /* resta header + footer */
+    min-height: calc(100vh - 121px);
+    contain-intrinsic-size: 1000px;
 }
 
 /* === PROSE INVERT (descripció de la fitxa) === */
@@ -291,6 +310,7 @@ details summary {
     position: relative;
     transition: color 0.15s;
 }
+
 /* === CUSTOM VIDEO PLAYER === */
 .controls-container {
     position: absolute;
@@ -311,7 +331,7 @@ details summary {
     opacity: 1;
 }
 
-/* Clases de inactividad que ocultan los controles y el rat�n */
+/* Clases de inactividad que ocultan los controles y el ratón */
 .video-container.hide-controls {
     cursor: none;
 }

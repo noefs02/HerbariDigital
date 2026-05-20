@@ -21,10 +21,10 @@ function renderPlantCard(entry) {
         tagsHTML = etiquetes.map(t => {
             // Derivem el color a partir del text de l'etiqueta
             const color = t.toLowerCase().includes('perill') || t.toLowerCase().includes('crític') ? 'red'
-                        : t.toLowerCase().includes('proteg') ? 'orange'
-                        : t.toLowerCase().includes('vulnerable') ? 'amber'
+                : t.toLowerCase().includes('proteg') ? 'orange'
+                    : t.toLowerCase().includes('vulnerable') ? 'amber'
                         : t.toLowerCase().includes('endèm') ? 'blue'
-                        : 'slate';
+                            : 'slate';
             return `<span class="px-2 py-0.5 rounded-full bg-${color}-500/20 text-${color}-400 text-[8px] font-black uppercase tracking-widest backdrop-blur-md border border-${color}-500/30">${t}</span>`;
         }).join('');
     } else {
@@ -43,16 +43,14 @@ function renderPlantCard(entry) {
         imageUrl = plant.image;
     }
 
-    //const thumbUrl = imageUrl ? imageUrl.replace('_2000.webp', '_400_thumb.webp') : '';
     const thumbUrl = imageUrl ? imageUrl.replace('_2000.webp', '_400.webp') : '';
-    
 
     return `
     <div onclick="window.navigateSPA('plant-detail', '${id}')"
         class="group bg-surface rounded-2xl overflow-hidden border border-white/10 shadow-2xl hover:border-primary transition-all duration-500 cursor-pointer hover:scale-[1.02] block">
         <div class="relative aspect-[4/3] overflow-hidden">
             <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                alt="${plant.alternateName || plant.name}" src="${thumbUrl}" />
+                alt="${plant.alternateName || plant.name}" src="${thumbUrl}" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="absolute top-4 left-4 flex flex-wrap gap-2">${tagsHTML}</div>
             <button onclick="event.stopPropagation(); this.classList.toggle('!bg-white'); this.classList.toggle('!text-primary');"
@@ -79,7 +77,6 @@ function renderPlantCard(entry) {
  * Llegeix l'estat actiu dels filtres des del DOM i filtra les plantes
  */
 export function applyFilters(allPlants) {
-    // Llegim els checkboxes actius del sidebar
     const checkedIlles = getCheckedValues('illa');
     const checkedConservacio = getCheckedValues('conservacio');
     const checkedFloracio = getCheckedValues('floracio');
@@ -104,7 +101,6 @@ export function applyFilters(allPlants) {
         const altitud = getProp('Altitud') ?? 9999;
         const usos = getProp('Usos') || [];
 
-        // Cada grup de filtres: si no n'hi ha cap seleccionat, no filtra
         if (checkedIlles.length > 0 && !checkedIlles.some(i => illesPlanta.includes(i))) return false;
         if (checkedConservacio.length > 0 && !checkedConservacio.some(c => conservacio.includes(c))) return false;
         if (checkedFloracio.length > 0 && !checkedFloracio.includes(floracio)) return false;
@@ -191,7 +187,6 @@ export function refreshGrid(filteredPlants) {
  * Inicialitza els listeners dels filtres (s'ha de cridar després de renderitzar el DOM)
  */
 function initFilterListeners() {
-    // Checkboxes de pills
     document.querySelectorAll('.filter-checkbox').forEach(cb => {
         cb.addEventListener('change', () => {
             window.AppState.currentPage = 1;
@@ -200,7 +195,6 @@ function initFilterListeners() {
         });
     });
 
-    // Rang d'altitud
     const altitudeInput = document.getElementById('filter-altitud-range');
     if (altitudeInput) {
         altitudeInput.addEventListener('input', (e) => {
@@ -251,10 +245,8 @@ export function renderHerbarium(allPlants) {
             <span class="material-symbols-outlined">chevron_right</span>
         </button>`;
 
-    // Renderitzem el sidebar amb suport per a filtres actius
     const sidebarHTML = renderSidebar();
 
-    // Injectar el HTML i després connectar els listeners
     const html = `
         <div id="herbarium-view" class="view-container flex h-full items-start">
             ${sidebarHTML}
@@ -282,7 +274,6 @@ export function renderHerbarium(allPlants) {
         </div>
     `;
 
-    // Usem setTimeout per connectar listeners APRÈS que el DOM s'hagi inserit
     setTimeout(() => initFilterListeners(), 0);
 
     return html;

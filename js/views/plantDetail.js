@@ -578,9 +578,7 @@ export function renderPlantDetail(plant) {
                             Recursos addicionals
                         </h4>
                         <div class="flex flex-col gap-10">
-                            <div class="space-y-5">
-                                <p class="text-xs font-bold text-forest-neutral-500 uppercase tracking-widest">Documental Botànic</p>
-                                ${(() => {
+                            ${(() => {
             // Detectem els dos possibles orígens de vídeo independentment
             const videoIdProp = plant.additionalProperty?.find(p => p.name === 'VideoID')?.value || null;
             const localVideoUrl = videoIdProp && !videoIdProp.includes('youtube.com') && !videoIdProp.includes('youtu.be')
@@ -596,8 +594,11 @@ export function renderPlantDetail(plant) {
             const isLocalVideo = !!localVideoUrl;
             const isYouTube = !isLocalVideo && !!youtubeUrl;
 
+            if (!isLocalVideo && !isYouTube) return '';
+
+            let videoHtml = '';
             if (isYouTube) {
-                return `
+                videoHtml = `
                                         <div class="relative overflow-hidden rounded-2xl aspect-video bg-black ring-1 ring-white/10 shadow-2xl">
                                             <div id="youtube-player-api" class="w-full h-full">
                                                 <div class="flex items-center justify-center h-full text-slate-500 italic text-sm">
@@ -606,7 +607,7 @@ export function renderPlantDetail(plant) {
                                             </div>
                                         </div>`;
             } else if (isLocalVideo) {
-                return `
+                videoHtml = `
                                         <figure id="video-wrapper" class="video-container relative overflow-hidden rounded-2xl aspect-video bg-black ring-1 ring-white/10 shadow-2xl">
                                             <video id="video-player" class="w-full h-full object-cover" preload="metadata" playsinline>
                                                 <source src="${localVideoUrl}" type="video/mp4">
@@ -655,14 +656,15 @@ export function renderPlantDetail(plant) {
                                                 </div>
                                             </div>
                                         </figure>`;
-            } else {
-                return `<div class="relative overflow-hidden rounded-2xl aspect-video bg-forest-neutral-900 ring-1 ring-white/10 shadow-2xl flex justify-center items-center">
-                                            <span class="text-forest-neutral-500 italic text-sm">No s'ha especificat cap recurs audiovisual.</span>
-                                        </div>`;
             }
-        })()}
+            
+            return `
+                            <div class="space-y-5">
+                                <p class="text-xs font-bold text-forest-neutral-500 uppercase tracking-widest">Documental Botànic</p>
+                                ${videoHtml}
                                 <p class="text-xl font-bold text-slate-100">Documental botànic de l'espècie</p>
-                            </div>
+                            </div>`;
+        })()}
                             <div class="space-y-4">
                                 <p class="text-xs font-bold text-forest-neutral-500 uppercase tracking-widest">Documentació de referència</p>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

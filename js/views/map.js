@@ -5,6 +5,7 @@ import { applyFilters, getCheckedValues } from './herbarium.js';
 
 // Importamos las utilidades centralizadas: diseño consistente en toda la app
 import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, LayerSwitcherControl, injectMapStyles } from '../components/mapUtils.js';
+import { loadAndRenderBolets } from './bolets.js';
 
 let mapInstance = null;
 let markerGroup = null;
@@ -14,6 +15,19 @@ export function renderMap() {
         <div class="mt-8 pt-4 border-t border-white/10">
              <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 px-1">Mapa de Distribució</h2>
              <p class="text-xs text-slate-400 px-1">Navega pel mapa interactiu per descubrir on es troben les diferents espècies vegetals de les Illes Balears.</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-white/10">
+             <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 px-1">Capa de Micologia</h2>
+             <div class="flex items-center justify-between p-2 rounded-lg bg-surface border border-white/5 mt-2">
+                 <div class="flex items-center gap-2">
+                     <span class="text-lg">🍄</span>
+                     <span class="text-sm font-semibold text-slate-200">Mostrar Bolets</span>
+                 </div>
+                 <label class="relative inline-flex items-center cursor-pointer">
+                     <input id="toggle-bolets-checkbox" type="checkbox" checked class="sr-only peer">
+                     <div class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-400 after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-600 peer-checked:after:bg-white peer-checked:after:border-white"></div>
+                 </label>
+             </div>
         </div>
     `;
 
@@ -152,9 +166,9 @@ export function initMap(plants) {
         }
     });
 
-    const countEl = document.getElementById('map-marker-count');
-    if (countEl) countEl.textContent = markerCount;
-} // <--- AQUÍ ESTÁ LA LLAVE DE CIERRE QUE FALTABA PARA EL initMap
+    // 5. Cargar y renderizar marcadores de Bolets (datos externos)
+    loadAndRenderBolets(markerGroup, markerCount);
+}
 
 // 5. Listeners de los filtros (Sidebar)
 export function initMapFilterListeners() {
@@ -172,6 +186,15 @@ export function initMapFilterListeners() {
         altitudeInput.addEventListener('input', (e) => {
             const label = document.getElementById('filter-altitud-value');
             if (label) label.textContent = `${e.target.value}m`;
+            const filtered = applyFilters(window.AppState.plants);
+            initMap(filtered);
+        });
+    }
+
+    // Toggle de Bolets
+    const boletsToggle = document.getElementById('toggle-bolets-checkbox');
+    if (boletsToggle) {
+        boletsToggle.addEventListener('change', () => {
             const filtered = applyFilters(window.AppState.plants);
             initMap(filtered);
         });

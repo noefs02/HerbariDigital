@@ -665,31 +665,43 @@ export function renderPlantDetail(plant) {
                                 <p class="text-xl font-bold text-slate-100">Documental botànic de l'espècie</p>
                             </div>`;
         })()}
+                            ${(() => {
+            const subjectOfArr = Array.isArray(plant.subjectOf) ? plant.subjectOf : (plant.subjectOf ? [plant.subjectOf] : []);
+            const links = subjectOfArr.filter(s => s['@type'] === 'WebPage' || s['@type'] === 'CreativeWork');
+            
+            if (links.length === 0) return '';
+
+            const linksHtml = links.map(link => {
+                const isPdf = link['@type'] === 'CreativeWork' || (link.encodingFormat && link.encodingFormat.includes('pdf'));
+                const icon = isPdf ? 'picture_as_pdf' : 'language';
+                const iconColor = isPdf ? 'text-red-500' : 'text-blue-400';
+                const subtitle = isPdf ? 'Document descarregable (PDF)' : 'Referència web externa';
+                const actionIcon = isPdf ? 'download' : 'open_in_new';
+                const title = link.name || (isPdf ? 'Document PDF' : 'Enllaç web');
+                // Ensure URLs are available, fallback to '#' if missing
+                const url = link.url || '#';
+
+                return `
+                                    <a class="flex items-center justify-between p-4 rounded-xl bg-background-dark border border-white/10 hover:border-primary transition-all group" href="${url}" target="_blank" rel="noopener noreferrer">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-2xl ${iconColor}">${icon}</span>
+                                            <div>
+                                                <p class="font-bold text-sm">${title}</p>
+                                                <p class="text-[10px] text-forest-neutral-500">${subtitle}</p>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-sm text-forest-neutral-500 group-hover:text-primary transition-colors">${actionIcon}</span>
+                                    </a>`;
+            }).join('');
+
+            return `
                             <div class="space-y-4">
                                 <p class="text-xs font-bold text-forest-neutral-500 uppercase tracking-widest">Documentació de referència</p>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <a class="flex items-center justify-between p-4 rounded-xl bg-background-dark border border-white/10 hover:border-primary transition-all group" href="#">
-                                        <div class="flex items-center gap-3">
-                                            <span class="material-symbols-outlined text-2xl text-red-500">picture_as_pdf</span>
-                                            <div>
-                                                <p class="font-bold text-sm">Fitxa de protecció (PDF)</p>
-                                                <p class="text-[10px] text-forest-neutral-500">1.8 MB · Generalitat Balear</p>
-                                            </div>
-                                        </div>
-                                        <span class="material-symbols-outlined text-sm text-forest-neutral-500 group-hover:text-primary transition-colors">download</span>
-                                    </a>
-                                    <a class="flex items-center justify-between p-4 rounded-xl bg-background-dark border border-white/10 hover:border-primary transition-all group" href="#">
-                                        <div class="flex items-center gap-3">
-                                            <span class="material-symbols-outlined text-2xl text-blue-400">language</span>
-                                            <div>
-                                                <p class="font-bold text-sm">Herbari Virtual UIB</p>
-                                                <p class="text-[10px] text-forest-neutral-500">Referència acadèmica</p>
-                                            </div>
-                                        </div>
-                                        <span class="material-symbols-outlined text-sm text-forest-neutral-500 group-hover:text-primary transition-colors">open_in_new</span>
-                                    </a>
+                                    ${linksHtml}
                                 </div>
-                            </div>
+                            </div>`;
+        })()}
                         </div>
                     </div>
                 </div>

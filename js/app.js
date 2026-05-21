@@ -58,6 +58,31 @@ export function setSeason(seasonId) {
     document.querySelectorAll('.season-option').forEach(el => {
         el.classList.toggle('active', el.dataset.season === seasonId);
     });
+
+    // Cambiar dinámicamente la imagen de fondo de la vista home (si existe)
+    const homeBg = document.getElementById('home-bg-image');
+    if (homeBg) {
+        const seasonFileNames = {
+            'primavera': 'primavera',
+            'estiu': 'verano',
+            'tardor': 'otoño',
+            'hivern': 'invierno'
+        };
+        const imgPrefix = seasonFileNames[seasonId] || 'primavera';
+        
+        // Hacemos una breve transición bajando la opacidad para que el cambio no sea tan brusco
+        homeBg.style.opacity = '0';
+        setTimeout(() => {
+            homeBg.src = `media/img/inicio/${imgPrefix}_800.webp`;
+            homeBg.srcset = `
+                media/img/inicio/${imgPrefix}_800.webp 800w,
+                media/img/inicio/${imgPrefix}_1200.webp 1200w,
+                media/img/inicio/${imgPrefix}_1920.webp 1920w,
+                media/img/inicio/${imgPrefix}_2560.webp 2560w
+            `;
+            homeBg.style.opacity = ''; // Restauramos a la clase definida (opacity-50)
+        }, 150); // Le damos tiempo a la transición CSS de Tailwind que añadí
+    }
 }
 
 function initSeason() {

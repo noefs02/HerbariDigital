@@ -1,3 +1,25 @@
+# 1. CODIFICACIÓN (Evita problemas de visualización con tildes, la "ç" y caracteres especiales en catalán/castellano)
+AddDefaultCharset UTF-8
+
+# 2. SEGURIDAD (Evita que se listen públicamente los archivos si alguien entra en una carpeta sin index)
+Options -Indexes
+
+# 3. CORS (Mantiene la cabecera original para permitir cargar vuestros archivos JSON desde otros orígenes)
 <IfModule mod_headers.c>
     Header set Access-Control-Allow-Origin "*"
 </IfModule>
+
+# 4. COMPRESIÓN (Optimiza la carga comprimiendo el HTML, CSS, JS, JSON y las imágenes SVG)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# 5. CACHÉ DE NAVEGADOR (Mejora la velocidad en visitas recurrentes guardando los archivos locales un tiempo)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
+

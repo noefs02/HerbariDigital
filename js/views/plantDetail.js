@@ -616,7 +616,7 @@ export function renderPlantDetail(plant) {
                                             </video>
                             
                                             <div id="error-overlay" class="overlay hidden absolute inset-0 flex flex-col items-center justify-center bg-black/60 z-20">
-                                                <span class="material-symbols-rounded text-red-500 text-4xl mb-2">error</span>
+                                                <span class="material-symbols-outlined text-red-500 text-4xl mb-2">error</span>
                                                 <p id="error-message" class="text-white">Ha ocurrido un error reproduciendo el vídeo.</p>
                                             </div>
                             
@@ -633,12 +633,12 @@ export function renderPlantDetail(plant) {
                                                 <div class="controls-main">
                                                     <div class="controls-left">
                                                         <button id="play-pause-btn" class="control-btn" title="Reproducir/Pausar">
-                                                            <span class="material-symbols-rounded">play_arrow</span>
+                                                            <span class="material-symbols-outlined">play_arrow</span>
                                                         </button>
                             
                                                         <div class="volume-container hidden sm:flex">
                                                             <button id="mute-btn" class="control-btn" title="Silenciar">
-                                                                <span class="material-symbols-rounded">volume_up</span>
+                                                                <span class="material-symbols-outlined">volume_up</span>
                                                             </button>
                                                             <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.05" value="0.5">
                                                         </div>
@@ -650,7 +650,7 @@ export function renderPlantDetail(plant) {
                             
                                                     <div class="controls-right">
                                                         <button id="fullscreen-btn" class="control-btn" title="Pantalla completa">
-                                                            <span class="material-symbols-rounded">fullscreen</span>
+                                                            <span class="material-symbols-outlined">fullscreen</span>
                                                         </button>
                                                     </div>
                                                 </div>

@@ -42,10 +42,10 @@ export class CustomVideoHandler {
         const togglePlay = () => {
             if (this.video.paused || this.video.ended) {
                 this.video.play();
-                this.playBtn.innerHTML = '<span class="material-symbols-rounded">pause</span>';
+                this.playBtn.innerHTML = '<span class="material-symbols-outlined">pause</span>';
             } else {
                 this.video.pause();
-                this.playBtn.innerHTML = '<span class="material-symbols-rounded">play_arrow</span>';
+                this.playBtn.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
             }
         };
 
@@ -128,13 +128,13 @@ export class CustomVideoHandler {
 
     updateVolumeIcon() {
         if (this.video.muted || this.video.volume == 0) {
-            this.muteBtn.innerHTML = '<span class="material-symbols-rounded">volume_off</span>';
+            this.muteBtn.innerHTML = '<span class="material-symbols-outlined">volume_off</span>';
             this.volumeSlider.value = 0;
         } else if (this.video.volume < 0.5) {
-            this.muteBtn.innerHTML = '<span class="material-symbols-rounded">volume_down</span>';
+            this.muteBtn.innerHTML = '<span class="material-symbols-outlined">volume_down</span>';
             this.volumeSlider.value = this.video.volume;
         } else {
-            this.muteBtn.innerHTML = '<span class="material-symbols-rounded">volume_up</span>';
+            this.muteBtn.innerHTML = '<span class="material-symbols-outlined">volume_up</span>';
             this.volumeSlider.value = this.video.volume;
         }
     }

@@ -23,9 +23,21 @@
           },
           {
             "@type": "ImageObject",
-            "description": "Vista general de Apium bermejoi",
+            "description": "Vista superior de Apium bermejoi",
             "caption": "Api d'en Bermejo",
             "contentUrl": "media/img/apium-bermejoi/apium-bermejoi_2_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Flor de Apium bermejoi",
+            "caption": "Api d'en Bermejo",
+            "contentUrl": "media/img/apium-bermejoi/apium-bermejoi_3_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Apium bermejoi entre pedres",
+            "caption": "Api d'en Bermejo",
+            "contentUrl": "media/img/apium-bermejoi/apium-bermejoi_4_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -49,8 +61,20 @@
                 "contentUrl": "media/audio/windy-clifftop.ogg",
                 "encodingFormat": "audio/ogg"
               }
+              
             ]
-          }
+          },
+          {
+              "@type": "WebPage",
+              "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+              "url": "https://herbarivirtual.uib.es/es/general/682/especie/helosciadium-bermejoi-l-llorens-popper-m-f-watson"
+              },
+              {
+              "@type": "CreativeWork",
+              "name": "Atlas y Libro Rojo de la Flora Vascular Amenazada de España",
+              "url": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/inventarios-nacionales/1226_tcm30-99516.pdf",
+              "encodingFormat": "application/pdf"
+              }
         ],
         "additionalProperty": [
           {
@@ -160,9 +184,21 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Hypericum balearicum",
+            "description": "Detall de les flors d'Hypericum balearicum",
             "caption": "Estepa joana",
             "contentUrl": "media/img/hypericum-balearicum/hypericum-balearicum_1_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Hypericum balearicum en el seu hàbitat natural",
+            "caption": "Estepa joana",
+            "contentUrl": "media/img/hypericum-balearicum/hypericum-balearicum_2_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Vista general de Hypericum balearicum",
+            "caption": "Estepa joana",
+            "contentUrl": "media/img/hypericum-balearicum/hypericum-balearicum_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -187,7 +223,12 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
-          }
+          },
+          {
+              "@type": "WebPage",
+              "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+              "url": "https://herbarivirtual.uib.es/es/general/1070/especie/hypericum-balearicum-l-"
+              }
         ],
         "additionalProperty": [
           {
@@ -304,9 +345,19 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Posidonia oceanica",
+            "description": "Vista de fora del aigua de Posidonia oceanica",
             "caption": "Alga de vidriers",
             "contentUrl": "media/img/posidonia-oceanica/posidonia-oceanica_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Posidonia oceanica des de dins de l'aigua",
+            "caption": "Alga de vidriers",
+            "contentUrl": "media/img/posidonia-oceanica/posidonia-oceanica_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Posidonia oceanica amb arrels visibles",
+            "caption": "Alga de vidriers",
+            "contentUrl": "media/img/posidonia-oceanica/posidonia-oceanica_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -331,6 +382,16 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/85/especie/posidonia-oceanica-l-delile"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Praderas de Posidonia oceanica",
+            "url": "https://www.caib.es/sites/xarxanatura/es/1120_-__praderas_de_posidonia_oceanica_"
           }
         ],
         "additionalProperty": [
@@ -445,9 +506,20 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Daphne rodriguezii",
+            "description": "Daphne rodriguezii de flor groga",
             "caption": "Dafne menorquí",
             "contentUrl": "media/img/daphne-rodriguezii/daphne-rodriguezii_1_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Detall de Daphne rodriguezii",
+            "caption": "Dafne menorquí",
+            "contentUrl": "media/img/daphne-rodriguezii/daphne-rodriguezii_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Daphne rodriguezii de flor blanca",
+            "caption": "Dafne menorquí",
+            "contentUrl": "media/img/daphne-rodriguezii/daphne-rodriguezii_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -467,7 +539,18 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
-          }],
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/200/especie/daphne-rodriguezii-teixidor"
+            },
+            {
+            "@type": "WebPage",
+            "name": "Entada al blog Sangrando en verde",
+            "url": "https://jardin-mundani.blogspot.com/2012/04/daphne-rodriguezii-el-camuflaje-hecho.html"
+          }
+        ],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -571,9 +654,19 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Cyclamen balearicum",
+            "description": "Conjunt de Cyclamen balearicum",
             "caption": "Pa de porc",
             "contentUrl": "media/img/cyclamen-balearicum/cyclamen-balearicum_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Detall de Cyclamen balearicum",
+            "caption": "Pa de porc",
+            "contentUrl": "media/img/cyclamen-balearicum/cyclamen-balearicum_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Cyclamen balearicum a les roques",
+            "caption": "Pa de porc",
+            "contentUrl": "media/img/cyclamen-balearicum/cyclamen-balearicum_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -592,7 +685,18 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
-          }],
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/832/especie/cyclamen-balearicum-willk-"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entada al blog Sangrando en verde",
+            "url": "http://jardin-mundani.blogspot.com/2012/05/cyclamen-balearicum-reliquia-del.html"
+          }
+        ],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -710,6 +814,16 @@
             "description": "Vista general de Paeonia cambessedesii",
             "caption": "Peònia",
             "contentUrl": "media/img/paeonia-cambessedesii/paeonia-cambessedesii_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Flors Paeonia cambessedesii",
+            "caption": "Peònia",
+            "contentUrl": "media/img/paeonia-cambessedesii/paeonia-cambessedesii_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Paeonia cambessedesii entre roques",
+            "caption": "Peònia",
+            "contentUrl": "media/img/paeonia-cambessedesii/paeonia-cambessedesii_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -729,6 +843,17 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/1181/especie/paeonia-cambessedesii-willk-willk-"
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Atlas y Libro Rojo de la Flora Vascular Amenazada de España - Adenda 2017",
+            "url": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/inventarios-nacionales/paeoniacambessedesii_tcm30-505900.pdf",
+            "encodingFormat": "application/pdf"
           }
         ],
         "additionalProperty": [
@@ -842,13 +967,35 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Astragalus balearicus",
+            "description": "Flors d'Astragalus balearicus",
             "caption": "Coixinet de monja",
             "contentUrl": "media/img/astragalus-balearicus/astragalus-balearicus_1_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Exemplar gegant d'Astragalus balearicus",
+            "caption": "Coixinet de monja",
+            "contentUrl": "media/img/astragalus-balearicus/astragalus-balearicus_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Astragalus balearicus en floració",
+            "caption": "Coixinet de monja",
+            "contentUrl": "media/img/astragalus-balearicus/astragalus-balearicus_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/1247/especie/astragalus-balearicus-chater"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada de la planta en asturnatura.com",
+            "url": "https://www.asturnatura.com/especie/astragalus-balearicus"
+          }
+        ],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -958,9 +1105,14 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Digitalis minor",
+            "description": "Digitalis minor a les roques fresques",
             "caption": "Didalera",
             "contentUrl": "media/img/digitalis-minor/digitalis-minor_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Detall de les flors de Digitalis minor",
+            "caption": "Didalera",
+            "contentUrl": "media/img/digitalis-minor/digitalis-minor_2_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -980,6 +1132,16 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/illes-balears/495/especie/digitalis-dubia-rod-fem-"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada en la wikipedia",
+            "url": "https://es.wikipedia.org/wiki/Digitalis_minor"
           }],
         "additionalProperty": [
           {
@@ -1093,13 +1255,35 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Helichrysum crassifolium",
+            "description": "Helichrysum crassifolium a un penya-segat",
             "caption": " Maçanella",
-            "contentUrl": "media/img/helichrysum-cambessedesii/helichrysum-crassifolium_1_2000.webp"
+            "contentUrl": "media/img/helichrysum-crassifolium/helichrysum-crassifolium_1_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Flors Helichrysum crassifolium",
+            "caption": " Maçanella",
+            "contentUrl": "media/img/helichrysum-crassifolium/helichrysum-crassifolium_2_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Vista inferior d'Helichrysum crassifolium",
+            "caption": " Maçanella",
+            "contentUrl": "media/img/helichrysum-crassifolium/helichrysum-crassifolium_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/294/especie/helichrysum-ambiguum-pers-c-presl-"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada de la planta en asturnatura.com",
+            "url": "https://www.asturnatura.com/especie/helichrysum-crassifolium"
+          }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -1208,9 +1392,19 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Silene hifacensis",
+            "description": "Flor de perfil de Silene hifacensis",
             "caption": "Silene d'Eivissa",
             "contentUrl": "media/img/silene-hifacensis/silene-hifacensis_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Detall de flor de Silene hifacensis",
+            "caption": "Silene d'Eivissa",
+            "contentUrl": "media/img/silene-hifacensis/silene-hifacensis_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Vista general de Silene hifacensis",
+            "caption": "Silene d'Eivissa",
+            "contentUrl": "media/img/silene-hifacensis/silene-hifacensis_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -1229,6 +1423,17 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/1282/especie/silene-hifacensis-rouy-ex-willk-"
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Atlas y Libro Rojo de la Flora Vascular Amenazada de España - Adenda 2017",
+            "url": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/inventarios-nacionales/silenehifacensis_tcm30-505917.pdf",
+            "encodingFormat": "application/pdf"
           }],
         "additionalProperty": [
           {
@@ -1338,13 +1543,35 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Femeniasia balearica",
+            "description": "Flors Femeniasia balearica",
             "caption": "Socarrell bord",
             "contentUrl": "media/img/femeniasia-balearica/femeniasia-balearica_1_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Flor en detall de Femeniasia balearica",
+            "caption": "Socarrell bord",
+            "contentUrl": "media/img/femeniasia-balearica/femeniasia-balearica_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Vista general de Femeniasia balearica",
+            "caption": "Socarrell bord",
+            "contentUrl": "media/img/femeniasia-balearica/femeniasia-balearica_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/554/especie/carduncellus-balearicus-j-j-rodr-g-lopez"
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Pla de Conservació del Govern Balear (PDF)",
+            "url": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjm1_3DiMmUAxUeP_sDHb4FMEgQFnoECCEQAQ&url=https%3A%2F%2Fwww.caib.es%2Fsites%2Fproteccioespecies%2Ff%2F217648&usg=AOvVaw0Vdo6ZwOtV1j_1o1i8Cwne&opi=89978449",
+            "encodingFormat": "application/pdf"
+          }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -1457,6 +1684,16 @@
             "description": "Vista general de Brassica balearica",
             "caption": "Col borda",
             "contentUrl": "media/img/brassica-balearica/brassica-balearica_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Flors Brassica balearica",
+            "caption": "Col borda",
+            "contentUrl": "media/img/brassica-balearica/brassica-balearica_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Brassica balearica entre penya-segats",
+            "caption": "Col borda",
+            "contentUrl": "media/img/brassica-balearica/brassica-balearica_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -1475,6 +1712,16 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/1008/especie/col-borda"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Video a instagram d'Herboloco sobre Brassica balearica",
+            "url": "https://www.instagram.com/reel/DWUN0hUsP5A/"
           }],
         "additionalProperty": [
           {
@@ -1585,9 +1832,19 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Limonium biflorum",
+            "description": "Flor Limonium biflorum",
             "caption": "Saladina",
             "contentUrl": "media/img/limonium-biflorum/limonium-biflorum_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Base de Limonium biflorum",
+            "caption": "Saladina",
+            "contentUrl": "media/img/limonium-biflorum/limonium-biflorum_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Limonium biflorum en un penya-segat",
+            "caption": "Saladina",
+            "contentUrl": "media/img/limonium-biflorum/limonium-biflorum_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -1606,6 +1863,11 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/924/especie/limonium-biflorum-pignatti-pignatti"
           }],
         "additionalProperty": [
           {
@@ -1716,9 +1978,20 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Naufraga balearica",
+            "description": "Vista superior de Naufraga balearica",
             "caption": "Naufraga",
             "contentUrl": "media/img/naufraga-balearica/naufraga-balearica_1_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Detall de les flors de la Naufraga balearica",
+            "caption": "Naufraga",
+            "contentUrl": "media/img/naufraga-balearica/naufraga-balearica_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Vista general de Naufraga balearica",
+            "caption": "Naufraga",
+            "contentUrl": "media/img/naufraga-balearica/naufraga-balearica_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -1726,6 +1999,17 @@
             "@type": "VideoObject",
             "name": " Video divulgatiu Naufraga balearica IB3",
             "embedUrl": "https://www.youtube.com/watch?v=BrzgqvK4NJE"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/671/especie/naufraga-balearica-constance-cannon"
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Atlas y Libro Rojo de la Flora Vascular Amenazada de España - Adenda 2010",
+            "url": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/inventarios-nacionales/naufraga_balearica_tcm30-99613.pdf",
+            "encodingFormat": "application/pdf"
           }],
         "additionalProperty": [
           {
@@ -1835,9 +2119,19 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Teucrium subspinosum",
+            "description": "Flors de Teucrium subspinosum",
             "caption": "Socarrell gros",
             "contentUrl": "media/img/teucrium-subspinosum/teucrium-subspinosum_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Exemplar complet de Teucrium subspinosum",
+            "caption": "Socarrell gros",
+            "contentUrl": "media/img/teucrium-subspinosum/teucrium-subspinosum_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Teucrium subspinosum en flor",
+            "caption": "Socarrell gros",
+            "contentUrl": "media/img/teucrium-subspinosum/teucrium-subspinosum_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -1856,6 +2150,16 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/959/especie/teucrium-subspinosum-pourr-ex-willd-"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada de la planta en asturnatura.com",
+            "url": "https://www.asturnatura.com/especie/teucrium-subspinosum"
           }],
         "additionalProperty": [
           {
@@ -1967,9 +2271,19 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Rhamnus ludovici-salvatoris",
+            "description": "Detall de flor de Rhamnus ludovici-salvatoris",
             "caption": "Aladern de Maó",
             "contentUrl": "media/img/rhamnus-ludovici-salvatoris/rhamnus-ludovici-salvatoris_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Exemplar complet de Rhamnus ludovici-salvatoris",
+            "caption": "Aladern de Maó",
+            "contentUrl": "media/img/rhamnus-ludovici-salvatoris/rhamnus-ludovici-salvatoris_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Fulles de Rhamnus ludovici-salvatoris",
+            "caption": "Aladern de Maó",
+            "contentUrl": "media/img/rhamnus-ludovici-salvatoris/rhamnus-ludovici-salvatoris_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -1988,6 +2302,11 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/1083/especie/rhamnus-ludovici-salvatoris-chodat"
           }],
         "additionalProperty": [
           {
@@ -2098,13 +2417,34 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Ranunculus weyleri",
+            "description": "Ranunculus weyleri de nit",
             "caption": "Botó d'or",
             "contentUrl": "media/img/ranunculus-weyleri/ranunculus-weyleri_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Flor de Ranunculus weyleri",
+            "caption": "Botó d'or",
+            "contentUrl": "media/img/ranunculus-weyleri/ranunculus-weyleri_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Ranunculus weyleri sobre roca solitaria",
+            "caption": "Botó d'or",
+            "contentUrl": "media/img/ranunculus-weyleri/ranunculus-weyleri_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/1248/especie/ranunculus-weyleri-mares-ex-willk-"
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Mallorca_Bioatles_2013 del Govern Balear (PDF)",
+            "url": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwje0d-8ismUAxWjU6QEHcYgMwcQFnoECDoQAQ&url=https%3A%2F%2Fwww.caib.es%2Fsites%2Fproteccioespecies%2Fca%2Fd%2Franunculus_weyleri_bo_mallorca_bioatles_2013-75673%2F&usg=AOvVaw2SRqQ490fuF1VtSAvrzehr&opi=89978449",
+            "encodingFormat": "application/pdf"
+          }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -2213,9 +2553,19 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Viola jaubertiana",
+            "description": "Flors de Viola jaubertiana",
             "caption": "Viola de Tramuntana",
             "contentUrl": "media/img/viola-jaubertiana/viola-jaubertiana_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Flors de  Viola jaubertiana",
+            "caption": "Viola de Tramuntana",
+            "contentUrl": "media/img/viola-jaubertiana/viola-jaubertiana_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Fulles de Viola jaubertiana",
+            "caption": "Viola de Tramuntana",
+            "contentUrl": "media/img/viola-jaubertiana/viola-jaubertiana_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -2234,6 +2584,17 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/260/especie/viola-jaubertiana-mares-et-vigineix"
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Mallorca_Bioatles_2013 del Govern Balear (PDF)",
+            "url": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjB0K_4ismUAxXtdaQEHdouN1oQFnoECEYQAQ&url=https%3A%2F%2Fwww.caib.es%2Fsites%2Fproteccioespecies%2Fca%2Fd%2Fviola_jaubertiana_mallorca_bioatles_2013-75684%2F&usg=AOvVaw0ZdRwOowPEDeobnMGY3alv&opi=89978449",
+            "encodingFormat": "application/pdf"
           }],
         "additionalProperty": [
           {
@@ -2343,9 +2704,20 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Hippocrepis balearica",
+            "description": "Hippocrepis balearica entre roques",
             "caption": "Violeta de penyal",
             "contentUrl": "media/img/hippocrepis-balearica/hippocrepis-balearica_1_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Flors Hippocrepis balearica",
+            "caption": "Violeta de penyal",
+            "contentUrl": "media/img/hippocrepis-balearica/hippocrepis-balearica_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Vista general de Hippocrepis balearica",
+            "caption": "Violeta de penyal",
+            "contentUrl": "media/img/hippocrepis-balearica/hippocrepis-balearica_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -2364,6 +2736,17 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/433/especie/hippocrepis-balearica-jacq-subsp-balearica"
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "Atlas y Libro Rojo de la Flora Vascular Amenazada de España",
+            "url": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/inventarios-nacionales/825_tcm30-99327.pdf",
+            "encodingFormat": "application/pdf"
           }],
         "additionalProperty": [
           {
@@ -2475,13 +2858,29 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Crepis triasii",
+            "description": "Exemplar Crepis triasii",
             "caption": "Agafapes",
             "contentUrl": "media/img/crepis-triasii/crepis-triasii_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Fulles Crepis triasii",
+            "caption": "Agafapes",
+            "contentUrl": "media/img/crepis-triasii/crepis-triasii_2_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/885/especie/crepis-triasii-cambess-nyman"
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "NATURA 2000 del Govern Balear (PDF)",
+            "url": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiq08a_i8mUAxXB87sIHc5sMNAQFnoECDcQAQ&url=https%3A%2F%2Fwww.caib.es%2Fsites%2Fxarxanatura%2Ff%2F378543&usg=AOvVaw0FzArm-CvKfQO8-9sUq5WY&opi=89978449",
+            "encodingFormat": "application/pdf"
+          }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -2591,13 +2990,28 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Scrophularia canina subsp. balearica",
+            "description": "Flor de perfil de Scrophularia canina",
             "caption": "Soca",
             "contentUrl": "media/img/scrophularia-canina-balearica/scrophularia-canina-balearica_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Vista general de Scrophularia canina",
+            "caption": "Soca",
+            "contentUrl": "media/img/scrophularia-canina-balearica/scrophularia-canina-balearica_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Detall de flor de Scrophularia canina",
+            "caption": "Soca",
+            "contentUrl": "media/img/scrophularia-canina-balearica/scrophularia-canina-balearica_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/illes-balears/1297/especie/scrophularia-auriculata-l-subsp-auriculata"
+          }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -2708,13 +3122,34 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Genista lucida",
+            "description": "Genista lucida en floració",
             "caption": "Gatosa",
             "contentUrl": "media/img/genista-lucida/genista-lucida_1_2000.webp"
+          },
+          {
+            "@type": "ImageObject",
+            "description": "Flors de Genista lucida",
+            "caption": "Gatosa",
+            "contentUrl": "media/img/genista-lucida/genista-lucida_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Conjunt de flors de Genista lucida",
+            "caption": "Gatosa",
+            "contentUrl": "media/img/genista-lucida/genista-lucida_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/illes-balears/387/especie/genista-tricuspidata-desf-"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada de la planta en asturnatura.com",
+            "url": "https://herbarivirtual.uib.es/es/illes-balears/387/especie/genista-tricuspidata-desf-"
+          }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -2823,13 +3258,33 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Crocus cambessedesii",
+            "description": "Flors Crocus cambessedesii",
             "caption": "Safrà bord",
             "contentUrl": "media/img/crocus-cambessedesii/crocus-cambessedesii_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Crocus cambessedesii en el seu hàbitat natural",
+            "caption": "Safrà bord",
+            "contentUrl": "media/img/crocus-cambessedesii/crocus-cambessedesii_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Colonia de Crocus cambessedesii",
+            "caption": "Safrà bord",
+            "contentUrl": "media/img/crocus-cambessedesii/crocus-cambessedesii_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/1216/especie/safra-bord"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada al blog Snagrado en verde",
+            "url": "http://jardin-mundani.blogspot.com/2011/09/crocus-cambessedesii-mira-al-sol-que-le.html"
+          }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -2940,13 +3395,28 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Bellium bellidioides",
+            "description": "Bellium bellidioides a les escletxes d'una paret de pedra",
             "caption": "Margalideta de penyal",
             "contentUrl": "media/img/bellium-bellidioides/bellium-bellidioides_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Vista general de Bellium bellidioides",
+            "caption": "Margalideta de penyal",
+            "contentUrl": "media/img/bellium-bellidioides/bellium-bellidioides_2_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/90/especie/bellium-bellidioides-l-"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada de la planta en asturnatura.com",
+            "url": "https://www.asturnatura.com/especie/bellium-bellidioides"
+          }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -3057,9 +3527,14 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Ophrys balearica",
+            "description": "Exemplar Ophrys balearica",
             "caption": "Abellera de les Balears",
             "contentUrl": "media/img/ophrys-balearica/ophrys-balearica_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Detalls de les flors de Ophrys balearica",
+            "caption": "Abellera de les Balears",
+            "contentUrl": "media/img/ophrys-balearica/ophrys-balearica_2_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -3069,15 +3544,25 @@
             "encoding": [
               {
                 "@type": "MediaObject",
-                "contentUrl": "media/audio/sheeps.mp3",
+                "contentUrl": "media/audio/bees.mp3",
                 "encodingFormat": "audio/mp3"
               },
               {
                 "@type": "MediaObject",
-                "contentUrl": "media/audio/sheeps.ogg",
+                "contentUrl": "media/audio/bees.ogg",
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/634/especie/ophrys-bertolonii-moretti-subsp-balearica-p-delforge-l-saez-rossello"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada en la wikipedia",
+            "url": "https://es.wikipedia.org/wiki/Ophrys_balearica"
           }],
         "additionalProperty": [
           {
@@ -3191,9 +3676,19 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Allium commutatum",
+            "description": "Exemplar de Allium commutatum",
             "caption": "All de platja",
             "contentUrl": "media/img/allium-balearicum/allium-commutatum_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Flor de Allium commutatum",
+            "caption": "All de platja",
+            "contentUrl": "media/img/allium-balearicum/allium-commutatum_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Conjunt de Allium commutatum",
+            "caption": "All de platja",
+            "contentUrl": "media/img/allium-balearicum/allium-commutatum_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -3212,6 +3707,16 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/illes-balears/517/especie/allium-commutatum-guss-"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada de la planta en asturnatura.com",
+            "url": "https://www.asturnatura.com/especie/allium-commutatum"
           }],
         "additionalProperty": [
           {
@@ -3322,13 +3827,33 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Sibthorpia africana",
+            "description": "Sibthorpia africana entre roques humides",
             "caption": "Herba de s'enveja",
             "contentUrl": "media/img/sibthorpia-africana/sibthorpia-africana_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Fulles de Sibthorpia africana",
+            "caption": "Herba de s'enveja",
+            "contentUrl": "media/img/sibthorpia-africana/sibthorpia-africana_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Flors de Sibthorpia africana",
+            "caption": "Herba de s'enveja",
+            "contentUrl": "media/img/sibthorpia-africana/sibthorpia-africana_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/illes-balears/927/especie/sibthorpia-africana-l-"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada al blog Sangrado en verde",
+            "url": "http://jardin-mundani.blogspot.com/2012/02/sibthorpia-africana-un-endemismo-balear.html"
+          }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -3441,13 +3966,28 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Senecio rodriguezii",
+            "description": "Flor de Senecio rodriguezii entre pedres",
             "caption": "Camamil·la de la mar",
             "contentUrl": "media/img/senecio-rodriguezii/senecio-rodriguezii_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Vista superior de flors de Senecio rodriguezii",
+            "caption": "Camamil·la de la mar",
+            "contentUrl": "media/img/senecio-rodriguezii/senecio-rodriguezii_2_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/851/especie/senecio-varicosus-l-f-"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada al blog Sangrado en verde",
+            "url": "http://jardin-mundani.blogspot.com/2011/05/senecio-rodriguezii-un-endemismo.html"
+          }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -3559,10 +4099,30 @@
             "description": "Vista general de Arenaria balearica",
             "caption": "Arenària baleàrica",
             "contentUrl": "media/img/arenaria-balearica/arenaria-balearica_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Vista superior de Arenaria balearica",
+            "caption": "Arenària baleàrica",
+            "contentUrl": "media/img/arenaria-balearica/arenaria-balearica_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Flor de Arenaria balearica",
+            "caption": "Arenària baleàrica",
+            "contentUrl": "media/img/arenaria-balearica/arenaria-balearica_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
-        "subjectOf": [],
+        "subjectOf": [
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/842/especie/arenaria-balearica"
+          },
+          {
+            "@type": "WebPage",
+            "name": "Entrada en la wikipedia",
+            "url": "https://es.wikipedia.org/wiki/Arenaria_balearica"
+          }],
         "additionalProperty": [
           {
             "@type": "PropertyValue",
@@ -3671,9 +4231,19 @@
         "image": [
           {
             "@type": "ImageObject",
-            "description": "Vista general de Pimpinella balearica",
+            "description": "Pimpinella balearica a les roques calcaris.",
             "caption": "Mançanilla de muntanya",
             "contentUrl": "media/img/pimpinella-balearica/pimpinella-balearica_1_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Detall de flor de Pimpinella balearica",
+            "caption": "Mançanilla de muntanya",
+            "contentUrl": "media/img/pimpinella-balearica/pimpinella-balearica_2_2000.webp"
+          },{
+            "@type": "ImageObject",
+            "description": "Pimpinella balearica en un penya-segat",
+            "caption": "Mançanilla de muntanya",
+            "contentUrl": "media/img/pimpinella-balearica/pimpinella-balearica_3_2000.webp"
           }
         ],
         "taxonRank": "Species",
@@ -3692,6 +4262,11 @@
                 "encodingFormat": "audio/ogg"
               }
             ]
+          },
+          {
+            "@type": "WebPage",
+            "name": "Fitxa a l'Herbari Virtual del Mediterrani Occidental",
+            "url": "https://herbarivirtual.uib.es/es/general/233/especie/pimpinella-tragium-vill-subsp-lithophila-schischk-tutin"
           }],
         "additionalProperty": [
           {

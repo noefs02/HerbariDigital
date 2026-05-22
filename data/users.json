@@ -67,89 +67,89 @@
           "id": "progreso_general",
           "titulo": "Botánico Maestro",
           "descripcion": "Encuentra todas las plantas del catálogo general",
-          "obtenido": 13,
-          "total": 32,
-          "porcentaje": 40
+          "obtenido": 0,
+          "total": 30,
+          "porcentaje": 0
         },
         {
-          "id": "endemicas_baleares",
-          "titulo": "Descubridor Balear",
-          "descripcion": "Encuentra flora endémica de las Islas Baleares",
-          "obtenido": 5,
-          "total": 20,
-          "porcentaje": 25
+          "id": "Mallorca",
+          "titulo": "Explorador de l'Illa Mayor",
+          "descripcion": "Registra todes les plantes del catàleg que estenen les seves arrels per l'illa de Mallorca.",
+          "obtenido": 0,
+          "total": 24,
+          "porcentaje": 0 
         },
         {
-          "id": "plantas_montana",
-          "titulo": "Alpinista Botánico",
-          "descripcion": "Encuentra plantas en zonas montañosas",
+          "id": "Menorca",
+          "titulo": "Herborista Menorquí",
+          "descripcion": "Deccobreix totes les plantes del catàleg que creixen a Menorca.",
+          "obtenido": 0,
+          "total": 16,
+          "porcentaje": 0
+        },
+        {
+          "id": "Pitiüses",
+          "titulo": "Explorador de les Pitiüses",
+          "descripcion": "Completa el catàleg de les plantes que es poden trobar a les Pitiüses (Eivissa i Formentera).",
           "obtenido": 0,
           "total": 8,
           "porcentaje": 0
         },
         {
-          "id": "plantas_costeras",
-          "titulo": "Explorador de Costa",
-          "descripcion": "Identifica flora cerca de la playa",
-          "obtenido": 9,
-          "total": 15,
-          "porcentaje": 60
+          "id": "segures",
+          "titulo": "Poblacions pròsperes",
+          "descripcion": "registra els plantes amb poblacions segures i estables a les Illes Balears.",
+          "obtenido": 0,
+          "total": 16,
+          "porcentaje": 0
         },
         {
-          "id": "plantas_medicinales",
-          "titulo": "El Boticario",
-          "descripcion": "Descubre plantas con propiedades medicinales",
-          "obtenido": 2,
-          "total": 10,
-          "porcentaje": 20
+          "id": "amenazades",
+          "titulo": "Guardià de la Biodiversidad",
+          "descripcion": "Troba i registra plantes vulnerables, en peligro o críticamente amenazadas que requereixen protecció.",
+          "obtenido": 0,
+          "total": 14,
+          "porcentaje": 0
         },
         {
-          "id": "plantas_venenosas",
-          "titulo": "Peligro Silvestre",
-          "descripcion": "Encuentra plantas tóxicas o venenosas",
-          "obtenido": 1,
+          "id": "primavera",
+          "titulo": "Esclat de Colors",
+          "descripcion": "completa la col·lecció de plantes que floreixen a la primavera",
+          "obtenido": 0,
+          "total": 21,
+          "porcentaje": 0
+        },
+        {
+          "id": "tardor-hivern",
+          "titulo": "Resisiència hivernal",
+          "descripcion": "Registra les plantes capaces de florir durant la tardor i l'hivern.",
+          "obtenido": 0,
           "total": 5,
-          "porcentaje": 20
+          "porcentaje": 0
         },
         {
-          "id": "plantas_acuaticas",
-          "titulo": "Buzo de la Flora",
-          "descripcion": "Identifica especies acuáticas y marinas",
-          "obtenido": 3,
-          "total": 6,
-          "porcentaje": 50
-        },
-        {
-          "id": "orquideas_silvestres",
-          "titulo": "Cazador de Orquídeas",
-          "descripcion": "Encuentra distintas variedades de orquídeas silvestres",
-          "obtenido": 4,
-          "total": 8,
-          "porcentaje": 50
-        },
-        {
-          "id": "arboles_arbustos",
-          "titulo": "Sombras del Bosque",
-          "descripcion": "Identifica árboles y grandes arbustos",
-          "obtenido": 10,
-          "total": 12,
-          "porcentaje": 83
-        },
-        {
-          "id": "plantas_comestibles",
-          "titulo": "Gastronomía Salvaje",
-          "descripcion": "Encuentra plantas silvestres comestibles tradicionales",
-          "obtenido": 7,
+          "id": "litoral",
+          "titulo": "A la vorera de la mar",
+          "descripcion": "Registra les plantes que creixen a la zona litoral de les Illes Balears.",
+          "obtenido": 0,
           "total": 10,
-          "porcentaje": 70
+          "porcentaje": 0
         },
         {
-          "id": "flora_aromatica",
-          "titulo": "Sentido del Olfato",
-          "descripcion": "Descubre plantas aromáticas y de olor intenso",
-          "obtenido": 5,
-          "total": 5,
-          "porcentaje": 100
+          "id": "bosc",
+          "titulo": "Baix l'obra de l'alzina",
+          "descripcion": "Troba les plantes que creixen als boscos de les Illes Balears.",
+          "obtenido": 0,
+          "total": 7,
+          "porcentaje": 0
+        },
+        {
+          "id": "muntanya",
+          "titulo": "Esperit alpinista balear",
+          "descripcion": "Registra les plantes que es troben a les zones de muntanya de les Illes Balears.",
+          "obtenido": 0,
+          "total": 9,
+          "porcentaje": 0
         }
       ],
       "diario": [
@@ -162,8 +162,7 @@
             "longitude": 2.9122,
             "name": "Serra de Tramuntana"
           },
-          "observaciones": "He trobat un Apium bermejoi a la zona de Lluc. Estava florit i amb moltes abelles al voltant. És increïble veure aquesta planta tan rara en el seu hàbitat natural.",
-          "imagen": "img/pepper.webp"
+          "observaciones": "He trobat un Apium bermejoi a la zona de Lluc. Estava florit i amb moltes abelles al voltant. És increïble veure aquesta planta tan rara en el seu hàbitat natural."
         },
         {
           "id": "diario_002",

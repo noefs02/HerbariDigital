@@ -4,6 +4,7 @@ import { renderMap, initMap, initMapFilterListeners } from './views/map.js';
 import { renderDiary } from './views/diary.js';
 // ACTUALIZACIÓN: Importamos initDetailMap y stopPlantTTS junto a renderPlantDetail
 import { renderPlantDetail, initDetailMap, stopPlantTTS } from './views/plantDetail.js';
+import { AuthService } from './services/authService.js';
 
 // Estado global de la aplicación
 export const AppState = {
@@ -11,7 +12,8 @@ export const AppState = {
     currentRoute: 'home',
     diaries: [],
     currentPage: 1,
-    itemsPerPage: 6
+    itemsPerPage: 6,
+    currentUser: AuthService.getCurrentUser()
 };
 
 // --- DATA PARA EL HEADER ---
@@ -108,6 +110,61 @@ function renderHeader() {
 
     container.className = "sticky top-0 z-50 w-full";
 
+    // Componente del usuario en el header
+    let userComponent = '';
+    if (AppState.currentUser) {
+        userComponent = `
+            <div class="relative group">
+                <div class="h-8 w-8 rounded-full bg-surface flex items-center justify-center overflow-hidden border border-white/20 cursor-pointer">
+                    <img alt="Perfil" class="h-full w-full object-cover" src="${AppState.currentUser.avatar}"/>
+                </div>
+                <!-- Menú desplegable del usuario -->
+                <div class="absolute right-0 mt-2 w-48 bg-surface border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[110]">
+                    <div class="p-3 border-b border-white/10">
+                        <p class="text-sm font-bold text-white truncate">${AppState.currentUser.nombre}</p>
+                    </div>
+                    <div class="p-1">
+                        <button id="btn-logout" class="w-full text-left px-3 py-2 text-sm text-red-400 hover:bg-white/5 rounded-lg flex items-center gap-2 transition-colors">
+                            <span class="material-symbols-outlined text-sm">logout</span> Tancar Sessió
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        userComponent = `
+            <button id="btn-login-modal" class="px-3 py-1.5 rounded-full bg-primary text-white text-xs font-bold hover:bg-primary-dark transition-colors flex items-center gap-1 shadow-md shadow-primary/20">
+                <span class="material-symbols-outlined text-[14px]">login</span> Iniciar Sessió
+            </button>
+        `;
+    }
+
+    // Modal de Login
+    const loginModal = `
+        <div id="auth-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+            <div class="bg-surface border border-white/10 rounded-2xl p-6 w-full max-w-sm shadow-2xl shadow-black">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold flex items-center gap-2 text-white">
+                        <span class="material-symbols-outlined text-primary">account_circle</span>
+                        Iniciar Sessió / Registre
+                    </h2>
+                    <button id="btn-close-modal" class="text-slate-400 hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <p class="text-sm text-slate-400 mb-4">Introdueix un nom d'usuari. Si no existeix, es crearà automàticament el compte.</p>
+                <form id="auth-form" class="space-y-4">
+                    <div>
+                        <input type="text" id="auth-username" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Nom d'usuari...">
+                    </div>
+                    <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-2.5 rounded-lg transition-colors shadow-lg shadow-primary/20">
+                        Entrar a l'Herbari
+                    </button>
+                </form>
+            </div>
+        </div>
+    `;
+
     container.innerHTML = `
     <header class="w-full border-b border-white/10 bg-background-dark/90 backdrop-blur-md px-4 lg:px-20 py-3">
         <div class="flex items-center justify-between gap-4">
@@ -155,12 +212,12 @@ function renderHeader() {
                     </div>
                 </div>
 
-                <div class="h-8 w-8 rounded-full bg-surface flex items-center justify-center overflow-hidden border border-white/20 cursor-pointer">
-                    <img alt="Perfil" class="h-full w-full object-cover" src="${PROFILE_IMG}"/>
-                </div>
+                ${userComponent}
             </div>
         </div>
-    </header>`;
+    </header>
+    ${loginModal}
+    `;
 }
 
 // --- RENDER DEL FOOTER ---
@@ -355,7 +412,74 @@ export function setupHeaderEvents() {
 
     // Iniciar lógica del buscador
     initSearchLogic();
+
+    // Login Modal Logic
+    const btnLoginModal = document.getElementById('btn-login-modal');
+    const authModal = document.getElementById('auth-modal');
+    const btnCloseModal = document.getElementById('btn-close-modal');
+    const authForm = document.getElementById('auth-form');
+    const btnLogout = document.getElementById('btn-logout');
+
+    if (btnLoginModal && authModal) {
+        btnLoginModal.addEventListener('click', () => {
+            authModal.classList.remove('hidden');
+        });
+    }
+
+    if (btnCloseModal && authModal) {
+        btnCloseModal.addEventListener('click', () => {
+            authModal.classList.add('hidden');
+        });
+    }
+
+    if (authForm) {
+        authForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const usernameInput = document.getElementById('auth-username').value;
+            if (usernameInput.trim()) {
+                const user = AuthService.login(usernameInput);
+                if (user) {
+                    AppState.currentUser = user;
+                    authModal.classList.add('hidden');
+                    window.navigateSPA(AppState.currentRoute); // Re-render vista actual
+                }
+            }
+        });
+    }
+
+    if (btnLogout) {
+        btnLogout.addEventListener('click', () => {
+            AuthService.logout();
+            AppState.currentUser = null;
+            window.navigateSPA('home'); // Go home on logout
+        });
+    }
 }
+
+// Helper global para alternar favoritos
+window.toggleFav = (event, plantaId, btnElement) => {
+    if (event) event.stopPropagation();
+    
+    if (!AppState.currentUser) {
+        // Require login to add favorite
+        const authModal = document.getElementById('auth-modal');
+        if (authModal) authModal.classList.remove('hidden');
+        return;
+    }
+
+    const isFav = AuthService.toggleFavorite(plantaId);
+    
+    // Sincronizar usuario en memoria
+    AppState.currentUser = AuthService.getCurrentUser();
+    
+    if (btnElement) {
+        if (isFav) {
+            btnElement.classList.add('!bg-white', '!text-primary');
+        } else {
+            btnElement.classList.remove('!bg-white', '!text-primary');
+        }
+    }
+};
 
 // Router principal para manejador de vistas
 export function renderView(route, params = {}) {

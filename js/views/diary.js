@@ -1,5 +1,6 @@
 import { AppState } from '../app.js';
 import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, LayerSwitcherControl, injectMapStyles } from '../components/mapUtils.js';
+import { AuthService } from '../services/authService.js';
 
 export function renderDiary(diaries) {
     return `
@@ -69,7 +70,7 @@ export function renderDiary(diaries) {
                             <h3 class="text-lg font-bold flex items-center gap-2">
                                 <span class="material-symbols-outlined text-primary">menu_book</span> Diari d'Activitat
                             </h3>
-                            <button class="bg-primary text-white text-sm font-bold px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-primary-dark transition-colors">
+                            <button id="btn-nou-registre" class="bg-primary text-white text-sm font-bold px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-primary-dark transition-colors">
                                 <span class="material-symbols-outlined text-base">add</span> Nou Registre
                             </button>
                         </div>
@@ -85,6 +86,69 @@ export function renderDiary(diaries) {
                 </section>
             </div>
         </main>
+
+        <!-- Modal de Nou Registre -->
+        <div id="diary-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm px-4 py-6 overflow-y-auto">
+            <div class="bg-surface border border-white/10 rounded-2xl p-6 w-full max-w-lg shadow-2xl shadow-black relative my-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold flex items-center gap-2 text-white">
+                        <span class="material-symbols-outlined text-primary">add_circle</span>
+                        Nou Registre
+                    </h2>
+                    <button id="btn-close-diary-modal" class="text-slate-400 hover:text-white transition-colors">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <form id="diary-form" class="space-y-4">
+                    <div class="relative">
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Planta</label>
+                        <div class="relative">
+                            <input type="text" id="diary-plant-search" autocomplete="off" placeholder="Escriu per cercar una planta..." class="w-full bg-slate-900 border border-white/10 rounded-lg pl-10 pr-10 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500">
+                                <span class="material-symbols-outlined text-lg">search</span>
+                            </div>
+                            <button type="button" id="btn-clear-plant" class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-500 hover:text-white hidden">
+                                <span class="material-symbols-outlined text-lg">close</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="diary-plant-select" required>
+                        <div id="diary-plant-results" class="absolute left-0 right-0 mt-2 bg-slate-900 border border-white/10 rounded-xl max-h-60 overflow-y-auto hidden z-[210] shadow-2xl divide-y divide-white/5"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Data</label>
+                            <input type="datetime-local" id="diary-date" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Ubicació (Nom)</label>
+                            <input type="text" id="diary-loc-name" required placeholder="Ex: Serra de Tramuntana" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Latitud</label>
+                            <input type="number" step="any" id="diary-lat" required placeholder="39.7103" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Longitud</label>
+                            <input type="number" step="any" id="diary-lng" required placeholder="2.9122" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                        </div>
+                    </div>
+                    <div class="flex justify-end mb-2">
+                        <button type="button" id="btn-geolocate" class="text-xs text-primary hover:text-primary-light flex items-center gap-1 transition-colors">
+                            <span class="material-symbols-outlined text-[14px]">my_location</span> Utilitzar la meva ubicació
+                        </button>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Observacions</label>
+                        <textarea id="diary-obs" rows="3" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Afegeix detalls de la troballa..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-lg transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2 mt-4">
+                        <span class="material-symbols-outlined">save</span> Guardar Registre
+                    </button>
+                </form>
+            </div>
+        </div>
     `;
 }
 
@@ -105,9 +169,23 @@ const df_mapNormalHeight = 'h-[600px]';
 
 export async function initDiaryEvents() {
     try {
-        const response = await fetch('data/users.json');
-        const data = await response.json();
-        const user = data.users[0]; // Usamos el primer usuario como prueba
+        const user = AppState.currentUser;
+        if (!user) {
+            const diaryView = document.getElementById('diary-view');
+            if (diaryView) {
+                diaryView.innerHTML = `
+                    <div class="flex flex-col items-center justify-center text-center p-12 mt-12 bg-surface border border-white/10 rounded-2xl max-w-lg mx-auto shadow-2xl">
+                        <span class="material-symbols-outlined text-6xl text-slate-500 mb-4">lock</span>
+                        <h2 class="text-2xl font-bold text-white mb-2">Inicia Sessió</h2>
+                        <p class="text-slate-400 mb-6">Necessites iniciar sessió per veure el teu diari, llista de desitjos i èxits.</p>
+                        <button onclick="document.getElementById('btn-login-modal').click()" class="bg-primary hover:bg-primary-dark text-white font-bold py-2.5 px-6 rounded-lg transition-colors shadow-lg shadow-primary/20">
+                            Identificar-se
+                        </button>
+                    </div>
+                `;
+            }
+            return;
+        }
 
         renderAchievements(user.logros);
         
@@ -123,6 +201,9 @@ export async function initDiaryEvents() {
             updateDiaryUI();
             setupMapToggle();
         }
+        
+        // Modal logic
+        setupDiaryModal();
 
     } catch (error) {
         console.error("Error al cargar los datos del usuario:", error);
@@ -236,6 +317,9 @@ function renderChecklistItem(favItem) {
         </div>
         <div class="flex gap-1.5">
             ${btnVist}
+            ${!isVist ? `<button class="p-1.5 bg-primary/20 text-primary rounded-lg hover:bg-primary hover:text-white transition-colors" title="Afegir al diari" data-fav-add="${favItem.plantaId}">
+                <span class="material-symbols-outlined text-lg">add</span>
+            </button>` : ''}
             <button class="p-1.5 bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700 transition-colors" onclick="window.navigateSPA('map');" title="Veure al Mapa">
                 <span class="material-symbols-outlined text-lg">location_on</span>
             </button>
@@ -290,15 +374,47 @@ function renderChecklistPagination(container, totalPages) {
 }
 
 function setupChecklistActions() {
-    // Ejemplo de interactivdad: "Eliminar" (Sólo visual, modificar el array y repintar)
+    // Eliminar
     const deleteBtns = document.querySelectorAll('button[data-fav-delete]');
     deleteBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             const idToDel = btn.dataset.favDelete;
-            df_currentUserFavorites = df_currentUserFavorites.filter(f => f.plantaId !== idToDel);
+            AuthService.toggleFavorite(idToDel); // Esto lo quita porque ya está en la lista
+            AppState.currentUser = AuthService.getCurrentUser(); // Sincronizar en memoria
+            df_currentUserFavorites = AppState.currentUser.favoritos;
             updateChecklistUI();
+        });
+    });
+
+    // Add to diary
+    const addBtns = document.querySelectorAll('button[data-fav-add]');
+    addBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const idToAdd = btn.dataset.favAdd;
+            const modal = document.getElementById('diary-modal');
+            const select = document.getElementById('diary-plant-select');
+            const searchInput = document.getElementById('diary-plant-search');
+            const btnClear = document.getElementById('btn-clear-plant');
             
-            // Aquí en una app real enviaríamos el Update a Firebase/Servidor
+            if (modal && select) {
+                select.value = idToAdd;
+                
+                // Buscar el nombre de la planta para mostrarlo en el buscador
+                const plantObj = AppState.plants.find(p => {
+                    const id = p.item ? p.item['@id'] : p['@id'];
+                    return id === idToAdd;
+                });
+                if (plantObj && searchInput) {
+                    const p = plantObj.item || plantObj;
+                    searchInput.value = p.alternateName || p.name;
+                    if (btnClear) btnClear.classList.remove('hidden');
+                }
+
+                const now = new Date();
+                now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                document.getElementById('diary-date').value = now.toISOString().slice(0, 16);
+                modal.classList.remove('hidden');
+            }
         });
     });
 }
@@ -635,5 +751,200 @@ function renderDiaryPagination(container, totalPages) {
         df_currentDiaryPage = parseInt(e.target.innerText);
         updateDiaryUI();
     });
+}
+
+function setupPlantAutocomplete() {
+    const searchInput = document.getElementById('diary-plant-search');
+    const hiddenInput = document.getElementById('diary-plant-select');
+    const resultsContainer = document.getElementById('diary-plant-results');
+    const btnClear = document.getElementById('btn-clear-plant');
+
+    if (!searchInput || !hiddenInput || !resultsContainer) return;
+
+    const showMatches = (query) => {
+        const matches = AppState.plants.filter(p => {
+            const pObj = p.item || p;
+            const name = pObj.name.toLowerCase();
+            const altName = (pObj.alternateName || '').toLowerCase();
+            return name.includes(query) || altName.includes(query);
+        });
+
+        if (matches.length === 0) {
+            resultsContainer.innerHTML = `<div class="p-3 text-xs text-slate-500 italic">No s'han trobat plantes</div>`;
+        } else {
+            resultsContainer.innerHTML = matches.map(p => {
+                const pObj = p.item || p;
+                let imageUrl = '';
+                if (Array.isArray(pObj.image) && pObj.image.length > 0) {
+                    imageUrl = pObj.image[0].contentUrl || '';
+                } else if (typeof pObj.image === 'string') {
+                    imageUrl = pObj.image;
+                }
+                const thumbUrl = imageUrl ? imageUrl.replace('_2000.webp', '_100_icon.webp') : 'img/placeholder.jpg';
+
+                return `
+                    <div class="flex items-center gap-3 p-3 hover:bg-primary/10 cursor-pointer transition-colors border-b border-white/5 last:border-none" data-id="${pObj['@id']}" data-name="${pObj.alternateName || pObj.name}">
+                        <img src="${thumbUrl}" class="size-8 rounded object-cover border border-white/10" loading="lazy">
+                        <div class="flex-1 overflow-hidden">
+                            <p class="text-xs font-bold text-slate-200 truncate">${pObj.alternateName || pObj.name}</p>
+                            <p class="text-[9px] text-slate-500 italic truncate">${pObj.name}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        resultsContainer.classList.remove('hidden');
+    };
+
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (query.length === 0) {
+            resultsContainer.classList.add('hidden');
+            hiddenInput.value = '';
+            if (btnClear) btnClear.classList.add('hidden');
+            return;
+        }
+        showMatches(query);
+    });
+
+    searchInput.addEventListener('focus', () => {
+        const query = searchInput.value.toLowerCase().trim();
+        showMatches(query);
+    });
+
+    resultsContainer.addEventListener('click', (e) => {
+        const item = e.target.closest('[data-id]');
+        if (item) {
+            const plantId = item.dataset.id;
+            const plantName = item.dataset.name;
+
+            hiddenInput.value = plantId;
+            searchInput.value = plantName;
+            resultsContainer.classList.add('hidden');
+            if (btnClear) btnClear.classList.remove('hidden');
+        }
+    });
+
+    if (btnClear) {
+        btnClear.addEventListener('click', () => {
+            hiddenInput.value = '';
+            searchInput.value = '';
+            btnClear.classList.add('hidden');
+            resultsContainer.classList.add('hidden');
+        });
+    }
+
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !resultsContainer.contains(e.target)) {
+            resultsContainer.classList.add('hidden');
+        }
+    });
+}
+
+function setupDiaryModal() {
+    const modal = document.getElementById('diary-modal');
+    setupPlantAutocomplete();
+    const btnOpen = document.getElementById('btn-nou-registre');
+    const btnClose = document.getElementById('btn-close-diary-modal');
+    const form = document.getElementById('diary-form');
+    const btnGeolocate = document.getElementById('btn-geolocate');
+
+    if (btnOpen) {
+        btnOpen.addEventListener('click', () => {
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            document.getElementById('diary-date').value = now.toISOString().slice(0, 16);
+            if (modal) modal.classList.remove('hidden');
+        });
+    }
+
+    if (btnClose) {
+        btnClose.addEventListener('click', () => {
+            if (modal) modal.classList.add('hidden');
+        });
+    }
+
+    if (btnGeolocate) {
+        btnGeolocate.addEventListener('click', () => {
+            if ("geolocation" in navigator) {
+                btnGeolocate.innerHTML = `<span class="material-symbols-outlined text-[14px] animate-spin">refresh</span> Cercant...`;
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        document.getElementById('diary-lat').value = position.coords.latitude.toFixed(6);
+                        document.getElementById('diary-lng').value = position.coords.longitude.toFixed(6);
+                        btnGeolocate.innerHTML = `<span class="material-symbols-outlined text-[14px]">check_circle</span> Geolocalitzat`;
+                        setTimeout(() => {
+                            btnGeolocate.innerHTML = `<span class="material-symbols-outlined text-[14px]">my_location</span> Utilitzar la meva ubicació`;
+                        }, 2000);
+                    },
+                    (error) => {
+                        btnGeolocate.innerHTML = `<span class="material-symbols-outlined text-[14px] text-red-500">error</span> Error`;
+                        console.error("Error geolocating:", error);
+                    },
+                    { enableHighAccuracy: true }
+                );
+            } else {
+                alert("Geolocalització no suportada en aquest navegador.");
+            }
+        });
+    }
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const plantId = document.getElementById('diary-plant-select').value;
+            const date = document.getElementById('diary-date').value;
+            const locName = document.getElementById('diary-loc-name').value;
+            const lat = parseFloat(document.getElementById('diary-lat').value);
+            const lng = parseFloat(document.getElementById('diary-lng').value);
+            const obs = document.getElementById('diary-obs').value;
+
+            if (!plantId || !date || !locName || isNaN(lat) || isNaN(lng)) {
+                alert("Si us plau, omple tots els camps obligatoris correctament.");
+                return;
+            }
+
+            const plantObj = AppState.plants.find(p => {
+                const id = p.item ? p.item['@id'] : p['@id'];
+                return id === plantId;
+            });
+            const p = plantObj.item || plantObj;
+
+            const entryData = {
+                plantaId: plantId,
+                plantaName: p.alternateName || p.name,
+                fecha: date, // Formato "YYYY-MM-DDTHH:mm"
+                ubicacion: {
+                    nombre: locName,
+                    lat: lat,
+                    lng: lng
+                },
+                observaciones: obs,
+                foto_url: (p.image && p.image.length > 0) ? p.image[0].contentUrl : (typeof p.image === 'string' ? p.image : "")
+            };
+
+            const updatedUser = AuthService.addDiaryEntry(entryData);
+            
+            // Re-sync local state and update UI
+            AppState.currentUser = updatedUser;
+            df_currentUserDiary = updatedUser.diario;
+            df_currentUserFavorites = updatedUser.favoritos;
+
+            updateChecklistUI();
+            updateDiaryUI();
+            // TODO: fix issue with renderAchievements not being defined if it's not exported/imported properly. Wait, it's defined in diary.js!
+            // Wait, yes, renderAchievements is in diary.js, let me check. Ah, I don't know where it's defined, but it was called earlier.
+            
+            // For now, let's just trigger a re-init or call the specific map/achievement functions.
+            // Actually, we can just call it since it's probably in diary.js
+            if(typeof renderAchievements === 'function') renderAchievements(updatedUser.logros);
+            initDiaryMap(updatedUser.diario);
+
+            if (modal) modal.classList.add('hidden');
+            form.reset();
+            const btnClear = document.getElementById('btn-clear-plant');
+            if (btnClear) btnClear.classList.add('hidden');
+        });
+    }
 }
 

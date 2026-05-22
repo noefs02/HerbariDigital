@@ -1,5 +1,6 @@
 import { renderSidebar } from '../components/sidebar.js';
 import { AppState } from '../app.js';
+import { AuthService } from '../services/authService.js';
 
 /**
  * GENERACIÓ DE TAGS CONSISTENTS (Estat, Floració, Hàbitat)
@@ -95,6 +96,9 @@ function renderPlantCard(entry) {
         srcset = `${base}_400.webp 400w, ${base}_800.webp 800w`;
     }
 
+    const isFav = AuthService.isFavorite(id);
+    const favClasses = isFav ? '!bg-white !text-primary' : '';
+
     return `
     <div onclick="window.navigateSPA('plant-detail', '${id}')"
         class="group bg-surface rounded-2xl overflow-hidden border border-white/10 shadow-2xl hover:border-primary transition-all duration-500 cursor-pointer hover:scale-[1.02] block">
@@ -106,8 +110,8 @@ function renderPlantCard(entry) {
                 loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="absolute top-4 left-4 flex flex-wrap gap-2">${tagsHTML}</div>
-            <button onclick="event.stopPropagation(); this.classList.toggle('!bg-white'); this.classList.toggle('!text-primary');"
-                class="absolute bottom-3 right-3 h-10 w-10 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white hover:text-primary transition-all z-20 shadow-lg">
+            <button onclick="window.toggleFav(event, '${id}', this)"
+                class="absolute bottom-3 right-3 h-10 w-10 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white hover:text-primary transition-all z-20 shadow-lg ${favClasses}">
                 <span class="material-symbols-outlined text-[20px]">favorite</span>
             </button>
         </div>

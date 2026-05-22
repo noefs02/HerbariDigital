@@ -5,6 +5,7 @@ import { CustomVideoHandler } from '../components/customVideo.js'; // IMPORTACI�
 import { CustomAudioHandler } from '../components/customAudio.js'; // IMPORTACIÓN REPRODUCTOR AUDIO
 import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, LayerSwitcherControl, injectMapStyles } from '../components/mapUtils.js';
 import { SpeechService } from '../components/speechService.js';
+import { AuthService } from '../services/authService.js';
 
 let detailMapInstance = null;
 const ytHandler = new YouTubeHandler(); // INSTANCIA DEL GESTOR GLOBAL
@@ -822,10 +823,24 @@ export function renderPlantDetail(plant) {
                 </div>
 
                 <div class="space-y-6">
-                    <button class="w-full py-4 px-6 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl shadow-lg shadow-surface flex items-center justify-center gap-3 transition-all group active:scale-[0.98]">
-                        <span class="material-symbols-outlined group-hover:fill-1 transition-all">bookmark_add</span>
-                        Afegir a la llista de desitjos
-                    </button>
+                    ${(() => {
+                        const isFav = AuthService.isFavorite(plantId);
+                        if (isFav) {
+                            return `
+                            <button onclick="window.toggleFav(event, '${plantId}'); window.navigateSPA('plant-detail', '${plantId}');" class="w-full py-4 px-6 bg-red-500/20 hover:bg-red-500 text-red-500 hover:text-white font-bold rounded-xl border border-red-500/30 flex items-center justify-center gap-3 transition-all group">
+                                <span class="material-symbols-outlined transition-all">heart_broken</span>
+                                Llevar de Preferits
+                            </button>
+                            `;
+                        } else {
+                            return `
+                            <button onclick="window.toggleFav(event, '${plantId}'); window.navigateSPA('plant-detail', '${plantId}');" class="w-full py-4 px-6 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl shadow-lg shadow-surface flex items-center justify-center gap-3 transition-all group active:scale-[0.98]">
+                                <span class="material-symbols-outlined group-hover:fill-1 transition-all">favorite</span>
+                                Afegir a Preferits
+                            </button>
+                            `;
+                        }
+                    })()}
 
                     <div class="bg-surface rounded-xl border border-white/10 p-6 shadow-xl">
                         <h4 class="font-bold text-lg mb-4 text-white">Presència a les Illes</h4>

@@ -2,8 +2,8 @@ import { renderHome } from './views/home.js';
 import { renderHerbarium, applyFilters, refreshGrid } from './views/herbarium.js';
 import { renderMap, initMap, initMapFilterListeners } from './views/map.js';
 import { renderDiary } from './views/diary.js';
-// ACTUALIZACIÓN: Importamos initDetailMap junto a renderPlantDetail
-import { renderPlantDetail, initDetailMap } from './views/plantDetail.js';
+// ACTUALIZACIÓN: Importamos initDetailMap y stopPlantTTS junto a renderPlantDetail
+import { renderPlantDetail, initDetailMap, stopPlantTTS } from './views/plantDetail.js';
 
 // Estado global de la aplicación
 export const AppState = {
@@ -359,6 +359,11 @@ export function setupHeaderEvents() {
 
 // Router principal para manejador de vistas
 export function renderView(route, params = {}) {
+    // Aturem qualsevol síntesi de veu activa quan l'usuari canvia de vista
+    if (typeof stopPlantTTS === 'function') {
+        stopPlantTTS();
+    }
+
     AppState.currentRoute = route;
     const contentDiv = document.getElementById('app-content');
     if (!contentDiv) return;

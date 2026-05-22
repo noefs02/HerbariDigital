@@ -1,14 +1,20 @@
 import { AppState } from '../app.js';
 import { renderPlantTags } from './herbarium.js';
-import { YouTubeHandler } from '../components/youtube.js'; // IMPORTACIÓN DEL SERVICIO
+import { YouTubeHandler } from '../components/youtubeService.js'; // IMPORTACIÓN DEL SERVICIO
 import { CustomVideoHandler } from '../components/customVideo.js'; // IMPORTACIÓN REPRODUCTOR PROPIO
 import { CustomAudioHandler } from '../components/customAudio.js'; // IMPORTACIÓN REPRODUCTOR AUDIO
 import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, LayerSwitcherControl, injectMapStyles } from '../components/mapUtils.js';
+import { SpeechService } from '../components/speechService.js';
 
 let detailMapInstance = null;
 const ytHandler = new YouTubeHandler(); // INSTANCIA DEL GESTOR GLOBAL
 const localVideoHandler = new CustomVideoHandler(); // INSTANCIA DEL REPRODUCTOR LOCAL
 const localAudioHandler = new CustomAudioHandler(); // INSTANCIA DEL REPRODUCTOR AUDIO
+const speechService = new SpeechService();
+
+export function stopPlantTTS() {
+    speechService.stop();
+}
 
 export async function initDetailMap(plant) {
     const mapContainer = document.getElementById('detail-map');
@@ -120,6 +126,40 @@ export async function initDetailMap(plant) {
     const audioContainer = document.getElementById('audio-player-container');
     if (audioContainer) {
         localAudioHandler.init('audio-player-container');
+    }
+
+    // --- INICIALITZACIÓ SPEECH API (TTS) ---
+    const ttsBtn = document.getElementById('tts-toggle-btn');
+    if (ttsBtn) {
+        const ttsIcon = document.getElementById('tts-icon');
+        const ttsText = document.getElementById('tts-btn-text');
+
+        ttsBtn.addEventListener('click', () => {
+            if (speechService.isSpeaking()) {
+                speechService.stop();
+                if (ttsIcon) ttsIcon.textContent = 'volume_up';
+                if (ttsText) ttsText.textContent = 'Llegeix descripció';
+                ttsBtn.classList.remove('border-primary', 'bg-primary/10', 'text-white');
+            } else {
+                speechService.speak(plant.description, {
+                    onStart: () => {
+                        if (ttsIcon) ttsIcon.textContent = 'volume_off';
+                        if (ttsText) ttsText.textContent = 'Atura lectura';
+                        ttsBtn.classList.add('border-primary', 'bg-primary/10', 'text-white');
+                    },
+                    onEnd: () => {
+                        if (ttsIcon) ttsIcon.textContent = 'volume_up';
+                        if (ttsText) ttsText.textContent = 'Llegeix descripció';
+                        ttsBtn.classList.remove('border-primary', 'bg-primary/10', 'text-white');
+                    },
+                    onError: () => {
+                        if (ttsIcon) ttsIcon.textContent = 'volume_up';
+                        if (ttsText) ttsText.textContent = 'Llegeix descripció';
+                        ttsBtn.classList.remove('border-primary', 'bg-primary/10', 'text-white');
+                    }
+                });
+            }
+        });
     }
 }
 
@@ -312,13 +352,13 @@ function renderRelatedCards(currentId) {
 
 // GESTIÓN DEL CARRUSEL GLOBAL
 window.currentSlide = 0;
-window.nextSlide = function(total) {
+window.nextSlide = function (total) {
     window.setSlide((window.currentSlide + 1) % total, total);
 };
-window.prevSlide = function(total) {
+window.prevSlide = function (total) {
     window.setSlide((window.currentSlide - 1 + total) % total, total);
 };
-window.setSlide = function(index, total) {
+window.setSlide = function (index, total) {
     if (typeof total === 'undefined') {
         const dots = document.querySelectorAll('[id^="carousel-dot-"]');
         total = dots.length;
@@ -327,15 +367,15 @@ window.setSlide = function(index, total) {
         const slide = document.getElementById(`carousel-slide-${i}`);
         const fsSlide = document.getElementById(`fullscreen-slide-${i}`);
         const dot = document.getElementById(`carousel-dot-${i}`);
-        if(slide) {
+        if (slide) {
             slide.classList.remove('opacity-100', 'z-10');
             slide.classList.add('opacity-0', 'z-0');
         }
-        if(fsSlide) {
+        if (fsSlide) {
             fsSlide.classList.remove('opacity-100', 'z-10');
             fsSlide.classList.add('opacity-0', 'z-0', 'pointer-events-none');
         }
-        if(dot) {
+        if (dot) {
             dot.classList.remove('bg-white');
             dot.classList.add('bg-white/30');
         }
@@ -344,21 +384,21 @@ window.setSlide = function(index, total) {
     const activeSlide = document.getElementById(`carousel-slide-${index}`);
     const activeFsSlide = document.getElementById(`fullscreen-slide-${index}`);
     const activeDot = document.getElementById(`carousel-dot-${index}`);
-    if(activeSlide) {
+    if (activeSlide) {
         activeSlide.classList.remove('opacity-0', 'z-0');
         activeSlide.classList.add('opacity-100', 'z-10');
     }
-    if(activeFsSlide) {
+    if (activeFsSlide) {
         activeFsSlide.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
         activeFsSlide.classList.add('opacity-100', 'z-10');
     }
-    if(activeDot) {
+    if (activeDot) {
         activeDot.classList.remove('bg-white/30');
         activeDot.classList.add('bg-white');
     }
 };
 
-window.openFullscreenGallery = function(index) {
+window.openFullscreenGallery = function (index) {
     window.setSlide(index);
     const gallery = document.getElementById('fullscreen-gallery');
     if (gallery) {
@@ -368,7 +408,7 @@ window.openFullscreenGallery = function(index) {
     }
 };
 
-window.closeFullscreenGallery = function() {
+window.closeFullscreenGallery = function () {
     const gallery = document.getElementById('fullscreen-gallery');
     if (gallery) {
         gallery.classList.remove('opacity-100');
@@ -401,17 +441,17 @@ export function renderPlantDetail(plant) {
     } else if (typeof plant.image === 'string') {
         images = [{ contentUrl: plant.image, caption: plant.alternateName || plant.name, description: '' }];
     }
-    
+
     // Assegurar inicialització
     window.currentSlide = 0;
 
     const carouselSlidesHTML = images.map((imgObj, index) => {
         let originalUrl = imgObj.contentUrl || '';
         let altText = imgObj.caption || imgObj.description || plant.alternateName || plant.name;
-        
+
         let srcset = '';
         let src = originalUrl;
-        
+
         // Auto generació del srcset si es tracta de l'estructura *_2000.webp
         if (originalUrl.endsWith('_2000.webp')) {
             const base = originalUrl.replace('_2000.webp', '');
@@ -422,7 +462,7 @@ export function renderPlantDetail(plant) {
                 ${base}_2000.webp 2000w
             `;
         }
-        
+
         return `
         <div id="carousel-slide-${index}" class="absolute inset-0 transition-opacity duration-700 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'} cursor-pointer" onclick="window.openFullscreenGallery(${index})">
             <img 
@@ -440,10 +480,10 @@ export function renderPlantDetail(plant) {
     const fullscreenSlidesHTML = images.map((imgObj, index) => {
         let originalUrl = imgObj.contentUrl || '';
         let altText = imgObj.caption || imgObj.description || plant.alternateName || plant.name;
-        
+
         let srcset = '';
         let src = originalUrl;
-        
+
         if (originalUrl.endsWith('_2000.webp')) {
             const base = originalUrl.replace('_2000.webp', '');
             srcset = `
@@ -453,7 +493,7 @@ export function renderPlantDetail(plant) {
                 ${base}_2000.webp 2000w
             `;
         }
-        
+
         return `
         <div id="fullscreen-slide-${index}" class="absolute inset-4 md:inset-10 flex items-center justify-center transition-opacity duration-500 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}" onclick="event.stopPropagation()">
             <img 
@@ -580,10 +620,18 @@ export function renderPlantDetail(plant) {
                         </section>
                         <hr class="border-white/10" />
                         <section>
-                            <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-white">
-                                <span class="material-symbols-outlined text-primary">description</span>
-                                Descripció
-                            </h3>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold flex items-center gap-2 text-white">
+                                    <span class="material-symbols-outlined text-primary">description</span>
+                                    Descripció
+                                </h3>
+                                ${speechService.isSupported() ? `
+                                <button id="tts-toggle-btn" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-white/10 hover:border-primary text-xs font-semibold text-slate-300 hover:text-white transition-all cursor-pointer">
+                                    <span id="tts-icon" class="material-symbols-outlined text-sm">volume_up</span>
+                                    <span id="tts-btn-text">Llegeix descripció</span>
+                                </button>
+                                ` : ''}
+                            </div>
                             <div class="prose prose-invert max-w-none text-forest-neutral-300 leading-relaxed space-y-4">
                                 ${plant.description}
                             </div>
@@ -724,7 +772,7 @@ export function renderPlantDetail(plant) {
                                             </div>
                                         </figure>`;
             }
-            
+
             return `
                             <div class="space-y-5">
                                 <p class="text-xs font-bold text-forest-neutral-500 uppercase tracking-widest">Documental Botànic</p>
@@ -735,7 +783,7 @@ export function renderPlantDetail(plant) {
                             ${(() => {
             const subjectOfArr = Array.isArray(plant.subjectOf) ? plant.subjectOf : (plant.subjectOf ? [plant.subjectOf] : []);
             const links = subjectOfArr.filter(s => s['@type'] === 'WebPage' || s['@type'] === 'CreativeWork');
-            
+
             if (links.length === 0) return '';
 
             const linksHtml = links.map(link => {

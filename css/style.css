@@ -1,4 +1,16 @@
 @import "tailwindcss";
+@source "../js/app.js";
+@source "../js/views/herbarium.js";
+@source "../js/views/plantDetail.js";
+@source "../js/views/map.js";
+@source "../js/components/sidebar.js";
+@source "js/app.js";
+@source "js/views/herbarium.js";
+@source "js/views/plantDetail.js";
+@source "js/views/map.js";
+@source "js/components/sidebar.js";
+@source "index.html";
+@source "../index.html";
 
 @theme {
     /* ── Colors principals ── */

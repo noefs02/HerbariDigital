@@ -280,6 +280,20 @@ document.addEventListener('DOMContentLoaded', () => {
     setupNavigation();
     setupHeaderEvents();
 
+    // Bloquejar el tancament dels desplegables de filtres si tenen algun checkbox actiu
+    document.addEventListener('click', (e) => {
+        const summary = e.target.closest('aside details summary');
+        if (summary) {
+            const details = summary.parentElement;
+            if (details && details.open) {
+                const checked = details.querySelectorAll('input[type="checkbox"]:checked');
+                if (checked.length > 0) {
+                    e.preventDefault();
+                }
+            }
+        }
+    });
+
     // RENDIMIENTO: Cargamos la vista de inmediato en lugar de hacer 'await' de los datos, liberando el hilo principal
     renderView('home');
 

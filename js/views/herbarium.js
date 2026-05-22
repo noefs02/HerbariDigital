@@ -2,6 +2,69 @@ import { renderSidebar } from '../components/sidebar.js';
 import { AppState } from '../app.js';
 
 /**
+ * GENERACIÓ DE TAGS CONSISTENTS (Estat, Floració, Hàbitat)
+ */
+export function renderPlantTags(plant, isLarge = false) {
+    const getProp = (name) => plant.additionalProperty?.find(p => p.name === name)?.value || '';
+    const status = getProp('Estat de conservació');
+    const floracio = getProp('Floració');
+    const habitat = getProp('Hàbitat');
+
+    // 1. Estat de conservació color
+    let statusClasses = 'bg-slate-700/80 text-white border-slate-500/60';
+    if (status.includes('Crític') || status.includes('Perill')) {
+        statusClasses = 'bg-red-600/85 text-white border-red-500/60';
+    } else if (status.includes('Vulnerable')) {
+        statusClasses = 'bg-amber-600/85 text-white border-amber-500/60';
+    } else if (status.includes('Protegida')) {
+        statusClasses = 'bg-orange-600/85 text-white border-orange-500/60';
+    } else if (status.includes('Segura')) {
+        statusClasses = 'bg-emerald-600/85 text-white border-emerald-500/60';
+    }
+
+    // 2. Època de floració color
+    let floracioClasses = 'bg-slate-700/80 text-white border-slate-500/60';
+    if (floracio === 'Primavera') {
+        floracioClasses = 'bg-pink-600/85 text-white border-pink-500/60';
+    } else if (floracio === 'Estiu') {
+        floracioClasses = 'bg-amber-500/90 text-white border-amber-400/50';
+    } else if (floracio === 'Tardor') {
+        floracioClasses = 'bg-orange-600/85 text-white border-orange-500/60';
+    } else if (floracio === 'Hivern') {
+        floracioClasses = 'bg-sky-600/85 text-white border-sky-500/60';
+    }
+
+    // 3. Hàbitat color
+    let habitatClasses = 'bg-slate-700/80 text-white border-slate-500/60';
+    if (habitat === 'Zones Humides') {
+        habitatClasses = 'bg-teal-600/85 text-white border-teal-500/60';
+    } else if (habitat === 'Bosc') {
+        habitatClasses = 'bg-green-600/85 text-white border-green-500/60';
+    } else if (habitat === 'Litoral') {
+        habitatClasses = 'bg-blue-600/85 text-white border-blue-500/60';
+    } else if (habitat === 'Muntanya') {
+        habitatClasses = 'bg-slate-600/85 text-white border-slate-500/60';
+    }
+
+    const sizeClasses = isLarge 
+        ? 'px-3 py-1.5 text-xs tracking-wider' 
+        : 'px-2 py-0.5 text-[8px] tracking-widest';
+
+    const tags = [];
+    if (status) {
+        tags.push(`<span class="rounded-full ${statusClasses} ${sizeClasses} font-black uppercase backdrop-blur-md border">${status}</span>`);
+    }
+    if (floracio) {
+        tags.push(`<span class="rounded-full ${floracioClasses} ${sizeClasses} font-black uppercase backdrop-blur-md border">${floracio}</span>`);
+    }
+    if (habitat) {
+        tags.push(`<span class="rounded-full ${habitatClasses} ${sizeClasses} font-black uppercase backdrop-blur-md border">${habitat}</span>`);
+    }
+
+    return tags.join('');
+}
+
+/**
  * RENDER: TARJETA INDIVIDUAL
  */
 function renderPlantCard(entry) {
@@ -11,29 +74,9 @@ function renderPlantCard(entry) {
     const getProp = (name) => plant.additionalProperty?.find(p => p.name === name)?.value || '';
 
     const familia = getProp('Família');
-    const status = getProp('Estat de conservació');
     const illa = getProp('Illa');
-    const etiquetes = getProp('Etiquetes') || [];
 
-    // Tags HTML: les etiquetes ara són strings simples (Schema.org compatible)
-    let tagsHTML = '';
-    if (Array.isArray(etiquetes) && etiquetes.length > 0) {
-        tagsHTML = etiquetes.map(t => {
-            // Derivem el color a partir del text de l'etiqueta
-            const color = t.toLowerCase().includes('perill') || t.toLowerCase().includes('crític') ? 'red'
-                : t.toLowerCase().includes('proteg') ? 'orange'
-                    : t.toLowerCase().includes('vulnerable') ? 'amber'
-                        : t.toLowerCase().includes('endèm') ? 'blue'
-                            : 'slate';
-            return `<span class="px-2 py-0.5 rounded-full bg-${color}-500/20 text-${color}-400 text-[8px] font-black uppercase tracking-widest backdrop-blur-md border border-${color}-500/30">${t}</span>`;
-        }).join('');
-    } else {
-        const statusColor = status.includes('Perill') ? 'red' : 'amber';
-        tagsHTML = `
-            <span class="px-2 py-0.5 rounded-full bg-${statusColor}-500/20 text-${statusColor}-400 text-[8px] font-black uppercase tracking-widest backdrop-blur-md border border-${statusColor}-500/30">${status}</span>
-            <span class="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 text-[8px] font-black uppercase tracking-widest backdrop-blur-md border border-blue-500/30">${illa}</span>
-        `;
-    }
+    const tagsHTML = renderPlantTags(plant);
 
     // Extraiem una imatge vàlida, reemplaçant _2000 per _400.webp
     let imageUrl = '';
@@ -93,9 +136,7 @@ export function applyFilters(allPlants) {
     const checkedHabitat = getCheckedValues('habitat');
     const checkedForma = getCheckedValues('forma');
     const checkedSubstrat = getCheckedValues('substrat');
-    const checkedExposicio = getCheckedValues('exposicio');
-    const checkedUsos = getCheckedValues('usos');
-    const altitudMax = getAltitudValue();
+    const checkedAltitud = getCheckedValues('altitud');
 
     return allPlants.filter(entry => {
         const plant = entry.item || entry;
@@ -107,9 +148,7 @@ export function applyFilters(allPlants) {
         const habitat = getProp('Hàbitat') || '';
         const forma = getProp('Forma vital') || '';
         const substrat = getProp('Substrat') || '';
-        const exposicio = getProp('Exposició solar') || '';
         const altitud = getProp('Altitud') ?? 9999;
-        const usos = getProp('Usos') || [];
 
         if (checkedIlles.length > 0 && !checkedIlles.some(i => illesPlanta.includes(i))) return false;
         if (checkedConservacio.length > 0 && !checkedConservacio.some(c => conservacio.includes(c))) return false;
@@ -117,9 +156,19 @@ export function applyFilters(allPlants) {
         if (checkedHabitat.length > 0 && !checkedHabitat.includes(habitat)) return false;
         if (checkedForma.length > 0 && !checkedForma.includes(forma)) return false;
         if (checkedSubstrat.length > 0 && !checkedSubstrat.includes(substrat)) return false;
-        if (checkedExposicio.length > 0 && !checkedExposicio.includes(exposicio)) return false;
-        if (altitudMax !== null && altitud > altitudMax) return false;
-        if (checkedUsos.length > 0 && !checkedUsos.some(u => usos.includes(u))) return false;
+        
+        if (checkedAltitud.length > 0) {
+            const matchesRange = checkedAltitud.some(range => {
+                if (range === '0 - 50m') return altitud >= 0 && altitud <= 50;
+                if (range === '50 - 200m') return altitud > 50 && altitud <= 200;
+                if (range === '200 - 500m') return altitud > 200 && altitud <= 500;
+                if (range === '500 - 800m') return altitud > 500 && altitud <= 800;
+                if (range === '800 - 1100m') return altitud > 800 && altitud <= 1100;
+                if (range === 'Més de 1100m') return altitud > 1100;
+                return false;
+            });
+            if (!matchesRange) return false;
+        }
 
         return true;
     });
@@ -130,12 +179,6 @@ export function getCheckedValues(filterId) {
     if (!container) return [];
     return Array.from(container.querySelectorAll('input[type="checkbox"]:checked'))
         .map(cb => cb.value);
-}
-
-function getAltitudValue() {
-    const input = document.getElementById('filter-altitud-range');
-    if (!input) return null;
-    return parseInt(input.value, 10);
 }
 
 /**
@@ -204,17 +247,6 @@ function initFilterListeners() {
             refreshGrid(filtered);
         });
     });
-
-    const altitudeInput = document.getElementById('filter-altitud-range');
-    if (altitudeInput) {
-        altitudeInput.addEventListener('input', (e) => {
-            const label = document.getElementById('filter-altitud-value');
-            if (label) label.textContent = `${e.target.value}m`;
-            window.AppState.currentPage = 1;
-            const filtered = applyFilters(window.AppState.plants);
-            refreshGrid(filtered);
-        });
-    }
 }
 
 /**

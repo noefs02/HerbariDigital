@@ -2,7 +2,6 @@
 // Mòdul dedicat a la càrrega i renderització dels bolets al mapa
 
 const BOLETS_URL = 'https://www.boletsdemallorca.online/bolets.json';
-const CORS_PROXY = 'https://corsproxy.io/?';
 
 let boletsData = null; // Cache de los datos de bolets
 
@@ -87,7 +86,7 @@ export async function loadAndRenderBolets(markerGroup, currentPlantCount) {
     try {
         // Cache: solo hacemos fetch una vez
         if (!boletsData) {
-            const response = await fetch(CORS_PROXY + encodeURIComponent(BOLETS_URL));
+            const response = await fetch(BOLETS_URL);
             const json = await response.json();
             // El JSON tiene estructura @graph > ItemList > itemListElement
             const itemList = json['@graph']?.find(g => g['@type'] === 'ItemList');

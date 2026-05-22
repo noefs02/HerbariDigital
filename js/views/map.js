@@ -1,7 +1,7 @@
 // --- views/map.js ---
 import { renderSidebar } from '../components/sidebar.js';
 import { AppState } from '../app.js';
-import { applyFilters, getCheckedValues } from './herbarium.js';
+import { applyFilters, getCheckedValues, renderPlantTags } from './herbarium.js';
 
 // Importamos las utilidades centralizadas: diseño consistente en toda la app
 import { TILE_LAYER_CONFIG, createPlantIcon, LocationControl, LayerSwitcherControl, injectMapStyles } from '../components/mapUtils.js';
@@ -130,10 +130,8 @@ export function initMap(plants) {
     <div class="rounded-xl overflow-hidden group">
         <div class="relative h-32 overflow-hidden bg-black">
             <img src="${popupImageUrl}" alt="${item.name}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy">
-            <div class="absolute top-2 left-2 flex gap-1">
-                ${(item.additionalProperty?.find(prop => prop.name === 'Etiquetes')?.value || []).map(tag =>
-                    `<span class="px-2 py-0.5 rounded-full bg-surface/80 backdrop-blur text-white text-[8px] font-black uppercase tracking-widest border border-white/20">${tag}</span>`
-                ).join('')}
+            <div class="absolute top-2 left-2 flex flex-wrap gap-1.5 max-w-[90%] pointer-events-none">
+                ${renderPlantTags(item)}
             </div>
         </div>
         <div class="p-4 bg-background-dark/95">
@@ -179,17 +177,6 @@ export function initMapFilterListeners() {
             initMap(filtered);
         });
     });
-
-    // Slider de Altitud
-    const altitudeInput = document.getElementById('filter-altitud-range');
-    if (altitudeInput) {
-        altitudeInput.addEventListener('input', (e) => {
-            const label = document.getElementById('filter-altitud-value');
-            if (label) label.textContent = `${e.target.value}m`;
-            const filtered = applyFilters(window.AppState.plants);
-            initMap(filtered);
-        });
-    }
 
     // Toggle de Bolets
     const boletsToggle = document.getElementById('toggle-bolets-checkbox');

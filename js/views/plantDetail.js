@@ -1,4 +1,5 @@
 import { AppState } from '../app.js';
+import { renderPlantTags } from './herbarium.js';
 import { YouTubeHandler } from '../components/youtube.js'; // IMPORTACIÓN DEL SERVICIO
 import { CustomVideoHandler } from '../components/customVideo.js'; // IMPORTACIÓN REPRODUCTOR PROPIO
 import { CustomAudioHandler } from '../components/customAudio.js'; // IMPORTACIÓN REPRODUCTOR AUDIO
@@ -155,29 +156,64 @@ function renderIslandPresence(illaString = "") {
  * Lògica de Stitch: Targeta de Conservació
  */
 function renderConservationCard(status = "") {
-    let color = 'emerald', label = 'Segura', percent = 20, desc = 'Poblacions estables.';
+    let colorClasses = {
+        cardBg: 'bg-emerald-500/10',
+        cardBorder: 'border-emerald-500/20',
+        textLight: 'text-emerald-400',
+        progressBg: 'bg-emerald-600',
+        textDark: 'text-emerald-600'
+    };
+    let label = 'Segura', percent = 20, desc = 'Poblacions estables.';
 
     if (status.includes('Crític')) {
-        color = 'red'; label = 'En Perill Crític'; percent = 95; desc = 'Risc extrem d\'extinció en estat silvestre.';
+        colorClasses = {
+            cardBg: 'bg-red-500/10',
+            cardBorder: 'border-red-500/20',
+            textLight: 'text-red-400',
+            progressBg: 'bg-red-600',
+            textDark: 'text-red-600'
+        };
+        label = 'En Perill Crític'; percent = 95; desc = 'Risc extrem d\'extinció en estat silvestre.';
     } else if (status.includes('Perill')) {
-        color = 'red'; label = 'En Perill'; percent = 85; desc = 'Risc elevat d\'extinció en estat silvestre.';
+        colorClasses = {
+            cardBg: 'bg-red-500/10',
+            cardBorder: 'border-red-500/20',
+            textLight: 'text-red-400',
+            progressBg: 'bg-red-600',
+            textDark: 'text-red-600'
+        };
+        label = 'En Perill'; percent = 85; desc = 'Risc elevat d\'extinció en estat silvestre.';
     } else if (status.includes('Vulnerable')) {
-        color = 'amber'; label = 'Vulnerable'; percent = 65; desc = 'Vulnerable a l\'extinció si no es prenen mesures.';
+        colorClasses = {
+            cardBg: 'bg-amber-500/10',
+            cardBorder: 'border-amber-500/20',
+            textLight: 'text-amber-400',
+            progressBg: 'bg-amber-600',
+            textDark: 'text-amber-600'
+        };
+        label = 'Vulnerable'; percent = 65; desc = 'Vulnerable a l\'extinció si no es prenen mesures.';
     } else if (status.includes('Protegida')) {
-        color = 'orange'; label = 'Protegida'; percent = 50; desc = 'Sota regulació especial per evitar el seu declivi.';
+        colorClasses = {
+            cardBg: 'bg-orange-500/10',
+            cardBorder: 'border-orange-500/20',
+            textLight: 'text-orange-400',
+            progressBg: 'bg-orange-600',
+            textDark: 'text-orange-600'
+        };
+        label = 'Protegida'; percent = 50; desc = 'Sota regulació especial per evitar el seu declivi.';
     }
 
     return `
-    <div class="bg-${color}-500/10 rounded-xl border border-${color}-500/20 p-6">
-        <div class="flex items-center gap-2 text-${color}-400 mb-3">
+    <div class="${colorClasses.cardBg} rounded-xl border ${colorClasses.cardBorder} p-6">
+        <div class="flex items-center gap-2 ${colorClasses.textLight} mb-3">
             <span class="material-symbols-outlined">warning</span>
             <h4 class="font-bold text-lg">Estat de conservació</h4>
         </div>
         <p class="text-sm text-forest-neutral-300 mb-4 italic leading-relaxed">"${desc}"</p>
         <div class="w-full bg-forest-neutral-800 h-2 rounded-full overflow-hidden">
-            <div class="bg-${color}-600 h-full" style="width:${percent}%"></div>
+            <div class="${colorClasses.progressBg} h-full" style="width:${percent}%"></div>
         </div>
-        <p class="text-[10px] mt-2 text-right uppercase font-bold text-${color}-600">${status || label}</p>
+        <p class="text-[10px] mt-2 text-right uppercase font-bold ${colorClasses.textDark}">${status || label}</p>
     </div>`;
 }
 
@@ -185,12 +221,47 @@ function renderConservationCard(status = "") {
  * Renderitza les targetes de plantes relacionades
  */
 function renderRelatedCards(currentId) {
-    const others = AppState.plants
-        .filter(p => {
-            const id = p.item ? p.item['@id'] : p['@id'];
-            return id !== currentId;
-        })
-        .slice(0, 4);
+    const getPropVal = (plantObj, name) => plantObj?.additionalProperty?.find(prop => prop.name === name)?.value || '';
+
+    const currentPlantEntry = AppState.plants.find(p => {
+        const id = p.item ? p.item['@id'] : p['@id'];
+        return id === currentId;
+    });
+    const currentPlant = currentPlantEntry ? (currentPlantEntry.item || currentPlantEntry) : null;
+
+    const curStatus = getPropVal(currentPlant, 'Estat de conservació');
+    const curFloracio = getPropVal(currentPlant, 'Floració');
+    const curHabitat = getPropVal(currentPlant, 'Hàbitat');
+
+    const otherPlants = AppState.plants.filter(p => {
+        const id = p.item ? p.item['@id'] : p['@id'];
+        return id !== currentId;
+    });
+
+    const scoredOthers = otherPlants.map(entry => {
+        const p = entry.item || entry;
+        const status = getPropVal(p, 'Estat de conservació');
+        const floracio = getPropVal(p, 'Floració');
+        const habitat = getPropVal(p, 'Hàbitat');
+
+        let score = 0;
+        if (curStatus && status === curStatus) score++;
+        if (curFloracio && floracio === curFloracio) score++;
+        if (curHabitat && habitat === curHabitat) score++;
+
+        return { entry, score };
+    });
+
+    // Fisher-Yates shuffle to randomize elements before sorting
+    for (let i = scoredOthers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [scoredOthers[i], scoredOthers[j]] = [scoredOthers[j], scoredOthers[i]];
+    }
+
+    // Sort by score descending
+    scoredOthers.sort((a, b) => b.score - a.score);
+
+    const others = scoredOthers.slice(0, 4).map(x => x.entry);
 
     if (others.length === 0) return '';
 
@@ -199,8 +270,6 @@ function renderRelatedCards(currentId) {
         const pid = p['@id'];
         const getProp = (name) => p.additionalProperty?.find(prop => prop.name === name)?.value || '';
         const familia = getProp('Família');
-        const status = getProp('Estat de conservació');
-        const statusColor = status.includes('Perill') ? 'red' : status.includes('Protegida') ? 'orange' : 'amber';
 
         // Extraiem una imatge vàlida, reemplaçant _2000 per _400_thumb
         let imageUrl = '';
@@ -219,7 +288,7 @@ function renderRelatedCards(currentId) {
                     alt="${p.alternateName || p.name}" src="${thumbUrl}" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div class="absolute top-4 left-4 flex flex-wrap gap-2">
-                    <span class="px-2 py-0.5 rounded-full bg-${statusColor}-500/20 text-${statusColor}-400 text-[8px] font-black uppercase tracking-widest backdrop-blur-md border border-${statusColor}-500/30">${status}</span>
+                    ${renderPlantTags(p)}
                 </div>
             </div>
             <div class="p-5 shrink-0 bg-surface">
@@ -439,9 +508,7 @@ export function renderPlantDetail(plant) {
         </div>
     ` : '';
 
-    const heroTagsHTML = `
-        <span class="px-3 py-1 bg-surface border border-primary text-slate-100 text-xs font-bold rounded-full uppercase tracking-wider">${familia}</span>
-        <span class="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full uppercase tracking-wider">${status}</span>`;
+    const heroTagsHTML = renderPlantTags(plant, true);
 
     return `
     <div class="animate-in fade-in duration-500">

@@ -8,7 +8,7 @@ export const FILTRES = [
     {
         id: 'conservacio', icon: 'security', title: 'Estat de conservació',
         type: 'pills',
-        options: ['En Perill', 'Protegida', 'Vulnerable']
+        options: ['Segura', 'Vulnerable', 'Protegida', 'En Perill', 'En Perill Crític']
     },
     {
         id: 'floracio', icon: 'calendar_month', title: 'Època de floració',
@@ -23,27 +23,17 @@ export const FILTRES = [
     {
         id: 'forma', icon: 'psychology_alt', title: 'Forma vital',
         type: 'pills',
-        options: ['Faneròfit', 'Camèfit', 'Hemicriptòfit']
+        options: ['Faneròfit', 'Camèfit', 'Hemicriptòfit', 'Nanofaneròfit', 'Geòfit', 'Teròfit']
     },
     {
         id: 'substrat', icon: 'layers', title: 'Substrat',
         type: 'pills',
-        options: ['Calcari', 'Silícic']
+        options: ['Calcari', 'Silícic', 'Salí', 'Arenós', 'Humid', 'Rocallós']
     },
     {
-        id: 'exposicio', icon: 'wb_sunny', title: 'Exposició solar',
+        id: 'altitud', icon: 'height', title: 'Altitud',
         type: 'pills',
-        options: ['Ple sol', 'Semiombra', 'Ombra']
-    },
-    {
-        id: 'altitud', icon: 'height', title: 'Altitud màxima',
-        type: 'range',
-        min: 0, max: 1500, unit: 'm'
-    },
-    {
-        id: 'usos', icon: 'medical_services', title: 'Usos i propietats',
-        type: 'pills',
-        options: ['Medicinal', 'Ornamental', 'Comestible', 'Mel·lífera']
+        options: ['0 - 50m', '50 - 200m', '200 - 500m', '500 - 800m', '800 - 1100m', 'Més de 1100m']
     }
 ];
 

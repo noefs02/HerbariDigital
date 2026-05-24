@@ -9,6 +9,7 @@ import { loadAndRenderBolets } from './bolets.js';
 
 let mapInstance = null;
 let markerGroup = null;
+let boletsCargadosOnce = false; // RENDIMIENTO: Evita llamadas fetch duplicadas al filtrar
 
 export function renderMap() {
     const extraContent = `
@@ -17,12 +18,12 @@ export function renderMap() {
              <div class="flex items-center justify-between p-2 rounded-lg bg-surface border border-white/5 mt-2">
                  <div class="flex items-center gap-2">
                      <span class="text-lg">🍄</span>
-                     <span class="text-sm font-semibold text-slate-200">Mostrar Bolets</span>
+                     <label for="toggle-bolets-checkbox" class="text-sm font-semibold text-slate-200 cursor-pointer">Mostrar Bolets</label>
                  </div>
-                 <label class="relative inline-flex items-center cursor-pointer">
-                     <input id="toggle-bolets-checkbox" type="checkbox" checked class="sr-only peer">
-                     <div class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-400 after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-600 peer-checked:after:bg-white peer-checked:after:border-white"></div>
-                 </label>
+                 <div class="relative inline-flex items-center">
+                     <input id="toggle-bolets-checkbox" type="checkbox" checked class="sr-only peer" aria-label="Mostrar o ocultar la capa de bolets al mapa">
+                     <div onclick="document.getElementById('toggle-bolets-checkbox').click();" class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-400 after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-amber-600 peer-checked:after:bg-white peer-checked:after:border-white cursor-pointer"></div>
+                 </div>
              </div>
         </div>
     `;
@@ -39,13 +40,13 @@ export function renderMap() {
                         <div class="flex items-start justify-between gap-4">
                             <div>
                                 <h2 class="text-xl font-black text-white flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-primary">public</span>
-                                    Mapa
+                                    <span class="material-icons text-primary">public</span>
+                                    Mapa de Biodiversitat
                                 </h2>
-                                <p class="text-sm text-slate-400 mt-1"><span id="map-marker-count">0</span> localitzacions</p>
+                                <p class="text-sm text-slate-400 mt-1"><span id="map-marker-count">0</span> localitzacions cartografiades</p>
                             </div>
                             <button class="open-sidebar-btn lg:hidden p-2 bg-surface border border-white/10 rounded-lg text-white hover:bg-white/5 transition-colors shadow-lg pointer-events-auto flex-shrink-0">
-                                <span class="material-symbols-outlined text-primary-light text-xl">filter_list</span>
+                                <span class="material-icons text-primary-light text-xl">filter_list</span>
                             </button>
                         </div>
                     </div>
@@ -59,7 +60,7 @@ export function initMap(plants) {
     const mapEl = document.getElementById('global-map');
     if (!mapEl || typeof L === 'undefined') return;
 
-    // 1. Inyectamos estilos base (Popups, Botón premium) desde mapUtils
+    // 1. Inyectamos estilos base desde las utilidades centralizadas
     injectMapStyles();
 
     // 2. Inyectamos estilos de posicionamiento específicos para el mapa global
@@ -71,17 +72,20 @@ export function initMap(plants) {
                 bottom: 25px !important; 
                 right: 15px !important; 
                 display: flex !important;
-                flex-direction: column; /* Apilado vertical */
-                gap: 10px;              /* Espacio entre GPS y Zoom */
-                align-items: center;    /* Centrado perfecto uno sobre otro */
+                flex-direction: column; 
+                gap: 10px;              
+                align-items: center;    
             }
             .custom-popup-container .leaflet-popup-content { margin: 0 !important; width: 240px !important; }
         `;
         document.head.appendChild(style);
     }
 
-    // 3. Inicialización de la instancia (Singleton)
+    // 3. Inicialización de la instancia del mapa (Patrón Singleton)
+    let esPrimeraCarga = false;
     if (!mapEl._leaflet_id) {
+        esPrimeraCarga = true;
+        boletsCargadosOnce = false; // Reset de la caché de red al reconstruir
         if (mapInstance) {
             mapInstance.remove();
             mapInstance = null;
@@ -94,7 +98,6 @@ export function initMap(plants) {
             tap: true
         }).setView([39.6105, 2.9463], 8);
 
-        // --- ORDRE DE CONTROLS (de dalt a baix a bottomright) ---
         const layerSwitcher = new LayerSwitcherControl({ position: 'bottomright' });
         mapInstance.addControl(layerSwitcher);
         mapInstance.addControl(new LocationControl({ position: 'bottomright' }));
@@ -109,7 +112,7 @@ export function initMap(plants) {
         setTimeout(() => mapInstance.invalidateSize(), 100);
     }
 
-    // 4. Lógica de Marcadores y Filtrado
+    // 4. Lógica de Marcadores Locales (Plantas) y Filtrado Semántico
     markerGroup.clearLayers();
     let markerCount = 0;
     const checkedIlles = getCheckedValues('illa');
@@ -120,24 +123,23 @@ export function initMap(plants) {
 
         if (coordsProp && Array.isArray(coordsProp.value)) {
             coordsProp.value.forEach(coord => {
-                // Filtro de Islas: usem 'name' en lloc de 'label'
                 if (checkedIlles.length > 0) {
                     const coordEsDaquestaIlla = checkedIlles.some(illa =>
-                        coord.name.toLowerCase().includes(illa.toLowerCase())
+                        coord.name && coord.name.toLowerCase().includes(illa.toLowerCase())
                     );
                     if (!coordEsDaquestaIlla) return;
                 }
 
                 markerCount++;
                 const plantIcon = createPlantIcon(32);
+                const originalUrl = item.image && item.image[0] ? item.image[0].contentUrl : '';
+                const popupImageUrl = originalUrl ? originalUrl.replace('_2000.webp', '_400.webp') : 'img/fallback.webp';
 
-                // Extraemos directamente la URL de la imagen de 100px (primera posición del array)
-                const popupImageUrl = item.image && item.image[0] ? item.image[0].contentUrl : 'img/fallback.webp';
-
+                // CORRECCIÓN OPTIMIZACIÓN: Iconos de botones pasados a 'material-icons' nativos
                 const popupContent = `
     <div class="rounded-xl overflow-hidden group">
         <div class="relative h-32 overflow-hidden bg-black">
-            <img src="${popupImageUrl}" alt="${item.name}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy">
+            <img src="${popupImageUrl}" alt="${item.alternateName || item.name}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy">
             <div class="absolute top-2 left-2 flex flex-wrap gap-1.5 max-w-[90%] pointer-events-none">
                 ${renderPlantTags(item)}
             </div>
@@ -148,7 +150,7 @@ export function initMap(plants) {
             
             <div class="flex flex-col gap-1 mb-5">
                 <div class="flex items-center gap-1.5 text-white">
-                    <span class="material-symbols-outlined text-primary text-[16px]">location_on</span>
+                    <span class="material-icons text-primary text-[16px]">location_on</span>
                     <span class="font-black text-sm tracking-tight">${coord.name}</span>
                 </div>
                 <div class="pl-6 text-[12px] text-slate-100 font-mono font-bold tracking-wide">
@@ -156,8 +158,8 @@ export function initMap(plants) {
                 </div>
             </div>
 
-            <button onclick="window.navigateSPA('plant-detail', '${item['@id']}')" class="w-full flex items-center justify-center gap-2 bg-primary text-white text-xs font-bold py-2.5 rounded-lg hover:bg-primary-light transition-all shadow-lg">
-                <span class="material-symbols-outlined text-[16px]">visibility</span>
+            <button onclick="window.navigateSPA('plant-detail', '${item['@id']}')" class="w-full flex items-center justify-center gap-2 bg-primary text-white text-xs font-bold py-2.5 rounded-lg hover:bg-primary-dark transition-colors shadow-lg">
+                <span class="material-icons text-[16px]">visibility</span>
                 Veure Fitxa
             </button>
         </div>
@@ -172,11 +174,25 @@ export function initMap(plants) {
         }
     });
 
-    // 5. Cargar y renderizar marcadores de Bolets (datos externos)
-    loadAndRenderBolets(markerGroup, markerCount);
+    // Actualización inicial del contador de posiciones locales
+    const countEl = document.getElementById('map-marker-count');
+    if (countEl) countEl.textContent = markerCount;
+
+    // 5. Cargar y renderizar marcadores de Bolets de forma eficiente
+    // RENDIMIENTO: Solo se invoca si es la carga inicial o si los datos externos no han sido inyectados todavía
+    if (esPrimeraCarga || !boletsCargadosOnce) {
+        loadAndRenderBolets(markerGroup, markerCount);
+        boletsCargadosOnce = true;
+    } else {
+        // Si ya fueron cacheados por Leaflet, forzamos la renderización respetando el conteo de plantas actual
+        const toggleEl = document.getElementById('toggle-bolets-checkbox');
+        if (!toggleEl || toggleEl.checked) {
+            loadAndRenderBolets(markerGroup, markerCount);
+        }
+    }
 }
 
-// 5. Listeners de los filtros (Sidebar)
+// 6. Listeners de los filtros (Sidebar) con control de duplicidad
 export function initMapFilterListeners() {
     initSidebarEvents();
 
@@ -188,10 +204,10 @@ export function initMapFilterListeners() {
         });
     });
 
-    // Toggle de Bolets
     const boletsToggle = document.getElementById('toggle-bolets-checkbox');
     if (boletsToggle) {
         boletsToggle.addEventListener('change', () => {
+            // Forzamos un refresco limpio del mapa aplicando el estado de filtros actual
             const filtered = applyFilters(window.AppState.plants);
             initMap(filtered);
         });

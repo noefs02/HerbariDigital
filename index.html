@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="es">
+<html class="dark" lang="ca">
 
 <head>
     <meta charset="UTF-8">
@@ -36,39 +36,50 @@
 </head>
 
 <body class="bg-background-dark font-display text-slate-300 transition-colors duration-200">
+    <a href="#app-content"
+        class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-amber-600 focus:text-white focus:rounded-lg focus:outline-none">
+        Saltar al contingut principal
+    </a>
+    
     <div id="app-wrapper" class="relative flex min-h-screen w-full flex-col">
-        <div id="app-header"></div>
+        <header id="app-header" role="banner"></header>
 
         <div class="layout-container flex-1 flex flex-col w-full">
-            <main id="app-content" class="flex-1 flex flex-col w-full relative"></main>
+            <main id="app-content" class="flex-1 flex flex-col w-full relative" tabindex="-1"></main>
         </div>
 
-        <div id="app-footer"></div>
+        <footer id="app-footer" role="contentinfo"></footer>
     </div>
 
-    <!-- Modal de Autenticación (Login) - Fuera de app-wrapper para evitar colisiones de backdrop-filter -->
-    <div id="auth-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm px-2 sm:px-4">
-        <div class="bg-surface border border-white/10 rounded-2xl p-4 sm:p-6 w-full max-w-sm shadow-2xl shadow-black">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold flex items-center gap-2 text-white">
-                    <span class="material-symbols-outlined text-primary">account_circle</span>
-                    Iniciar Sessió / Registre
-                </h2>
-                <button id="btn-close-modal" class="text-slate-400 hover:text-white transition-colors">
-                    <span class="material-symbols-outlined">close</span>
-                </button>
-            </div>
-            <p class="text-sm text-slate-400 mb-4">Introdueix un nom d'usuari. Si no existeix, es crearà automàticament el compte.</p>
-            <form id="auth-form" class="space-y-4">
-                <div>
-                    <input type="text" id="auth-username" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Nom d'usuari...">
+            <!-- Modal de Autenticación (Login) - Fuera de app-wrapper para evitar colisiones de backdrop-filter -->
+            <div id="auth-modal"
+                class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm px-2 sm:px-4">
+                <div
+                    class="bg-surface border border-white/10 rounded-2xl p-4 sm:p-6 w-full max-w-sm shadow-2xl shadow-black">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold flex items-center gap-2 text-white">
+                            <span class="material-symbols-outlined text-primary">account_circle</span>
+                            Iniciar Sessió / Registre
+                        </h2>
+                        <button id="btn-close-modal" class="text-slate-400 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-4">Introdueix un nom d'usuari. Si no existeix, es crearà
+                        automàticament el compte.</p>
+                    <form id="auth-form" class="space-y-4">
+                        <div>
+                            <input type="text" id="auth-username" required
+                                class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                placeholder="Nom d'usuari...">
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-2.5 rounded-lg transition-colors shadow-lg shadow-primary/20">
+                            Entrar a l'Herbari
+                        </button>
+                    </form>
                 </div>
-                <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-2.5 rounded-lg transition-colors shadow-lg shadow-primary/20">
-                    Entrar a l'Herbari
-                </button>
-            </form>
-        </div>
-    </div>
+            </div>
 </body>
 
 </html>

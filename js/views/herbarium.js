@@ -47,8 +47,8 @@ export function renderPlantTags(plant, isLarge = false) {
         habitatClasses = 'bg-slate-600/85 text-white border-slate-500/60';
     }
 
-    const sizeClasses = isLarge 
-        ? 'px-3 py-1.5 text-xs tracking-wider' 
+    const sizeClasses = isLarge
+        ? 'px-3 py-1.5 text-xs tracking-wider'
         : 'px-2 py-0.5 text-[8px] tracking-widest';
 
     const tags = [];
@@ -71,15 +71,12 @@ export function renderPlantTags(plant, isLarge = false) {
 function renderPlantCard(entry) {
     const plant = entry.item || entry;
     const id = plant["@id"];
-
     const getProp = (name) => plant.additionalProperty?.find(p => p.name === name)?.value || '';
 
     const familia = getProp('Família');
     const illa = getProp('Illa');
-
     const tagsHTML = renderPlantTags(plant);
 
-    // Extraiem una imatge vàlida, reemplaçant _2000 per _400.webp
     let imageUrl = '';
     if (Array.isArray(plant.image) && plant.image.length > 0) {
         imageUrl = plant.image[0].contentUrl || '';
@@ -87,9 +84,8 @@ function renderPlantCard(entry) {
         imageUrl = plant.image;
     }
 
-    const thumbUrl = imageUrl ? imageUrl.replace('_2000.webp', '_400.webp') : '';
-    
-    // Auto generació del srcset tal com es fa a plantDetail.js
+    const thumbUrl = imageUrl ? imageUrl.replace('_2000.webp', '_400.webp') : 'img/fallback.webp';
+
     let srcset = '';
     if (imageUrl && imageUrl.endsWith('_2000.webp')) {
         const base = imageUrl.replace('_2000.webp', '');
@@ -99,20 +95,22 @@ function renderPlantCard(entry) {
     const isFav = AuthService.isFavorite(id);
     const favClasses = isFav ? '!bg-white !text-primary' : '';
 
+    // CORRECCIÓN: Adaptadas las fuentes de iconos fijas a 'material-icons'
     return `
     <div onclick="window.navigateSPA('plant-detail', '${id}')"
         class="group bg-surface rounded-2xl overflow-hidden border border-white/10 shadow-2xl hover:border-primary transition-all duration-500 cursor-pointer hover:scale-[1.02] block">
         <div class="relative aspect-[4/3] overflow-hidden">
             <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                alt="${plant.alternateName || plant.name}" 
+                alt="Fotografia de ${plant.alternateName || plant.name}" 
                 src="${thumbUrl}" 
                 ${srcset ? `srcset="${srcset}" sizes="(max-width: 768px) 400px, 800px"` : ''}
                 loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="absolute top-4 left-4 flex flex-wrap gap-2">${tagsHTML}</div>
             <button onclick="window.toggleFav(event, '${id}', this)"
+                aria-label="Afegir ${plant.alternateName || plant.name} a preferits"
                 class="absolute bottom-3 right-3 h-10 w-10 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white hover:text-primary transition-all z-20 shadow-lg ${favClasses}">
-                <span class="material-symbols-outlined text-[20px]">favorite</span>
+                <span class="material-icons text-[20px]">favorite</span>
             </button>
         </div>
         <div class="p-6">
@@ -121,7 +119,7 @@ function renderPlantCard(entry) {
             <p class="text-slate-500 text-sm italic mb-6">${plant.name}</p>
             <div class="flex items-center justify-between pt-5 border-t border-white/10">
                 <div class="flex items-center gap-2 text-slate-500">
-                    <span class="material-symbols-outlined text-base">location_on</span>
+                    <span class="material-icons text-base">location_on</span>
                     <span class="text-xs font-medium">${illa}</span>
                 </div>
             </div>
@@ -131,7 +129,6 @@ function renderPlantCard(entry) {
 
 /**
  * LÒGICA DE FILTRAT
- * Llegeix l'estat actiu dels filtres des del DOM i filtra les plantes
  */
 export function applyFilters(allPlants) {
     const checkedIlles = getCheckedValues('illa');
@@ -160,7 +157,7 @@ export function applyFilters(allPlants) {
         if (checkedHabitat.length > 0 && !checkedHabitat.includes(habitat)) return false;
         if (checkedForma.length > 0 && !checkedForma.includes(forma)) return false;
         if (checkedSubstrat.length > 0 && !checkedSubstrat.includes(substrat)) return false;
-        
+
         if (checkedAltitud.length > 0) {
             const matchesRange = checkedAltitud.some(range => {
                 if (range === '0 - 50m') return altitud >= 0 && altitud <= 50;
@@ -186,14 +183,14 @@ export function getCheckedValues(filterId) {
 }
 
 /**
- * Re-renderitza només el grid de targetes i la paginació (sense re-renderitzar el sidebar)
+ * Re-renderitza només el grid de targetes i la paginació de forma accessible
  */
 export function refreshGrid(filteredPlants) {
     const currentPage = window.AppState.currentPage || 1;
     const itemsPerPage = window.AppState.itemsPerPage || 6;
     const startIndex = (currentPage - 1) * itemsPerPage;
     const plantsToShow = filteredPlants.slice(startIndex, startIndex + itemsPerPage);
-    const totalPages = Math.ceil(filteredPlants.length / itemsPerPage);
+    const totalPages = Math.ceil(filteredPlants.length / itemsPerPage) || 1;
 
     // Grid
     const grid = document.getElementById('herbari-grid');
@@ -206,34 +203,38 @@ export function refreshGrid(filteredPlants) {
     // Paginació
     const paginationEl = document.getElementById('herbari-pagination');
     if (paginationEl) {
+        // CORRECCIÓN ACCESIBILIDAD: Añadidos aria-label y control semántico de estados deshabilitados
         let pageButtons = `
             <button onclick="window.changePage(${currentPage - 1})"
-                ${currentPage === 1 ? 'disabled class="opacity-20"' : 'class="hover:border-primary-light hover:text-primary-light"'}
-                class="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 text-slate-500 transition-all">
-                <span class="material-symbols-outlined">chevron_left</span>
+                ${currentPage === 1 ? 'disabled class="opacity-20 cursor-not-allowed"' : 'class="hover:border-primary-light hover:text-primary-light"'}
+                class="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 text-slate-500 transition-all"
+                aria-label="Pàgina anterior">
+                <span class="material-icons">chevron_left</span>
             </button>`;
 
         for (let i = 1; i <= totalPages; i++) {
             const isActive = i === currentPage;
             pageButtons += `
                 <button onclick="window.changePage(${i})"
+                    aria-label="Anar a la pàgina ${i}"
+                    aria-current="${isActive ? 'page' : 'false'}"
                     class="w-12 h-12 flex items-center justify-center rounded-xl font-bold transition-all
-                    ${isActive ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'border border-white/10 text-slate-500 hover:border-primary-light hover:text-primary-light'}">
+                    ${isActive ? 'bg-primary text-white shadow-lg' : 'border border-white/10 text-slate-500 hover:border-primary-light hover:text-primary-light'}">
                     ${i}
                 </button>`;
         }
 
         pageButtons += `
             <button onclick="window.changePage(${currentPage + 1})"
-                ${currentPage === totalPages ? 'disabled class="opacity-20"' : 'class="hover:border-primary-light hover:text-primary-light"'}
-                class="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 text-slate-500 transition-all">
-                <span class="material-symbols-outlined">chevron_right</span>
+                ${currentPage === totalPages ? 'disabled class="opacity-20 cursor-not-allowed"' : 'class="hover:border-primary-light hover:text-primary-light"'}
+                class="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 text-slate-500 transition-all"
+                aria-label="Pàgina següent">
+                <span class="material-icons">chevron_right</span>
             </button>`;
 
         paginationEl.innerHTML = pageButtons;
     }
 
-    // Comptador de resultats
     const counter = document.getElementById('herbari-count');
     if (counter) {
         counter.textContent = `${filteredPlants.length} espècie${filteredPlants.length !== 1 ? 's' : ''}`;
@@ -241,16 +242,20 @@ export function refreshGrid(filteredPlants) {
 }
 
 /**
- * Inicialitza els listeners dels filtres (s'ha de cridar després de renderitzar el DOM)
+ * Inicialitza els listeners dels filtres assegurant el cicle de vida de la SPA
  */
-function initFilterListeners() {
+export function initFilterListeners() {
     document.querySelectorAll('.filter-checkbox').forEach(cb => {
-        cb.addEventListener('change', () => {
-            window.AppState.currentPage = 1;
-            const filtered = applyFilters(window.AppState.plants);
-            refreshGrid(filtered);
-        });
+        // CORRECCIÓN RENDIMIENTO: Eliminamos duplicidades de eventos previas limpiando el listener anterior
+        cb.removeEventListener('change', handleFilterChange);
+        cb.addEventListener('change', handleFilterChange);
     });
+}
+
+function handleFilterChange() {
+    window.AppState.currentPage = 1;
+    const filtered = applyFilters(window.AppState.plants);
+    refreshGrid(filtered);
 }
 
 /**
@@ -261,7 +266,7 @@ export function renderHerbarium(allPlants) {
     const itemsPerPage = window.AppState.itemsPerPage || 6;
     const startIndex = (currentPage - 1) * itemsPerPage;
     const plantsToShow = allPlants.slice(startIndex, startIndex + itemsPerPage);
-    const totalPages = Math.ceil(allPlants.length / itemsPerPage);
+    const totalPages = Math.ceil(allPlants.length / itemsPerPage) || 1;
 
     const cardsHTML = plantsToShow.length > 0
         ? plantsToShow.map(p => renderPlantCard(p)).join('')
@@ -269,26 +274,30 @@ export function renderHerbarium(allPlants) {
 
     let pageButtons = `
         <button onclick="window.changePage(${currentPage - 1})"
-            ${currentPage === 1 ? 'disabled class="opacity-20"' : 'class="hover:border-primary-light hover:text-primary-light"'}
-            class="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 text-slate-500 transition-all">
-            <span class="material-symbols-outlined">chevron_left</span>
+            ${currentPage === 1 ? 'disabled class="opacity-20 cursor-not-allowed"' : 'class="hover:border-primary-light hover:text-primary-light"'}
+            class="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 text-slate-500 transition-all"
+            aria-label="Pàgina anterior">
+            <span class="material-icons">chevron_left</span>
         </button>`;
 
     for (let i = 1; i <= totalPages; i++) {
         const isActive = i === currentPage;
         pageButtons += `
             <button onclick="window.changePage(${i})"
+                aria-label="Anar a la pàgina ${i}"
+                aria-current="${isActive ? 'page' : 'false'}"
                 class="w-12 h-12 flex items-center justify-center rounded-xl font-bold transition-all
-                ${isActive ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'border border-white/10 text-slate-500 hover:border-primary-light hover:text-primary-light'}">
+                ${isActive ? 'bg-primary text-white shadow-lg' : 'border border-white/10 text-slate-500 hover:border-primary-light hover:text-primary-light'}">
                 ${i}
             </button>`;
     }
 
     pageButtons += `
         <button onclick="window.changePage(${currentPage + 1})"
-            ${currentPage === totalPages ? 'disabled class="opacity-20"' : 'class="hover:border-primary-light hover:text-primary-light"'}
-            class="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 text-slate-500 transition-all">
-            <span class="material-symbols-outlined">chevron_right</span>
+            ${currentPage === totalPages ? 'disabled class="opacity-20 cursor-not-allowed"' : 'class="hover:border-primary-light hover:text-primary-light"'}
+            class="w-12 h-12 flex items-center justify-center rounded-xl border border-white/10 text-slate-500 transition-all"
+            aria-label="Pàgina següent">
+            <span class="material-icons">chevron_right</span>
         </button>`;
 
     const sidebarHTML = renderSidebar();
@@ -298,7 +307,7 @@ export function renderHerbarium(allPlants) {
             ${sidebarHTML}
             <main class="flex-1 p-6 lg:p-10">
                 <div class="max-w-6xl mx-auto">
-                    <header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
                         <div>
                             <h2 class="text-3xl md:text-5xl font-black text-white mb-3 tracking-tight">Herbari de les Illes Balears</h2>
                             <p class="text-slate-500 text-lg">
@@ -307,15 +316,15 @@ export function renderHerbarium(allPlants) {
                             </p>
                         </div>
                         <!-- Filtros se abren mediante el FAB flotante en móviles -->
-                    </header>
+                    </div>
 
                     <div id="herbari-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 animate-in fade-in duration-500">
                         ${cardsHTML}
                     </div>
 
-                    <div id="herbari-pagination" class="mt-16 flex items-center justify-center gap-2 pb-10">
+                    <nav aria-label="Paginació de resultats" id="herbari-pagination" class="mt-16 flex items-center justify-center gap-2 pb-10">
                         ${pageButtons}
-                    </div>
+                    </nav>
                 </div>
             </main>
             
@@ -326,10 +335,11 @@ export function renderHerbarium(allPlants) {
         </div>
     `;
 
+    // CORRECCIÓN CICLO DE VIDA: El setTimeout delega el enganche de listeners justo cuando el hilo del DOM principal de app.js termine de pintar la vista
     setTimeout(() => {
         initFilterListeners();
         initSidebarEvents();
-    }, 0);
+    }, 50);
 
     return html;
 }

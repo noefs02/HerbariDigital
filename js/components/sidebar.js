@@ -1,3 +1,5 @@
+// --- components/sidebar.js ---
+
 export const FILTRES = [
     {
         id: 'illa', icon: 'location_on', title: 'Illa',
@@ -23,7 +25,7 @@ export const FILTRES = [
         options: ['Muntanya', 'Litoral', 'Bosc', 'Zones Humides']
     },
     {
-        id: 'forma', icon: 'psychology_alt', title: 'Forma vital',
+        id: 'forma', icon: 'psychology', title: 'Forma vital', // Cambiado a 'psychology' compatible con material-icons tradicional
         type: 'pills',
         options: ['Faneròfit', 'Camèfit', 'Hemicriptòfit', 'Nanofaneròfit', 'Geòfit', 'Teròfit']
     },
@@ -66,20 +68,20 @@ function renderFilter(filter) {
 
     if (filter.type === 'pills') {
         const pills = filter.options.map(opt => renderFilterPill(opt, filter.id)).join('\n');
-        // Cada grup de pills té un id per llegir-lo des de la lògica de filtrat
         content = `<div id="filter-group-${filter.id}" class="flex flex-wrap gap-2 p-2 mt-1">${pills}</div>`;
     } else if (filter.type === 'range') {
         content = renderFilterRange(filter);
     }
 
+    // CORRECCIÓN: Modificadas las clases de iconos a la fuente tradicional 'material-icons'
     return `
     <details class="group" ${openAttr}>
         <summary class="flex items-center justify-between cursor-pointer p-1 hover:bg-surface/50 rounded-md transition-colors">
             <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary-light text-xl">${filter.icon}</span>
+                <span class="material-icons text-primary-light text-xl">${filter.icon}</span>
                 <span class="text-sm font-semibold text-slate-200">${filter.title}</span>
             </div>
-            <span class="material-symbols-outlined text-slate-500 group-open:rotate-180 transition-transform text-lg">expand_more</span>
+            <span class="material-icons text-slate-500 group-open:rotate-180 transition-transform text-lg">expand_more</span>
         </summary>
         ${content}
     </details>`;
@@ -87,17 +89,18 @@ function renderFilter(filter) {
 
 export function renderSidebar(extraHTML = '') {
     const filters = FILTRES.map(f => renderFilter(f)).join('\n');
+    const mobileClasses = "fixed inset-y-0 left-0 z-[120] w-[85%] max-w-[320px] bg-background-dark/95 backdrop-blur-xl border-r border-white/10 shadow-2xl transform -translate-x-full transition-transform duration-300 lg:relative lg:translate-x-0 lg:w-72 lg:z-auto";
 
     return `
     <div id="sidebar-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] hidden lg:hidden"></div>
-    <aside id="filters-sidebar" class="fixed inset-y-0 left-0 z-[80] w-72 flex-col border-r border-white/10 bg-background-dark p-6 space-y-4 h-[100dvh] overflow-y-auto custom-scrollbar transform -translate-x-full transition-transform duration-300 lg:relative lg:h-auto lg:overflow-visible lg:translate-x-0 lg:z-10 flex shadow-2xl lg:shadow-none">
+    <aside id="filters-sidebar" class="${mobileClasses} flex flex-col h-[100dvh] lg:h-auto overflow-hidden" aria-label="Filtres de cerca">
         <div class="flex items-center justify-between mb-2 px-1">
             <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500">Filtres Botànics</h2>
             <button id="close-sidebar-btn" class="lg:hidden text-slate-400 hover:text-white transition-colors p-1 rounded-md hover:bg-surface">
-                <span class="material-symbols-outlined text-sm">close</span>
+                <span class="material-icons text-sm">close</span>
             </button>
         </div>
-        <div class="space-y-2 flex-1">
+        <div class="space-y-2 flex-1 overflow-y-auto custom-scrollbar p-6">
             ${filters}
         </div>
         ${extraHTML}

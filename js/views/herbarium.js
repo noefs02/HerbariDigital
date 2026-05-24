@@ -1,6 +1,5 @@
 // --- js/views/herbarium.js ---
 import { renderSidebar } from '../components/sidebar.js';
-import { AppState } from '../app.js';
 import { AuthService } from '../services/authService.js';
 
 /**

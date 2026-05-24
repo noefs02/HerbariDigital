@@ -1,9 +1,4 @@
 // --- js/app.js ---
-import { renderHome } from './views/home.js';
-import { renderHerbarium, applyFilters, refreshGrid } from './views/herbarium.js';
-import { renderMap, initMap, initMapFilterListeners } from './views/map.js';
-import { renderDiary } from './views/diary.js';
-import { renderPlantDetail, initDetailMap, stopPlantTTS } from './views/plantDetail.js';
 import { AuthService } from './services/authService.js';
 
 // Estado global de la aplicación
@@ -246,9 +241,11 @@ async function loadData() {
 
         console.log("Dades carregades correctament (Schema.org):", AppState.plants);
 
-        if (AppState.currentRoute === 'herbarium') {
+        if (AppState.currentRoute === 'herbarium' && window._herbariumFns) {
+            const { applyFilters, refreshGrid } = window._herbariumFns;
             refreshGrid(applyFilters(AppState.plants));
-        } else if (AppState.currentRoute === 'map') {
+        } else if (AppState.currentRoute === 'map' && window._mapFns) {
+            const { initMap, initMapFilterListeners } = window._mapFns;
             initMap(AppState.plants);
             initMapFilterListeners();
         }
@@ -455,10 +452,9 @@ window.toggleFav = (event, plantaId, btnElement) => {
     }
 };
 
-export function renderView(route, params = {}) {
-    if (typeof stopPlantTTS === 'function') {
-        stopPlantTTS();
-    }
+export async function renderView(route, params = {}) {
+    // Detener TTS si estaba activo en plant-detail
+    if (window._stopPlantTTS) window._stopPlantTTS();
 
     AppState.currentRoute = route;
     const contentDiv = document.getElementById('app-content');
@@ -466,27 +462,41 @@ export function renderView(route, params = {}) {
     contentDiv.innerHTML = '';
 
     switch (route) {
-        case 'home':
+        case 'home': {
+            const { renderHome } = await import('./views/home.js');
             contentDiv.innerHTML = renderHome();
             break;
-        case 'herbarium':
+        }
+        case 'herbarium': {
+            const { renderHerbarium, applyFilters, refreshGrid } = await import('./views/herbarium.js');
             contentDiv.innerHTML = renderHerbarium(AppState.plants);
+            // Guardamos para loadData
+            window._herbariumFns = { applyFilters, refreshGrid };
             break;
-        case 'map':
+        }
+        case 'map': {
+            const { renderMap, initMap, initMapFilterListeners } = await import('./views/map.js');
             contentDiv.innerHTML = renderMap();
             setTimeout(() => {
                 initMap(AppState.plants);
                 initMapFilterListeners();
             }, 50);
+            // Guardamos para loadData
+            window._mapFns = { initMap, initMapFilterListeners };
             break;
-        case 'diary':
+        }
+        case 'diary': {
+            const { renderDiary, initDiaryEvents } = await import('./views/diary.js');
             contentDiv.innerHTML = renderDiary(AppState.diaries);
             setTimeout(async () => {
-                const { initDiaryEvents } = await import('./views/diary.js');
                 await initDiaryEvents();
             }, 50);
             break;
-        case 'plant-detail':
+        }
+        case 'plant-detail': {
+            const { renderPlantDetail, initDetailMap, stopPlantTTS } = await import('./views/plantDetail.js');
+            window._stopPlantTTS = stopPlantTTS;
+
             const plantEntry = AppState.plants.find(p => {
                 const idToCheck = p.item ? p.item["@id"] : p["@id"];
                 return idToCheck === params.id;
@@ -500,6 +510,7 @@ export function renderView(route, params = {}) {
                 }, 100);
             }
             break;
+        }
         default:
             contentDiv.innerHTML = '<h2 class="text-xl font-bold p-8">Pàgina no trobada</h2>';
     }
@@ -507,13 +518,17 @@ export function renderView(route, params = {}) {
 
 window.changePage = (pageNumber) => {
     if (AppState.currentRoute === 'herbarium') {
-        const filtered = applyFilters(AppState.plants);
-        const totalPages = Math.ceil(filtered.length / AppState.itemsPerPage);
+        // Necesitamos applyFilters y refreshGrid del módulo ya cargado
+        if (window._herbariumFns) {
+            const { applyFilters, refreshGrid } = window._herbariumFns;
+            const filtered = applyFilters(AppState.plants);
+            const totalPages = Math.ceil(filtered.length / AppState.itemsPerPage);
 
-        if (pageNumber < 1 || pageNumber > totalPages) return;
+            if (pageNumber < 1 || pageNumber > totalPages) return;
 
-        AppState.currentPage = pageNumber;
-        refreshGrid(filtered);
+            AppState.currentPage = pageNumber;
+            refreshGrid(filtered);
+        }
     } else {
         const totalPages = Math.ceil(AppState.plants.length / AppState.itemsPerPage);
         if (pageNumber < 1 || pageNumber > totalPages) return;

@@ -25,7 +25,7 @@ export function renderDiary(diaries) {
                     <div class="flex flex-col gap-4">
                         <div class="flex items-center justify-between">
                             <h3 class="text-lg font-bold flex items-center gap-2">
-                                <span class="material-symbols-outlined text-primary">checklist</span>
+                                <span class="material-icons text-primary">checklist</span>
                                 Llista de Control
                             </h3>
                         </div>
@@ -53,10 +53,10 @@ export function renderDiary(diaries) {
                     <div class="flex flex-col gap-4" id="map-section">
                         <div class="flex items-center justify-between">
                             <h3 class="text-lg font-bold flex items-center gap-2">
-                                <span class="material-symbols-outlined text-primary">explore</span> Mapa de Troballes
+                                <span class="material-icons text-primary">explore</span> Mapa de Troballes
                             </h3>
                             <button id="map-toggle-btn" class="p-2 bg-surface hover:bg-primary/20 text-primary rounded-lg transition-colors" title="Minimizar/Maximizar mapa">
-                                <span class="material-symbols-outlined">unfold_less</span>
+                                <span class="material-icons">unfold_less</span>
                             </button>
                         </div>
                         <div id="diary-map-container" class="relative w-full h-[600px] rounded-xl overflow-hidden border border-white/10 bg-surface z-0 select-none outline-none focus:outline-none transition-all duration-300">
@@ -68,10 +68,10 @@ export function renderDiary(diaries) {
                     <div class="flex flex-col gap-4 mt-2">
                         <div class="flex items-center justify-between">
                             <h3 class="text-lg font-bold flex items-center gap-2">
-                                <span class="material-symbols-outlined text-primary">menu_book</span> Diari d'Activitat
+                                <span class="material-icons text-primary">menu_book</span> Diari d'Activitat
                             </h3>
                             <button id="btn-nou-registre" class="bg-primary text-white text-sm font-bold px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-primary-dark transition-colors">
-                                <span class="material-symbols-outlined text-base">add</span> Nou Registre
+                                <span class="material-icons text-base">add</span> Nou Registre
                             </button>
                         </div>
                         
@@ -92,23 +92,23 @@ export function renderDiary(diaries) {
             <div class="bg-surface border border-white/10 rounded-2xl p-4 sm:p-6 w-full max-w-lg shadow-2xl shadow-black relative my-auto max-h-[90vh] overflow-y-auto custom-scrollbar">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-xl font-bold flex items-center gap-2 text-white">
-                        <span class="material-symbols-outlined text-primary">add_circle</span>
+                        <span class="material-icons text-primary">add_circle</span>
                         Nou Registre
                     </h2>
-                    <button id="btn-close-diary-modal" class="text-slate-400 hover:text-white transition-colors">
-                        <span class="material-symbols-outlined">close</span>
+                    <button aria-label="Tancar modal" id="btn-close-diary-modal" class="text-slate-400 hover:text-white transition-colors">
+                        <span class="material-icons">close</span>
                     </button>
                 </div>
                 <form id="diary-form" class="space-y-4">
                     <div class="relative">
                         <label for="diary-plant-search" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Planta</label>
                         <div class="relative">
-                            <input type="text" id="diary-plant-search" autocomplete="off" placeholder="Escriu per cercar una planta..." class="w-full bg-slate-900 border border-white/10 rounded-lg pl-10 pr-10 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
+                            <input type="text" id="diary-plant-search" autocomplete="off" placeholder="Escriu per cercar una planta..." aria-label="Planta" class="w-full bg-slate-900 border border-white/10 rounded-lg pl-10 pr-10 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500">
-                                <span class="material-symbols-outlined text-lg">search</span>
+                                <span class="material-icons text-lg">search</span>
                             </div>
-                            <button type="button" id="btn-clear-plant" class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-500 hover:text-white hidden">
-                                <span class="material-symbols-outlined text-lg">close</span>
+                            <button type="button" aria-label="Esborrar planta seleccionada" id="btn-clear-plant" class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-500 hover:text-white hidden">
+                                <span class="material-icons text-lg">close</span>
                             </button>
                         </div>
                         <input type="hidden" id="diary-plant-select" required>
@@ -117,34 +117,34 @@ export function renderDiary(diaries) {
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label for="diary-date" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Data</label>
-                            <input type="datetime-local" id="diary-date" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                            <input type="datetime-local" id="diary-date" aria-label="Data" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                         <div>
                             <label for="diary-loc-name" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Ubicació (Nom)</label>
-                            <input type="text" id="diary-loc-name" required placeholder="Ex: Serra de Tramuntana" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                            <input type="text" id="diary-loc-name" aria-label="Ubicació (Nom)" required placeholder="Ex: Serra de Tramuntana" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label for="diary-lat" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Latitud</label>
-                            <input type="number" step="any" id="diary-lat" required placeholder="39.7103" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                            <input type="number" step="any" id="diary-lat" aria-label="Latitud" required placeholder="39.7103" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                         <div>
                             <label for="diary-lng" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Longitud</label>
-                            <input type="number" step="any" id="diary-lng" required placeholder="2.9122" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                            <input type="number" step="any" id="diary-lng" aria-label="Longitud" required placeholder="2.9122" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                     </div>
                     <div class="flex justify-end mb-2">
-                        <button type="button" id="btn-geolocate" class="text-xs text-primary hover:text-primary-light flex items-center gap-1 transition-colors">
-                            <span class="material-symbols-outlined text-[14px]">my_location</span> Utilitzar la meva ubicació
+                        <button aria-label="Utilitzar la meva ubicació actual" type="button" id="btn-geolocate" class="text-xs text-primary hover:text-primary-light flex items-center gap-1 transition-colors">
+                            <span class="material-icons text-[14px]">my_location</span> Utilitzar la meva ubicació
                         </button>
                     </div>
                     <div>
                         <label for="diary-obs" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Observacions</label>
-                        <textarea id="diary-obs" rows="3" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Afegeix detalls de la troballa..."></textarea>
+                        <textarea id="diary-obs" aria-label="Observacions" rows="3" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Afegeix detalls de la troballa..."></textarea>
                     </div>
                     <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-lg transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2 mt-4">
-                        <span class="material-symbols-outlined">save</span> Guardar Registre
+                        <span class="material-icons">save</span> Guardar Registre
                     </button>
                 </form>
             </div>
@@ -175,7 +175,7 @@ export async function initDiaryEvents() {
             if (diaryView) {
                 diaryView.innerHTML = `
                     <div class="flex flex-col items-center justify-center text-center p-12 mt-12 bg-surface border border-white/10 rounded-2xl max-w-lg mx-auto shadow-2xl">
-                        <span class="material-symbols-outlined text-6xl text-slate-500 mb-4">lock</span>
+                        <span class="material-icons text-6xl text-slate-500 mb-4">lock</span>
                         <h2 class="text-2xl font-bold text-white mb-2">Inicia Sessió</h2>
                         <p class="text-slate-400 mb-6">Necessites iniciar sessió per veure el teu diari, llista de desitjos i èxits.</p>
                         <button onclick="document.getElementById('btn-login-modal').click()" class="bg-primary hover:bg-primary-dark text-white font-bold py-2.5 px-6 rounded-lg transition-colors shadow-lg shadow-primary/20">
@@ -300,10 +300,10 @@ function renderChecklistItem(favItem) {
 
     const btnVist = isVist
         ? `<button class="p-1.5 bg-forest-neutral-900 text-primary rounded-lg shadow-sm cursor-default" title="Vist">
-                <span class="material-symbols-outlined text-lg">check_circle</span>
+                <span class="material-icons text-lg">check_circle</span>
            </button>`
         : `<button class="p-1.5 bg-slate-800 text-slate-500 rounded-lg cursor-default" title="Pendent">
-                <span class="material-symbols-outlined text-lg">radio_button_unchecked</span>
+                <span class="material-icons text-lg">radio_button_unchecked</span>
            </button>`;
 
     return `
@@ -318,13 +318,13 @@ function renderChecklistItem(favItem) {
         <div class="flex gap-1.5">
             ${btnVist}
             ${!isVist ? `<button class="p-1.5 bg-primary/20 text-primary rounded-lg hover:bg-primary hover:text-white transition-colors" title="Afegir al diari" data-fav-add="${favItem.plantaId}">
-                <span class="material-symbols-outlined text-lg">add</span>
+                <span class="material-icons text-lg">add</span>
             </button>` : ''}
             <button class="p-1.5 bg-slate-800 text-slate-300 rounded-lg hover:bg-slate-700 transition-colors" onclick="window.navigateSPA('map');" title="Veure al Mapa">
-                <span class="material-symbols-outlined text-lg">location_on</span>
+                <span class="material-icons text-lg">location_on</span>
             </button>
             <button class="p-1.5 bg-red-900/20 text-red-500 rounded-lg hover:bg-red-500 hover:text-white transition-colors" title="Eliminar de preferits" data-fav-delete="${favItem.plantaId}">
-                <span class="material-symbols-outlined text-lg">delete</span>
+                <span class="material-icons text-lg">delete</span>
             </button>
         </div>
     </div>`;
@@ -339,7 +339,7 @@ function renderChecklistPagination(container, totalPages) {
 
     let pHTML = `
         <button class="flex items-center justify-center rounded-lg h-7 w-7 bg-surface text-primary hover:bg-primary hover:text-white transition-colors diari-pag-prev" ${df_currentPage === 1 ? 'disabled style="opacity: 0.5; pointer-events: none;"' : ''}>
-            <span class="material-symbols-outlined text-base">chevron_left</span>
+            <span class="material-icons text-base">chevron_left</span>
         </button>
     `;
 
@@ -354,7 +354,7 @@ function renderChecklistPagination(container, totalPages) {
 
     pHTML += `
         <button class="flex items-center justify-center rounded-lg h-7 w-7 bg-surface text-primary hover:bg-primary hover:text-white transition-colors diari-pag-next" ${df_currentPage === totalPages ? 'disabled style="opacity: 0.5; pointer-events: none;"' : ''}>
-            <span class="material-symbols-outlined text-base">chevron_right</span>
+            <span class="material-icons text-base">chevron_right</span>
         </button>
     `;
 
@@ -439,7 +439,7 @@ function renderAchievements(logros) {
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
                     <h3 class="text-xl font-bold">
-                        <span class="material-symbols-outlined text-primary mr-2 align-middle">analytics</span>
+                        <span class="material-icons text-primary mr-2 align-middle">analytics</span>
                         Progrés Detallat
                     </h3>
                 </div>
@@ -462,7 +462,7 @@ function renderAchievements(logros) {
 
             <!-- Botón para expandir/colapsar logros específicos -->
             <button id="toggle-achievements-btn" class="text-xs font-bold text-slate-400 hover:text-white transition-colors flex items-center gap-1 mt-2">
-                <span class="material-symbols-outlined text-[14px]">expand_more</span>
+                <span class="material-icons text-[14px]">expand_more</span>
                 <span>Veure tots els assoliments</span>
             </button>
 
@@ -498,14 +498,14 @@ function renderAchievements(logros) {
                     achievementsGrid.classList.remove('hidden');
                     achievementsGrid.classList.add('grid');
                     toggleBtn.innerHTML = `
-                        <span class="material-symbols-outlined text-[14px]">expand_less</span>
+                        <span class="material-icons text-[14px]">expand_less</span>
                         <span>Ocultar assoliments</span>
                     `;
                 } else {
                     achievementsGrid.classList.add('hidden');
                     achievementsGrid.classList.remove('grid');
                     toggleBtn.innerHTML = `
-                        <span class="material-symbols-outlined text-[14px]">expand_more</span>
+                        <span class="material-icons text-[14px]">expand_more</span>
                         <span>Veure tots els assoliments</span>
                     `;
                 }
@@ -724,12 +724,12 @@ function renderDiaryEntryItem(entry) {
                         <h4 class="font-bold text-lg text-white cursor-pointer hover:text-primary transition-colors" onclick="if('${p?.['@id']}') window.navigateSPA('plant-detail', '${p?.['@id']}');">${nomComu}</h4>
                         <p class="text-xs italic text-primary -mt-1 mb-1 font-medium">${nomCientific}</p>
                         <div class="flex items-center gap-2 text-xs text-forest-neutral-700 font-medium">
-                            <span class="material-symbols-outlined text-xs">calendar_today</span> ${dateStr}
-                            <span class="material-symbols-outlined text-xs ml-2">location_on</span> ${locationStr}
+                            <span class="material-icons text-xs">calendar_today</span> ${dateStr}
+                            <span class="material-icons text-xs ml-2">location_on</span> ${locationStr}
                         </div>
                     </div>
                     <button class="text-slate-400 hover:text-primary transition-colors p-1" title="Més opcions">
-                        <span class="material-symbols-outlined">more_vert</span>
+                        <span class="material-icons">more_vert</span>
                     </button>
                 </div>
                 <div class="p-3 bg-slate-900/30 rounded-lg text-sm text-slate-400 mt-2">
@@ -739,7 +739,7 @@ function renderDiaryEntryItem(entry) {
             <!-- Si hubiese condiciones meterlas aquí, tal y como había en el prototipo -->
             <div class="flex gap-4 mt-3">
                 <span class="flex items-center gap-1 text-[10px] text-slate-500 uppercase font-bold bg-background-dark px-2 py-1 rounded">
-                    <span class="material-symbols-outlined text-sm">eco</span> Registrat
+                    <span class="material-icons text-sm">eco</span> Registrat
                 </span>
             </div>
         </div>
@@ -755,7 +755,7 @@ function renderDiaryPagination(container, totalPages) {
 
     let pHTML = `
         <button class="flex items-center justify-center rounded-lg h-10 w-10 bg-surface text-primary hover:bg-primary hover:text-white transition-colors diari-entries-prev" ${df_currentDiaryPage === 1 ? 'disabled style="opacity: 0.5; pointer-events: none;"' : ''}>
-            <span class="material-symbols-outlined">chevron_left</span>
+            <span class="material-icons">chevron_left</span>
         </button>
     `;
 
@@ -769,7 +769,7 @@ function renderDiaryPagination(container, totalPages) {
 
     pHTML += `
         <button class="flex items-center justify-center rounded-lg h-10 w-10 bg-surface text-primary hover:bg-primary hover:text-white transition-colors diari-entries-next" ${df_currentDiaryPage === totalPages ? 'disabled style="opacity: 0.5; pointer-events: none;"' : ''}>
-            <span class="material-symbols-outlined">chevron_right</span>
+            <span class="material-icons">chevron_right</span>
         </button>
     `;
 
@@ -902,18 +902,18 @@ function setupDiaryModal() {
     if (btnGeolocate) {
         btnGeolocate.addEventListener('click', () => {
             if ("geolocation" in navigator) {
-                btnGeolocate.innerHTML = `<span class="material-symbols-outlined text-[14px] animate-spin">refresh</span> Cercant...`;
+                btnGeolocate.innerHTML = `<span class="material-icons text-[14px] animate-spin">refresh</span> Cercant...`;
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         document.getElementById('diary-lat').value = position.coords.latitude.toFixed(6);
                         document.getElementById('diary-lng').value = position.coords.longitude.toFixed(6);
-                        btnGeolocate.innerHTML = `<span class="material-symbols-outlined text-[14px]">check_circle</span> Geolocalitzat`;
+                        btnGeolocate.innerHTML = `<span class="material-icons text-[14px]">check_circle</span> Geolocalitzat`;
                         setTimeout(() => {
-                            btnGeolocate.innerHTML = `<span class="material-symbols-outlined text-[14px]">my_location</span> Utilitzar la meva ubicació`;
+                            btnGeolocate.innerHTML = `<span class="material-icons text-[14px]">my_location</span> Utilitzar la meva ubicació`;
                         }, 2000);
                     },
                     (error) => {
-                        btnGeolocate.innerHTML = `<span class="material-symbols-outlined text-[14px] text-red-500">error</span> Error`;
+                        btnGeolocate.innerHTML = `<span class="material-icons text-[14px] text-red-500">error</span> Error`;
                         console.error("Error geolocating:", error);
                     },
                     { enableHighAccuracy: true }

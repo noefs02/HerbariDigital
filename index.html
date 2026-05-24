@@ -58,18 +58,20 @@
                     class="bg-surface border border-white/10 rounded-2xl p-4 sm:p-6 w-full max-w-sm shadow-2xl shadow-black">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-xl font-bold flex items-center gap-2 text-white">
-                            <span class="material-symbols-outlined text-primary">account_circle</span>
+                            <span class="material-icons text-primary">account_circle</span>
                             Iniciar Sessió / Registre
                         </h2>
-                        <button id="btn-close-modal" class="text-slate-400 hover:text-white transition-colors">
-                            <span class="material-symbols-outlined">close</span>
+                        <button aria-label="Tancar modal" id="btn-close-modal" class="text-slate-400 hover:text-white transition-colors">
+                            <span class="material-icons">close</span>
                         </button>
                     </div>
                     <p class="text-sm text-slate-400 mb-4">Introdueix un nom d'usuari. Si no existeix, es crearà
                         automàticament el compte.</p>
                     <form id="auth-form" class="space-y-4">
                         <div>
+                            <label for="auth-username" class="sr-only">Nom d'usuari</label>
                             <input type="text" id="auth-username" required
+                                aria-label="Nom d'usuari"
                                 class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                                 placeholder="Nom d'usuari...">
                         </div>

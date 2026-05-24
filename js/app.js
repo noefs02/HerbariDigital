@@ -103,7 +103,7 @@ function renderHeader() {
     if (AppState.currentUser) {
         userComponent = `
             <div class="relative">
-                <div id="user-profile-btn" class="h-8 w-8 rounded-full bg-surface flex items-center justify-center overflow-hidden border border-white/20 cursor-pointer">
+                <div aria-label="Obrir menú d'usuari" id="user-profile-btn" class="h-8 w-8 rounded-full bg-surface flex items-center justify-center overflow-hidden border border-white/20 cursor-pointer">
                     <img alt="Perfil" class="h-full w-full object-cover" src="${AppState.currentUser.avatar}"/>
                 </div>
                 <!-- Menú desplegable del usuario -->
@@ -112,7 +112,7 @@ function renderHeader() {
                         <p class="text-sm font-bold text-white truncate">${AppState.currentUser.nombre}</p>
                     </div>
                     <div class="p-1">
-                        <button id="btn-logout" class="w-full text-left px-3 py-2 text-sm text-red-400 hover:bg-white/5 rounded-lg flex items-center gap-2 transition-colors">
+                        <button aria-label="Tancar sessió" id="btn-logout" class="w-full text-left px-3 py-2 text-sm text-red-400 hover:bg-white/5 rounded-lg flex items-center gap-2 transition-colors">
                             <span class="material-icons text-sm">logout</span> Tancar Sessió
                         </button>
                     </div>
@@ -121,7 +121,7 @@ function renderHeader() {
         `;
     } else {
         userComponent = `
-            <button id="btn-login-modal" class="px-3 py-1.5 rounded-full bg-primary text-white text-xs font-bold hover:bg-primary-dark transition-colors flex items-center gap-1 shadow-md shadow-primary/20">
+            <button aria-label="Obrir formulari d'inici de sessió" id="btn-login-modal" class="px-3 py-1.5 rounded-full bg-primary text-white text-xs font-bold hover:bg-primary-dark transition-colors flex items-center gap-1 shadow-md shadow-primary/20">
                 <span class="material-icons text-[14px]">login</span> <span class="hidden sm:inline">Iniciar Sessió</span>
             </button>
         `;
@@ -153,12 +153,12 @@ function renderHeader() {
             </div>
 
             <div class="flex items-center justify-end gap-3 min-w-max">
-                <button id="mobile-search-toggle" class="header-search-toggle p-2 rounded-full hover:bg-surface text-slate-400 hover:text-white transition-all">
+                <button aria-label="Obrir o tancar el cercador" id="mobile-search-toggle" class="header-search-toggle p-2 rounded-full hover:bg-surface text-slate-400 hover:text-white transition-all">
                     <span class="material-icons">search</span>
                 </button>
 
                 <div class="season-dropdown">
-                    <button id="season-toggle-btn" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-white/10 hover:border-white/10 transition-all cursor-pointer">
+                    <button aria-label="Desplegar llista d'estacions" id="season-toggle-btn" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-white/10 hover:border-white/10 transition-all cursor-pointer">
                         <span id="season-btn-icon" class="material-icons text-primary-light text-lg">local_florist</span>
                         <span id="season-btn-label" class="text-xs font-semibold text-slate-300 hidden sm:inline">Primavera</span>
                         <span class="material-icons text-slate-500 text-sm">expand_more</span>
@@ -226,7 +226,7 @@ function renderBottomNav() {
             ? 'text-primary-light flex flex-col items-center justify-center gap-1 font-bold'
             : 'text-slate-500 hover:text-slate-300 transition-colors flex flex-col items-center justify-center gap-1';
         return `
-            <a href="#" data-route="${item.route}" class="${classes} no-underline flex-1 py-2">
+            <a aria-label="Anar a la vista de ${item.label}" href="#" data-route="${item.route}" class="${classes} no-underline flex-1 py-2">
                 <span class="material-icons text-[24px]">${item.icon}</span>
                 <span class="text-[10px] uppercase tracking-wider">${item.label}</span>
             </a>

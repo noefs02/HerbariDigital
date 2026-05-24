@@ -101,7 +101,7 @@ export function renderDiary(diaries) {
                 </div>
                 <form id="diary-form" class="space-y-4">
                     <div class="relative">
-                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Planta</label>
+                        <label for="diary-plant-search" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Planta</label>
                         <div class="relative">
                             <input type="text" id="diary-plant-search" autocomplete="off" placeholder="Escriu per cercar una planta..." class="w-full bg-slate-900 border border-white/10 rounded-lg pl-10 pr-10 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500">
@@ -116,21 +116,21 @@ export function renderDiary(diaries) {
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Data</label>
+                            <label for="diary-date" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Data</label>
                             <input type="datetime-local" id="diary-date" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Ubicació (Nom)</label>
+                            <label for="diary-loc-name" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Ubicació (Nom)</label>
                             <input type="text" id="diary-loc-name" required placeholder="Ex: Serra de Tramuntana" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Latitud</label>
+                            <label for="diary-lat" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Latitud</label>
                             <input type="number" step="any" id="diary-lat" required placeholder="39.7103" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Longitud</label>
+                            <label for="diary-lng" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Longitud</label>
                             <input type="number" step="any" id="diary-lng" required placeholder="2.9122" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                     </div>
@@ -140,7 +140,7 @@ export function renderDiary(diaries) {
                         </button>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Observacions</label>
+                        <label for="diary-obs" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Observacions</label>
                         <textarea id="diary-obs" rows="3" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Afegeix detalls de la troballa..."></textarea>
                     </div>
                     <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-lg transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2 mt-4">
@@ -154,7 +154,7 @@ export function renderDiary(diaries) {
 
 // Variables de estado local para la vista del diario
 let df_currentUserFavorites = [];
-let df_currentFilter = 'all'; 
+let df_currentFilter = 'all';
 let df_currentPage = 1;
 const df_itemsPerPage = 8;
 
@@ -188,7 +188,7 @@ export async function initDiaryEvents() {
         }
 
         renderAchievements(user.logros);
-        
+
         // Inicializar Llista de Control
         df_currentUserFavorites = user.favoritos || [];
         setupChecklistFilters();
@@ -201,7 +201,7 @@ export async function initDiaryEvents() {
             updateDiaryUI();
             setupMapToggle();
         }
-        
+
         // Modal logic
         setupDiaryModal();
 
@@ -279,7 +279,7 @@ function updateChecklistUI() {
 function renderChecklistItem(favItem) {
     const isVist = favItem.estado === 'encontrado';
     const planta = favItem.plantaDetails;
-    
+
     // Extraiem una imatge vàlida, reemplaçant _2000 per _100_icon
     let imageUrl = '';
     if (Array.isArray(planta.image) && planta.image.length > 0) {
@@ -345,10 +345,10 @@ function renderChecklistPagination(container, totalPages) {
 
     for (let i = 1; i <= totalPages; i++) {
         // En una app real limitaríamos los números si hay 50 páginas, aquí mostramos todas
-        const activeCls = i === df_currentPage 
-            ? 'bg-primary text-white font-bold' 
+        const activeCls = i === df_currentPage
+            ? 'bg-primary text-white font-bold'
             : 'bg-surface text-primary hover:bg-primary hover:text-white font-bold';
-        
+
         pHTML += `<button class="flex items-center justify-center rounded-lg h-7 w-7 transition-colors text-xs diari-pag-n" data-page="${i} ${activeCls}">${i}</button>`;
     }
 
@@ -365,8 +365,8 @@ function renderChecklistPagination(container, totalPages) {
     const nextBtn = container.querySelector('.diari-pag-next');
     const nBtns = container.querySelectorAll('.diari-pag-n');
 
-    if(prevBtn) prevBtn.onclick = () => { df_currentPage--; updateChecklistUI(); };
-    if(nextBtn) nextBtn.onclick = () => { df_currentPage++; updateChecklistUI(); };
+    if (prevBtn) prevBtn.onclick = () => { df_currentPage--; updateChecklistUI(); };
+    if (nextBtn) nextBtn.onclick = () => { df_currentPage++; updateChecklistUI(); };
     nBtns.forEach(btn => btn.onclick = (e) => {
         df_currentPage = parseInt(e.target.innerText);
         updateChecklistUI();
@@ -395,10 +395,10 @@ function setupChecklistActions() {
             const select = document.getElementById('diary-plant-select');
             const searchInput = document.getElementById('diary-plant-search');
             const btnClear = document.getElementById('btn-clear-plant');
-            
+
             if (modal && select) {
                 select.value = idToAdd;
-                
+
                 // Buscar el nombre de la planta para mostrarlo en el buscador
                 const plantObj = AppState.plants.find(p => {
                     const id = p.item ? p.item['@id'] : p['@id'];
@@ -498,7 +498,7 @@ function initDiaryMap(diarioEntries) {
     // Configuración base de Balears si no hay entradas, de lo contrario ajustaremos después
     const defaultCenter = [39.5716, 2.6505];
     const defaultZoom = 8;
-    
+
     // Configurar mapa de Leaflet
     diaryMapInstance = L.map('diary-map', {
         zoomControl: false, // se pueden añadir controles personalizados
@@ -511,7 +511,7 @@ function initDiaryMap(diarioEntries) {
 
     // Añadir controles extras (Ubicación y Capas)
     diaryMapInstance.addControl(new LocationControl({ position: 'bottomright' }));
-    
+
     const layerSwitcher = new LayerSwitcherControl({ position: 'bottomleft' });
     diaryMapInstance.addControl(layerSwitcher);
 
@@ -542,11 +542,11 @@ function initDiaryMap(diarioEntries) {
                 return idToCheck === entry.plantaId;
             });
             const pObj = plantData?.item || plantData;
-            
+
             const plantName = pObj ? (pObj.alternateName || pObj.name) : "Planta Desconeguda";
-            
+
             const marker = L.marker(coords, { icon: createPlantIcon(28) }).addTo(diaryMapInstance);
-            
+
             // Popup si hay datos
             marker.bindPopup(`
                 <div class="text-center p-1">
@@ -571,19 +571,19 @@ function initDiaryMap(diarioEntries) {
 function setupMapToggle() {
     const toggleBtn = document.getElementById('map-toggle-btn');
     const mapContainer = document.getElementById('diary-map-container');
-    
+
     if (!toggleBtn || !mapContainer) return;
 
     toggleBtn.addEventListener('click', () => {
         df_mapIsMinimized = !df_mapIsMinimized;
-        
+
         if (df_mapIsMinimized) {
             // Minimizar mapa
             mapContainer.classList.remove(df_mapNormalHeight);
             mapContainer.classList.add(df_mapMinimizedHeight);
             toggleBtn.querySelector('span').innerText = 'unfold_more';
             toggleBtn.setAttribute('title', 'Maximizar mapa');
-            
+
             // Desabilitar interacción con el mapa cuando está minimizado
             if (diaryMapInstance) {
                 diaryMapInstance.dragging.disable();
@@ -596,14 +596,14 @@ function setupMapToggle() {
             mapContainer.classList.add(df_mapNormalHeight);
             toggleBtn.querySelector('span').innerText = 'unfold_less';
             toggleBtn.setAttribute('title', 'Minimizar mapa');
-            
+
             // Reabilitar interacción con el mapa cuando está maximizado
             if (diaryMapInstance) {
                 diaryMapInstance.dragging.enable();
                 diaryMapInstance.touchZoom.enable();
                 diaryMapInstance.doubleClickZoom.enable();
             }
-            
+
             // Ajustar tamaño del mapa tras la transición CSS
             setTimeout(() => {
                 if (diaryMapInstance) {
@@ -653,7 +653,7 @@ function updateDiaryUI() {
 
 function renderDiaryEntryItem(entry) {
     const p = entry.plantaDetails;
-    
+
     // Extraiem la imatge original de la planta si no n'hi ha cap de l'usuari
     let fallbackImgUrl = 'img/placeholder.jpg';
     if (p) {
@@ -663,15 +663,15 @@ function renderDiaryEntryItem(entry) {
             fallbackImgUrl = p.image;
         }
     }
-    
+
     // Apliquem la miniatura _400_thumb_webp al fallback de l'api si n'hi ha, si no el que doni la bbdd per a l'entrada
     let thumbUrl = fallbackImgUrl.replace('_2000.webp', '_400_thumb.webp');
     const imgSrc = entry.imagen || thumbUrl;
-    
+
     // Noms
     const nomComu = p ? (p.alternateName || p.name) : "Planta Desconeguda";
     const nomCientific = p ? p.name : "";
-    
+
     // Dades addicionals
     const dateStr = entry.fecha ? new Date(entry.fecha).toLocaleDateString() : 'Sense data';
     const locationStr = entry.ubicacion ? (entry.ubicacion.name || `${entry.ubicacion.latitude}, ${entry.ubicacion.longitude}`) : 'Ubicació desconeguda';
@@ -725,10 +725,10 @@ function renderDiaryPagination(container, totalPages) {
     `;
 
     for (let i = 1; i <= totalPages; i++) {
-        const activeCls = i === df_currentDiaryPage 
-            ? 'bg-primary text-white font-bold' 
+        const activeCls = i === df_currentDiaryPage
+            ? 'bg-primary text-white font-bold'
             : 'bg-surface text-primary hover:bg-primary hover:text-white font-bold transition-colors';
-        
+
         pHTML += `<button class="flex items-center justify-center rounded-lg h-10 w-10 text-sm diari-entries-n ${activeCls}" data-page="${i}">${i}</button>`;
     }
 
@@ -745,8 +745,8 @@ function renderDiaryPagination(container, totalPages) {
     const nextBtn = container.querySelector('.diari-entries-next');
     const nBtns = container.querySelectorAll('.diari-entries-n');
 
-    if(prevBtn) prevBtn.onclick = () => { df_currentDiaryPage--; updateDiaryUI(); };
-    if(nextBtn) nextBtn.onclick = () => { df_currentDiaryPage++; updateDiaryUI(); };
+    if (prevBtn) prevBtn.onclick = () => { df_currentDiaryPage--; updateDiaryUI(); };
+    if (nextBtn) nextBtn.onclick = () => { df_currentDiaryPage++; updateDiaryUI(); };
     nBtns.forEach(btn => btn.onclick = (e) => {
         df_currentDiaryPage = parseInt(e.target.innerText);
         updateDiaryUI();
@@ -924,7 +924,7 @@ function setupDiaryModal() {
             };
 
             const updatedUser = AuthService.addDiaryEntry(entryData);
-            
+
             // Re-sync local state and update UI
             AppState.currentUser = updatedUser;
             df_currentUserDiary = updatedUser.diario;
@@ -934,10 +934,10 @@ function setupDiaryModal() {
             updateDiaryUI();
             // TODO: fix issue with renderAchievements not being defined if it's not exported/imported properly. Wait, it's defined in diary.js!
             // Wait, yes, renderAchievements is in diary.js, let me check. Ah, I don't know where it's defined, but it was called earlier.
-            
+
             // For now, let's just trigger a re-init or call the specific map/achievement functions.
             // Actually, we can just call it since it's probably in diary.js
-            if(typeof renderAchievements === 'function') renderAchievements(updatedUser.logros);
+            if (typeof renderAchievements === 'function') renderAchievements(updatedUser.logros);
             initDiaryMap(updatedUser.diario);
 
             if (modal) modal.classList.add('hidden');

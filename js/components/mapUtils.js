@@ -22,7 +22,7 @@ export const TILE_LAYER_CONFIG = {
 };
 
 /**
- * Inicializa los estilos y asegura la alineación de los controles
+ * Inicializa los estilos y asegura la aliniación de los controles
  */
 export function injectMapStyles() {
     if (document.getElementById('shared-map-styles')) return;
@@ -31,23 +31,21 @@ export function injectMapStyles() {
     style.id = 'shared-map-styles';
     style.innerHTML = `
         /* --- PARCHE DE ALINEACIÓN --- */
-        /* Forzamos a los contenedores de Leaflet a alinear sus hijos (Zoom y GPS) al centro */
         .leaflet-top.leaflet-left,
         .leaflet-bottom.leaflet-right,
         .leaflet-top.leaflet-right,
         .leaflet-bottom.leaflet-left {
             display: flex !important;
             flex-direction: column;
-            align-items: center; /* Centra los botones aunque tengan anchos distintos */
-            gap: 10px;           /* Espacio uniforme entre el bloque de Zoom y el GPS */
+            align-items: center; 
+            gap: 10px;           
         }
 
-        /* Quitamos los márgenes por defecto de Leaflet para que el Flexbox controle el espacio */
         .leaflet-control {
             margin: 0 !important;
         }
 
-        /* --- TUS ESTILOS EXISTENTES (SIN CAMBIOS) --- */
+        /* --- TUS ESTILOS EXISTENTES --- */
         .leaflet-control-locate {
             background: #262a26 !important; 
             border: 1.5px solid rgba(255,255,255,0.2) !important;
@@ -141,7 +139,9 @@ export function injectMapStyles() {
         }
         .layer-btn:hover { background: rgba(255,255,255,0.07); color: #fff; }
         .layer-btn.active { color: var(--primary-light, #3da63d); background: rgba(61,166,61,0.12); }
-        .layer-btn .material-symbols-outlined { font-size: 16px; }
+        
+        /* CORRECCIÓN INTERNA: Tipografía fijada a la fuente nativa del index.html */
+        .layer-btn .material-icons { font-size: 16px; }
     `;
     document.head.appendChild(style);
 }
@@ -149,10 +149,10 @@ export function injectMapStyles() {
 export const LocationControl = L.Control.extend({
     options: { position: 'bottomright' },
     onAdd: function (map) {
-        // Creamos un contenedor limpio para el control
         const container = L.DomUtil.create('div', 'leaflet-control');
         const button = L.DomUtil.create('a', 'leaflet-control-locate', container);
-        button.innerHTML = '<span class="material-symbols-outlined" style="font-size:22px;">my_location</span>';
+        // CORRECCIÓN: Ajustada clase a 'material-icons'
+        button.innerHTML = '<span class="material-icons" style="font-size:22px;">my_location</span>';
         button.title = "La meva ubicació";
 
         L.DomEvent.disableClickPropagation(button);
@@ -180,12 +180,13 @@ export const LocationControl = L.Control.extend({
 
 export function createPlantIcon(size = 32) {
     const iconInnerSize = size === 32 ? 18 : 14;
+    // CORRECCIÓN: Ajustada clase a 'material-icons' dentro del marcador HTML
     return L.divIcon({
         className: 'custom-leaflet-marker',
         html: `
             <div class="bg-primary flex items-center justify-center text-white border-2 border-white/90 shadow-md transition-transform duration-300 hover:scale-125 cursor-pointer"
                  style="width: ${size}px; height: ${size}px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);">
-                <span class="material-symbols-outlined drop-shadow-md" style="font-size: ${iconInnerSize}px; transform: rotate(45deg);">eco</span>
+                <span class="material-icons drop-shadow-md" style="font-size: ${iconInnerSize}px; transform: rotate(45deg);">eco</span>
             </div>
         `,
         iconSize: [size, size + 6],
@@ -207,16 +208,17 @@ export const LayerSwitcherControl = L.Control.extend({
         L.DomEvent.disableClickPropagation(container);
 
         const toggle = L.DomUtil.create('button', 'layer-switcher-toggle', container);
-        toggle.innerHTML = '<span class="material-symbols-outlined" style="font-size:22px;">layers</span>';
+        // CORRECCIÓN: Ajustada clase a 'material-icons'
+        toggle.innerHTML = '<span class="material-icons" style="font-size:22px;">layers</span>';
         toggle.title = 'Canviar capa del mapa';
 
         const optionsDiv = L.DomUtil.create('div', 'layer-switcher-options', container);
 
-        // Afegim un botó per cada capa disponible
         Object.entries(TILE_LAYERS).forEach(([key, config]) => {
             const btn = L.DomUtil.create('button', `layer-btn${key === this._currentKey ? ' active' : ''}`, optionsDiv);
             btn.dataset.key = key;
-            btn.innerHTML = `<span class="material-symbols-outlined">${config.icon}</span>${config.label}`;
+            // CORRECCIÓN: Ajustada clase a 'material-icons'
+            btn.innerHTML = `<span class="material-icons">${config.icon}</span>${config.label}`;
 
             btn.onclick = (e) => {
                 e.stopPropagation();
@@ -226,9 +228,7 @@ export const LayerSwitcherControl = L.Control.extend({
                 this._currentLayer = L.tileLayer(config.url, config.options).addTo(map);
                 this._currentKey = key;
 
-                // Actualitzar botons actius
                 optionsDiv.querySelectorAll('.layer-btn').forEach(b => b.classList.toggle('active', b.dataset.key === key));
-
                 container.classList.remove('expanded');
             };
         });
@@ -238,13 +238,11 @@ export const LayerSwitcherControl = L.Control.extend({
             container.classList.toggle('expanded');
         };
 
-        // Tancar si es fa clic fora
         map.getContainer().addEventListener('click', () => container.classList.remove('expanded'));
 
         return container;
     },
 
-    // Guarda la referència a la capa inicial perquè el control pugui eliminar-la en canviar
     setInitialLayer: function (layer) {
         this._currentLayer = layer;
     }

@@ -71,7 +71,7 @@ export function setSeason(seasonId) {
             'hivern': 'invierno'
         };
         const imgPrefix = seasonFileNames[seasonId] || 'primavera';
-        
+
         // Hacemos una breve transición bajando la opacidad para que el cambio no sea tan brusco
         homeBg.style.opacity = '0';
         setTimeout(() => {
@@ -108,18 +108,18 @@ function renderHeader() {
         return `<a class="${classes}" href="#" data-route="${item.route}">${item.label}</a>`;
     }).join('\n');
 
-    container.className = "sticky top-0 z-50 w-full";
+    container.className = "sticky top-0 z-50 w-full bg-background-dark/90 backdrop-blur-md";
 
     // Componente del usuario en el header
     let userComponent = '';
     if (AppState.currentUser) {
         userComponent = `
-            <div class="relative group">
-                <div class="h-8 w-8 rounded-full bg-surface flex items-center justify-center overflow-hidden border border-white/20 cursor-pointer">
+            <div class="relative">
+                <div id="user-profile-btn" class="h-8 w-8 rounded-full bg-surface flex items-center justify-center overflow-hidden border border-white/20 cursor-pointer">
                     <img alt="Perfil" class="h-full w-full object-cover" src="${AppState.currentUser.avatar}"/>
                 </div>
                 <!-- Menú desplegable del usuario -->
-                <div class="absolute right-0 mt-2 w-48 bg-surface border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[110]">
+                <div id="user-profile-menu" class="profile-dropdown-menu absolute right-0 mt-2 w-48 bg-surface border border-white/10 rounded-xl shadow-2xl opacity-0 invisible transition-all duration-200 z-[110]">
                     <div class="p-3 border-b border-white/10">
                         <p class="text-sm font-bold text-white truncate">${AppState.currentUser.nombre}</p>
                     </div>
@@ -134,39 +134,13 @@ function renderHeader() {
     } else {
         userComponent = `
             <button id="btn-login-modal" class="px-3 py-1.5 rounded-full bg-primary text-white text-xs font-bold hover:bg-primary-dark transition-colors flex items-center gap-1 shadow-md shadow-primary/20">
-                <span class="material-symbols-outlined text-[14px]">login</span> Iniciar Sessió
+                <span class="material-symbols-outlined text-[14px]">login</span> <span class="hidden sm:inline">Iniciar Sessió</span>
             </button>
         `;
     }
 
-    // Modal de Login
-    const loginModal = `
-        <div id="auth-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-            <div class="bg-surface border border-white/10 rounded-2xl p-6 w-full max-w-sm shadow-2xl shadow-black">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-bold flex items-center gap-2 text-white">
-                        <span class="material-symbols-outlined text-primary">account_circle</span>
-                        Iniciar Sessió / Registre
-                    </h2>
-                    <button id="btn-close-modal" class="text-slate-400 hover:text-white transition-colors">
-                        <span class="material-symbols-outlined">close</span>
-                    </button>
-                </div>
-                <p class="text-sm text-slate-400 mb-4">Introdueix un nom d'usuari. Si no existeix, es crearà automàticament el compte.</p>
-                <form id="auth-form" class="space-y-4">
-                    <div>
-                        <input type="text" id="auth-username" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Nom d'usuari...">
-                    </div>
-                    <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-2.5 rounded-lg transition-colors shadow-lg shadow-primary/20">
-                        Entrar a l'Herbari
-                    </button>
-                </form>
-            </div>
-        </div>
-    `;
-
     container.innerHTML = `
-    <header class="w-full border-b border-white/10 bg-background-dark/90 backdrop-blur-md px-4 lg:px-20 py-3">
+    <header class="w-full border-b border-white/10 px-4 lg:px-20 py-3">
         <div class="flex items-center justify-between gap-4">
             
             <div class="flex items-center gap-8 min-w-max">
@@ -174,25 +148,25 @@ function renderHeader() {
                     <div class="p-2 bg-primary rounded-lg text-white shadow-lg shadow-surface flex-shrink-0">
                         <span class="material-symbols-outlined block">eco</span>
                     </div>
-                    <h1 class="text-white text-xl font-bold tracking-tight">Herbari Digital</h1>
+                    <h1 class="text-white text-xl font-bold tracking-tight hidden sm:block">Herbari Digital</h1>
                 </a>
                 <nav class="hidden md:flex items-center gap-8">
                     ${navLinks}
                 </nav>
             </div>
 
-            <div class="hidden sm:flex flex-1 justify-center max-w-xl mx-4">
-                <div class="relative w-full max-w-md">
+            <div id="mobile-search-container" class="header-search-container">
+                <div class="relative w-full max-w-md mx-auto transition-all duration-300 focus-within:max-w-lg lg:focus-within:max-w-xl">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500">
                         <span class="material-symbols-outlined text-lg">search</span>
                     </div>
-                    <input id="header-search-input" autocomplete="off" class="block w-full rounded-full border-0 py-2 pl-10 bg-surface focus:ring-2 focus:ring-primary-light placeholder:text-slate-600 text-sm text-white" placeholder="Cerca per nom popular o científic..." type="text"/>
+                    <input id="header-search-input" autocomplete="off" class="block w-full rounded-full border-0 py-2 pl-10 bg-surface focus:ring-2 focus:ring-primary-light placeholder:text-slate-600 text-base sm:text-sm text-white" placeholder="Cerca" type="text"/>
                     <div id="search-results" class="absolute top-full left-0 right-0 mt-2 bg-surface border border-white/10 rounded-xl shadow-2xl max-h-80 overflow-y-auto hidden z-[100]"></div>
                 </div>
             </div>
 
             <div class="flex items-center justify-end gap-3 min-w-max">
-                <button class="sm:hidden p-2 rounded-full hover:bg-surface text-slate-400 hover:text-white transition-all">
+                <button id="mobile-search-toggle" class="header-search-toggle p-2 rounded-full hover:bg-surface text-slate-400 hover:text-white transition-all">
                     <span class="material-symbols-outlined">search</span>
                 </button>
 
@@ -216,7 +190,6 @@ function renderHeader() {
             </div>
         </div>
     </header>
-    ${loginModal}
     `;
 }
 
@@ -225,10 +198,10 @@ function renderFooter() {
     const container = document.getElementById('app-footer');
     if (!container) return;
 
-    container.className = "sticky bottom-0 z-50 w-full";
+    container.className = "mt-auto w-full bg-background-dark";
 
     container.innerHTML = `
-    <footer class="w-full border-t border-white/10 bg-background-dark/95 backdrop-blur-sm px-4 lg:px-8 py-3 mt-auto">
+    <footer class="w-full border-t border-white/10 bg-background-dark/95 backdrop-blur-sm px-4 lg:px-8 pt-3 pb-24 md:py-3">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
             <div class="flex items-center gap-2">
                 <div class="p-1 bg-surface rounded-md">
@@ -241,13 +214,56 @@ function renderFooter() {
                 <span class="hidden sm:inline">·</span>
                 <span class="hidden sm:inline">Illes Balears</span>
             </div>
-            <div class="flex items-center gap-5 text-xs font-semibold">
+            <div class="hidden md:flex items-center gap-5 text-xs font-semibold">
                 <a href="#" data-route="herbarium" class="text-slate-500 hover:text-primary-light transition-colors">Herbari</a>
                 <a href="#" data-route="map" class="text-slate-500 hover:text-primary-light transition-colors">Mapa</a>
                 <a href="#" data-route="diary" class="text-slate-500 hover:text-primary-light transition-colors">Diari</a>
             </div>
         </div>
     </footer>`;
+}
+
+// --- RENDER DEL BOTTOM NAV (MOBILE) ---
+function renderBottomNav() {
+    let container = document.getElementById('app-bottom-nav');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'app-bottom-nav';
+        document.body.appendChild(container);
+    }
+
+    const navLinks = [
+        { route: 'herbarium', label: 'Herbari', icon: 'eco' },
+        { route: 'map', label: 'Mapa', icon: 'map' },
+        { route: 'diary', label: 'Diari', icon: 'book' }
+    ].map(item => {
+        const active = (item.route === AppState.currentRoute);
+        const classes = active
+            ? 'text-primary-light flex flex-col items-center justify-center gap-1 font-bold'
+            : 'text-slate-500 hover:text-slate-300 transition-colors flex flex-col items-center justify-center gap-1';
+        return `
+            <a href="#" data-route="${item.route}" class="${classes} no-underline flex-1 py-2">
+                <span class="material-symbols-outlined text-[24px]">${item.icon}</span>
+                <span class="text-[10px] uppercase tracking-wider">${item.label}</span>
+            </a>
+        `;
+    }).join('');
+
+    container.className = "fixed bottom-0 left-0 right-0 z-[60] bg-background-dark/95 backdrop-blur-md border-t border-white/10 md:hidden";
+    container.innerHTML = `
+        <nav class="flex justify-around items-center w-full">
+            ${navLinks}
+        </nav>
+    `;
+
+    // Configurar navegación de los nuevos enlaces (sin duplicar listeners en SPA)
+    const newLinks = container.querySelectorAll('a[data-route]');
+    newLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.navigateSPA(link.dataset.route);
+        });
+    });
 }
 
 // Nuevo loaddata adaptado a Schema.org
@@ -277,8 +293,24 @@ async function loadData() {
 function initSearchLogic() {
     const input = document.getElementById('header-search-input');
     const resultsContainer = document.getElementById('search-results');
+    const mobileToggleBtn = document.getElementById('mobile-search-toggle');
+    const searchContainer = document.getElementById('mobile-search-container');
 
     if (!input || !resultsContainer) return;
+
+    if (mobileToggleBtn && searchContainer) {
+        mobileToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (searchContainer.classList.contains('hidden')) {
+                searchContainer.classList.remove('hidden');
+                searchContainer.classList.add('flex');
+                input.focus();
+            } else {
+                searchContainer.classList.add('hidden');
+                searchContainer.classList.remove('flex');
+            }
+        });
+    }
 
     input.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
@@ -296,8 +328,12 @@ function initSearchLogic() {
     });
 
     document.addEventListener('click', (e) => {
-        if (!input.contains(e.target) && !resultsContainer.contains(e.target)) {
+        if (!input.contains(e.target) && !resultsContainer.contains(e.target) && searchContainer && !searchContainer.contains(e.target) && mobileToggleBtn && !mobileToggleBtn.contains(e.target)) {
             resultsContainer.classList.add('hidden');
+            if (searchContainer.classList.contains('flex') && window.innerWidth < 1200) { // Ocultar barra movil al clicar fuera
+                searchContainer.classList.add('hidden');
+                searchContainer.classList.remove('flex');
+            }
         }
     });
 }
@@ -331,6 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // RENDIMIENTO: Renderizamos los contenedores fijos primero
     renderHeader();
     renderFooter();
+    renderBottomNav();
     initSeason();
 
     // Vinculamos los listeners iniciales
@@ -410,6 +447,22 @@ export function setupHeaderEvents() {
         });
     });
 
+    // User Profile Dropdown Logic (for both mobile taps and desktop clicks)
+    const userProfileBtn = document.getElementById('user-profile-btn');
+    const userProfileMenu = document.getElementById('user-profile-menu');
+    if (userProfileBtn && userProfileMenu) {
+        userProfileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userProfileMenu.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userProfileMenu.contains(e.target) && !userProfileBtn.contains(e.target)) {
+                userProfileMenu.classList.remove('open');
+            }
+        });
+    }
+
     // Iniciar lógica del buscador
     initSearchLogic();
 
@@ -459,7 +512,7 @@ export function setupHeaderEvents() {
 // Helper global para alternar favoritos
 window.toggleFav = (event, plantaId, btnElement) => {
     if (event) event.stopPropagation();
-    
+
     if (!AppState.currentUser) {
         // Require login to add favorite
         const authModal = document.getElementById('auth-modal');
@@ -468,10 +521,10 @@ window.toggleFav = (event, plantaId, btnElement) => {
     }
 
     const isFav = AuthService.toggleFavorite(plantaId);
-    
+
     // Sincronizar usuario en memoria
     AppState.currentUser = AuthService.getCurrentUser();
-    
+
     if (btnElement) {
         if (isFav) {
             btnElement.classList.add('!bg-white', '!text-primary');
@@ -492,6 +545,16 @@ export function renderView(route, params = {}) {
     const contentDiv = document.getElementById('app-content');
     if (!contentDiv) return;
     contentDiv.innerHTML = '';
+
+    // El padding inferior para móviles ahora se aplica directamente al footer
+    contentDiv.className = "flex-1 flex flex-col w-full relative";
+
+    // Gestionamos clases especiales en el body para vistas a pantalla completa
+    if (route === 'map') {
+        document.body.classList.add('map-active');
+    } else {
+        document.body.classList.remove('map-active');
+    }
 
     switch (route) {
         case 'home':
@@ -565,6 +628,7 @@ window.navigateSPA = (route, id = null) => {
         // Actualitzar la capçalera i components
         renderHeader();
         renderFooter();
+        renderBottomNav();
         setupNavigation();
         setupHeaderEvents();
         initSeason();

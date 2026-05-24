@@ -278,7 +278,7 @@ details summary {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: calc(100vh - 65px);
+    flex-grow: 1;
 }
 
 /* === VIEW CONTAINER (herbarium + sidebar) === */
@@ -476,4 +476,110 @@ details summary {
     font-variant-numeric: tabular-nums;
     font-weight: 500;
     user-select: none;
+}
+
+/* === VISTA MAPA FULLSCREEN (Evita scrollbar global en la vista del mapa) === */
+body.map-active {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+body.map-active #app-wrapper {
+    height: 100%;
+}
+
+body.map-active .layout-container {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+body.map-active #app-content {
+    height: 100%;
+    overflow: hidden;
+}
+
+body.map-active #map-view {
+    height: 100%;
+    overflow: hidden;
+}
+
+body.map-active #map-view main {
+    height: 100% !important;
+}
+
+body.map-active #filters-sidebar {
+    height: 100% !important;
+    overflow-y: auto !important;
+}
+
+/* Ocultar por completo el footer en el mapa interactivo */
+body.map-active #app-footer {
+    display: none !important;
+}
+
+/* Ajustar los controles de Leaflet en móvil para que floten sobre el menú inferior */
+@media (max-width: 767px) {
+    body.map-active .leaflet-bottom.leaflet-right {
+        bottom: 75px !important;
+    }
+}
+
+/* === CORRECCIÓN Y CENTRADO DEL BUSCADOR HEADER === */
+
+/* Toggle de búsqueda (Lupa) */
+.header-search-toggle {
+    display: flex !important; /* Visible por defecto por debajo de 1200px */
+}
+
+/* Contenedor del buscador */
+.header-search-container {
+    display: none; /* Oculto por defecto, se maneja por JS toggling flex/hidden */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 12px;
+    background: transparent; /* Sin fondo oscuro */
+    border-bottom: none;     /* Sin borde inferior */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Cuando se abre en móviles/tablets (JS le pone .flex) */
+.header-search-container.flex {
+    display: flex !important;
+}
+
+/* En ordenadores grandes (>= 1200px) */
+@media (min-width: 1200px) {
+    .header-search-toggle {
+        display: none !important; /* Ocultamos la lupa */
+    }
+    
+    .header-search-container {
+        display: flex !important; /* Siempre visible e inline */
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border-bottom: none !important;
+        flex: 1;
+        justify-content: center;
+        max-width: 36rem; /* Equivalente a max-w-xl */
+        margin-left: 1rem;
+        margin-right: 1rem;
+        z-index: auto !important;
+    }
+}
+
+/* === MENÚ DESPLEGABLE DE PERFIL DE USUARIO === */
+.profile-dropdown-menu.open {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
 }

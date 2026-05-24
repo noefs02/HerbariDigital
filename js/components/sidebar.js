@@ -8,12 +8,14 @@ export const FILTRES = [
     {
         id: 'conservacio', icon: 'security', title: 'Estat de conservació',
         type: 'pills',
-        options: ['Segura', 'Vulnerable', 'Protegida', 'En Perill', 'En Perill Crític']
+        options: ['Segura', 'Vulnerable', 'Protegida', 'En Perill', 'En Perill Crític'],
+        open: true
     },
     {
         id: 'floracio', icon: 'calendar_month', title: 'Època de floració',
         type: 'pills',
-        options: ['Primavera', 'Estiu', 'Tardor', 'Hivern']
+        options: ['Primavera', 'Estiu', 'Tardor', 'Hivern'],
+        open: true
     },
     {
         id: 'habitat', icon: 'landscape', title: 'Hàbitat',
@@ -87,11 +89,42 @@ export function renderSidebar(extraHTML = '') {
     const filters = FILTRES.map(f => renderFilter(f)).join('\n');
 
     return `
-    <aside class="hidden lg:flex w-72 flex-col border-r border-white/10 bg-background-dark p-6 space-y-4 h-[calc(100vh-65px)] sticky top-[65px] overflow-y-auto custom-scrollbar">
-        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 px-1">Filtres Botànics</h2>
-        <div class="space-y-2">
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] hidden lg:hidden"></div>
+    <aside id="filters-sidebar" class="fixed inset-y-0 left-0 z-[80] w-72 flex-col border-r border-white/10 bg-background-dark p-6 space-y-4 h-[100dvh] overflow-y-auto custom-scrollbar transform -translate-x-full transition-transform duration-300 lg:relative lg:h-auto lg:overflow-visible lg:translate-x-0 lg:z-10 flex shadow-2xl lg:shadow-none">
+        <div class="flex items-center justify-between mb-2 px-1">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500">Filtres Botànics</h2>
+            <button id="close-sidebar-btn" class="lg:hidden text-slate-400 hover:text-white transition-colors p-1 rounded-md hover:bg-surface">
+                <span class="material-symbols-outlined text-sm">close</span>
+            </button>
+        </div>
+        <div class="space-y-2 flex-1">
             ${filters}
         </div>
         ${extraHTML}
     </aside>`;
+}
+
+export function initSidebarEvents() {
+    const sidebar = document.getElementById('filters-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    const openBtns = document.querySelectorAll('.open-sidebar-btn');
+    const closeBtn = document.getElementById('close-sidebar-btn');
+
+    if (!sidebar) return;
+
+    function openSidebar() {
+        sidebar.classList.remove('-translate-x-full');
+        if (backdrop) backdrop.classList.remove('hidden');
+        if (window.innerWidth < 1024) document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.add('-translate-x-full');
+        if (backdrop) backdrop.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    openBtns.forEach(btn => btn.addEventListener('click', openSidebar));
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (backdrop) backdrop.addEventListener('click', closeSidebar);
 }

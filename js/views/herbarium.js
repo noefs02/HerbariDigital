@@ -1,4 +1,4 @@
-import { renderSidebar } from '../components/sidebar.js';
+import { renderSidebar, initSidebarEvents } from '../components/sidebar.js';
 import { AppState } from '../app.js';
 import { AuthService } from '../services/authService.js';
 
@@ -294,9 +294,9 @@ export function renderHerbarium(allPlants) {
     const sidebarHTML = renderSidebar();
 
     const html = `
-        <div id="herbarium-view" class="view-container flex h-full items-start">
+        <div id="herbarium-view" class="view-container flex flex-1 items-stretch w-full">
             ${sidebarHTML}
-            <main class="flex-1 p-6 lg:p-10 overflow-y-auto h-full">
+            <main class="flex-1 p-6 lg:p-10">
                 <div class="max-w-6xl mx-auto">
                     <header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
                         <div>
@@ -306,6 +306,7 @@ export function renderHerbarium(allPlants) {
                                 <span id="herbari-count">${allPlants.length} espècies</span>
                             </p>
                         </div>
+                        <!-- Filtros se abren mediante el FAB flotante en móviles -->
                     </header>
 
                     <div id="herbari-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 animate-in fade-in duration-500">
@@ -317,10 +318,18 @@ export function renderHerbarium(allPlants) {
                     </div>
                 </div>
             </main>
+            
+            <!-- Floating Action Button para móviles -->
+            <button class="open-sidebar-btn lg:hidden fixed bottom-24 right-6 z-[65] w-14 h-14 bg-primary hover:bg-primary-dark text-white rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(48,137,48,0.5)] transition-transform active:scale-95 border border-primary-light/50">
+                <span class="material-symbols-outlined text-2xl">filter_list</span>
+            </button>
         </div>
     `;
 
-    setTimeout(() => initFilterListeners(), 0);
+    setTimeout(() => {
+        initFilterListeners();
+        initSidebarEvents();
+    }, 0);
 
     return html;
 }

@@ -13,7 +13,7 @@ export function renderHome() {
     const imgPrefix = seasonFileNames[activeSeason] || 'primavera';
 
     return `
-    <div class="relative flex-1 flex items-center justify-center overflow-hidden">
+    <div id="home-view" class="relative flex-1 h-full flex items-center justify-center overflow-hidden">
         
         <!-- Imatge de fons que canvia segons l'estació -->
         <img id="home-bg-image" class="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none transition-opacity duration-300"

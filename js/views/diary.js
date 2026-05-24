@@ -4,7 +4,7 @@ import { AuthService } from '../services/authService.js';
 
 export function renderDiary(diaries) {
     return `
-        <main id="diary-view" class="flex flex-1 flex-col px-4 py-6 lg:px-20 gap-6">
+        <main id="diary-view" class="flex flex-1 flex-col px-4 py-6 lg:px-20 gap-6 w-full">
             <!-- Contenedor de Logros (Achievements) -->
             <section id="achievements-container">
                 <div class="animate-pulse flex space-x-4">
@@ -36,7 +36,7 @@ export function renderDiary(diaries) {
                         </div>
                         
                         <!-- Lista injectada dinámicamente -->
-                        <div id="diari-checklist" class="flex flex-col gap-3 pr-2 h-[750px] overflow-y-auto">
+                        <div id="diari-checklist" class="flex flex-col gap-3 pr-2 max-h-[70vh] lg:max-h-[750px] overflow-y-auto">
                             <div class="p-6 text-center text-slate-500 text-sm italic">Carregant llista...</div>
                         </div>
 
@@ -75,7 +75,7 @@ export function renderDiary(diaries) {
                             </button>
                         </div>
                         
-                        <div id="diari-entries-list" class="space-y-4 h-[960px] overflow-y-auto">
+                        <div id="diari-entries-list" class="space-y-4 max-h-[70vh] lg:max-h-[960px] overflow-y-auto">
                             <div class="p-6 text-center text-slate-500 text-sm italic">Carregant registres del diari...</div>
                         </div>
                         
@@ -88,8 +88,8 @@ export function renderDiary(diaries) {
         </main>
 
         <!-- Modal de Nou Registre -->
-        <div id="diary-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm px-4 py-6 overflow-y-auto">
-            <div class="bg-surface border border-white/10 rounded-2xl p-6 w-full max-w-lg shadow-2xl shadow-black relative my-auto">
+        <div id="diary-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm px-2 sm:px-4 py-4 sm:py-6 overflow-y-auto">
+            <div class="bg-surface border border-white/10 rounded-2xl p-4 sm:p-6 w-full max-w-lg shadow-2xl shadow-black relative my-auto max-h-[90vh] overflow-y-auto custom-scrollbar">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-xl font-bold flex items-center gap-2 text-white">
                         <span class="material-symbols-outlined text-primary">add_circle</span>
@@ -103,7 +103,7 @@ export function renderDiary(diaries) {
                     <div class="relative">
                         <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Planta</label>
                         <div class="relative">
-                            <input type="text" id="diary-plant-search" autocomplete="off" placeholder="Escriu per cercar una planta..." class="w-full bg-slate-900 border border-white/10 rounded-lg pl-10 pr-10 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
+                            <input type="text" id="diary-plant-search" autocomplete="off" placeholder="Escriu per cercar una planta..." class="w-full bg-slate-900 border border-white/10 rounded-lg pl-10 pr-10 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500">
                                 <span class="material-symbols-outlined text-lg">search</span>
                             </div>
@@ -114,24 +114,24 @@ export function renderDiary(diaries) {
                         <input type="hidden" id="diary-plant-select" required>
                         <div id="diary-plant-results" class="absolute left-0 right-0 mt-2 bg-slate-900 border border-white/10 rounded-xl max-h-60 overflow-y-auto hidden z-[210] shadow-2xl divide-y divide-white/5"></div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Data</label>
-                            <input type="datetime-local" id="diary-date" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                            <input type="datetime-local" id="diary-date" required class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Ubicació (Nom)</label>
-                            <input type="text" id="diary-loc-name" required placeholder="Ex: Serra de Tramuntana" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                            <input type="text" id="diary-loc-name" required placeholder="Ex: Serra de Tramuntana" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Latitud</label>
-                            <input type="number" step="any" id="diary-lat" required placeholder="39.7103" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                            <input type="number" step="any" id="diary-lat" required placeholder="39.7103" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Longitud</label>
-                            <input type="number" step="any" id="diary-lng" required placeholder="2.9122" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+                            <input type="number" step="any" id="diary-lng" required placeholder="2.9122" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
                         </div>
                     </div>
                     <div class="flex justify-end mb-2">
@@ -141,7 +141,7 @@ export function renderDiary(diaries) {
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Observacions</label>
-                        <textarea id="diary-obs" rows="3" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Afegeix detalls de la troballa..."></textarea>
+                        <textarea id="diary-obs" rows="3" class="w-full bg-slate-900 border border-white/10 rounded-lg px-4 py-2.5 text-base sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Afegeix detalls de la troballa..."></textarea>
                     </div>
                     <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3 rounded-lg transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2 mt-4">
                         <span class="material-symbols-outlined">save</span> Guardar Registre
@@ -460,8 +460,14 @@ function renderAchievements(logros) {
             </div>
             ` : ''}
 
-            <!-- Grid de logros circulares -->
-            <div class="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-4 mt-4">
+            <!-- Botón para expandir/colapsar logros específicos -->
+            <button id="toggle-achievements-btn" class="text-xs font-bold text-slate-400 hover:text-white transition-colors flex items-center gap-1 mt-2">
+                <span class="material-symbols-outlined text-[14px]">expand_more</span>
+                <span>Veure tots els assoliments</span>
+            </button>
+
+            <!-- Grid de logros circulares (oculto por defecto) -->
+            <div id="achievements-grid" class="hidden grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-4 mt-4">
                 ${otrosLogros.map(logro => `
                     <div class="bg-surface dark:bg-surface border border-slate-200 dark:border-white/10 p-3 rounded-xl flex flex-col items-center text-center group relative cursor-help" title="${logro.descripcion}">
                         <div class="relative w-14 h-14 mb-2">
@@ -478,6 +484,34 @@ function renderAchievements(logros) {
             </div>
         </div>
     `;
+
+    // Nos aseguramos de inicializar el listener después de inyectar el HTML
+    // ya que renderAchievements actualiza el DOM de forma síncrona
+    setTimeout(() => {
+        const toggleBtn = document.getElementById('toggle-achievements-btn');
+        const achievementsGrid = document.getElementById('achievements-grid');
+        
+        if (toggleBtn && achievementsGrid) {
+            toggleBtn.addEventListener('click', () => {
+                const isHidden = achievementsGrid.classList.contains('hidden');
+                if (isHidden) {
+                    achievementsGrid.classList.remove('hidden');
+                    achievementsGrid.classList.add('grid');
+                    toggleBtn.innerHTML = `
+                        <span class="material-symbols-outlined text-[14px]">expand_less</span>
+                        <span>Ocultar assoliments</span>
+                    `;
+                } else {
+                    achievementsGrid.classList.add('hidden');
+                    achievementsGrid.classList.remove('grid');
+                    toggleBtn.innerHTML = `
+                        <span class="material-symbols-outlined text-[14px]">expand_more</span>
+                        <span>Veure tots els assoliments</span>
+                    `;
+                }
+            });
+        }
+    }, 0);
 }
 
 // --- MAPA DE DIARIO LOGIC ---
@@ -502,7 +536,8 @@ function initDiaryMap(diarioEntries) {
     // Configurar mapa de Leaflet
     diaryMapInstance = L.map('diary-map', {
         zoomControl: false, // se pueden añadir controles personalizados
-        dragging: true,
+        dragging: !L.Browser.mobile,
+        tap: !L.Browser.mobile,
         scrollWheelZoom: false // Para evitar que interfiera con el scroll de la página de diario
     }).setView(defaultCenter, defaultZoom);
 

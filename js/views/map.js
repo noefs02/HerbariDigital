@@ -1,5 +1,5 @@
 // --- views/map.js ---
-import { renderSidebar } from '../components/sidebar.js';
+import { renderSidebar, initSidebarEvents } from '../components/sidebar.js';
 import { AppState } from '../app.js';
 import { applyFilters, getCheckedValues, renderPlantTags } from './herbarium.js';
 
@@ -12,10 +12,6 @@ let markerGroup = null;
 
 export function renderMap() {
     const extraContent = `
-        <div class="mt-8 pt-4 border-t border-white/10">
-             <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 px-1">Mapa de Distribució</h2>
-             <p class="text-xs text-slate-400 px-1">Navega pel mapa interactiu per descubrir on es troben les diferents espècies vegetals de les Illes Balears.</p>
-        </div>
         <div class="mt-4 pt-4 border-t border-white/10">
              <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2 px-1">Capa de Micologia</h2>
              <div class="flex items-center justify-between p-2 rounded-lg bg-surface border border-white/5 mt-2">
@@ -32,19 +28,26 @@ export function renderMap() {
     `;
 
     return `
-        <div id="map-view" class="view-container h-[calc(100vh-115px)] relative flex w-full">
+        <div id="map-view" class="view-container flex flex-1 relative w-full items-stretch">
             ${renderSidebar(extraContent)}
             
-            <main class="flex-1 relative bg-forest-neutral-900 overflow-hidden">
+            <main class="flex-1 relative bg-forest-neutral-900 overflow-hidden h-[calc(100vh-121px)]">
                 <div id="global-map" class="absolute inset-0 w-full h-full z-0 bg-[#0b0e0b]"></div>
                 
-                <div class="absolute top-6 left-6 z-10 pointer-events-none">
-                    <div class="bg-background-dark/80 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-2xl pointer-events-auto">
-                        <h2 class="text-xl font-black text-white flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary">public</span>
-                            Mapa de Biodiversitat
-                        </h2>
-                        <p class="text-sm text-slate-400 mt-1"><span id="map-marker-count">0</span> localitzacions cartografiades</p>
+                <div class="absolute top-6 left-6 right-6 lg:right-auto z-10 pointer-events-none flex flex-col items-start gap-2">
+                    <div class="bg-background-dark/80 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-2xl pointer-events-auto w-full max-w-sm">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h2 class="text-xl font-black text-white flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">public</span>
+                                    Mapa
+                                </h2>
+                                <p class="text-sm text-slate-400 mt-1"><span id="map-marker-count">0</span> localitzacions</p>
+                            </div>
+                            <button class="open-sidebar-btn lg:hidden p-2 bg-surface border border-white/10 rounded-lg text-white hover:bg-white/5 transition-colors shadow-lg pointer-events-auto flex-shrink-0">
+                                <span class="material-symbols-outlined text-primary-light text-xl">filter_list</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -84,7 +87,12 @@ export function initMap(plants) {
             mapInstance = null;
         }
 
-        mapInstance = L.map('global-map', { zoomControl: false }).setView([39.6105, 2.9463], 8);
+        mapInstance = L.map('global-map', {
+            zoomControl: false,
+            // Habilitamos arrastre con un solo dedo en móviles ya que esta vista es a pantalla completa sin scroll
+            dragging: true,
+            tap: true
+        }).setView([39.6105, 2.9463], 8);
 
         // --- ORDRE DE CONTROLS (de dalt a baix a bottomright) ---
         const layerSwitcher = new LayerSwitcherControl({ position: 'bottomright' });
@@ -170,6 +178,8 @@ export function initMap(plants) {
 
 // 5. Listeners de los filtros (Sidebar)
 export function initMapFilterListeners() {
+    initSidebarEvents();
+
     // Checkboxes de islas y otros
     document.querySelectorAll('.filter-checkbox').forEach(cb => {
         cb.addEventListener('change', () => {

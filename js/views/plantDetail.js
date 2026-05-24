@@ -40,7 +40,9 @@ export async function initDetailMap(plant) {
         // --- INICIALIZACIÓN ---
         detailMapInstance = L.map('detail-map', {
             zoomControl: false, // DESACTIVAMOS el nativo para controlarlo nosotros
-            scrollWheelZoom: false
+            scrollWheelZoom: false,
+            dragging: !L.Browser.mobile,
+            tap: !L.Browser.mobile
         }).setView([coords[0].latitude, coords[0].longitude], 8);
 
         // --- GESTIÓN DE ENFOQUE Y SCROLL DE RUEDA ---
@@ -552,7 +554,7 @@ export function renderPlantDetail(plant) {
     const heroTagsHTML = renderPlantTags(plant, true);
 
     return `
-    <div class="animate-in fade-in duration-500">
+    <div class="flex-1 w-full animate-in fade-in duration-500">
 
         <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center justify-between">
             <nav class="flex items-center gap-2 text-sm font-medium text-slate-500">
@@ -725,7 +727,7 @@ export function renderPlantDetail(plant) {
             } else if (isLocalVideo) {
                 videoHtml = `
                                         <figure id="video-wrapper" class="video-container relative overflow-hidden rounded-2xl aspect-video bg-black ring-1 ring-white/10 shadow-2xl">
-                                            <video id="video-player" class="w-full h-full object-cover" preload="metadata" playsinline>
+                                            <video id="video-player" class="w-full h-full object-contain" preload="metadata" playsinline>
                                                 <source src="${localVideoUrl}" type="video/mp4">
                                                 <source src="${localVideoUrl.replace('.mp4', '.webm')}" type="video/webm">
                                                 <p>El teu navegador no suporta HTML5. <a href="${localVideoUrl}">Descarrega l'arxiu</a>.</p>

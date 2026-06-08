@@ -259,6 +259,18 @@ async function loadData() {
         const data = await response.json();
         AppState.plants = data.itemListElement.map(el => el.item);
 
+        // --- INJECCIÓ JSON-LD ---
+        const scriptJSONLD = document.createElement('script');
+        scriptJSONLD.type = 'application/ld+json';
+        scriptJSONLD.text = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": "Herbari Digital de les Illes Balears",
+            "description": "Catàleg científic de la flora autòctona de l'arxipèlag balear",
+            "itemListElement": AppState.plants
+        });
+        document.head.appendChild(scriptJSONLD);
+
         console.log("Dades carregades correctament (Schema.org):", AppState.plants);
 
         if (AppState.currentRoute === 'herbarium' && window._herbariumFns) {
